@@ -10,7 +10,7 @@ using UnityEngine.UIElements;
 public class ShipMovementScript : MonoBehaviour
 {
     public float forceMagnitude;
-    public Rigidbody2D rb;
+    public Rigidbody rb;
     
     public float moveSpeed = 5f;
     
@@ -63,26 +63,13 @@ public class ShipMovementScript : MonoBehaviour
         {
             // Rotate the ship based on the horizontal input
            
-            float rotationForce = -horizontalInput * rotationSpeed * Time.fixedDeltaTime*10;
-            rb.AddTorque(rotationForce);
+            float rotationForce = horizontalInput * rotationSpeed * Time.fixedDeltaTime*10;
+            rb.AddTorque(0f, rotationForce, 0f);
         }
 
 
         // Get the vertical input (e.g., W and S keys or up and down arrows)
         float verticalInput = Input.GetAxis("Vertical");
-
-       
-
-
-
-
-
-
-
-        // Get the horizontal input (e.g., A and D keys or left and right arrows)
-    
-
-
 
         // Calculate the direction the ship should move in
         Vector3 moveDirection = transform.up * verticalInput;

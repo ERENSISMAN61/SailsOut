@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Bullet
+  - Inventory
+  - BulletCount
+  - Coin
+  - Supply
+  - Destroyless
+  - UIManager
   layers:
   - Default
   - TransparentFX
@@ -11,7 +18,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - CannonBall
   - 
   - 
   - 
@@ -40,4 +47,19 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 2215712679
+    locked: 0
+  - name: Midground
+    uniqueID: 836529549
+    locked: 0
+  - name: Foreground
+    uniqueID: 1273496933
+    locked: 0
+  - name: Objects
+    uniqueID: 118616285
+    locked: 0
+  - name: Bar
+    uniqueID: 3355840579
     locked: 0

@@ -197,6 +197,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3325283197349263534, guid: 5ee7c24dffeba814fa5156e53708fb3a, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: d1279f0eed2c0da4197831a7432cd06d, type: 3}
     - target: {fileID: 7581835693046829663, guid: 5ee7c24dffeba814fa5156e53708fb3a, type: 3}
       propertyPath: m_Name
       value: ParsomenText
@@ -219,6 +223,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7039075642552181773}
     m_Modifications:
+    - target: {fileID: 3500068946406408566, guid: 610bdf7fe853d8b4fb0af947d4408e98, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: d1279f0eed2c0da4197831a7432cd06d, type: 3}
     - target: {fileID: 7658561393620308519, guid: 610bdf7fe853d8b4fb0af947d4408e98, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -401,6 +409,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7444494754286529131, guid: 618b350171f1fe645be91998c91e8538, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: d1279f0eed2c0da4197831a7432cd06d, type: 3}
     - target: {fileID: 8600190181712909379, guid: 618b350171f1fe645be91998c91e8538, type: 3}
       propertyPath: m_Name
       value: BulletText
@@ -427,6 +439,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CoinText
       objectReference: {fileID: 0}
+    - target: {fileID: 7566097338402195694, guid: 2e55fa6e8f22f844e9777ef0442dcdb6, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: d1279f0eed2c0da4197831a7432cd06d, type: 3}
     - target: {fileID: 8074839661722215292, guid: 2e55fa6e8f22f844e9777ef0442dcdb6, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
