@@ -82,7 +82,7 @@ public class SmoothAgentMovement : MonoBehaviour
     }
     private void Update()
     {
-        if(Vector3.Distance(Next_Position, transform.position) <= 1.5f)  ///////////
+        if(Vector3.Distance(Next_Position, transform.position) <= 10f)  ///////////
         {
             Next_Position = RandomPointGenerator(transform.position,Radius);
             SetDestinationPlus(Next_Position);
@@ -104,7 +104,7 @@ public class SmoothAgentMovement : MonoBehaviour
     }
 
     public void SetDestinationPlus(Vector3 Position)
-    {
+    {Debug.Log("Position"+Position);
         Agent.ResetPath();
         NavMesh.CalculatePath(transform.position, Position, Agent.areaMask, CurrentPath);
         Vector3[] corners = CurrentPath.corners;
