@@ -11,6 +11,8 @@ TagManager:
   - Supply
   - Destroyless
   - UIManager
+  - EnemyShip
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX
@@ -19,7 +21,7 @@ TagManager:
   - Water
   - UI
   - CannonBall
-  - 
+  - Floor
   - 
   - 
   - 

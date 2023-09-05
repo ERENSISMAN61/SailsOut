@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using TMPro;
-using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -37,6 +36,7 @@ public class PlayerHealthBarControl : MonoBehaviour
     public float hungerTime = 60f; // her 60 sn de bir açlık azalma süresi
     public float healthReducing_HungerTime = 30f; // açlık 0 olduğunda her 30 sn de bir sağlık azalma süresi
     public float healthIncreasing_HungerTime = 30f; // açlık 0 olduğunda her 30 sn de bir sağlık artma süresi
+
 
     private void Start()
     {

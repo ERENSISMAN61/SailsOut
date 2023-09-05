@@ -278,7 +278,7 @@ MonoBehaviour:
   hunger: 100
   maxHunger: 100
   hungerReducingTime: 0
-  inventory: {fileID: 0}
+  inventory: {fileID: 5050798330295138398, guid: f3521fe39a9580e448e1eabe6eef3381, type: 3}
   increaseHunger: 10
   decreaseHunger: 10
   decreaseSupplyCount: 10
@@ -568,7 +568,7 @@ PrefabInstance:
     - target: {fileID: 3276584514583159730, guid: 5d923fe8804244041ac1a62194284134, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: cf07257fec746a5479bffeb7e135f949, type: 2}
+      objectReference: {fileID: 11400000, guid: 09ad59f32fae636449294251a68a6c11, type: 2}
     - target: {fileID: 3276584514583159730, guid: 5d923fe8804244041ac1a62194284134, type: 3}
       propertyPath: m_lineSpacing
       value: -5.3
@@ -580,7 +580,7 @@ PrefabInstance:
     - target: {fileID: 3276584514583159730, guid: 5d923fe8804244041ac1a62194284134, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: -2253473919120393346, guid: cf07257fec746a5479bffeb7e135f949, type: 2}
+      objectReference: {fileID: 5762038327122399692, guid: 09ad59f32fae636449294251a68a6c11, type: 2}
     - target: {fileID: 3276584514583159730, guid: 5d923fe8804244041ac1a62194284134, type: 3}
       propertyPath: m_VerticalAlignment
       value: 256
