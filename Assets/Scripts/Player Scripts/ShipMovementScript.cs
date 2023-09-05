@@ -2,7 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.ShaderGraph;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -10,20 +12,14 @@ using UnityEngine.UIElements;
 public class ShipMovementScript : MonoBehaviour
 {
     public float forceMagnitude;
-    public Rigidbody rb;
+    private Rigidbody rb;
     
-    public float moveSpeed = 5f;
+    public float moveSpeed = 800f;
     
-    public float rotationSpeed = 5f;
-
-    public Sprite healthySprite;
-    public Sprite lessDamagedSprite;
-    public Sprite highDamagedSprite;
-    public Sprite destroyedSprite;
-
-    SpriteRenderer spriteRenderer;
+    public float rotationSpeed = 200f;
 
 
+    
 
     public Text ParsomenText;
     private int ParsomenCount = 0;
@@ -33,62 +29,59 @@ public class ShipMovementScript : MonoBehaviour
 
     
     public float deathTime;
-    [SerializeField] GameObject AimObjectForDisable;
+    //[SerializeField] GameObject AimObjectForDisable;
     [SerializeField] PlayerHealthBarControl playerHealthBarControl;
+
+
+    private void Awake()
+    {
+        rb = gameObject.GetComponent<Rigidbody>();
+        
+
+    }
+
    
 
-    private void Start()
-    {
-        
-        spriteRenderer = GetComponent<SpriteRenderer>();
-       
-    }
+   
+
     private void FixedUpdate()
     {
 
-        
-        if (Input.GetKey(KeyCode.Space))
-        {
-            SceneManager.LoadScene("BattleScene"); //silinecek/////////////////////////////////
-        }
-        if (Input.GetKey(KeyCode.E))
-        { 
-            SceneManager.LoadScene("Eren Scene"); //silinecek/////////////////////////////////
-        }
-        // Get the horizontal input (e.g., A and D keys or left and right arrows)
-        float horizontalInput = Input.GetAxis("Horizontal");
 
-        // Check if there is horizontal input (left or right key pressed)
+        //if (Input.GetKey(KeyCode.Space))
+        //{
+        //    SceneManager.LoadScene("BattleScene"); //silinecek/////////////////////////////////
+        //}
+        //if (Input.GetKey(KeyCode.E))
+        //{ 
+        //    SceneManager.LoadScene("Eren Scene"); //silinecek/////////////////////////////////
+        //}
+      
+
+        // Get player input for ship movement
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+
+        // Apply forward force
+        Vector3 forward = verticalInput * transform.forward * moveSpeed * 5;
+        rb.AddForce(forward);
+
+        
         if (Mathf.Abs(horizontalInput) > 0.1f)
         {
             // Rotate the ship based on the horizontal input
-           
-            float rotationForce = horizontalInput * rotationSpeed * Time.fixedDeltaTime*10;
+
+            float rotationForce = horizontalInput * rotationSpeed * 10;
             rb.AddTorque(0f, rotationForce, 0f);
         }
 
+       
 
-        // Get the vertical input (e.g., W and S keys or up and down arrows)
-        float verticalInput = Input.GetAxis("Vertical");
 
-        // Calculate the direction the ship should move in
-        Vector3 moveDirection = transform.up * verticalInput;
-
-        // Apply force to move the ship in the desired direction
-        rb.AddForce(moveDirection * forceMagnitude);
-
-        // Apply lateral force to allow left and right movement
-  
-
-        // Limit maximum velocity
-        if (rb.velocity.magnitude > moveSpeed)
-        {
-            rb.velocity = rb.velocity.normalized * moveSpeed;
-        }
     }
     void Update()
     {
-   
+
 
         
        
@@ -100,19 +93,19 @@ public class ShipMovementScript : MonoBehaviour
         if(playerHealthBarControl.health  <= 100 && playerHealthBarControl.health > 75)
         {
 
-            spriteRenderer.sprite = healthySprite;
+            
         }
         else if (playerHealthBarControl.health <= 75 && playerHealthBarControl.health > 50)
         {
-            spriteRenderer.sprite = lessDamagedSprite;
+            
         }
         else if (playerHealthBarControl.health <= 50 && playerHealthBarControl.health > 0)
         {
-            spriteRenderer.sprite = highDamagedSprite;
+            
         }
         else if (playerHealthBarControl.health == 0  || playerHealthBarControl.health < 0)
         {
-            spriteRenderer.sprite = destroyedSprite;
+            
             gameObject.GetComponent<PlayerFire>().enabled = false;
             //gameObject.SetActive(false);
             StartCoroutine(waitDestroyPlayer(deathTime));
@@ -135,14 +128,13 @@ public class ShipMovementScript : MonoBehaviour
         gameObject.GetComponent<PolygonCollider2D>().enabled = false;
        // GetComponent<EdgeCollider2D>().enabled = false;
         //  GetComponent<PlayerAimWeapon>().gameObject.SetActive(false);
-        AimObjectForDisable.SetActive(false);
+        //AimObjectForDisable.SetActive(false);
         gameObject.GetComponent<ShipMovementScript>().enabled = false;
         yield return new WaitForSeconds(destroyTime);
         Destroy(gameObject);
 
     }
 
-    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
