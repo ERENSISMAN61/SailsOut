@@ -13,6 +13,7 @@ TagManager:
   - UIManager
   - EnemyShip
   - EnemyBullet
+  - Canvas
   layers:
   - Default
   - TransparentFX

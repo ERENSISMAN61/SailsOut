@@ -13,13 +13,13 @@ public class ShipMovementScript : MonoBehaviour
 {
     public float forceMagnitude;
     private Rigidbody rb;
-    
-    public float moveSpeed = 800f;
-    
-    public float rotationSpeed = 200f;
+
+    public float moveSpeed;
+
+    public float rotationSpeed;
 
 
-    
+
 
     public Text ParsomenText;
     private int ParsomenCount = 0;
@@ -27,22 +27,22 @@ public class ShipMovementScript : MonoBehaviour
 
     public bool isBulletEntered = false;
 
-    
+
     public float deathTime;
     //[SerializeField] GameObject AimObjectForDisable;
     [SerializeField] PlayerHealthBarControl playerHealthBarControl;
-
+ 
 
     private void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody>();
-        
+
 
     }
 
-   
 
-   
+
+
 
     private void FixedUpdate()
     {
@@ -56,77 +56,105 @@ public class ShipMovementScript : MonoBehaviour
         //{ 
         //    SceneManager.LoadScene("Eren Scene"); //silinecek/////////////////////////////////
         //}
-      
 
+        ShipMovement();
+        
+
+
+    }
+
+    void ShipMovement()
+    {
         // Get player input for ship movement
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
         // Apply forward force
-        Vector3 forward = verticalInput * transform.forward * moveSpeed * 5;
+        Vector3 forward = moveSpeed * verticalInput * transform.forward;
         rb.AddForce(forward);
 
-        
+
+
+
         if (Mathf.Abs(horizontalInput) > 0.1f)
         {
             // Rotate the ship based on the horizontal input
 
-            float rotationForce = horizontalInput * rotationSpeed * 10;
+            float rotationForce = horizontalInput * rotationSpeed * transform.rotation.w;
             rb.AddTorque(0f, rotationForce, 0f);
         }
 
-       
-
 
     }
+
+    private void setMoveSpeedAndRotationSpeed()
+    {
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S))
+        {
+            moveSpeed += 5;
+        }
+        if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S))
+        {
+            moveSpeed = 0;
+        }
+
+        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.A))
+        {
+            rotationSpeed += 10;
+        }
+        if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.A))
+        {
+            rotationSpeed = 0;
+        }
+    }
+
     void Update()
     {
-
-
         
-       
+        setMoveSpeedAndRotationSpeed();
+
         // Movement and Rotation code remains the same as before
         // ...
 
-         
 
-        if(playerHealthBarControl.health  <= 100 && playerHealthBarControl.health > 75)
+
+        if (playerHealthBarControl.health <= 100 && playerHealthBarControl.health > 75)
         {
 
-            
+
         }
         else if (playerHealthBarControl.health <= 75 && playerHealthBarControl.health > 50)
         {
-            
+
         }
         else if (playerHealthBarControl.health <= 50 && playerHealthBarControl.health > 0)
         {
-            
+
         }
-        else if (playerHealthBarControl.health == 0  || playerHealthBarControl.health < 0)
+        else if (playerHealthBarControl.health == 0 || playerHealthBarControl.health < 0)
         {
-            
+
             gameObject.GetComponent<PlayerFire>().enabled = false;
             //gameObject.SetActive(false);
             StartCoroutine(waitDestroyPlayer(deathTime));
 
         }
 
-        
+
 
     }
 
-   
+
 
 
 
     IEnumerator waitDestroyPlayer(float destroyTime)
     {
-        
-        
+
+
         gameObject.GetComponent<AudioGet>().enabled = false;
         gameObject.GetComponent<PolygonCollider2D>().enabled = false;
-       // GetComponent<EdgeCollider2D>().enabled = false;
+        // GetComponent<EdgeCollider2D>().enabled = false;
         //  GetComponent<PlayerAimWeapon>().gameObject.SetActive(false);
         //AimObjectForDisable.SetActive(false);
         gameObject.GetComponent<ShipMovementScript>().enabled = false;
@@ -156,8 +184,8 @@ public class ShipMovementScript : MonoBehaviour
                 playerHealthBarControl.health -= collision.gameObject.GetComponent<BulletController>().enemyBulletDamage;
 
                 playerHealthBarControl.lerpTimer = 0f; // reset the timer
-                //playerHealthBarControl.updateHealthBar(playerHealthBarControl.health, playerHealthBarControl.maxHealth);
-                
+                                                       //playerHealthBarControl.updateHealthBar(playerHealthBarControl.health, playerHealthBarControl.maxHealth);
+
             }
 
         }
@@ -186,7 +214,7 @@ public class ShipMovementScript : MonoBehaviour
 
         }
 
-        
+
     }
 
 
