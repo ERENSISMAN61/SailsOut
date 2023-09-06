@@ -5,41 +5,68 @@ using UnityEngine.Rendering.HighDefinition;
 
 public class Floater : MonoBehaviour
 {
-    public Rigidbody rb;
-    public float depthBeforeSubmerge = 1f;
-    public float displacementAmount = 2f;
-    public int floaters = 1;
+    // Gemiyi yüzdüren noktaları belirleyen bir dizi oluşturalım
+    public Transform[] Floaters;
 
-    public float waterDrag = 2f;
-    public float waterAngularDrag = 2f;
+    // Geminin suya girdiğinde uygulanacak kaldırma kuvvetinin büyüklüğünü belirleyelim
+    public float FloatingPower = 2f;
+
+    // Suyun yüzeyinin konumunu ve eğimini belirleyen bir nesne oluşturalım
     public WaterSurface water;
-    WaterSearchParameters search = new WaterSearchParameters();
-    WaterSearchResult searchResult;
-    private void FixedUpdate()
+
+    // Suyun yüzeyine bir nokta yansıtmak için kullanılan parametreleri ve sonuçları tutan nesneler oluşturalım
+    WaterSearchParameters Search;
+    WaterSearchResult SearchResult;
+
+    // Geminin fiziksel davranışını belirleyen bir nesne oluşturalım
+    Rigidbody Rb;
+
+    
+    // Geminin suyun altında kalan noktalarının sayısını tutan bir değişken oluşturalım
+    int FloatersUnderWater;
+
+    // Oyun başladığında çalışacak fonksiyonu tanımlayalım
+    void Start()
     {
-        // Apply gravity to the rigidbody at multiple positions for stability.
-        rb.AddForceAtPosition(Physics.gravity / floaters, transform.position, ForceMode.Acceleration);
+        // Geminin fiziksel davranışını alalım
+        Rb = this.GetComponent<Rigidbody>();
+    }
 
-        // Create water search parameters and get the water surface height.
+    // Her karede çalışacak fonksiyonu tanımlayalım
+    void FixedUpdate()
+    {
+        // Suyun altında kalan noktaların sayısını sıfırlayalım
+        FloatersUnderWater = 0;
 
-        search.startPositionWS = transform.position;
-
-
-        // Check if the object is below the water surface.
-        if (transform.position.y < searchResult.candidateLocationWS.x)
+        // Gemiyi yüzdüren noktaların her biri için
+        for (int i = 0; i < Floaters.Length; i++)
         {
-            // Calculate the displacement multiplier based on depth.
-            float displacementMultiplier = Mathf.Clamp01((searchResult.projectedPositionWS.x - transform.position.y) / depthBeforeSubmerge) * displacementAmount;
+            // Suyun yüzeyine noktayı yansıtmak için kullanılacak başlangıç noktasını noktanın konumu olarak belirleyelim
+            Search.startPositionWS = Floaters[i].position;
 
-            // Apply buoyant force.
-            rb.AddForceAtPosition(new Vector3(0f, Mathf.Abs(Physics.gravity.y) * displacementMultiplier, 0f), transform.position, ForceMode.Acceleration);
+            // Suyun yüzeyine noktayı yansıtalım ve sonucu alalım
+            water.ProjectPointOnWaterSurface(Search, out SearchResult);
 
-            // Apply drag forces.
-            rb.AddForce(displacementMultiplier * -rb.velocity * waterDrag * Time.fixedDeltaTime, ForceMode.VelocityChange);
-            rb.AddTorque(displacementMultiplier * -rb.angularVelocity * waterAngularDrag * Time.fixedDeltaTime, ForceMode.VelocityChange);
+            // Noktanın suyun yüzeyinden ne kadar aşağıda olduğunu hesaplayalım
+            float diff = Floaters[i].position.y - SearchResult.projectedPositionWS.y;
+
+            // Eğer nokta suyun altındaysa
+            if (diff < 0)
+            {
+                // Noktaya, suyun yüzeyine doğru bir kaldırma kuvveti uygulayalım
+                float displacementMulti = Mathf.Clamp01(SearchResult.projectedPositionWS.y - transform.position.y / 2) * 10;
+                Rb.AddForceAtPosition(FloatingPower * Mathf.Abs(diff) * Vector3.up, Floaters[i].position, ForceMode.Acceleration);
+               
+                // Suyun altında kalan noktaların sayısını arttıralım
+                FloatersUnderWater += 1;
+
+                
+            }
         }
 
-        // Resetting the rotation might not be necessary, so you can remove this line.
-        //gameObject.transform.rotation = Quaternion.identity;
+       
     }
+
+    
+   
 }

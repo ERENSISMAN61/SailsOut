@@ -88,23 +88,8 @@ public class MovingScript : MonoBehaviour
 
     private void setMoveSpeedAndRotationSpeed()
     {
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S))
-        {
-            moveSpeed = 5;
-        }
-        //if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S))
-        //{
-        //    moveSpeed = 0;
-        //}
-
-        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.A))
-        {
-            rotationSpeed = 5;
-        }
-        //if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.A))
-        //{
-        //    rotationSpeed = 0;
-        //}
+        
+     
     }
 
     void Update()

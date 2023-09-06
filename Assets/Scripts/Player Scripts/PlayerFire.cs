@@ -4,39 +4,26 @@ using UnityEngine;
 
 public class PlayerFire : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public GameObject bulletPrefab;
+    public GameObject cannonballPrefab;
     public Transform firePoint;
-    public float bulletSpeed = 2f;
-    public float bulletSpeedrate = 5;
-    
-    void Start()
+    public float cannonballSpeed = 10f;
+
+    void FireCannonball()
     {
-        
+        GameObject newCannonball = Instantiate(cannonballPrefab, firePoint.position, firePoint.rotation);
+        Rigidbody rb = newCannonball.GetComponent<Rigidbody>();
+
+        // Set the velocity of the cannonball
+        rb.velocity = firePoint.forward * cannonballSpeed;
+
+        Destroy(newCannonball, 3f);
     }
-    void FireBullet()
-    {
 
-        GameObject newBullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        newBullet.GetComponent<BulletController>().playerBulletDamage = gameObject.GetComponent<PlayerLevelManager>().playerDamage;
-        newBullet.GetComponent<BulletController>().SetVelocity(firePoint.right * bulletSpeed / bulletSpeedrate);
-
-        gameObject.GetComponent<AudioGet>().PlayShotAudio();
-
-
-        Destroy(newBullet, 3f);
-
-
-    }
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) ) //////////////////     Veysel buraya bakılacak        \\\\\\\\\\\\\\\\\\\\\\
+        if (Input.GetMouseButtonDown(0))
         {
-
-            FireBullet();
-
-
+            FireCannonball();
         }
     }
 }
