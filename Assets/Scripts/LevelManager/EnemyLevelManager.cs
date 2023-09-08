@@ -23,7 +23,7 @@ public class EnemyLevelManager : MonoBehaviour
     [SerializeField] private float XP;
     private void Start()
     {
-        levelScale = new Vector3(0.5f, 0.5f, 0.5f);
+        levelScale = new Vector3(1f, 1f, 1f);
         levelMultiple = new Vector3(0.10f, 0.10f, 0.10f);
 
         HealthController();
@@ -49,14 +49,14 @@ public class EnemyLevelManager : MonoBehaviour
     {
         enemyDamage = enemyLevel * damageMultiple + 5;
 
-        scalePercent = (levelScale.x + (levelMultiple.x) * enemyLevel) /(levelScale.x + levelMultiple.x * 1);
+       // scalePercent = (levelScale.x + (levelMultiple.x) * enemyLevel) /(levelScale.x + levelMultiple.x * 1);
       
-        gameObject.transform.localScale = levelScale + levelMultiple * enemyLevel;
+        gameObject.GetComponentInChildren<MeshRenderer>().transform.parent.localScale = levelScale + levelMultiple * enemyLevel;
 
-       
+
+
         //  gameObject.gameObject.GetComponent<CircleCollider2D>().transform.localScale =  gameObject.gameObject.GetComponent<CircleCollider2D>().transform.localScale / enemyLevel;
-
-        GetComponentInChildren<CircleCollider2D>().gameObject.transform.localScale =  GetComponentInChildren<CircleCollider2D>().gameObject.transform.localScale / scalePercent;
+        
     }
 
     private void HealthController()

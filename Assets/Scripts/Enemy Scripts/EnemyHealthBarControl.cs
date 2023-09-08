@@ -7,8 +7,9 @@ using UnityEngine.UI;
 public class EnemyHealthBarControl : MonoBehaviour
 {
     [SerializeField] private Slider slider;
-    [SerializeField] public Transform target;
-    [SerializeField] public Vector3 offset;
+    [SerializeField] private Transform target;
+    [SerializeField] private Vector3 offset;
+    [SerializeField] private Camera mainCam;
     public void updateHealthBar(float currentHealth, float maxHealth)
     {
         
@@ -18,11 +19,14 @@ public class EnemyHealthBarControl : MonoBehaviour
     private void Start()
     {
      //   target = gameObject.GetComponentInParent<>
-
+     
+        
+        //mainCam = Camera.main;
     }
     private void Update()
     {
-        transform.rotation = Camera.main.transform.rotation;
+        transform.rotation = Quaternion.LookRotation(transform.position - mainCam.transform.position); // look at camera
+
         transform.position = target.position + offset;
     }
 
