@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class PlayerLevelManager : MonoBehaviour
 {
 
-    [SerializeField] private float playerLevel;
+    [SerializeField] public float playerLevel;
     public float playerDamage;
     public float damageMultiple = 5;
     private Vector3 levelScale, levelMultiple;

@@ -10,7 +10,7 @@ public class Floater : MonoBehaviour
 
     // Geminin suya girdiğinde uygulanacak kaldırma kuvvetinin büyüklüğünü belirleyelim
     public float FloatingPower = 2f;
-
+    public float FloatingLevel = 1.8f;
     // Suyun yüzeyinin konumunu ve eğimini belirleyen bir nesne oluşturalım
     public WaterSurface water;
 
@@ -48,7 +48,7 @@ public class Floater : MonoBehaviour
             water.ProjectPointOnWaterSurface(Search, out SearchResult);
 
             // Noktanın suyun yüzeyinden ne kadar aşağıda olduğunu hesaplayalım
-            float diff = Floaters[i].position.y - SearchResult.projectedPositionWS.y;
+            float diff = Floaters[i].position.y - SearchResult.projectedPositionWS.y - FloatingLevel;
 
             // Eğer nokta suyun altındaysa
             if (diff < 0)

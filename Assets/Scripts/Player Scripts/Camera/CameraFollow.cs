@@ -24,10 +24,7 @@ public class CameraFollow : MonoBehaviour
     private float yAngle = 0f;
 
     // Oyun başladığında fare imlecini gizleyelim
-    private void Start()
-    {
-        Cursor.visible = false;
-    }
+    
 
     // Her karede çalışacak fonksiyonu tanımlayalım
     private void Update()
