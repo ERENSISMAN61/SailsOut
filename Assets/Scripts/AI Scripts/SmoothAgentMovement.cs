@@ -27,8 +27,8 @@ public class SmoothAgentMovement : MonoBehaviour
 
 
     [Header("")]
-    [SerializeField]
-    private Camera Camera;
+    //[SerializeField]
+  //  private Camera Camera;
     [SerializeField]
     private LayerMask FloorLayer;
     public bool EnableClickToMove = true;
@@ -176,25 +176,25 @@ public class SmoothAgentMovement : MonoBehaviour
         LerpTime += Time.deltaTime;
     }
 
-    private void HandleInput()
-    {
-        if (Mouse.current.leftButton.wasReleasedThisFrame)
-        {
-            Ray ray = Camera.ScreenPointToRay(Mouse.current.position.ReadValue());
+    //private void HandleInput()
+    //{
+    //    if (Mouse.current.leftButton.wasReleasedThisFrame)
+    //    {
+    //        Ray ray = Camera.ScreenPointToRay(Mouse.current.position.ReadValue());
 
-            if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, FloorLayer))
-            {
-                if (UsePathSmoothing)
-                {
-                    SetDestinationPlus(hit.point);
-                }
-                else
-                {
-                    SetAgentDestination(hit.point);
-                }
-            }
-        }
-    }
+    //        if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, FloorLayer))
+    //        {
+    //            if (UsePathSmoothing)
+    //            {
+    //                SetDestinationPlus(hit.point);
+    //            }
+    //            else
+    //            {
+    //                SetAgentDestination(hit.point);
+    //            }
+    //        }
+    //    }
+    //}
 
     //private void RandomDestination()   ///////////
     //{
