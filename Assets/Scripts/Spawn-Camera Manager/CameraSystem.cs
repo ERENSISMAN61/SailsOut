@@ -12,12 +12,12 @@ public class CameraSystem : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera cinemachineVirtualCamera;
     [SerializeField] private bool useEdgeScrolling = false;
     [SerializeField] private bool useDragPan = false;
-    [SerializeField] private float fieldOfViewMax = 50;
-    [SerializeField] private float fieldOfViewMin = 10;
-    [SerializeField] private float followOffsetMin = 5f;
-    [SerializeField] private float followOffsetMax = 50f;
-    [SerializeField] private float followOffsetMinY = 10f;
-    [SerializeField] private float followOffsetMaxY = 50f;
+    [SerializeField] private float FOVMax = 120;
+    [SerializeField] private float FOVMin = 70;
+    [SerializeField] private float followOffsetMinY = 80f;
+    [SerializeField] private float followOffsetMaxY = 2000f;
+    private float FOVMinStartY;
+    private float FOVIncrease;
 
     private bool dragPanMoveActive;
     private bool dragPanRotateActive;
@@ -26,14 +26,14 @@ public class CameraSystem : MonoBehaviour
     private float targetFieldOfView = 50;
     private Vector3 followOffset;
 
-    [SerializeField] private float zoomSpeed = 10f;
     private Vector3 rotationOffset;
     private float minOffsetY;
     private float maxOffsetY;
     private float rotateAngle;
     private float rotateAngleY;
     private CameraControls cameraActions;
-
+        public bool followPlayer = false;
+    private Vector3 inputDirec;
     private void Awake()
     {
         followOffset = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset;
@@ -58,8 +58,9 @@ public class CameraSystem : MonoBehaviour
 
     private void Start()
     {
-        //       cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset =
-        //Vector3.Lerp(cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset, followOffset, Time.deltaTime * zoomSpeed);
+    
+         FOVMinStartY = followOffsetMinY + 100;
+         inputDirec = new Vector3(0, 0, 0);
     }
     private void Update()
     {
@@ -75,15 +76,28 @@ public class CameraSystem : MonoBehaviour
             HandleCameraMovementDragPan();
         }
 
+
         HandleCameraRotation();
         HandleCameraRotatingDragPan();
 
-       // HandleCameraZoom_FieldOfView();
+        HandleCameraZoom_FieldOfView();
         //HandleCameraZoom_MoveForward();
         HandleCameraZoom_LowerY();
 
     }
 
+    private void FixedUpdate()
+    {
+        if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || (inputDirec != new Vector3(0,0,0)))
+        {
+            followPlayer = false;
+
+        }
+        if (followPlayer )
+        {
+            transform.position = GameObject.FindGameObjectWithTag("Player").transform.position;
+        }
+    }
     private void HandleCameraMovement()
     {
         Vector3 inputDir = new Vector3(0, 0, 0);
@@ -130,7 +144,7 @@ public class CameraSystem : MonoBehaviour
 
     private void HandleCameraMovementDragPan()
     {
-        Vector3 inputDir = new Vector3(0, 0, 0);
+
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -148,15 +162,14 @@ public class CameraSystem : MonoBehaviour
             Vector2 mouseMovementDelta = (Vector2)Input.mousePosition - lastMousePosition;
 
             float dragPanSpeed = 0.5f;
-            inputDir.x = mouseMovementDelta.x * dragPanSpeed;
-            inputDir.z = mouseMovementDelta.y * dragPanSpeed;
+            inputDirec.x = mouseMovementDelta.x * dragPanSpeed;
+            inputDirec.z = mouseMovementDelta.y * dragPanSpeed;
 
             lastMousePosition = Input.mousePosition;
 
 
         }
-
-        Vector3 moveDir = transform.forward * inputDir.z + transform.right * inputDir.x;
+        Vector3 moveDir = transform.forward * inputDirec.z + transform.right * inputDirec.x;
 
         float moveSpeed = 50f;
         transform.position -= moveDir * moveSpeed * Time.deltaTime;
@@ -255,6 +268,8 @@ Mathf.Lerp(cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTranspose
 
     private void HandleCameraZoom_MoveForward()
     {
+        float followOffsetMin = 5f;
+        float followOffsetMax = 100f;
         Vector3 zoomDir = followOffset.normalized;
 
         float zoomAmount = 30f;
@@ -284,18 +299,19 @@ Mathf.Lerp(cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTranspose
 
     private void HandleCameraZoom_FieldOfView()
     {
-        if (cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y > 170)
+        if (cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y > FOVMinStartY && cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y < followOffsetMaxY)
         {
+            
             if (Input.mouseScrollDelta.y > 0)
             {
-                targetFieldOfView -= 5;
+                FOVIncrease =  cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y *0.04f +60;
             }
             if (Input.mouseScrollDelta.y < 0)
             {
-                targetFieldOfView += 5;
+                FOVIncrease =  cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y *0.04f +60;
             }
 
-            targetFieldOfView = Mathf.Clamp(targetFieldOfView, 70, 120);
+            targetFieldOfView = Mathf.Clamp(FOVIncrease, FOVMin, FOVMax);
 
             float zoomSpeed = 10f;
             cinemachineVirtualCamera.m_Lens.FieldOfView =

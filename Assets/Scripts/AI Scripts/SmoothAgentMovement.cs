@@ -10,6 +10,11 @@ using UnityEngine.InputSystem.HID;
 [RequireComponent(typeof(NavMeshAgent))]
 public class SmoothAgentMovement : MonoBehaviour
 {
+
+    [Header("Important!")]
+    [SerializeField]
+    private bool EnableClickToMove = false;
+
     [Header("Random Destination")]  ///////////
     //[SerializeField]
     //private Transform centerPoint;
@@ -27,11 +32,10 @@ public class SmoothAgentMovement : MonoBehaviour
 
 
     [Header("")]
-    //[SerializeField]
-  //  private Camera Camera;
+    [SerializeField]
+    private Camera Camera;
     [SerializeField]
     private LayerMask FloorLayer;
-    public bool EnableClickToMove = true;
     [SerializeField]
     private bool UsePathSmoothing;
     [Header("Path Smoothing")]
@@ -67,29 +71,30 @@ public class SmoothAgentMovement : MonoBehaviour
     {
         Agent = GetComponent<NavMeshAgent>();
         CurrentPath = new NavMeshPath();
-        //centerPoint = transform;
 
-        //centerPoint = transform;     ///////////
-        //startPoint = transform.position;   ///////////
-        //Agent.SetDestination(startPoint);  ///////////
-
-
+       Camera = Camera.main;
     }
     private void Start()
     {
 
         Next_Position = transform.position;     ///////////
+
     }
     private void Update()
     {
-        if(Vector3.Distance(Next_Position, transform.position) <= 10f)  ///////////
+        if (EnableClickToMove)
         {
-            Next_Position = RandomPointGenerator(transform.position,Radius);
-            SetDestinationPlus(Next_Position);
+            HandleInput();
         }
+        else
+        {
+            if (Vector3.Distance(Next_Position, transform.position) <= 10f)  ///////////
+            {
+                Next_Position = RandomPointGenerator(transform.position, Radius);
+                SetDestinationPlus(Next_Position);
+            }
 
-        // RandomDestination(); ///////////
-
+        }
 
 
         MoveAgent();
@@ -99,12 +104,12 @@ public class SmoothAgentMovement : MonoBehaviour
         if (Debug_Bool)
         {
             Gizmos.color = UnityEngine.Color.red;
-            Gizmos.DrawLine(transform.position,Next_Position); ///////////
+            Gizmos.DrawLine(transform.position, Next_Position); ///////////
         }
     }
 
     public void SetDestinationPlus(Vector3 Position)
-    {Debug.Log("Position"+Position);
+    {
         Agent.ResetPath();
         NavMesh.CalculatePath(transform.position, Position, Agent.areaMask, CurrentPath);
         Vector3[] corners = CurrentPath.corners;
@@ -176,25 +181,27 @@ public class SmoothAgentMovement : MonoBehaviour
         LerpTime += Time.deltaTime;
     }
 
-    //private void HandleInput()
-    //{
-    //    if (Mouse.current.leftButton.wasReleasedThisFrame)
-    //    {
-    //        Ray ray = Camera.ScreenPointToRay(Mouse.current.position.ReadValue());
+    private void HandleInput()
+    {
+        if (Mouse.current.leftButton.wasReleasedThisFrame)
+        {
+            Ray ray = Camera.ScreenPointToRay(Mouse.current.position.ReadValue());
+            
+            if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, FloorLayer))
+            {
 
-    //        if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, FloorLayer))
-    //        {
-    //            if (UsePathSmoothing)
-    //            {
-    //                SetDestinationPlus(hit.point);
-    //            }
-    //            else
-    //            {
-    //                SetAgentDestination(hit.point);
-    //            }
-    //        }
-    //    }
-    //}
+                if (UsePathSmoothing)
+                {
+
+                    SetDestinationPlus(hit.point);
+                }
+                else
+                {
+                    SetAgentDestination(hit.point);
+                }
+            }
+        }
+    }
 
     //private void RandomDestination()   ///////////
     //{
@@ -213,7 +220,7 @@ public class SmoothAgentMovement : MonoBehaviour
     //    }
 
     //}
-    private  Vector3 RandomPointGenerator(Vector3 StartPoint, float Radius)
+    private Vector3 RandomPointGenerator(Vector3 StartPoint, float Radius)
     {
         Vector3 Dir = Random.insideUnitSphere * Radius;
         Dir += StartPoint;
@@ -334,7 +341,7 @@ public class SmoothAgentMovement : MonoBehaviour
             {
                 Vector3 segmentDirection = (Path[index] - Path[lastIndex]).normalized;
                 float dot = Vector3.Dot(targetDirection, segmentDirection);
-                Debug.Log($"Target Direction: {targetDirection}. segment direction: {segmentDirection} = dot {dot} with index {index} & lastIndex {lastIndex}");
+          //      Debug.Log($"Target Direction: {targetDirection}. segment direction: {segmentDirection} = dot {dot} with index {index} & lastIndex {lastIndex}");
                 if (dot <= SmoothingFactor)
                 {
                     Path[index] = InfinityVector;
@@ -354,7 +361,7 @@ public class SmoothAgentMovement : MonoBehaviour
 
         Vector3[] TrimmedPath = Path.Except(new Vector3[] { InfinityVector }).ToArray();
 
-        Debug.Log($"Original Smoothed Path: {Path.Length}. Trimmed Path: {TrimmedPath.Length}");
+     //   Debug.Log($"Original Smoothed Path: {Path.Length}. Trimmed Path: {TrimmedPath.Length}");
 
         return TrimmedPath;
     }

@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -30,20 +29,14 @@ public class ShipMovementScript : MonoBehaviour
 
     public float deathTime;
     //[SerializeField] GameObject AimObjectForDisable;
-    [SerializeField] PlayerHealthBarControl playerHealthBarControl;
- 
+    [SerializeField] private GameObject playerHealthBarObj;
 
     private void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody>();
 
 
-    }
-
-
-
-
-
+    } 
     private void FixedUpdate()
     {
 
@@ -57,35 +50,35 @@ public class ShipMovementScript : MonoBehaviour
         //    SceneManager.LoadScene("Eren Scene"); //silinecek/////////////////////////////////
         //}
 
-        ShipMovement();
+        //ShipMovement();
         
 
 
     }
 
-    void ShipMovement()
-    {
-        // Get player input for ship movement
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
+    //void ShipMovement()
+    //{
+    //    // Get player input for ship movement
+    //    float horizontalInput = Input.GetAxis("Horizontal");
+    //    float verticalInput = Input.GetAxis("Vertical");
 
-        // Apply forward force
-        Vector3 forward = moveSpeed * verticalInput * transform.forward;
-        rb.AddForce(forward);
-
-
+    //    // Apply forward force
+    //    Vector3 forward = moveSpeed * verticalInput * transform.forward;
+    //    rb.AddForce(forward);
 
 
-        if (Mathf.Abs(horizontalInput) > 0.1f)
-        {
-            // Rotate the ship based on the horizontal input
-
-            float rotationForce = horizontalInput * rotationSpeed * transform.rotation.w;
-            rb.AddTorque(0f, rotationForce, 0f);
-        }
 
 
-    }
+    //    if (Mathf.Abs(horizontalInput) > 0.1f)
+    //    {
+    //        // Rotate the ship based on the horizontal input
+
+    //        float rotationForce = horizontalInput * rotationSpeed * transform.rotation.w;
+    //        rb.AddTorque(0f, rotationForce, 0f);
+    //    }
+
+
+    //}
 
     private void setMoveSpeedAndRotationSpeed()
     {
@@ -118,25 +111,28 @@ public class ShipMovementScript : MonoBehaviour
 
 
 
-        if (playerHealthBarControl.health <= 100 && playerHealthBarControl.health > 75)
+        if (playerHealthBarObj.GetComponent<PlayerHealthBarControl>().health <= 100 && playerHealthBarObj.GetComponent<PlayerHealthBarControl>().health > 75)
         {
 
 
         }
-        else if (playerHealthBarControl.health <= 75 && playerHealthBarControl.health > 50)
+        else if (playerHealthBarObj.GetComponent<PlayerHealthBarControl>().health <= 75 && playerHealthBarObj.GetComponent<PlayerHealthBarControl>().health > 50)
         {
 
         }
-        else if (playerHealthBarControl.health <= 50 && playerHealthBarControl.health > 0)
+        else if (playerHealthBarObj.GetComponent<PlayerHealthBarControl>().health <= 50 && playerHealthBarObj.GetComponent<PlayerHealthBarControl>().health > 0)
         {
 
         }
-        else if (playerHealthBarControl.health == 0 || playerHealthBarControl.health < 0)
+        else if (playerHealthBarObj.GetComponent<PlayerHealthBarControl>().health == 0 || playerHealthBarObj.GetComponent<PlayerHealthBarControl>().health < 0)
         {
 
             gameObject.GetComponent<PlayerFire>().enabled = false;
             //gameObject.SetActive(false);
+
+            Debug.Log("PLAYER ÖLDÜ");
             StartCoroutine(waitDestroyPlayer(deathTime));
+
 
         }
 
@@ -168,7 +164,7 @@ public class ShipMovementScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Heart"))
         {
-            playerHealthBarControl.health += 10;
+            playerHealthBarObj.GetComponent<PlayerHealthBarControl>().health += 10;
             //playerHealthBarControl.updateHealthBar(playerHealthBarControl.health, playerHealthBarControl.maxHealth);
             Destroy(collision.gameObject);
         }
@@ -181,9 +177,9 @@ public class ShipMovementScript : MonoBehaviour
             {
                 //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\   bu oç hatasını bulmak için 2 saatimi verdim piç kod    //////////////////////////////////////////////////////////////////
                 // health -= GameObject.FindGameObjectWithTag("EnemyBullet").GetComponent<BulletController>().enemyBulletDamage;
-                playerHealthBarControl.health -= collision.gameObject.GetComponent<BulletController>().enemyBulletDamage;
+                playerHealthBarObj.GetComponent<PlayerHealthBarControl>().health -= collision.gameObject.GetComponent<BulletController>().enemyBulletDamage;
 
-                playerHealthBarControl.lerpTimer = 0f; // reset the timer
+                playerHealthBarObj.GetComponent<PlayerHealthBarControl>().lerpTimer = 0f; // reset the timer
                                                        //playerHealthBarControl.updateHealthBar(playerHealthBarControl.health, playerHealthBarControl.maxHealth);
 
             }

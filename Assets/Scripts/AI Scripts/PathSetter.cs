@@ -16,7 +16,8 @@ public class PathSetter : MonoBehaviour
     private void Awake()
     {
         Agent = SmoothedAgent.GetComponent<NavMeshAgent>();
-        SmoothedAgent.EnableClickToMove = false;
+  //      SmoothedAgent.EnableClickToMove = false;
+
     }
 
     private IEnumerator Start()

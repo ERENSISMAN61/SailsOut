@@ -63,7 +63,8 @@ public class CameraManager : MonoBehaviour
         {
             spawnPoint = gameObject.transform;
         }
-        firstSpawn = Instantiate(spawnPlayer, spawnPoint.position, Quaternion.Euler(0, 0, 0)); 
+        //firstSpawn = Instantiate(spawnPlayer, spawnPoint.position, Quaternion.Euler(0, 0, 0)); 
+        firstSpawn = Instantiate(spawnPlayer, spawnPoint.position, Quaternion.identity);
     }
     void Start()
     {
@@ -116,7 +117,7 @@ public class CameraManager : MonoBehaviour
         }
         else
         {
-            transform.position = new Vector3(targetShip.position.x, /*targetCamera.position.y*/ 800f, -500f);
+       //     transform.position = new Vector3(targetShip.position.x, /*targetCamera.position.y*/ 800f, -500f);
         }
 
     }

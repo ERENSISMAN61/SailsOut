@@ -14,6 +14,7 @@ TagManager:
   - EnemyShip
   - EnemyBullet
   - Canvas
+  - CameraSystem
   layers:
   - Default
   - TransparentFX
