@@ -16,11 +16,8 @@ public class PlayerFire : MonoBehaviour
     public float initialSpeed;
 
     private float CurrentTime = 0f;
-    private PlayerLevelManager playerLevelManager;
     private void Start()
     {
-        //lineRenderer = GetComponent<LineRenderer>();
-        playerLevelManager = gameObject.GetComponent<PlayerLevelManager>();
         CurrentTime = Time.time;
     }
 
