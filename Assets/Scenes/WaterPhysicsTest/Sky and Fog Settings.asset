@@ -14,19 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   skyType:
-    m_OverrideState: 1
-    m_Value: 4
+    m_OverrideState: 0
+    m_Value: 1
   cloudType:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 1
   skyAmbientMode:
     m_OverrideState: 0
     m_Value: 1
   windOrientation:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0
   windSpeed:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0
   fogType:
     m_OverrideState: 1
@@ -283,21 +283,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76fd08475e21554b8f284f723dd7cf8, type: 3}
   m_Name: WaterRendering
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   enable:
     m_OverrideState: 1
     m_Value: 1
   minGridSize:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 75
   maxGridSize:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 2500
   elevationTransition:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 1000
   numLevelOfDetails:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 3
   maxTessellationFactor:
     m_OverrideState: 0
@@ -309,7 +309,7 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 1850
   ambientProbeDimmer:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0.5
 --- !u!114 &7791192948708017200
 MonoBehaviour:
@@ -323,7 +323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a7ff42a8c5be6646ad3975f3a54c1eb, type: 3}
   m_Name: DiffusionProfileList
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   diffusionProfiles:
     m_OverrideState: 1
     m_Value: []
