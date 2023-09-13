@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Cinemachine;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 
@@ -32,7 +30,7 @@ public class CameraSystem : MonoBehaviour
     private float rotateAngle;
     private float rotateAngleY;
     private CameraControls cameraActions;
-        public bool followPlayer = false;
+    public bool followPlayer = false;
     private Vector3 inputDirec;
     private void Awake()
     {
@@ -58,9 +56,9 @@ public class CameraSystem : MonoBehaviour
 
     private void Start()
     {
-    
-         FOVMinStartY = followOffsetMinY + 100;
-         inputDirec = new Vector3(0, 0, 0);
+
+        FOVMinStartY = followOffsetMinY + 100;
+        inputDirec = new Vector3(0, 0, 0);
     }
     private void Update()
     {
@@ -88,12 +86,12 @@ public class CameraSystem : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || (inputDirec != new Vector3(0,0,0)))
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || (inputDirec != new Vector3(0, 0, 0)))
         {
             followPlayer = false;
 
         }
-        if (followPlayer )
+        if (followPlayer)
         {
             transform.position = GameObject.FindGameObjectWithTag("Player").transform.position;
         }
@@ -178,61 +176,61 @@ public class CameraSystem : MonoBehaviour
 
     private void HandleCameraRotatingDragPan()
     {
-        Vector3 inputDir = new Vector3(0, 0, 0);
-
 
 
         if (Input.GetMouseButtonDown(1))
         {
             dragPanRotateActive = true;
             lastMousePosition = Input.mousePosition;
+            minOffsetY = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y-  (cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.z +300);
 
-            float minY = 301+ cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.z;
-            if (cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y <=380)
-            {
-                minOffsetY= 80;
-            }
-            else
-            {
-                minOffsetY =  cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y - minY;
-            }
-            float maxY = -cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.z -1;
 
-            maxOffsetY = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y +maxY;
         }
         if (Input.GetMouseButtonUp(1))
         {
             dragPanRotateActive = false;
         }
 
-        if (dragPanRotateActive)
-        {
+        //        if (dragPanRotateActive)
+        //        {
 
-            Vector2 mouseRotationDelta = (Vector2)Input.mousePosition - lastMousePosition;
+        //            Vector2 mouseRotationDelta = (Vector2)Input.mousePosition - lastMousePosition;
 
-            float dragPanSpeed = 0.5f;
-            inputDir.z = mouseRotationDelta.y * dragPanSpeed;
+        //            float dragPanSpeed = 0.5f;
+        //            inputDir.z = mouseRotationDelta.y * dragPanSpeed;
 
-            lastMousePosition = Input.mousePosition;
+        //            lastMousePosition = Input.mousePosition;
+        //            Debug.Log("BÝZÝMKÝ: " + mouseRotationDelta.y);
+        //            float rotationSpeed = 70f;
+        //            Vector3 moveDir = transform.forward * inputDir.z;
 
-            float rotationSpeed = 70f;
-            Vector3 moveDir = transform.forward * inputDir.z;
+        //            rotationOffset.z = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.z -moveDir.z;
+        //            followOffset.y = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y - moveDir.z;
 
-            rotationOffset.z = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.z -moveDir.z;
-            followOffset.y = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y - moveDir.z;
+        //            rotateAngle = Mathf.Clamp(rotationOffset.z, -300f, -1f);
 
-            rotateAngle = Mathf.Clamp(rotationOffset.z, -300f, -1f);
-            rotateAngleY = Mathf.Clamp(followOffset.y, minOffsetY, maxOffsetY);
-            if (cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y>81)
-            {
-                cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.z =
-         Mathf.Lerp(cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.z, rotateAngle, Time.deltaTime * rotationSpeed);
-            }
+        //            //if (cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y <=380)
+        //            //{
+        //            //    minOffsetY =  (cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.z)+300;
 
-            cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y =
-Mathf.Lerp(cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y, rotateAngleY, Time.deltaTime * 70f);
+        //            //}
+        //            //else
+        //            //{
+        //            minOffsetY = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y-  (cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.z +300);
+        //            minOffsetY = Mathf.Clamp(followOffsetMinY, 80f, 2000f);
+        //            //}
+        //            maxOffsetY = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y +(-cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.z -1);
+        //            rotateAngleY = Mathf.Clamp(followOffset.y, minOffsetY, maxOffsetY);
+        //            if (cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y>81)
+        //            {
+        //                cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.z =
+        //         Mathf.Lerp(cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.z, rotateAngle, Time.deltaTime * rotationSpeed);
+        //            }
 
-        }
+        //            cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y =
+        //Mathf.Lerp(cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y, rotateAngleY, Time.deltaTime * 70f);
+
+        //        }
 
 
     }
@@ -247,11 +245,46 @@ Mathf.Lerp(cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTranspose
     }
     private void RotateCameraYZ(InputAction.CallbackContext obj)
     {
-        //if (!Mouse.current.middleButton.isPressed && !Mouse.current.rightButton.isPressed)
-        //    return;
+        if (!Mouse.current.rightButton.isPressed)
+            return;
+        if (dragPanRotateActive)
+        {
 
-        //float inputValue = obj.ReadValue<Vector2>().y;
-        //transform.rotation = Quaternion.Euler(0f, inputValue * 0.1f + transform.rotation.eulerAngles.y, 0f);
+            float inputValue = obj.ReadValue<Vector2>().y * 0.5f;
+
+            lastMousePosition = Input.mousePosition;
+            float rotationSpeed = 70f; 
+
+            rotationOffset.z = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.z -inputValue;
+            followOffset.y = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y - inputValue;
+
+            rotateAngle = Mathf.Clamp(rotationOffset.z, -300f, -1f);
+
+            //if (cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y <=380)
+            //{
+            //    minOffsetY =  (cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.z)+300;
+
+            //}
+            //else
+            //{
+
+            //}
+
+            maxOffsetY = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y +(-cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.z -1);
+            rotateAngleY = Mathf.Clamp(followOffset.y, minOffsetY, maxOffsetY);
+            if (cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y>81)
+            {
+                cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.z =
+         Mathf.Lerp(cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.z, rotateAngle, Time.deltaTime * rotationSpeed);
+            }
+
+            cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y =
+Mathf.Lerp(cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y, rotateAngleY, Time.deltaTime * 70f);
+
+        }
+
+
+
     }
 
     private void HandleCameraRotation()
@@ -301,15 +334,9 @@ Mathf.Lerp(cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTranspose
     {
         if (cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y > FOVMinStartY && cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y < followOffsetMaxY)
         {
-            
-            if (Input.mouseScrollDelta.y > 0)
-            {
+
+
                 FOVIncrease =  cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y *0.04f +60;
-            }
-            if (Input.mouseScrollDelta.y < 0)
-            {
-                FOVIncrease =  cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y *0.04f +60;
-            }
 
             targetFieldOfView = Mathf.Clamp(FOVIncrease, FOVMin, FOVMax);
 
@@ -333,6 +360,9 @@ Mathf.Lerp(cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTranspose
         }
         if (!dragPanRotateActive)
         {
+            followOffsetMinY =  (cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.z)+380;
+            //followOffsetMinY = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y-  (cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.z +300);
+            followOffsetMinY = Mathf.Clamp(followOffsetMinY, 80, 380f);
             followOffset.y = Mathf.Clamp(followOffset.y, followOffsetMinY, followOffsetMaxY);
 
             float zoomSpeed = 10f;
