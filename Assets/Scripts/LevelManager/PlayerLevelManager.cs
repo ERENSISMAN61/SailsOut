@@ -30,7 +30,7 @@ public class PlayerLevelManager : MonoBehaviour
 
     private void Start()
     {
-        levelScale = new Vector3(1.7f, 1.7f, 1.7f);
+        levelScale = new Vector3(0.6f, 0.6f, 0.6f);
         levelMultiple = new Vector3(0.15f, 0.15f, 0.15f);
 
 
