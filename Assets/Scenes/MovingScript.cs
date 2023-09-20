@@ -20,7 +20,7 @@ public class MovingScript : MonoBehaviour
 
 
 
-   // public Text ParsomenText;             /////  ACILACAK
+    // public Text ParsomenText;             /////  ACILACAK
     private int ParsomenCount = 0;
 
 
@@ -29,14 +29,28 @@ public class MovingScript : MonoBehaviour
 
     public float deathTime;
     //[SerializeField] GameObject AimObjectForDisable;
-   // [SerializeField] PlayerHealthBarControl playerHealthBarControl;
- 
+    [SerializeField] PlayerHealthBarControl playerHealthBarControl;
+
 
     private void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody>();
 
+        playerHealthBarControl = gameObject.GetComponentInChildren<PlayerHealthBarControl>();
 
+        // Ensure that other required components are properly initialized.
+        if (GetComponent<AudioGet>() == null)
+        {
+            Debug.LogError("AudioGet component not found on the player object.");
+        }
+        if (GetComponentInChildren<MeshCollider>() == null)
+        {
+            Debug.LogError("MeshCollider component not found on the player object or its children.");
+        }
+        if (GetComponent<PlayerFire>() == null)
+        {
+            Debug.LogError("PlayerFire component not found on the player object.");
+        }
     }
 
 
@@ -57,7 +71,7 @@ public class MovingScript : MonoBehaviour
         //}
 
         ShipMovement();
-        
+
 
 
     }
@@ -86,16 +100,11 @@ public class MovingScript : MonoBehaviour
 
     }
 
-    private void setMoveSpeedAndRotationSpeed()
-    {
-        
-     
-    }
 
     void Update()
     {
-        
-        setMoveSpeedAndRotationSpeed();
+
+
 
         // Movement and Rotation code remains the same as before
         // ...
@@ -115,14 +124,14 @@ public class MovingScript : MonoBehaviour
         //{
 
         //}
-        //else if (playerHealthBarControl.health == 0 || playerHealthBarControl.health < 0)
-        //{
+        if (playerHealthBarControl.health == 0 || playerHealthBarControl.health < 0)
+        {
 
-        //    gameObject.GetComponent<PlayerFire>().enabled = false;
-        //    //gameObject.SetActive(false);
-        //    StartCoroutine(waitDestroyPlayer(deathTime));
+            gameObject.GetComponent<PlayerFire>().enabled = false;
+            //gameObject.SetActive(false);
+            StartCoroutine(waitDestroyPlayer(deathTime));
 
-        //}
+        }
 
 
 
@@ -134,21 +143,35 @@ public class MovingScript : MonoBehaviour
 
     IEnumerator waitDestroyPlayer(float destroyTime)
     {
+        // Check if required components are null before accessing them.
+        if (GetComponent<AudioGet>() != null)
+        {
+            GetComponent<AudioGet>().enabled = false;
+        }
+        else
+        {
+            Debug.LogError("AudioGet component not found on the player object.");
+        }
 
+        if (GetComponentInChildren<MeshCollider>() != null)
+        {
+            GetComponentInChildren<MeshCollider>().enabled = false;
+        }
+        else
+        {
+            Debug.LogError("MeshCollider component not found on the player object or its children.");
+        }
 
-        gameObject.GetComponent<AudioGet>().enabled = false;
-        gameObject.GetComponent<PolygonCollider2D>().enabled = false;
-        // GetComponent<EdgeCollider2D>().enabled = false;
-        //  GetComponent<PlayerAimWeapon>().gameObject.SetActive(false);
-        //AimObjectForDisable.SetActive(false);
-        gameObject.GetComponent<ShipMovementScript>().enabled = false;
+        // Disable other components as needed.
+        // ...
+
         yield return new WaitForSeconds(destroyTime);
         Destroy(gameObject);
 
     }
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter(Collider collision)
     {
         //if (collision.gameObject.CompareTag("Heart"))
         //{
@@ -158,25 +181,25 @@ public class MovingScript : MonoBehaviour
         //}
 
 
-        //if (collision.gameObject.CompareTag("EnemyBullet"))
-        //{
-        //    isBulletEntered = true;
-        //    if (isBulletEntered == true)
-        //    {
-        //        //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\   bu oç hatasını bulmak için 2 saatimi verdim piç kod    //////////////////////////////////////////////////////////////////
-        //        // health -= GameObject.FindGameObjectWithTag("EnemyBullet").GetComponent<BulletController>().enemyBulletDamage;
-        //        playerHealthBarControl.health -= collision.gameObject.GetComponent<BulletController>().enemyBulletDamage;
+        if (collision.gameObject.CompareTag("EnemyBullet"))
+        {
+            isBulletEntered = true;
+            if (isBulletEntered == true)
+            {
+                //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\   bu oç hatasını bulmak için 2 saatimi verdim piç kod    //////////////////////////////////////////////////////////////////
+                // health -= GameObject.FindGameObjectWithTag("EnemyBullet").GetComponent<BulletController>().enemyBulletDamage;
+                playerHealthBarControl.health -= collision.gameObject.GetComponent<BulletController>().enemyBulletDamage;
 
-        //        playerHealthBarControl.lerpTimer = 0f; // reset the timer
-        //                                               //playerHealthBarControl.updateHealthBar(playerHealthBarControl.health, playerHealthBarControl.maxHealth);
+                playerHealthBarControl.lerpTimer = 0f; // reset the timer
+                                                       //playerHealthBarControl.updateHealthBar(playerHealthBarControl.health, playerHealthBarControl.maxHealth);
 
-        //    }
+            }
 
-        //}
+        }
 
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerStay(Collider collision)
     {
         if (collision.gameObject.CompareTag("EnemyBullet"))
         {
@@ -186,13 +209,13 @@ public class MovingScript : MonoBehaviour
         }
 
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Island"))
         {
             ParsomenCount++;
             collision.gameObject.SetActive(false);
-        //    ParsomenText.text = String.Format("Parsomen: {0}/3", ParsomenCount);    /////////////// ACILACAK
+            //    ParsomenText.text = String.Format("Parsomen: {0}/3", ParsomenCount);    /////////////// ACILACAK
 
 
 

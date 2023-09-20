@@ -13,7 +13,7 @@ public class EnemyAudio : MonoBehaviour
 
     void Start()
     {
-        sourceAudioEnemy = GetComponent<AudioSource>();
+        sourceAudioEnemy = gameObject.GetComponent<AudioSource>();
        // sourceAudioEnemy.volume = 0.3f; //changing volume  0.0 - 1.0
 
     }
@@ -31,7 +31,7 @@ public class EnemyAudio : MonoBehaviour
 
     void woodCrack()
     {
-        EnemyShipsController enemyMovementScript = GetComponent<EnemyShipsController>();
+        EnemyMovement enemyMovementScript = gameObject.GetComponent<EnemyMovement>();
         if (enemyMovementScript.isBulletEntered == true)
         {
 

@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class EnemyFire : MonoBehaviour
 {
-    
+
     private GameObject playerShip;
-    public GameObject fieldObject;
 
     public GameObject bulletPrefab;
-    public Transform firePoint;
+    public Transform[] rightFirePoint;
+    public Transform[] leftFirePoint;
     public float bulletSpeed = 10f;
 
     private int shotsRemaining;
@@ -21,8 +21,13 @@ public class EnemyFire : MonoBehaviour
     private Transform target;
     AudioSource sourceAudioE; //Audio
     public AudioClip enemyShotAudio;
-
+    private float distance;
     private EnemyShipsController enemyShipsController;
+
+    public bool isActiveRightLevel1 = false;
+    public bool isActiveRightLevel2 = false;
+    public bool isActiveRightLevel3 = false;
+
     void Start()
     {
         playerShip = GameObject.FindGameObjectWithTag("Player");
@@ -30,12 +35,16 @@ public class EnemyFire : MonoBehaviour
         enemyShipsController = gameObject.GetComponent<EnemyShipsController>();
 
         shotsRemaining = shotsPerBurst;
+
+
+
     }
 
     // Update is called once per frame
     private void Update()
     {
-        
+        distance = Vector3.Distance(playerShip.transform.position, gameObject.transform.position);
+
         target = null;
         if (playerShip.IsDestroyed())
         {
@@ -47,10 +56,10 @@ public class EnemyFire : MonoBehaviour
         }
 
 
-        if (fieldObject.GetComponent<FieldController>().isEntered == true)
+        if (distance <= 5f)
         {
             target = GameObject.FindGameObjectWithTag("Player").transform;
-            
+
 
             timeSinceLastBurst += Time.deltaTime;
             if (timeSinceLastBurst >= timeBetweenBursts && shotsRemaining > 0)
@@ -59,8 +68,8 @@ public class EnemyFire : MonoBehaviour
 
                 /////// kod açılması gerekiyor   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-                FireBullet();
-                
+                SetActiveCannons();
+
                 enemyShipsController.isBulletOut = true;
 
                 sourceAudioE.PlayOneShot(enemyShotAudio); //enemy shoot Audio          
@@ -80,14 +89,37 @@ public class EnemyFire : MonoBehaviour
         enemyShipsController.isBulletOut = false;
     }
 
-    
-    void FireBullet()
+
+    void SetActiveCannons()
+    {
+        if (isActiveRightLevel1 == true)
+        {
+            FireFunction(0);
+        }
+
+        if (isActiveRightLevel2 == true)
+        {
+            FireFunction(1);
+        }
+        if (isActiveRightLevel3 == true)
+        {
+            FireFunction(2);
+        }
+
+    }
+    void FireFunction(int cannonNumber)
+    {
+        FireBullet(leftFirePoint[cannonNumber]);
+        FireBullet(rightFirePoint[cannonNumber]);
+
+    }
+    void FireBullet(Transform firePoint)
     {
 
 
         var newBullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         newBullet.GetComponent<BulletController>().enemyBulletDamage = gameObject.GetComponent<EnemyLevelManager>().enemyDamage;
-        newBullet.GetComponent<BulletController>().SetVelocity(transform.up * bulletSpeed);
+        //newBullet.GetComponent<BulletController>().SetVelocity(transform.up * bulletSpeed);
         Destroy(newBullet, 3f);
     }
 }

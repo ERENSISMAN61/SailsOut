@@ -20,7 +20,7 @@ public class BattlePatrolScript : MonoBehaviour
     private GameObject playerShip;
     private float WaitingTime;
 
-    private EnemyFire shipsController;
+    private RedEnemyFire shipsController;
 
 
 
@@ -37,7 +37,7 @@ public class BattlePatrolScript : MonoBehaviour
 
         startPoint = transform.position;
         agent.SetDestination(startPoint);
-        shipsController = gameObject.GetComponent<EnemyFire>();
+        shipsController = gameObject.GetComponent<RedEnemyFire>();
 
         playerShip = GameObject.FindGameObjectWithTag("Player");
 
@@ -51,7 +51,7 @@ public class BattlePatrolScript : MonoBehaviour
 
         if (playerShip == null)
         {
-            shipsController.fieldObject.GetComponent<FieldController>().isEntered = false;
+            //shipsController.fieldObject.GetComponent<FieldController>().isEntered = false;
 
         }
         else
@@ -97,10 +97,11 @@ public class BattlePatrolScript : MonoBehaviour
         else
         {
 
-            Vector3 directionToTarget = playerShip.transform.position - transform.position;
-            float angle = Mathf.Atan2(directionToTarget.y, directionToTarget.x) * Mathf.Rad2Deg - 90f;
-            Quaternion targetRotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            //Vector3 directionToTarget = playerShip.transform.position - transform.position;
+            //float angle = Mathf.Atan2(directionToTarget.y, directionToTarget.x) * Mathf.Rad2Deg - 90f;
+            //Quaternion targetRotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            transform.LookAt(playerShip.transform.position);
         }
     }
 

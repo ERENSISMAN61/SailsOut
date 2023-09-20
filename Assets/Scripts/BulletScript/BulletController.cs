@@ -14,6 +14,6 @@ public class BulletController : MonoBehaviour
     void Update()
     {
         // Topu ileri yönde hareket ettir
-        transform.position += velocity * Time.deltaTime;
+        //transform.position += velocity * Time.deltaTime;
     }
 }

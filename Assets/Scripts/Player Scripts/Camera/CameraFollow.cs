@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     // Takip edilecek gemi GameObject'i için bir referans oluşturalım
-    public Transform target;
+    private Transform target;
 
     // Kameranın gemiden uzaklığını belirleyelim
     public float distance = 10f;
@@ -24,11 +24,25 @@ public class CameraFollow : MonoBehaviour
     private float yAngle = 0f;
 
     // Oyun başladığında fare imlecini gizleyelim
-    
+
+    private void Start()
+    {
+        
+        target = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
 
     // Her karede çalışacak fonksiyonu tanımlayalım
     private void Update()
     {
+        if (target == null)
+        {
+            return;
+        }
+        else
+        {
+            target = GameObject.FindGameObjectWithTag("Player").transform;
+        }
         // Fare hareketlerini okuyalım ve kameranın açılarını güncelleyelim
         xAngle += Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         yAngle -= Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
