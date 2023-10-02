@@ -8,8 +8,8 @@ OcclusionCullingSettings:
     smallestOccluder: 5
     smallestHole: 0.25
     backfaceThreshold: 100
-  m_SceneGUID: 00000000000000000000000000000000
-  m_OcclusionCullingData: {fileID: 0}
+  m_SceneGUID: 653dcd45b63a6364da7966adcd382506
+  m_OcclusionCullingData: {fileID: 36300000, guid: cd9d4bf1f47885f42ae78bf2f1d7b46c, type: 2}
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 430.61536, g: 353.11917, b: 342.4634, a: 1}
+  m_IndirectSpecularColor: {r: 440.40387, g: 355.00076, b: 318.99368, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1179,27 +1179,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5612800698504125770, guid: dcefab9d4db661949a7d1c7befe7f3b5, type: 3}
   m_PrefabInstance: {fileID: 242735636}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &247168423
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b5a4738b539472faa518e606162927c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enabled: 1
-  label: Curvature
-  blendMode: 0
-  opacity: 100
-  passIndex: 2
-  minMax: {x: 0.28481016, y: 0.28481016}
-  radius: 1
-  minFalloff: 0.001
-  maxFalloff: 1
 --- !u!1001 &250889668
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9012,11 +8991,11 @@ MonoBehaviour:
   - enabled: 1
     layer: {fileID: 8574412962073106934, guid: 1ded3ba1c5a90054e8f23ddfa62fb2b7, type: 2}
     modifierStack:
-    - {fileID: 1837681915}
+    - {fileID: 0}
   - enabled: 1
     layer: {fileID: 8574412962073106934, guid: c997c17aa360cb749a27932fe3bdfcce, type: 2}
     modifierStack:
-    - {fileID: 247168423}
+    - {fileID: 0}
   - enabled: 1
     layer: {fileID: 8574412962073106934, guid: 130d104513b29bd44ae9c5b3915f4134, type: 2}
     modifierStack: []
@@ -9050,27 +9029,6 @@ MonoBehaviour:
   useRandomSeed: 1
   usedSeeds: []
   randomFillPercent: 50
---- !u!114 &1837681915
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1d046e3917e4d8580903c69758b6558, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enabled: 1
-  label: Height
-  blendMode: 0
-  opacity: 100
-  passIndex: 0
-  min: 0
-  minFalloff: 1
-  max: 40
-  maxFalloff: 14.25
 --- !u!1001 &1843592161
 PrefabInstance:
   m_ObjectHideFlags: 0
