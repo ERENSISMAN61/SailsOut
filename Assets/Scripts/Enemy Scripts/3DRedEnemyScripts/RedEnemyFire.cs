@@ -28,12 +28,13 @@ public class RedEnemyFire : MonoBehaviour
     public bool isActiveRightLevel1 = false;
     public bool isActiveRightLevel2 = false;
     public bool isActiveRightLevel3 = false;
-
+    //private BattlePatrolScript battlePatrolScript;
 
 
     void Start()
     {
         playerShip = GameObject.FindGameObjectWithTag("Player");
+        //battlePatrolScript = gameObject.GetComponent<BattlePatrolScript>();
         sourceAudioE = gameObject.GetComponent<AudioSource>(); // Audio
         enemyShipsController = gameObject.GetComponent<EnemyMovement>();
 
@@ -46,7 +47,14 @@ public class RedEnemyFire : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        
+        //if( battlePatrolScript.isScriptWorking == true )
+        //{
+        //    gameObject.GetComponent<BattlePatrolScript>().enabled = true;
+        //}
+        //else
+        //{
+        //    gameObject.GetComponent<BattlePatrolScript>().enabled = false;
+        //}
         if (playerShip == null)
         {
             return;

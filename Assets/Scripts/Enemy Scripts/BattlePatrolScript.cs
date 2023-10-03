@@ -22,6 +22,7 @@ public class BattlePatrolScript : MonoBehaviour
 
     private RedEnemyFire shipsController;
 
+    public bool isScriptWorking;
 
 
     private float catchDistance = 15f;  // player yakalanma mesafesi
@@ -79,11 +80,11 @@ public class BattlePatrolScript : MonoBehaviour
     void Update()
     {
         FindPlayerShip();
-        RotateTowardsPlayer();
+        
 
         Debug.DrawRay(destinationPoint, Vector3.up, Color.blue, 1.0f); //so you can see with gizmos
 
-        MoveToPlayer();
+        //MoveToPlayer();
         CatchControl();
     }
 
@@ -115,14 +116,19 @@ public class BattlePatrolScript : MonoBehaviour
         else
         {
 
-            if (Vector3.Distance(agent.transform.position, (playerShip.transform.position)) <= catchDistance) // player konumu ile enemy konumunun mesafesi catchDistance(3.5f)den kucukse
+            if (Vector3.Distance(agent.transform.position, (playerShip.transform.position)) <= catchDistance) // player konumu ile enemy konumunun mesafesi catchDistance(15f)den kucukse
             {
                 agent.isStopped = true;
+                //isScriptWorking = false;
+
 
             }
             else
             {
                 agent.isStopped = false;
+                //isScriptWorking = true;
+                RotateTowardsPlayer();
+                MoveToPlayer();
                 //agent.SetDestination(playerShip.transform.position);
 
 
