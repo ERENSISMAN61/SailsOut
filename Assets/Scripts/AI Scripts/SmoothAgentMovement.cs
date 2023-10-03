@@ -11,9 +11,7 @@ using UnityEngine.InputSystem.HID;
 public class SmoothAgentMovement : MonoBehaviour
 {
 
-    [Header("Important!")]
-    [SerializeField]
-    private bool EnableClickToMove = false;
+
 
     [Header("Random Destination")]  ///////////
     //[SerializeField]
@@ -67,6 +65,9 @@ public class SmoothAgentMovement : MonoBehaviour
 
     private Vector3 InfinityVector = new Vector3(float.PositiveInfinity, float.PositiveInfinity, float.PositiveInfinity);
 
+    public bool  isTargetEnemy= false;
+    private GameObject Player;
+    private Vector3 playerPosition;
     private void Awake()
     {
         Agent = GetComponent<NavMeshAgent>();
@@ -76,20 +77,23 @@ public class SmoothAgentMovement : MonoBehaviour
     }
     private void Start()
     {
-
+        isTargetEnemy = false;
         Next_Position = transform.position;     ///////////
-
+        Player = GameObject.FindGameObjectWithTag("Player");
     }
     private void Update()
     {
-        if (EnableClickToMove)
+        if (isTargetEnemy)
         {
-            HandleInput();
+            playerPosition = Player.transform.position;
+            Agent.SetDestination(playerPosition);
         }
         else
         {
+    
             if (Vector3.Distance(Next_Position, transform.position) <= 10f)  ///////////
             {
+
                 Next_Position = RandomPointGenerator(transform.position, Radius);
                 SetDestinationPlus(Next_Position);
             }

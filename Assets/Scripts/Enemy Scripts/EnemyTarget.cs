@@ -10,20 +10,56 @@ public class EnemyTarget : MonoBehaviour
     private float distance = 80f; // gorus alaninin objenin ne kadar onunde olacagi
     private LayerMask playerLayer;
 
+    private HashSet<Collider> objectsInSphere = new HashSet<Collider>();
+
     void Start()
     {
 
-        playerLayer = LayerMask.GetMask("Player");
+        playerLayer = LayerMask.GetMask("OutlineFalse", "OutlineTrue");
     }
     void Update()
-    {                                               //transform.forward * distance = onunu daha fazla gormesi icin
-         if (Physics.CheckSphere(transform.position + transform.forward * distance, radius,playerLayer)) // gorus alaninda player varsa
+    {// görüþ alanýndaki tüm player nesnelerini bir diziye ata
+        Collider[] enemies = Physics.OverlapSphere(transform.position + transform.forward * distance, radius, playerLayer); 
+
+        //transform.forward * distance = onunu daha fazla gormesi icin// gorus alaninda player varsa
+
+
+        HashSet<Collider> newObjectsInSphere = new HashSet<Collider>();
+
+
+        foreach (Collider enemy in enemies) 
         {
-     //       Debug.Log("Enemy Target Hit");
+            if (enemy.CompareTag("PlayerParts"))
+            {
+
+                newObjectsInSphere.Add(enemy);
+
+                if (!objectsInSphere.Contains(enemy))
+                {
+                    Debug.Log("Truee");
+                    gameObject.GetComponent<SmoothAgentMovement>().isTargetEnemy = true;
+                }
+
+            }
         }
 
-    
-    
+        foreach (Collider oldObject in objectsInSphere)
+        {
+            if (!newObjectsInSphere.Contains(oldObject))
+            {
+
+                    Debug.Log("Falsee");
+                    gameObject.GetComponent<SmoothAgentMovement>().isTargetEnemy = false;
+
+            }
+        }
+
+        objectsInSphere = newObjectsInSphere;
+
+
+
+
+
     }
 
 

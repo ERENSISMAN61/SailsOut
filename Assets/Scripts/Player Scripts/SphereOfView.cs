@@ -15,8 +15,6 @@ public class SphereOfView : MonoBehaviour
     private float increaseSpeed = 4f;
   //  private bool canChange0, canChange1, canChange2, canChange3, canChange4 = false;
 
-    [SerializeField] private float fadeAmount, fadeSpeed;
-
     private HashSet<Collider> objectsInSphere = new HashSet<Collider>();
     void Start()
     {
@@ -31,7 +29,7 @@ public class SphereOfView : MonoBehaviour
 
         HashSet<Collider> newObjectsInSphere = new HashSet<Collider>();
 
-        Debug.Log("enemy sayýsý-1:"+enemies.Length);
+   //     Debug.Log("enemy sayýsý-1:"+enemies.Length);
         foreach (Collider enemy in enemies) // dizi içinde döngü baþlat
         {
             if (enemy.CompareTag("EnemyParts"))

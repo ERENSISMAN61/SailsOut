@@ -35,8 +35,8 @@ public class ClickPlayer : MonoBehaviour, IPointerClickHandler
 
 
 
-    public float DoubleClickInterval = 0.5f;
-    float secondClickTimeout = -1;
+    private float DoubleClickInterval = 0.5f;
+    private float secondClickTimeout = -1;
 
     public void OnPointerClick(PointerEventData eventData)
     {

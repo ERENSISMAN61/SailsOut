@@ -136,7 +136,7 @@ public class DissolveAnimate : MonoBehaviour
 
         float angle = Mathf.Atan2(dotProductZ, dotProductX) * Mathf.Rad2Deg;
         if (angle < 0) angle += 360;
-        Debug.Log(angle);
+        //Debug.Log(angle);
 
         if (angle >= 0 && angle < 45)
         {
@@ -154,19 +154,19 @@ public class DissolveAnimate : MonoBehaviour
         {
             t =(angle - 90) / 45;
             startValue = Mathf.Lerp(-12, 10, t);
-            endValue = Mathf.Lerp(18, 33, t);
+            endValue = Mathf.Lerp(19, 34, t);
         }
         else if (angle >= 135 && angle < 180)
         {
             t =(angle - 135) / 45;
             startValue = Mathf.Lerp(10, 22, t);
-            endValue = Mathf.Lerp(34, 36, t);
+            endValue = Mathf.Lerp(35, 36, t);
         }
         else if (angle >= 180 && angle < 225)
         {
             t =(angle - 180) / 45;
             startValue = Mathf.Lerp(21, 5, t);
-            endValue = Mathf.Lerp(34, 30, t);
+            endValue = Mathf.Lerp(35, 31, t);
         }
         else if (angle >= 225 && angle < 270)
         {
