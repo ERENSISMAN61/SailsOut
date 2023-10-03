@@ -69,6 +69,8 @@ public class SmoothPlayerMovement : MonoBehaviour
 
     private Transform EnemyTransform;
     private bool canMoveToEnemy = false;
+
+    private Vector3 firstMousePosition, lastMousePosition;
     private void Awake()
     {
         Agent = GetComponent<NavMeshAgent>();
@@ -84,8 +86,23 @@ public class SmoothPlayerMovement : MonoBehaviour
     }
     private void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
 
+            firstMousePosition = Input.mousePosition;
+
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            lastMousePosition = Input.mousePosition;
+
+        }
+
+        if (firstMousePosition.x - lastMousePosition.x <= 30f && firstMousePosition.x - lastMousePosition.x >= -30f
+            && firstMousePosition.y - lastMousePosition.y <= 30f && firstMousePosition.y - lastMousePosition.y >= -30f)
+        {
             HandleInput();
+        }
 
 
         MoveAgent();
