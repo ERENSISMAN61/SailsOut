@@ -23,14 +23,14 @@ public class PlayerLevelManager : MonoBehaviour
     private void Awake()
     {
         playerDamage = playerLevel * damageMultiple + 5;
-        gameObject.transform.localScale = levelScale + levelMultiple * playerLevel;
+        //gameObject.transform.localScale = levelScale + levelMultiple * playerLevel;
         
 
     }
 
     private void Start()
     {
-        levelScale = new Vector3(0.6f, 0.6f, 0.6f);
+     //   levelScale = new Vector3(0.6f, 0.6f, 0.6f);
         levelMultiple = new Vector3(0.15f, 0.15f, 0.15f);
 
 
@@ -55,7 +55,7 @@ public class PlayerLevelManager : MonoBehaviour
     private void LevelController()
     {
         playerDamage = playerLevel * damageMultiple + 5;
-        gameObject.transform.localScale = levelScale + levelMultiple * playerLevel;
+    //    gameObject.transform.localScale = levelScale + levelMultiple * playerLevel;
     }
 
     private void HealthController()

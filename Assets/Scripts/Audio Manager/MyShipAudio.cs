@@ -32,14 +32,14 @@ public class MyShipAudio : MonoBehaviour
 
     void woodCrack()
     {
-        ShipMovementScript shipMovementScript = GetComponent<ShipMovementScript>();
-        if (shipMovementScript.isBulletEntered == true)
-        {
+        //ShipMovementScript shipMovementScript = GetComponent<ShipMovementScript>();
+        //if (shipMovementScript.isBulletEntered == true)
+        //{
             
-            sourceAudio.PlayOneShot(woodCrackClip);
+        //    sourceAudio.PlayOneShot(woodCrackClip);
 
-        }
-        shipMovementScript.isBulletEntered = false;
+        //}
+        //shipMovementScript.isBulletEntered = false;
 
     }
 

@@ -80,7 +80,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissiveColorMap:
-        m_Texture: {fileID: 2800000, guid: bfc13e0bd9539a34e9481f300e26d911, type: 3}
+        m_Texture: {fileID: 2800000, guid: 6365d8f3a78ccf0459a546bdd296dae0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _HeightMap:

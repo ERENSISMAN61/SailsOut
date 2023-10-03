@@ -131,12 +131,12 @@ public class SmoothAgentMovement : MonoBehaviour
         }
     }
 
-    public void SetAgentDestination(Vector3 Position)
-    {
-        PathIndex = int.MaxValue;
-        Agent.SetDestination(Position);
-        PathLocations = Agent.path.corners;
-    }
+    //public void SetAgentDestination(Vector3 Position)
+    //{
+    //    PathIndex = int.MaxValue;
+    //    Agent.SetDestination(Position);
+    //    PathLocations = Agent.path.corners;
+    //}
 
 
 
@@ -189,16 +189,19 @@ public class SmoothAgentMovement : MonoBehaviour
             
             if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, FloorLayer))
             {
-
-                if (UsePathSmoothing)
-                {
-
+                //if(Vector3.Distance(hit.point, transform.position)>=50)
+                //{
                     SetDestinationPlus(hit.point);
-                }
-                else
-                {
-                    SetAgentDestination(hit.point);
-                }
+                //}
+                //if (UsePathSmoothing)
+                //{
+
+                //    SetDestinationPlus(hit.point);
+                //}
+                //else
+                //{
+                //    SetAgentDestination(hit.point);
+                //}
             }
         }
     }

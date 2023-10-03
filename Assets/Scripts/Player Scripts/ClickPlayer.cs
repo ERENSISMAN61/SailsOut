@@ -40,6 +40,7 @@ public class ClickPlayer : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        
         if (secondClickTimeout < 0)
         {
 

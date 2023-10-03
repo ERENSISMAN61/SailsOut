@@ -32,6 +32,8 @@ public class CameraSystem : MonoBehaviour
     private CameraControls cameraActions;
     public bool followPlayer = false;
     private Vector3 inputDirec;
+
+    private float moveDragPanSpeed= 1000;
     private void Awake()
     {
         followOffset = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset;
@@ -44,6 +46,7 @@ public class CameraSystem : MonoBehaviour
 
         cameraActions.Camera.RotateCamera.performed += RotateCamera;
         cameraActions.Camera.RotateCamera.performed += RotateCameraYZ;
+        cameraActions.Camera.RotateCamera.performed += MoveCameraDragPan;
         cameraActions.Camera.Enable();
     }
 
@@ -51,6 +54,7 @@ public class CameraSystem : MonoBehaviour
     {
         cameraActions.Camera.RotateCamera.performed -= RotateCamera;
         cameraActions.Camera.RotateCamera.performed -= RotateCameraYZ;
+        cameraActions.Camera.RotateCamera.performed -= MoveCameraDragPan;
         cameraActions.Camera.Disable();
     }
 
@@ -71,7 +75,8 @@ public class CameraSystem : MonoBehaviour
 
         if (useDragPan)
         {
-            HandleCameraMovementDragPan();
+         //   HandleCameraMovementDragPan();
+
         }
 
 
@@ -234,7 +239,27 @@ public class CameraSystem : MonoBehaviour
 
 
     }
+    private void MoveCameraDragPan(InputAction.CallbackContext obj)
+    {
+        if (!Mouse.current.leftButton.isPressed)
+            return;
 
+        Vector2 inputValue = obj.ReadValue<Vector2>();
+
+        // transform.position -= new Vector3(inputValue.x*moveDragPanSpeed, 0, inputValue.y*moveDragPanSpeed) * Time.deltaTime;
+
+        //Vector3 targetPosition = transform.position - new Vector3(inputValue.x * moveDragPanSpeed, 0, inputValue.y * moveDragPanSpeed) * Time.deltaTime;
+        //float smoothTime = 0.1f;
+        //transform.position = Vector3.Lerp(transform.position, targetPosition, smoothTime);
+
+        Vector3 moveDirection = new Vector3(inputValue.x, 0, inputValue.y) * moveDragPanSpeed;
+        moveDirection = transform.TransformDirection(moveDirection);
+        Vector3 targetPosition = transform.position - moveDirection * Time.deltaTime;
+
+        float smoothTime = 0.1f;
+        transform.position = Vector3.Lerp(transform.position, targetPosition, smoothTime);
+
+    }
     private void RotateCamera(InputAction.CallbackContext obj)
     {
         if (!Mouse.current.middleButton.isPressed && !Mouse.current.rightButton.isPressed)
@@ -364,8 +389,8 @@ Mathf.Lerp(cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTranspose
             //followOffsetMinY = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y-  (cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.z +300);
             followOffsetMinY = Mathf.Clamp(followOffsetMinY, 80, 380f);
             followOffset.y = Mathf.Clamp(followOffset.y, followOffsetMinY, followOffsetMaxY);
-
-            float zoomSpeed = 10f;
+             
+            float zoomSpeed = 10f;  
 
 
 

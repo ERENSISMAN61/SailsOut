@@ -15,6 +15,9 @@ TagManager:
   - EnemyBullet
   - Canvas
   - CameraSystem
+  - OutlineClick
+  - EnemyParts
+  - PlayerParts
   layers:
   - Default
   - TransparentFX
@@ -25,10 +28,10 @@ TagManager:
   - CannonBall
   - Floor
   - CannonBallDraw
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Enemy
+  - OutlineTrue
+  - OutlineFalse
   - 
   - 
   - 

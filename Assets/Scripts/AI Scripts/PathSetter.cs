@@ -4,36 +4,36 @@ using UnityEngine.AI;
 
 public class PathSetter : MonoBehaviour
 {
-    [SerializeField]
-    private SmoothAgentMovement SmoothedAgent;
-    private NavMeshAgent Agent;
+    //[SerializeField]
+    //private SmoothAgentMovement SmoothedAgent;
+    //private NavMeshAgent Agent;
 
-    [SerializeField]
-    private Transform[] Locations = new Transform[0];
+    //[SerializeField]
+    //private Transform[] Locations = new Transform[0];
 
-    private Coroutine Scenario;
+    //private Coroutine Scenario;
 
     private void Awake()
     {
-        Agent = SmoothedAgent.GetComponent<NavMeshAgent>();
-  //      SmoothedAgent.EnableClickToMove = false;
+  //      Agent = SmoothedAgent.GetComponent<NavMeshAgent>();
+  ////      SmoothedAgent.EnableClickToMove = false;
 
     }
 
-    private IEnumerator Start()
-    {
-        TrailRenderer trail = SmoothedAgent.GetComponent<TrailRenderer>();
-        float pauseTime = trail.time;
-        for (int i = 0; i < Locations.Length; i++)
-        {
-            yield return StartCoroutine(RunScenario(i));
-            yield return new WaitUntil(() =>
-            {
-                return Vector3.Distance(Locations[i].position + Vector3.up * Agent.baseOffset, Agent.transform.position) < Agent.radius;
-            });
-            yield return new WaitForSeconds(pauseTime);
-        }
-    }
+    //private IEnumerator Start()
+    //{
+    //    TrailRenderer trail = SmoothedAgent.GetComponent<TrailRenderer>();
+    //    float pauseTime = trail.time;
+    //    for (int i = 0; i < Locations.Length; i++)
+    //    {
+    //        yield return StartCoroutine(RunScenario(i));
+    //        yield return new WaitUntil(() =>
+    //        {
+    //            return Vector3.Distance(Locations[i].position + Vector3.up * Agent.baseOffset, Agent.transform.position) < Agent.radius;
+    //        });
+    //        yield return new WaitForSeconds(pauseTime);
+    //    }
+    //}
 
     //private void OnGUI()
     //{
@@ -50,24 +50,24 @@ public class PathSetter : MonoBehaviour
     //    }
     //}
 
-    private IEnumerator RunScenario(int Index)
-    {
-        TrailRenderer trail = SmoothedAgent.GetComponent<TrailRenderer>();
-        float pauseTime = trail.time;
+    //private IEnumerator RunScenario(int Index)
+    //{
+    //    TrailRenderer trail = SmoothedAgent.GetComponent<TrailRenderer>();
+    //    float pauseTime = trail.time;
 
-        Vector3 startPosition = SmoothedAgent.transform.position;
+    //    Vector3 startPosition = SmoothedAgent.transform.position;
 
-        SmoothedAgent.SetDestinationPlus(Locations[Index].position);
+    //    SmoothedAgent.SetDestinationPlus(Locations[Index].position);
 
-        yield return new WaitUntil(() =>
-        {
-            return Vector3.Distance(Locations[Index].position + Vector3.up * Agent.baseOffset, Agent.transform.position) < Agent.radius;
-        });
-        yield return new WaitForSeconds(pauseTime);
+    //    yield return new WaitUntil(() =>
+    //    {
+    //        return Vector3.Distance(Locations[Index].position + Vector3.up * Agent.baseOffset, Agent.transform.position) < Agent.radius;
+    //    });
+    //    yield return new WaitForSeconds(pauseTime);
 
-        trail.enabled = false;
-        Agent.Warp(startPosition);
-        SmoothedAgent.SetAgentDestination(Locations[Index].position);
-        trail.enabled = true;
-    }
+    //    trail.enabled = false;
+    //    Agent.Warp(startPosition);
+    //    SmoothedAgent.SetAgentDestination(Locations[Index].position);
+    //    trail.enabled = true;
+    //}
 }
