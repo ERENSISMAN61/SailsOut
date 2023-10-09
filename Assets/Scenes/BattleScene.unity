@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 440.98676, g: 354.93338, b: 316.7554, a: 1}
+  m_IndirectSpecularColor: {r: 439.4372, g: 354.99295, b: 321.7925, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -10563,6 +10563,10 @@ PrefabInstance:
       propertyPath: water
       value: 
       objectReference: {fileID: 1686331213}
+    - target: {fileID: 6984094005713745748, guid: 231fd6ac48bf61c4cbc41b39158ffea5, type: 3}
+      propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7669412317075886977, guid: 231fd6ac48bf61c4cbc41b39158ffea5, type: 3}
       propertyPath: mainCam
       value: 
