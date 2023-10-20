@@ -6,6 +6,7 @@ using System.Collections;
 using System.Drawing;
 using Unity.VisualScripting;
 using UnityEngine.InputSystem.HID;
+using Cinemachine.Utility;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class SmoothAgentMovement : MonoBehaviour
@@ -83,15 +84,35 @@ public class SmoothAgentMovement : MonoBehaviour
     }
     private void Update()
     {
-        if (isTargetEnemy)
+
+     
+      //  Debug.Log("isTargetEnemy:   "+isTargetEnemy);
+        if (isTargetEnemy)   // targetting enemy
         {
+            Agent.isStopped = false;
             playerPosition = Player.transform.position;
+
+            PathLocations = new Vector3[0];
+
+
             Agent.SetDestination(playerPosition);
+
+            Next_Position= transform.position;
+            PathIndex = 0;
+
+            if (Vector3.Distance(playerPosition, transform.position) <= 3.5f)  ///////////
+            {
+                isTargetEnemy = false;
+                Agent.isStopped = true;
+                Debug.Log("Player Caught");
+                //Destroy(Player);
+                //Destroy(gameObject);
+            }
         }
-        else
+        else                // random destination
         {
-    
-            if (Vector3.Distance(Next_Position, transform.position) <= 10f)  ///////////
+            Agent.isStopped = true;
+            if (Vector3.Distance(Next_Position, transform.position) <= 20f)  ///////////
             {
 
                 Next_Position = RandomPointGenerator(transform.position, Radius);

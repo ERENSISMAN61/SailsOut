@@ -56,8 +56,17 @@ public class EnemyTarget : MonoBehaviour
 
         objectsInSphere = newObjectsInSphere;
 
+        //foreach (Collider enemy in enemies)
+        //{
+        //    if (enemy.CompareTag("PlayerParts"))
+        //    {
+        //        if (gameObject.GetComponent<SmoothAgentMovement>().isTargetEnemy == true)
+        //        {
+        //        if(gameObject.GetComponent)
+        //        }
 
-
+        //    }
+        //}
 
 
     }

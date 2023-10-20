@@ -20,7 +20,7 @@ public class EnemyDialog : MonoBehaviour
     }
     public void AttackButton(string sceneName)
     {
-        GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>().mass = 1;   //SÝLÝNECEK ////////////////////////////////////////////////////////////////////////////////////////
+        //GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>().mass = 1;   //SÝLÝNECEK ////////////////////////////////////////////////////////////////////////////////////////
         Time.timeScale = 1; //SÝLÝNEbilir belki ////////////////////////////////////////////////////////////////////////////////////////    
         SceneManager.LoadScene(sceneName);
     }
