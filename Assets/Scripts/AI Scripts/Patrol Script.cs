@@ -44,7 +44,7 @@ public class PatrolScript : MonoBehaviour //don't forget to change the script na
     {
         // sava? bitiminde ve paray? kabul etti?inde waiting time ? ba?lat
 
-        enemyDialog = (GameObject)Resources.Load("Prefabs/Canvas Prefabs/EnemyDialog");
+        enemyDialog = (GameObject)Resources.Load("Resources/Prefabs/Canvas Prefabs/EnemyDialog");
 
         
 

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TimerForDialog : MonoBehaviour
+public class TimerForDialog : MonoBehaviour  
 {
     public float targetTimeScale = 0.1f;
     public float duration = 2.0f;
@@ -23,13 +23,13 @@ public class TimerForDialog : MonoBehaviour
         if (gameObject.GetComponent<SmoothAgentMovement>().isTargetEnemy)
         {
             playerPos = Player.transform.position;
-            if (Vector3.Distance(playerPos, gameObject.transform.position) <= 200f)
+            if (gameObject.GetComponent<SmoothAgentMovement>().didCatch)
             {
                 speedingUp = false;
                 slowingDown = true;
 
             }
-            if (Input.GetKeyDown(KeyCode.R))
+            if (!gameObject.GetComponent<SmoothAgentMovement>().didCatch)
             {
                 slowingDown = false;
                 speedingUp = true;
@@ -37,7 +37,8 @@ public class TimerForDialog : MonoBehaviour
             }
 
         }
-
+        Debug.Log("speedingUp:  " + speedingUp);
+        Debug.Log("slowingDown:  " + slowingDown);
         if (speedingUp)
         {
             SpeedingUp();
@@ -52,29 +53,38 @@ public class TimerForDialog : MonoBehaviour
 
     private void SlowDown()
     {
-        elapsed += Time.unscaledDeltaTime;
-        float progress = elapsed / duration;
-        Time.timeScale = Mathf.Lerp(1.0f, targetTimeScale, progress);
+        Time.timeScale = 0.3f;
         Time.fixedDeltaTime = Time.timeScale * 0.02f;
-        if (progress >= 1.0f)
-        {
-            slowingDown = false;
-            elapsed = 0.0f;
-        }
+
+
+
+        //elapsed += Time.unscaledDeltaTime;
+        //float progress = elapsed / duration;
+        //Time.timeScale = Mathf.Lerp(1.0f, targetTimeScale, progress);
+        //Time.fixedDeltaTime = Time.timeScale * 0.02f;
+        //if (progress >= 1.0f)
+        //{
+        //    slowingDown = false;
+        //    elapsed = 0.0f;
+        //}
     }
 
 
     private void SpeedingUp()
     {
-        elapsed += Time.unscaledDeltaTime;
-        float progress = elapsed / duration;
-        Time.timeScale = Mathf.Lerp(targetTimeScale, 1.0f, progress);
+
+        Time.timeScale = 1f;
         Time.fixedDeltaTime = Time.timeScale * 0.02f;
-        if (progress >= 1.0f)
-        {
-            speedingUp = false;
-            elapsed = 0.0f;
-        }
+
+        //elapsed += Time.unscaledDeltaTime;
+        //float progress = elapsed / duration;
+        //Time.timeScale = Mathf.Lerp(targetTimeScale, 1.0f, progress);
+        //Time.fixedDeltaTime = Time.timeScale * 0.02f;
+        //if (progress >= 1.0f)
+        //{
+        //    speedingUp = false;
+        //    elapsed = 0.0f;
+        //}
     }
 
 

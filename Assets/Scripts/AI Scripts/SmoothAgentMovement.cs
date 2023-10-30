@@ -66,15 +66,17 @@ public class SmoothAgentMovement : MonoBehaviour
 
     private Vector3 InfinityVector = new Vector3(float.PositiveInfinity, float.PositiveInfinity, float.PositiveInfinity);
 
-    public bool  isTargetEnemy= false;
+    public bool isTargetEnemy = false;
     private GameObject Player;
     private Vector3 playerPosition;
+
+    public bool didCatch = false;
     private void Awake()
     {
         Agent = GetComponent<NavMeshAgent>();
         CurrentPath = new NavMeshPath();
 
-       Camera = Camera.main;
+        Camera = Camera.main;
     }
     private void Start()
     {
@@ -85,8 +87,7 @@ public class SmoothAgentMovement : MonoBehaviour
     private void Update()
     {
 
-     
-      //  Debug.Log("isTargetEnemy:   "+isTargetEnemy);
+        //  Debug.Log("isTargetEnemy:   "+isTargetEnemy);
         if (isTargetEnemy)   // targetting enemy
         {
             Agent.isStopped = false;
@@ -100,11 +101,13 @@ public class SmoothAgentMovement : MonoBehaviour
             Next_Position= transform.position;
             PathIndex = 0;
 
-            if (Vector3.Distance(playerPosition, transform.position) <= 3.5f)  ///////////
+            if (Vector3.Distance(playerPosition, transform.position) <= 115f)  ///////////
             {
-                isTargetEnemy = false;
+                didCatch = true;
                 Agent.isStopped = true;
                 Debug.Log("Player Caught");
+
+                //isTargetEnemy = false; YAPACAN UNUTMA
                 //Destroy(Player);
                 //Destroy(gameObject);
             }
@@ -211,12 +214,12 @@ public class SmoothAgentMovement : MonoBehaviour
         if (Mouse.current.leftButton.wasReleasedThisFrame)
         {
             Ray ray = Camera.ScreenPointToRay(Mouse.current.position.ReadValue());
-            
+
             if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, FloorLayer))
             {
                 //if(Vector3.Distance(hit.point, transform.position)>=50)
                 //{
-                    SetDestinationPlus(hit.point);
+                SetDestinationPlus(hit.point);
                 //}
                 //if (UsePathSmoothing)
                 //{
@@ -369,7 +372,7 @@ public class SmoothAgentMovement : MonoBehaviour
             {
                 Vector3 segmentDirection = (Path[index] - Path[lastIndex]).normalized;
                 float dot = Vector3.Dot(targetDirection, segmentDirection);
-          //      Debug.Log($"Target Direction: {targetDirection}. segment direction: {segmentDirection} = dot {dot} with index {index} & lastIndex {lastIndex}");
+                //      Debug.Log($"Target Direction: {targetDirection}. segment direction: {segmentDirection} = dot {dot} with index {index} & lastIndex {lastIndex}");
                 if (dot <= SmoothingFactor)
                 {
                     Path[index] = InfinityVector;
@@ -389,7 +392,7 @@ public class SmoothAgentMovement : MonoBehaviour
 
         Vector3[] TrimmedPath = Path.Except(new Vector3[] { InfinityVector }).ToArray();
 
-     //   Debug.Log($"Original Smoothed Path: {Path.Length}. Trimmed Path: {TrimmedPath.Length}");
+        //   Debug.Log($"Original Smoothed Path: {Path.Length}. Trimmed Path: {TrimmedPath.Length}");
 
         return TrimmedPath;
     }
