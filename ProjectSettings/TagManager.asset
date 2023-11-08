@@ -18,6 +18,9 @@ TagManager:
   - OutlineClick
   - EnemyParts
   - PlayerParts
+  - RotationFinder
+  - EnemyRightCannon
+  - EnemyLeftCannon
   layers:
   - Default
   - TransparentFX

@@ -16,7 +16,7 @@ public class RedEnemyFire : MonoBehaviour
     private float timeSinceLastBurst;
     public float timeBetweenBursts = 2f;
     public int shotsPerBurst = 3;
-    public float distanceBetweenofShips = 20f;
+    public float distanceBetweenofShips = 80f;
 
     public float launchAngle;
 
@@ -24,6 +24,8 @@ public class RedEnemyFire : MonoBehaviour
     public AudioClip enemyShotAudio;
     private float distance;
     private EnemyMovement enemyShipsController;
+
+    
 
     public bool isActiveRightLevel1 = false;
     public bool isActiveRightLevel2 = false;
@@ -37,6 +39,7 @@ public class RedEnemyFire : MonoBehaviour
         //battlePatrolScript = gameObject.GetComponent<BattlePatrolScript>();
         sourceAudioE = gameObject.GetComponent<AudioSource>(); // Audio
         enemyShipsController = gameObject.GetComponent<EnemyMovement>();
+        
 
         shotsRemaining = shotsPerBurst;
 
@@ -57,46 +60,32 @@ public class RedEnemyFire : MonoBehaviour
         //}
         if (playerShip == null)
         {
-            return;
-        }
-        else
-        {
             playerShip = GameObject.FindGameObjectWithTag("Player");
         }
 
-        
-        distance = Vector3.Distance(playerShip.transform.position, gameObject.transform.position);
-        
-        RotateTowardsTarget(playerShip.transform.position);
-        
-        if (distance <= distanceBetweenofShips)
+
+        timeSinceLastBurst += Time.deltaTime;
+        if (timeSinceLastBurst >= timeBetweenBursts && shotsRemaining > 0)
         {
-            
-            //transform.rotation = Quaternion.LookRotation(target.position - transform.position);
-            
-
-            timeSinceLastBurst += Time.deltaTime;
-            if (timeSinceLastBurst >= timeBetweenBursts && shotsRemaining > 0)
-            {
 
 
-                /////// kod açılması gerekiyor   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            /////// kod açılması gerekiyor   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-                SetActiveCannons();
+            SetActiveCannons();
 
-                enemyShipsController.isBulletOut = true;
+            enemyShipsController.isBulletOut = true;
 
-                sourceAudioE.PlayOneShot(enemyShotAudio); //enemy shoot Audio          
+            sourceAudioE.PlayOneShot(enemyShotAudio); //enemy shoot Audio          
 
 
 
 
-                shotsRemaining--;
-                timeSinceLastBurst = 0f;
-            }
-
+            shotsRemaining--;
+            timeSinceLastBurst = 0f;
         }
-        
+
+
+
 
         if (shotsRemaining <= 0)
         {
@@ -105,12 +94,12 @@ public class RedEnemyFire : MonoBehaviour
         enemyShipsController.isBulletOut = false;
     }
 
-    private void RotateTowardsTarget(Vector3 targetPosition)
-    {
-        Quaternion rotation = Quaternion.LookRotation(targetPosition - transform.position);
-        transform.rotation = Quaternion.Lerp(transform.rotation, rotation, 3 * Time.time);
-        transform.Rotate(new Vector3(0, -90, 0), Space.Self);//correcting the original rotation
-    }
+    //private void RotateTowardsTarget(Vector3 targetPosition)
+    //{
+    //    Quaternion rotation = Quaternion.LookRotation(targetPosition - transform.position);
+    //    transform.rotation = Quaternion.Lerp(transform.rotation, rotation, 3 * Time.time);
+    //    transform.Rotate(new Vector3(0, -90, 0), Space.Self);//correcting the original rotation
+    //}
     void SetActiveCannons()
     {
         if (isActiveRightLevel1 == true)
@@ -128,10 +117,22 @@ public class RedEnemyFire : MonoBehaviour
         }
 
     }
+
     void FireFunction(int cannonNumber)
     {
         //FireBullet(leftFirePoint[cannonNumber]);
-        FireBullet(rightFirePoint[cannonNumber]);
+        float distanceCannonsToMotherShipRight = Vector3.Distance(rightFirePoint[cannonNumber].position, GameObject.FindGameObjectWithTag("Player").transform.position);
+        float distanceCannonsToMotherShipLeft = Vector3.Distance(leftFirePoint[cannonNumber].position, GameObject.FindGameObjectWithTag("Player").transform.position);
+        if (distanceCannonsToMotherShipRight < distanceCannonsToMotherShipLeft)
+        {
+            FireBullet(rightFirePoint[cannonNumber]);
+        }
+        else
+        {
+            FireBullet(leftFirePoint[cannonNumber]);
+        }
+
+
 
     }
     void FireBullet(Transform firePoint)
