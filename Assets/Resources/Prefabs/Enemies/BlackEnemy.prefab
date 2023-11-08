@@ -473,9 +473,6 @@ PrefabInstance:
       addedObject: {fileID: 2415793825794970183}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4fe7ec1d555ab494d836addf3c4b2c0f, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -1659056596251834486}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4fe7ec1d555ab494d836addf3c4b2c0f, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 304516559323144620}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4fe7ec1d555ab494d836addf3c4b2c0f, type: 3}
       insertIndex: -1
@@ -516,7 +513,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03d57c4cdfcd4044b8d7aa1fc62c9b2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnableClickToMove: 0
   Radius: 500
   Debug_Bool: 1
   Camera: {fileID: 0}
@@ -533,6 +529,8 @@ MonoBehaviour:
   TargetLerpSpeed: 1
   TargetDirection: {x: 0, y: 0, z: 0}
   MovementVector: {x: 0, y: 0, z: 0}
+  isTargetEnemy: 0
+  didCatch: 0
 --- !u!54 &2415793825794970183
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -560,23 +558,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-1659056596251834486
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4671841090237043885}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4abb307a62fd0642a70581618e8d6b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 311734765584806350, guid: f2a5014a964a2d84a9fe47e5eb9f5448, type: 3}
-  range: 50
-  destinationPoint: {x: 0, y: 0, z: 0}
-  startPoint: {x: 0, y: 0, z: 0}
-  canCatch: 1
 --- !u!114 &304516559323144620
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -156,7 +156,7 @@ public class PatrolScript : MonoBehaviour //don't forget to change the script na
                 PayButtonObject = GameObject.Find("PayButton");
                 SurrenderButtonObject = GameObject.Find("SurrenderButton");
 
-                AttackButtonObject.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => gameObject.GetComponent<EnemyDialog>().AttackButton("BattleScene"));
+                AttackButtonObject.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => gameObject.GetComponent<EnemyDialog>().AttackButton());
                 PayButtonObject.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => gameObject.GetComponent<EnemyDialog>().PayButton());
                 SurrenderButtonObject.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => gameObject.GetComponent<EnemyDialog>().SurrenderButton());
                 /////\\\\\

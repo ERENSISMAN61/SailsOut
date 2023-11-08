@@ -16,8 +16,11 @@ public class EnemyDialogOrganize : MonoBehaviour
     GameObject PayButtonObject;
     GameObject SurrenderButtonObject;
 
+    private bool isDialogSpawned = false;
+
     private void Start()
     {
+        isDialogSpawned = false;
         //      enemyDialog = (GameObject)Resources.Load("Resources/Prefabs/Canvas Prefabs/EnemyDialog");
         enemyDialog = Resources.Load<GameObject>("Prefabs/Canvas Prefabs/EnemyDialog");
         Debug.Log("eren"+enemyDialog);
@@ -26,13 +29,15 @@ public class EnemyDialogOrganize : MonoBehaviour
     {
         if(gameObject.GetComponent<SmoothAgentMovement>().didCatch)
         {
+            if (!isDialogSpawned) { 
             spawnEnemyDialog = Instantiate(enemyDialog, new Vector3(+960, +540, 0), Quaternion.identity, GameObject.Find("Canvas").transform);  // enemy dialogu Spawnla
-                                                                                                                                                /////\\\\\
-            AttackButtonObject = GameObject.Find("AttackButton");
+            isDialogSpawned=true;
+            }                                                                                                              /////\\\\\
+            AttackButtonObject = GameObject.Find("AttackButton"); 
             PayButtonObject = GameObject.Find("PayButton");
             SurrenderButtonObject = GameObject.Find("SurrenderButton");
 
-            AttackButtonObject.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => gameObject.GetComponent<EnemyDialog>().AttackButton("BattleScene"));
+            AttackButtonObject.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => gameObject.GetComponent<EnemyDialog>().AttackButton());
             PayButtonObject.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => gameObject.GetComponent<EnemyDialog>().PayButton());
             SurrenderButtonObject.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => gameObject.GetComponent<EnemyDialog>().SurrenderButton());
             /////\\\\\

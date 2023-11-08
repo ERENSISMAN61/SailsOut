@@ -11,19 +11,28 @@ public class EnemyDialog : MonoBehaviour
 
     public bool didPay = false;
     public bool didSteal = false;
-
+private bool TekKullan = false;
     void Start()
     {
 
 
         InventoryObject = GameObject.FindGameObjectWithTag("Inventory");
     }
-    public void AttackButton(string sceneName)
+    public void AttackButton()
     {
         //GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>().mass = 1;   //SÝLÝNECEK ////////////////////////////////////////////////////////////////////////////////////////
         Time.timeScale = 1; //SÝLÝNEbilir belki ////////////////////////////////////////////////////////////////////////////////////////    
-        SceneManager.LoadScene(sceneName);
+        Debug.Log("AttackButton");
+        //SceneManager.LoadScene(sceneName);
+
+        if (!TekKullan)
+        {
+            SceneManager.LoadScene("VeyselScene");
+            TekKullan = true;
+        }
+
     }
+
 
     public void PayButton()
     {
