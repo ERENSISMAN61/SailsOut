@@ -7,7 +7,10 @@ using UnityEngine.UI;
 public class EnemyDialog : MonoBehaviour
 {
     GameObject InventoryObject;
-
+    CameraSystem CameraSystemScript;
+    EnemyDialogOrganize enemyDialogOrganize;
+    SmoothAgentMovement smoothAgentMovement;
+    
 
     public bool didPay = false;
     public bool didSteal = false;
@@ -17,7 +20,17 @@ private bool TekKullan = false;
 
 
         InventoryObject = GameObject.FindGameObjectWithTag("Inventory");
+
+        enemyDialogOrganize = gameObject.GetComponent<EnemyDialogOrganize>();
+        smoothAgentMovement = gameObject.GetComponent<SmoothAgentMovement>();
+        CameraSystemScript= GameObject.FindGameObjectWithTag("CameraSystem").GetComponent<CameraSystem>();
     }
+
+    private void FixedUpdate()
+    {
+        CameraSystemScript.enemyPos = gameObject.transform.position;
+    }
+
     public void AttackButton()
     {
         //GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>().mass = 1;   //SÝLÝNECEK ////////////////////////////////////////////////////////////////////////////////////////
@@ -29,8 +42,9 @@ private bool TekKullan = false;
         {
             SceneManager.LoadScene("VeyselScene");
             TekKullan = true;
+            smoothAgentMovement.didCatch = false;
         }
-
+        
     }
 
 
@@ -39,21 +53,43 @@ private bool TekKullan = false;
         if (!didPay)
         {
 
-
             InventoryObject.GetComponent<InventoryController>().coinCount -= 30;
 
             didPay = true;
-            gameObject.GetComponent<PatrolScript>().StartCoroutine("WaitCatch");
+
+            Destroy(enemyDialogOrganize.spawnEnemyDialog);
+            enemyDialogOrganize.isDialogSpawned = false;
+
+            smoothAgentMovement.didCatch = false;
+            smoothAgentMovement.isTargetEnemy = false;
+            StartCoroutine("WaitCatch");
         }
+
+    }
+    private IEnumerator WaitCatch()
+    {
+
+
+      //  agent.isStopped = false;
+
+        didPay = false;
+
+        yield return new WaitForSeconds(10f);
+
+     //   canCatch = true;
+
+
 
     }
 
     public void SurrenderButton()
     {
-        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraManager>().targetCamera = gameObject.transform;
-        Destroy(GameObject.FindGameObjectWithTag("Player"));
+        CameraSystemScript.followEnemy = true;
+        CameraSystemScript.followPlayer = false;
         if (!didSteal)
         {
+
+
             InventoryObject.GetComponent<InventoryController>().bulletCount = 0;
             int randomNumberSupply = Random.Range(5, 11);
             InventoryObject.GetComponent<InventoryController>().supplyCount = InventoryObject.GetComponent<InventoryController>().supplyCount * randomNumberSupply / 100f;
@@ -61,9 +97,36 @@ private bool TekKullan = false;
             InventoryObject.GetComponent<InventoryController>().coinCount = InventoryObject.GetComponent<InventoryController>().coinCount * randomNumberCoin / 100f;
 
             didSteal = true;
+            Destroy(enemyDialogOrganize.spawnEnemyDialog);
+            enemyDialogOrganize.isDialogSpawned = false;
+
+            smoothAgentMovement.didCatch = false;
+            smoothAgentMovement.isTargetEnemy = false;
+
         }
-        gameObject.GetComponent<PatrolScript>().StartCoroutine("Surrendered");
+        StartCoroutine("Surrendered");
 
     }
 
+    private IEnumerator Surrendered()
+    {
+
+        didSteal = false;
+        yield return new WaitForSeconds(12f);
+
+        CameraSystemScript.followPlayer = true;
+        CameraSystemScript.followEnemy = false;
+
+
+        // GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraManager>().spawnPosition = gameObject.transform.position;
+        //    GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraManager>().spawnRotation = gameObject.transform.rotation;
+        //    yield return new WaitForSeconds(1f);
+        //     GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraManager>().isAllowSpawn = true;
+        //    GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraManager>().SpawnPlayerAnyWhere();
+        //   GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraManager>().isAllowSpawn = false;
+        //   GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>().mass = 1;
+        //    yield return new WaitForSeconds(10f);
+        //   canCatch = true;
+
+    }
 }

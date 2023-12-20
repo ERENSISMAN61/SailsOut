@@ -31,6 +31,8 @@ public class CameraSystem : MonoBehaviour
     private float rotateAngleY;
     private CameraControls cameraActions;
     public bool followPlayer = false;
+    public bool followEnemy = false;
+    public Vector3 enemyPos;
     private Vector3 inputDirec;
 
     private float moveDragPanSpeed= 1000;
@@ -66,6 +68,8 @@ public class CameraSystem : MonoBehaviour
     }
     private void Update()
     {
+        Debug.Log("FollowPlayer: "+followPlayer);
+        Debug.Log("FollowEnemy: "+followEnemy);
         HandleCameraMovement();
 
         if (useEdgeScrolling)
@@ -96,9 +100,13 @@ public class CameraSystem : MonoBehaviour
             followPlayer = false;
 
         }
-        if (followPlayer)
+        if (followPlayer && !followEnemy)
         {
             transform.position = GameObject.FindGameObjectWithTag("Player").transform.position;
+        }
+        else if (followEnemy)
+        {
+            transform.position = enemyPos;
         }
     }
     private void HandleCameraMovement()

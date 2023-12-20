@@ -10,13 +10,13 @@ public class EnemyDialogOrganize : MonoBehaviour
     private TextMeshProUGUI conversationText;
 
     private GameObject enemyDialog;
-    private GameObject spawnEnemyDialog;
+    public GameObject spawnEnemyDialog;
 
     GameObject AttackButtonObject;
     GameObject PayButtonObject;
     GameObject SurrenderButtonObject;
 
-    private bool isDialogSpawned = false;
+    public bool isDialogSpawned = false;
 
     private void Start()
     {
