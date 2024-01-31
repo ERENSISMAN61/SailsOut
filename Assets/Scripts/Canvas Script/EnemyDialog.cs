@@ -15,6 +15,8 @@ public class EnemyDialog : MonoBehaviour
     public bool didPay = false;
     public bool didSteal = false;
 private bool TekKullan = false;
+    GameObject player;
+
     void Start()
     {
 
@@ -24,17 +26,22 @@ private bool TekKullan = false;
         enemyDialogOrganize = gameObject.GetComponent<EnemyDialogOrganize>();
         smoothAgentMovement = gameObject.GetComponent<SmoothAgentMovement>();
         CameraSystemScript= GameObject.FindGameObjectWithTag("CameraSystem").GetComponent<CameraSystem>();
+        player =  GameObject.FindGameObjectWithTag("Player");
+
+        
     }
 
     private void FixedUpdate()
     {
         CameraSystemScript.enemyPos = gameObject.transform.position;
+
+        Debug.Log("smoothAgentMovement.didCatch:  "+smoothAgentMovement.didCatch+"\nTime.timeScale: "+ Time.timeScale);
     }
 
     public void AttackButton()
     {
         //GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>().mass = 1;   //SÝLÝNECEK ////////////////////////////////////////////////////////////////////////////////////////
-        Time.timeScale = 1; //SÝLÝNEbilir belki ////////////////////////////////////////////////////////////////////////////////////////    
+        Time.timeScale = 1; //SÝLÝNEbilir belki.  Time.timeScale= 0.3 ü de silmen lazým bunu sileceksen ////////////////////////////////////////////////////////////////////////////////////////    
         Debug.Log("AttackButton");
         //SceneManager.LoadScene(sceneName);
 
@@ -45,6 +52,7 @@ private bool TekKullan = false;
             smoothAgentMovement.didCatch = false;
         }
         
+
     }
 
 
@@ -57,11 +65,12 @@ private bool TekKullan = false;
 
             didPay = true;
 
-            Destroy(enemyDialogOrganize.spawnEnemyDialog);
-            enemyDialogOrganize.isDialogSpawned = false;
-
-            smoothAgentMovement.didCatch = false;
-            smoothAgentMovement.isTargetEnemy = false;
+            Destroy(enemyDialogOrganize.spawnEnemyDialog); //
+            enemyDialogOrganize.isDialogSpawned = false;   //
+                                                           ///// bu dortlu kesinlikle olmali eski hale getirilebilmesi icin.  \\\\\
+            smoothAgentMovement.didCatch = false;          //
+            smoothAgentMovement.isTargetEnemy = false;     //
+           
             StartCoroutine("WaitCatch");
         }
 
@@ -74,9 +83,11 @@ private bool TekKullan = false;
 
         didPay = false;
 
-        yield return new WaitForSeconds(10f);
+        gameObject.GetComponent<EnemyTarget>().targetCoolDown = true;  // enemy 20 saniye boyunca playeri gormezden gelir.  //
+        yield return new WaitForSeconds(20f);                                                                               // üçü cooldown için.
+        gameObject.GetComponent<EnemyTarget>().targetCoolDown = false;                                                      //   
 
-     //   canCatch = true;
+        //   canCatch = true;
 
 
 
@@ -97,11 +108,15 @@ private bool TekKullan = false;
             InventoryObject.GetComponent<InventoryController>().coinCount = InventoryObject.GetComponent<InventoryController>().coinCount * randomNumberCoin / 100f;
 
             didSteal = true;
-            Destroy(enemyDialogOrganize.spawnEnemyDialog);
-            enemyDialogOrganize.isDialogSpawned = false;
+          
 
-            smoothAgentMovement.didCatch = false;
-            smoothAgentMovement.isTargetEnemy = false;
+            Destroy(enemyDialogOrganize.spawnEnemyDialog); //
+            enemyDialogOrganize.isDialogSpawned = false;   //
+                                                           ///// bu dortlu kesinlikle olmali eski hale getirilebilmesi icin.  \\\\\
+            smoothAgentMovement.didCatch = false;          //
+            smoothAgentMovement.isTargetEnemy = false;     //
+
+
 
         }
         StartCoroutine("Surrendered");
@@ -110,13 +125,21 @@ private bool TekKullan = false;
 
     private IEnumerator Surrendered()
     {
-
+       player.SetActive(false);
         didSteal = false;
         yield return new WaitForSeconds(12f);
 
         CameraSystemScript.followPlayer = true;
         CameraSystemScript.followEnemy = false;
 
+        player.transform.position = gameObject.transform.position;
+        yield return new WaitForSeconds(2f);
+        player.SetActive(true);
+
+
+        gameObject.GetComponent<EnemyTarget>().targetCoolDown = true;  // enemy 20 saniye boyunca playeri gormezden gelir.  //
+        yield return new WaitForSeconds(20f);                                                                               // üçü cooldown için.
+        gameObject.GetComponent<EnemyTarget>().targetCoolDown = false;                                                      //            
 
         // GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraManager>().spawnPosition = gameObject.transform.position;
         //    GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraManager>().spawnRotation = gameObject.transform.rotation;

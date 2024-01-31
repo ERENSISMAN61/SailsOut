@@ -20,25 +20,25 @@ public class TimerForDialog : MonoBehaviour
     {
 
         Debug.Log("distance:  "+Vector3.Distance(playerPos, gameObject.transform.position));
-        if (gameObject.GetComponent<SmoothAgentMovement>().isTargetEnemy)
+        if (gameObject.GetComponent<SmoothAgentMovement>().isTargetEnemy && gameObject.GetComponent<SmoothAgentMovement>().didCatch)
         {
             playerPos = Player.transform.position;
-            if (gameObject.GetComponent<SmoothAgentMovement>().didCatch)
-            {
+
                 speedingUp = false;
                 slowingDown = true;
 
-            }
-            if (!gameObject.GetComponent<SmoothAgentMovement>().didCatch)
-            {
-                slowingDown = false;
-                speedingUp = true;
+        }
+        else
+        {
 
-            }
+            slowingDown = false;
+            speedingUp = true;
 
         }
-        Debug.Log("speedingUp:  " + speedingUp);
-        Debug.Log("slowingDown:  " + slowingDown);
+
+
+        Debug.Log("isTargetEnemy: "+gameObject.GetComponent<SmoothAgentMovement>().isTargetEnemy+"     didcatch: "+gameObject.GetComponent<SmoothAgentMovement>().didCatch+"\nspeedingUp:  " + speedingUp+"     slowingDown:  " + slowingDown);
+
         if (speedingUp)
         {
             SpeedingUp();

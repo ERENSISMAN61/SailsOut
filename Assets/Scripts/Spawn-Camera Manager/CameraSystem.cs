@@ -35,7 +35,9 @@ public class CameraSystem : MonoBehaviour
     public Vector3 enemyPos;
     private Vector3 inputDirec;
 
-    private float moveDragPanSpeed= 1000;
+    private float moveDragPanSpeed = 1000;
+
+    private GameObject player;
     private void Awake()
     {
         followOffset = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset;
@@ -65,21 +67,26 @@ public class CameraSystem : MonoBehaviour
 
         FOVMinStartY = followOffsetMinY + 100;
         inputDirec = new Vector3(0, 0, 0);
+
+        player = GameObject.FindGameObjectWithTag("Player");
     }
     private void Update()
     {
         Debug.Log("FollowPlayer: "+followPlayer);
         Debug.Log("FollowEnemy: "+followEnemy);
-        HandleCameraMovement();
 
-        if (useEdgeScrolling)
+        if (!followEnemy) //enemy takip ediyorsa deaktif olsun
+        {
+            HandleCameraMovement();
+        }
+        if (useEdgeScrolling &&!followEnemy) //enemy takip ediyorsa deaktif olsun
         {
             HandleCameraMovementEdgeScrolling();
         }
 
         if (useDragPan)
         {
-         //   HandleCameraMovementDragPan();
+            //   HandleCameraMovementDragPan();
 
         }
 
@@ -95,14 +102,17 @@ public class CameraSystem : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || (inputDirec != new Vector3(0, 0, 0)))
+        if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || (inputDirec != new Vector3(0, 0, 0))))
         {
             followPlayer = false;
 
         }
         if (followPlayer && !followEnemy)
         {
-            transform.position = GameObject.FindGameObjectWithTag("Player").transform.position;
+            if (player!=null)
+            {
+                transform.position = player.transform.position;
+            }
         }
         else if (followEnemy)
         {
@@ -249,6 +259,10 @@ public class CameraSystem : MonoBehaviour
     }
     private void MoveCameraDragPan(InputAction.CallbackContext obj)
     {
+        if (!followEnemy) //enemy takip ediyorsa deaktif olsun
+        { 
+
+
         if (!Mouse.current.leftButton.isPressed)
             return;
 
@@ -267,6 +281,7 @@ public class CameraSystem : MonoBehaviour
         float smoothTime = 0.1f;
         transform.position = Vector3.Lerp(transform.position, targetPosition, smoothTime);
 
+        }
     }
     private void RotateCamera(InputAction.CallbackContext obj)
     {
@@ -286,7 +301,7 @@ public class CameraSystem : MonoBehaviour
             float inputValue = obj.ReadValue<Vector2>().y * 0.5f;
 
             lastMousePosition = Input.mousePosition;
-            float rotationSpeed = 70f; 
+            float rotationSpeed = 70f;
 
             rotationOffset.z = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.z -inputValue;
             followOffset.y = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y - inputValue;
@@ -369,7 +384,7 @@ Mathf.Lerp(cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTranspose
         {
 
 
-                FOVIncrease =  cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y *0.04f +60;
+            FOVIncrease =  cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y *0.04f +60;
 
             targetFieldOfView = Mathf.Clamp(FOVIncrease, FOVMin, FOVMax);
 
@@ -397,8 +412,8 @@ Mathf.Lerp(cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTranspose
             //followOffsetMinY = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y-  (cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.z +300);
             followOffsetMinY = Mathf.Clamp(followOffsetMinY, 80, 380f);
             followOffset.y = Mathf.Clamp(followOffset.y, followOffsetMinY, followOffsetMaxY);
-             
-            float zoomSpeed = 10f;  
+
+            float zoomSpeed = 10f;
 
 
 

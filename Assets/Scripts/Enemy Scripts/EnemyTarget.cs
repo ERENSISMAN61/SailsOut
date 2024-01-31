@@ -12,6 +12,8 @@ public class EnemyTarget : MonoBehaviour
 
     private HashSet<Collider> objectsInSphere = new HashSet<Collider>();
 
+    public bool targetCoolDown = false;
+
     void Start()
     {
 
@@ -19,7 +21,7 @@ public class EnemyTarget : MonoBehaviour
     }
     void Update()
     {// görüþ alanýndaki tüm player nesnelerini bir diziye ata
-        Collider[] enemies = Physics.OverlapSphere(transform.position + transform.forward * distance, radius, playerLayer); 
+        Collider[] enemies = Physics.OverlapSphere(transform.position + transform.forward * distance, radius, playerLayer);
 
         //transform.forward * distance = onunu daha fazla gormesi icin// gorus alaninda player varsa
 
@@ -27,17 +29,20 @@ public class EnemyTarget : MonoBehaviour
         HashSet<Collider> newObjectsInSphere = new HashSet<Collider>();
 
 
-        foreach (Collider enemy in enemies) 
+        foreach (Collider enemy in enemies)
         {
             if (enemy.CompareTag("PlayerParts"))
             {
-
-                newObjectsInSphere.Add(enemy);
-
-                if (!objectsInSphere.Contains(enemy))
+                if (!targetCoolDown)
                 {
-                    Debug.Log("Truee");
-                    gameObject.GetComponent<SmoothAgentMovement>().isTargetEnemy = true;
+                    newObjectsInSphere.Add(enemy);
+
+                    if (!objectsInSphere.Contains(enemy))
+                    {
+                        Debug.Log("Truee");
+                        gameObject.GetComponent<SmoothAgentMovement>().isTargetEnemy = true;
+                    }
+
                 }
 
             }
@@ -48,8 +53,8 @@ public class EnemyTarget : MonoBehaviour
             if (!newObjectsInSphere.Contains(oldObject))
             {
 
-                    Debug.Log("Falsee");
-                    gameObject.GetComponent<SmoothAgentMovement>().isTargetEnemy = false;
+                Debug.Log("Falsee");
+                gameObject.GetComponent<SmoothAgentMovement>().isTargetEnemy = false;
 
             }
         }
