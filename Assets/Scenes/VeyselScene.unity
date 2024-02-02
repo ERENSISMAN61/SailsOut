@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1043.8605, g: 722.6495, b: 525.2657, a: 1}
+  m_IndirectSpecularColor: {r: 1044.6971, g: 723.12067, b: 524.962, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -158,7 +158,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2000, y: 1, z: 2000}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 846728168}
@@ -182,8 +182,9 @@ MonoBehaviour:
   largeBand1FadeToggle: 1
   ripplesFadeToggle: 1
   surfaceType: 0
-  geometryType: 3
-  meshRenderers: []
+  geometryType: 0
+  meshRenderers:
+  - {fileID: 328978080}
   timeMultiplier: 1
   cpuSimulation: 1
   cpuFullResolution: 0
@@ -389,6 +390,88 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &328978079
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 328978082}
+  - component: {fileID: 328978081}
+  - component: {fileID: 328978080}
+  m_Layer: 7
+  m_Name: Plane
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!23 &328978080
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328978079}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 257
+  m_RendererPriority: 0
+  m_Materials: []
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &328978081
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328978079}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &328978082
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328978079}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 200, y: 1, z: 200}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &468325873 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6654316866798243724, guid: 49c6bb58ab096244ea01e29ec6bb108f, type: 3}
@@ -985,11 +1068,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 388ee18989c2c6a47ae3af82a1b6fa22, type: 3}
---- !u!4 &1503913948 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2604911351388124864, guid: 4c57d77ca0315f549814d0789cb4aadf, type: 3}
-  m_PrefabInstance: {fileID: 540157220}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1503913949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1010,6 +1088,7 @@ MonoBehaviour:
   - {fileID: 540157221}
   - {fileID: 540157222}
   FloatingPower: 10
+  FloatingLevel: 1.8
   water: {fileID: 235309980}
 --- !u!1 &1511577905
 GameObject:
@@ -1528,7 +1607,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf720a1c6af9a3145bb6c40d4cc688fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1503913948}
   distance: 50
   height: 5
   smoothSpeed: 0.5
@@ -1803,3 +1881,4 @@ SceneRoots:
   - {fileID: 1773268399}
   - {fileID: 1564665437}
   - {fileID: 1912348163}
+  - {fileID: 328978082}
