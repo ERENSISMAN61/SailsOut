@@ -12,6 +12,9 @@ public class redPatrol : MonoBehaviour
     private Transform playerShip;
     public float rotationSpeed = 0.2f;
     private RedEnemyFire redEnemyFire;
+
+    public Transform rightCannonTransform;
+    public Transform leftCannonTransform;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -28,7 +31,9 @@ public class redPatrol : MonoBehaviour
         }
 
         float distanceToMotherShip = Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position);
-        Debug.Log(distanceToMotherShip);
+
+        
+        //Debug.Log(distanceToMotherShip);
 
         if (distanceToMotherShip < 80)
         {
@@ -67,23 +72,47 @@ public class redPatrol : MonoBehaviour
 
     void RotateTowardsMotherShip()
     {
-        Vector3 directionToMotherShip = playerShip.position - transform.position;
-        Quaternion targetRotation = Quaternion.LookRotation(directionToMotherShip, Vector3.up);
-        targetRotation *= Quaternion.Euler(0, 90f, 0);
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+        float distanceCannonsToMotherShipRight = Vector3.Distance(rightCannonTransform.position, GameObject.FindGameObjectWithTag("Player").transform.position);
+        float distanceCannonsToMotherShipLeft = Vector3.Distance(leftCannonTransform.position, GameObject.FindGameObjectWithTag("Player").transform.position);
+        Debug.Log("RightCannon" + distanceCannonsToMotherShipRight);
+        Debug.Log("LeftCannon" + distanceCannonsToMotherShipLeft);
 
-        // Eğer dönüş tamamlandıysa hareket etmeye devam et
-        if (Quaternion.Angle(transform.rotation, targetRotation) < 1.0f)
+        if(distanceCannonsToMotherShipRight < distanceCannonsToMotherShipLeft)
         {
-            agent.isStopped = false;
+            Vector3 directionToMotherShip = playerShip.position - transform.position;
+            Quaternion targetRotation = Quaternion.LookRotation(directionToMotherShip, Vector3.up);
+            targetRotation *= Quaternion.Euler(0, 90f, 0);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+
+            // Eğer dönüş tamamlandıysa hareket etmeye devam et
+            if (Quaternion.Angle(transform.rotation, targetRotation) < 1.0f)
+            {
+                agent.isStopped = false;
+            }
         }
+        else
+        {
+            Vector3 directionToMotherShip = playerShip.position - transform.position;
+            Quaternion targetRotation = Quaternion.LookRotation(directionToMotherShip, Vector3.up);
+            targetRotation *= Quaternion.Euler(0, -90f, 0);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+
+            // Eğer dönüş tamamlandıysa hareket etmeye devam et
+            if (Quaternion.Angle(transform.rotation, targetRotation) < 1.0f)
+            {
+                agent.isStopped = false;
+            }
+        }
+
+
+        
     }
 
     void RotateTowardsMotherShipExit()
     {
         Vector3 directionToMotherShip = playerShip.position - transform.position;
         Quaternion targetRotation = Quaternion.LookRotation(directionToMotherShip, Vector3.up);
-        targetRotation *= Quaternion.Euler(0, targetRotation.eulerAngles.y, 0);
+        //targetRotation *= Quaternion.Euler(0, targetRotation.eulerAngles.y, 0);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
 
         // Eğer dönüş tamamlandıysa hareket etmeye devam et

@@ -75,7 +75,7 @@ public class RedEnemyFire : MonoBehaviour
 
             enemyShipsController.isBulletOut = true;
 
-            sourceAudioE.PlayOneShot(enemyShotAudio); //enemy shoot Audio          
+            sourceAudioE.PlayOneShot(enemyShotAudio); //enemy shoot Audio           
 
 
 

@@ -1,11 +1,17 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerFire : MonoBehaviour
 {
     public GameObject cannonballPrefab;
     public Transform[] rightFirePoint;
     public Transform[] leftFirePoint;
+    public Camera rightCamera;
+    public Camera leftCamera;
+    private GameObject mainCamera;
+
+    private Right_Left_Aim mousePosition;
 
 
     public bool isActiveRightLevel1 = false;
@@ -19,25 +25,27 @@ public class PlayerFire : MonoBehaviour
     private void Start()
     {
         CurrentTime = Time.time;
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        mousePosition = GameObject.FindGameObjectWithTag("MousePosition").GetComponent<Right_Left_Aim>();
     }
 
     void SetActiveCannons()
     {
         if (isActiveRightLevel1 == true)
         {
-            FireFunction(0);
+            FireFunction2(0);
         }
 
         if (isActiveRightLevel2 == true)
         {
 
             
-            FireFunction(1);
+            FireFunction2(1);
         }
         if (isActiveRightLevel3 == true)
         {
             
-            FireFunction(2);
+            FireFunction2(2);
         }
 
     }
@@ -101,6 +109,42 @@ public class PlayerFire : MonoBehaviour
             CurrentTime = Time.time;
         }
     }
+
+    [System.Obsolete]
+    void FireFunction2(int cannonNumber)
+    {
+        if (Input.GetMouseButton(1))
+        {
+            if(mousePosition.isRightAimActive)
+            {
+                rightCamera.enabled = true;
+                mainCamera.active = false;
+            }
+            else if(mousePosition.isLeftAimActive)
+            {
+                leftCamera.enabled = true;
+                mainCamera.active = false;
+            }
+
+            if (Input.GetMouseButton(0))
+            {
+                FireCannonball(leftFirePoint[cannonNumber]);
+                FireCannonball(rightFirePoint[cannonNumber]);
+                CurrentTime = Time.time;
+            }
+
+            CurrentTime = Time.time;
+        }
+        else
+        {
+            rightCamera.enabled = false;
+            leftCamera.enabled = false;
+            mainCamera.active = true;
+        }
+            
+       
+    }
+
     void Update()
     {
         SetActiveCannons();

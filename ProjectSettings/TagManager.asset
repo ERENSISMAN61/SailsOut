@@ -21,6 +21,7 @@ TagManager:
   - RotationFinder
   - EnemyRightCannon
   - EnemyLeftCannon
+  - MousePosition
   layers:
   - Default
   - TransparentFX
