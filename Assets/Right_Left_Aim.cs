@@ -1,33 +1,44 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Right_Left_Aim : MonoBehaviour
 {
-    private Camera mainCamera;
-    private Vector3 mousePosition;
     public bool isLeftAimActive;
     public bool isRightAimActive;
     // Start is called before the first frame update
+
+
+    private Vector2 lastMousePosition;
+    private Vector2 mouseDelta;
+
     void Start()
     {
-        mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        lastMousePosition = Input.mousePosition;
     }
 
     // Update is called once per frame
     void Update()
     {
-        mousePosition = mainCamera.WorldToScreenPoint(Input.mousePosition);
-        if(mousePosition.x < 0)
+
+        mouseDelta = (Vector2)Input.mousePosition - lastMousePosition;
+        lastMousePosition = Input.mousePosition;
+
+
+        //Debug.Log("Mouse Delta: " + mouseDelta);
+        // mouse sağdaysa
+        if (mouseDelta.x > 0)
         {
-            isLeftAimActive = false;
             isRightAimActive = true;
+            isLeftAimActive = false;
         }
-        else
+        // mouse soldaysa
+        else if (mouseDelta.x < 0)
         {
-            isRightAimActive = false;
             isLeftAimActive = true;
+            isRightAimActive = false;
         }
-        Debug.Log("Position: " + mousePosition);
+
+        
     }
 }

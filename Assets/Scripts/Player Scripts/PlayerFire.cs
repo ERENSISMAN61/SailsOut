@@ -7,11 +7,9 @@ public class PlayerFire : MonoBehaviour
     public GameObject cannonballPrefab;
     public Transform[] rightFirePoint;
     public Transform[] leftFirePoint;
-    public Camera rightCamera;
-    public Camera leftCamera;
-    private GameObject mainCamera;
+    
 
-    private Right_Left_Aim mousePosition;
+    
 
 
     public bool isActiveRightLevel1 = false;
@@ -25,8 +23,8 @@ public class PlayerFire : MonoBehaviour
     private void Start()
     {
         CurrentTime = Time.time;
-        mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
-        mousePosition = GameObject.FindGameObjectWithTag("MousePosition").GetComponent<Right_Left_Aim>();
+        //mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        //mousePosition = GameObject.FindGameObjectWithTag("MousePosition").GetComponent<Right_Left_Aim>();
     }
 
     void SetActiveCannons()
@@ -110,21 +108,15 @@ public class PlayerFire : MonoBehaviour
         }
     }
 
+
+    
+
     [System.Obsolete]
     void FireFunction2(int cannonNumber)
     {
         if (Input.GetMouseButton(1))
         {
-            if(mousePosition.isRightAimActive)
-            {
-                rightCamera.enabled = true;
-                mainCamera.active = false;
-            }
-            else if(mousePosition.isLeftAimActive)
-            {
-                leftCamera.enabled = true;
-                mainCamera.active = false;
-            }
+           
 
             if (Input.GetMouseButton(0))
             {
@@ -137,9 +129,7 @@ public class PlayerFire : MonoBehaviour
         }
         else
         {
-            rightCamera.enabled = false;
-            leftCamera.enabled = false;
-            mainCamera.active = true;
+            
         }
             
        

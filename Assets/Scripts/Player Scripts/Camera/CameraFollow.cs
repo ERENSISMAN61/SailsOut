@@ -17,7 +17,7 @@ public class CameraFollow : MonoBehaviour
     public float smoothSpeed = 0.5f;
 
     // Kameranın açısını değiştirmek için fare hareketlerini okuyalım
-    public float mouseSensitivity = 100f;
+    public float mouseSensitivity = 50f;
 
     // Kameranın yatay ve dikey açılarını saklayalım
     private float xAngle = 0f;
