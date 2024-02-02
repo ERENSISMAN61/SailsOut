@@ -1,12 +1,13 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Cam_Switch : MonoBehaviour
 {
-    public GameObject rightCamera;
-    public GameObject leftCamera;
-    private GameObject mainCamera;
+    public CinemachineVirtualCamera rightCamera;
+    public CinemachineVirtualCamera leftCamera;
+    public CinemachineFreeLook mainCamera;
 
     private Right_Left_Aim mousePosition;
     private int camIndex = 0;
@@ -14,39 +15,30 @@ public class Cam_Switch : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         mousePosition = GameObject.FindGameObjectWithTag("MousePosition").GetComponent<Right_Left_Aim>();
+        mainCamera.Priority = 10;
+        rightCamera.Priority = 0;
+        leftCamera.Priority = 0;
     }
-
-
-
-    public void CamAnimationManagement()
-    {
-        if(camIndex == 0)
-        {
-            Main_Cam();
-        }
-    }
-
     void Right_Cam()
     {
-        rightCamera.SetActive(true);
-        leftCamera.SetActive(false);
-        mainCamera.SetActive(false);
+        rightCamera.Priority = 11;
+        leftCamera.Priority = 0;
+        mainCamera.Priority = 0;
     }
 
     void Left_Cam()
     {
-        leftCamera.SetActive(true);
-        rightCamera.SetActive(false);
-        mainCamera.SetActive(false);
+        leftCamera.Priority = 11;
+        rightCamera.Priority = 0;
+        mainCamera.Priority = 0;
     }
 
     void Main_Cam()
     {
-        mainCamera.SetActive(true);
-        rightCamera.SetActive(false);
-        leftCamera.SetActive(false);
+        mainCamera.Priority = 11;
+        rightCamera.Priority = 0;
+        leftCamera.Priority = 0;
     }
 
     // Update is called once per frame
@@ -56,12 +48,19 @@ public class Cam_Switch : MonoBehaviour
         {
             if (mousePosition.isRightAimActive)
             {
-                
                 Right_Cam();
+                if(Input.GetMouseButtonDown(1))
+                {
+                    mousePosition.isLeftAimActive = false;
+                }
             }
             else if (mousePosition.isLeftAimActive)
             {
                 
+                if (Input.GetMouseButtonDown(1))
+                {
+                    mousePosition.isRightAimActive = false;
+                }
                 Left_Cam();
             }
            

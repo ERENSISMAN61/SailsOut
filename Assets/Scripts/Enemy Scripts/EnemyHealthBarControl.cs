@@ -9,7 +9,7 @@ public class EnemyHealthBarControl : MonoBehaviour
     [SerializeField] private Slider slider;
     [SerializeField] private Transform target;
     [SerializeField] private Vector3 offset;
-    [SerializeField] private Camera mainCam;
+    [SerializeField] private GameObject mainCam;
     public void updateHealthBar(float currentHealth, float maxHealth)
     {
         

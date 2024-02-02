@@ -127,10 +127,7 @@ public class PlayerFire : MonoBehaviour
 
             CurrentTime = Time.time;
         }
-        else
-        {
-            
-        }
+
             
        
     }
