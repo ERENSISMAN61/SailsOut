@@ -71,6 +71,9 @@ TagManager:
   - name: Objects
     uniqueID: 118616285
     locked: 0
+  - name: UnderBar
+    uniqueID: 3700895055
+    locked: 0
   - name: Bar
     uniqueID: 3355840579
     locked: 0
