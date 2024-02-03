@@ -48,10 +48,11 @@ public class Cam_Switch : MonoBehaviour
         {
             if (mousePosition.isRightAimActive)
             {
-                Right_Cam();
+                
                 if(Input.GetMouseButtonDown(1))
                 {
                     mousePosition.isLeftAimActive = false;
+                    Right_Cam();
                 }
             }
             else if (mousePosition.isLeftAimActive)
@@ -60,8 +61,9 @@ public class Cam_Switch : MonoBehaviour
                 if (Input.GetMouseButtonDown(1))
                 {
                     mousePosition.isRightAimActive = false;
+                    Left_Cam();
                 }
-                Left_Cam();
+                
             }
            
         }
