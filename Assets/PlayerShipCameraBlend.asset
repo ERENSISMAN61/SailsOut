@@ -16,8 +16,19 @@ MonoBehaviour:
   - m_From: FCMain
     m_To: RightCam
     m_Blend:
-      m_Style: 1
-      m_Time: 2
+      m_Style: 4
+      m_Time: 1
+      m_CustomCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+  - m_From: RightCam
+    m_To: FCMain
+    m_Blend:
+      m_Style: 5
+      m_Time: 1
       m_CustomCurve:
         serializedVersion: 2
         m_Curve: []
@@ -27,8 +38,19 @@ MonoBehaviour:
   - m_From: FCMain
     m_To: LeftCam
     m_Blend:
-      m_Style: 1
-      m_Time: 2
+      m_Style: 4
+      m_Time: 1
+      m_CustomCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+  - m_From: LeftCam
+    m_To: FCMain
+    m_Blend:
+      m_Style: 5
+      m_Time: 1
       m_CustomCurve:
         serializedVersion: 2
         m_Curve: []
