@@ -1,144 +1,155 @@
-﻿using System.Collections;
+﻿using Cinemachine;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+
 
 public class PlayerFire : MonoBehaviour
 {
+
+
     public GameObject cannonballPrefab;
     public Transform[] rightFirePoint;
     public Transform[] leftFirePoint;
-    
-
-    
 
 
-    public bool isActiveRightLevel1 = false;
-    public bool isActiveRightLevel2 = false;
-    public bool isActiveRightLevel3 = false;
-    
+    public bool isActiveLevel1 = false;
+    public bool isActiveLevel2 = false;
+    public bool isActiveLevel3 = false;
+
+    private Right_Left_Aim mousePosition;
+    private DrawTrajectory drawTrajectory;
+    public CinemachineVirtualCamera rightCamera;
+    public CinemachineVirtualCamera leftCamera;
+
+
+    public bool isShooting = false;
+    private float CurrentTime = 0f;
     public float launchAngle;
     public float initialSpeed;
 
-    private float CurrentTime = 0f;
+    public float timeBetweenShots = 1f; // Set your desired time between shots here
+    private float lastShotTime = 0f;
+
+
+    // Yeni tanımladığımız değişkenler
+    public int maxAmmo = 10; // Maksimum mermi sayısı
+    private int ammo; // Mevcut mermi sayısı
+
+
+
     private void Start()
     {
         CurrentTime = Time.time;
-        //mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
-        //mousePosition = GameObject.FindGameObjectWithTag("MousePosition").GetComponent<Right_Left_Aim>();
-    }
-
-    void SetActiveCannons()
-    {
-        if (isActiveRightLevel1 == true)
-        {
-            FireFunction2(0);
-        }
-
-        if (isActiveRightLevel2 == true)
-        {
-
-            
-            FireFunction2(1);
-        }
-        if (isActiveRightLevel3 == true)
-        {
-            
-            FireFunction2(2);
-        }
+        drawTrajectory = gameObject.GetComponentInChildren<DrawTrajectory>();
+        mousePosition = GameObject.FindGameObjectWithTag("MousePosition").GetComponent<Right_Left_Aim>();
+        ammo = maxAmmo; // Mermi sayısını maksimum mermi sayısına eşitle
 
     }
+
 
     void FireCannonball(Transform firePoint)
     {
 
+
         GameObject cannonball = Instantiate(cannonballPrefab, firePoint.position, Quaternion.identity);
+
         float radianAngle = Mathf.Deg2Rad * launchAngle;
         Rigidbody rb = cannonball.GetComponent<Rigidbody>();
-        // Ateş etme yönünü hesapla
+        // Calculate firing direction
         Vector3 launchDirection = (firePoint.forward * 2) + (Vector3.up * Mathf.Tan(radianAngle));
 
         rb.velocity = launchDirection * initialSpeed;
         Destroy(cannonball, 5f);
+        lastShotTime = Time.time;
+
+        // Her ateş ettiğinde mermi sayısını bir azalt
+        ammo--;
+        Debug.Log("Mermi sayısı: " + ammo);
+
 
     }
 
-    //void VisualizeTrajectory()
-    //{
-    //    Vector3 initialPosition = firePoint.position;
-    //    float radianAngle = Mathf.Deg2Rad * launchAngle;
-    //    Vector3 initialVelocity = new Vector3(initialSpeed * Mathf.Cos(radianAngle), initialSpeed * Mathf.Sin(radianAngle), 0f);
-    //    Vector3[] trajectory = CalculateTrajectory(initialPosition, initialVelocity, numPoints, timeStep, firePoint.rotation);
-
-    //    // Update LineRenderer positions
-    //    for (int i = 0; i < numPoints; i++)
-    //    {
-    //        lineRenderer.SetPosition(i, trajectory[i]);
-    //    }
-    //}
-
-    //public Vector3[] CalculateTrajectory(Vector3 initialPosition, Vector3 initialVelocity, int numPoints, float timeStep, Quaternion rotation)
-    //{
-    //    Vector3[] trajectory = new Vector3[numPoints];
-
-    //    for (int i = 0; i < numPoints; i++)
-    //    {
-    //        float time = i * timeStep;
-    //        Quaternion rotatedRotation = rotation * Quaternion.Euler(0f, -90f, 0f);
-    //        trajectory[i] = initialPosition + (rotatedRotation * (initialVelocity * time)) + 0.5f * Vector3.up * gravity * time * time;
-    //    }
-
-    //    return trajectory;
-    //}
-
-    void FireFunction(int cannonNumber)
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-
-            FireCannonball(leftFirePoint[cannonNumber]);
 
 
-            CurrentTime = Time.time;
-        }
-        if (Input.GetMouseButtonDown(1))
-        {
-
-            FireCannonball(rightFirePoint[cannonNumber]);
-            CurrentTime = Time.time;
-        }
-    }
-
-
-    
-
-    [System.Obsolete]
-    void FireFunction2(int cannonNumber)
+    void FireFunction2()
     {
         if (Input.GetMouseButton(1))
         {
-           
 
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButtonDown(0))
             {
-                FireCannonball(leftFirePoint[cannonNumber]);
-                FireCannonball(rightFirePoint[cannonNumber]);
-                CurrentTime = Time.time;
-            }
+                // Mermi sayısının sıfırdan büyük olduğunu kontrol et
+                if (ammo > 0)
+                {
+                    if (Time.time - lastShotTime > timeBetweenShots)
+                    {
+                        if (rightCamera.Priority > 10)
+                        {
 
-            CurrentTime = Time.time;
+                            if (isActiveLevel1)
+                            {
+                                FireCannonball(rightFirePoint[0]);
+                            }
+
+                            if (isActiveLevel2)
+                            {
+                                FireCannonball(rightFirePoint[1]);
+                            }
+
+                            if (isActiveLevel3)
+                            {
+                                FireCannonball(rightFirePoint[2]);
+                            }
+
+                            lastShotTime = Time.time;
+
+                        }
+                        else if (leftCamera.Priority > 10)
+                        {
+
+                            if (isActiveLevel1)
+                            {
+                                FireCannonball(leftFirePoint[0]);
+                            }
+
+                            if (isActiveLevel2)
+                            {
+                                FireCannonball(leftFirePoint[1]);
+                            }
+
+                            if (isActiveLevel3)
+                            {
+                                FireCannonball(leftFirePoint[2]);
+                            }
+                            lastShotTime = Time.time;
+                        }
+                    }
+                }
+                else
+                {
+                    return;
+                }
+            }
         }
 
-            
-       
+
+
+    }
+
+
+    IEnumerator Reload()
+    {
+        // Yeniden yükleme süresi kadar bekle
+        yield return new WaitForSeconds(timeBetweenShots);
+        // Yeniden yükleme durumunu false yap
+        //isReloading = false;
     }
 
     void Update()
     {
-        SetActiveCannons();
-        if (Time.time - CurrentTime >= 3f)
-        {
-        }
-
+        FireFunction2();
         //if (lineRenderer != null)
         //{
         //    if (Input.GetMouseButton(1))
@@ -177,4 +188,6 @@ public class PlayerFire : MonoBehaviour
         //}
 
     }
+
+
 }
