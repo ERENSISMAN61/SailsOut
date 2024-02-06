@@ -15,7 +15,8 @@ public class SetDestinationIsland : MonoBehaviour
 
     public void SetDestToDock()
     {
-        GameObject.FindWithTag("Player").GetComponent<SmoothPlayerMovement>().SetDestinationPlus(transformDock.position+offset);
+        GameObject.FindWithTag("Player").GetComponent<SmoothPlayerMovement>().isDestinationSet  = true;
+        GameObject.FindWithTag("Player").GetComponent<SmoothPlayerMovement>().SetDestinationPlus(new Vector3(transformDock.position.x,0,transformDock.position.z));
         Debug.Log("Destination set to: " + transformDock.position);
     }
 }

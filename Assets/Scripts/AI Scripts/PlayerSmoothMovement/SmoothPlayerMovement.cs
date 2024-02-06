@@ -23,8 +23,8 @@ public class SmoothPlayerMovement : MonoBehaviour
     //private float range;
     //private Vector3 startPoint;
     //private Vector3 destinationPoint;
-   // [SerializeField]
-   // private float Radius = 80;
+    // [SerializeField]
+    // private float Radius = 80;
     [SerializeField]
     private bool Debug_Bool;
 
@@ -36,8 +36,8 @@ public class SmoothPlayerMovement : MonoBehaviour
     private Camera Camera;
     [SerializeField]
     private LayerMask FloorLayer;
-  //  [SerializeField]
-  //  private bool UsePathSmoothing;
+    //  [SerializeField]
+    //  private bool UsePathSmoothing;
     [Header("Path Smoothing")]
     [SerializeField]
     private float SmoothingLength = 0.25f;
@@ -71,12 +71,14 @@ public class SmoothPlayerMovement : MonoBehaviour
     private bool canMoveToEnemy = false;
 
     private Vector3 firstMousePosition, lastMousePosition;
+
+    public bool isDestinationSet = false;
     private void Awake()
     {
         Agent = GetComponent<NavMeshAgent>();
         CurrentPath = new NavMeshPath();
 
-       Camera = Camera.main;
+        Camera = Camera.main;
     }
     private void Start()
     {
@@ -191,54 +193,63 @@ public class SmoothPlayerMovement : MonoBehaviour
 
     private void HandleInput()
     {
-        if (EnemyTransform != null && canMoveToEnemy)
+        if (!isDestinationSet)
         {
-            SetAgentDestination(EnemyTransform.position);
-         //   Agent.SetDestination(EnemyTransform.position);
-
-        }
-
-
-        if (Mouse.current.leftButton.wasReleasedThisFrame)
-        {
-            Ray ray = Camera.ScreenPointToRay(Mouse.current.position.ReadValue());
-            
-            if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, FloorLayer))
+            if (EnemyTransform != null && canMoveToEnemy)
             {
-                //if(Vector3.Distance(hit.point, transform.position)>=50)
-                //{
-                  //  SetDestinationPlus(hit.point);
-                //}
-                //if (UsePathSmoothing)
-                //{
-
-                //    SetDestinationPlus(hit.point);
-                //}
-                //else
-                //{
-                //    SetAgentDestination(hit.point);
-                //}
-
-
-                if (hit.transform.CompareTag("EnemyShip"))
-                {
-              //      PathLocations = null;
-                 //   PathIndex = 0;
-                    // Týklanan objeyi hedef olarak belirle
-                    EnemyTransform = hit.transform;
-                    canMoveToEnemy = true;
-                }
-                else
-                {
-                    EnemyTransform = null;
-                    canMoveToEnemy = false;
-                    Agent.isStopped = true;
-                    SetDestinationPlus(hit.point);
-
-                }
+                SetAgentDestination(EnemyTransform.position);
+                //   Agent.SetDestination(EnemyTransform.position);
 
             }
+
+
+            if (Mouse.current.leftButton.wasReleasedThisFrame)
+            {
+                Ray ray = Camera.ScreenPointToRay(Mouse.current.position.ReadValue());
+
+                if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, FloorLayer))
+                {
+                    //if(Vector3.Distance(hit.point, transform.position)>=50)
+                    //{
+                    //  SetDestinationPlus(hit.point);
+                    //}
+                    //if (UsePathSmoothing)
+                    //{
+
+                    //    SetDestinationPlus(hit.point);
+                    //}
+                    //else
+                    //{
+                    //    SetAgentDestination(hit.point);
+                    //}
+
+
+                    if (hit.transform.CompareTag("EnemyShip"))
+                    {
+                        //      PathLocations = null;
+                        //   PathIndex = 0;
+                        // Týklanan objeyi hedef olarak belirle
+                        EnemyTransform = hit.transform;
+                        canMoveToEnemy = true;
+                    }
+                    else
+                    {
+                        EnemyTransform = null;
+                        canMoveToEnemy = false;
+                        Agent.isStopped = true;
+                        SetDestinationPlus(hit.point);
+
+                    }
+
+                }
+            }
+
         }
+        else { 
+        isDestinationSet = false;
+        }
+
+
     }
 
     //private void RandomDestination()   ///////////
@@ -379,7 +390,7 @@ public class SmoothPlayerMovement : MonoBehaviour
             {
                 Vector3 segmentDirection = (Path[index] - Path[lastIndex]).normalized;
                 float dot = Vector3.Dot(targetDirection, segmentDirection);
-          //      Debug.Log($"Target Direction: {targetDirection}. segment direction: {segmentDirection} = dot {dot} with index {index} & lastIndex {lastIndex}");
+                //      Debug.Log($"Target Direction: {targetDirection}. segment direction: {segmentDirection} = dot {dot} with index {index} & lastIndex {lastIndex}");
                 if (dot <= SmoothingFactor)
                 {
                     Path[index] = InfinityVector;
@@ -399,7 +410,7 @@ public class SmoothPlayerMovement : MonoBehaviour
 
         Vector3[] TrimmedPath = Path.Except(new Vector3[] { InfinityVector }).ToArray();
 
-     //   Debug.Log($"Original Smoothed Path: {Path.Length}. Trimmed Path: {TrimmedPath.Length}");
+        //   Debug.Log($"Original Smoothed Path: {Path.Length}. Trimmed Path: {TrimmedPath.Length}");
 
         return TrimmedPath;
     }
