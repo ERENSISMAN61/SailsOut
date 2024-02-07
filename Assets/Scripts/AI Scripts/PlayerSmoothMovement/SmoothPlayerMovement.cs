@@ -73,6 +73,8 @@ public class SmoothPlayerMovement : MonoBehaviour
     private Vector3 firstMousePosition, lastMousePosition;
 
     public bool isDestinationSet = false;
+    public bool isStartDockAnimate = false;
+
     private void Awake()
     {
         Agent = GetComponent<NavMeshAgent>();
@@ -193,7 +195,7 @@ public class SmoothPlayerMovement : MonoBehaviour
 
     private void HandleInput()
     {
-        if (!isDestinationSet)
+        if (!isDestinationSet && !isStartDockAnimate)
         {
             if (EnemyTransform != null && canMoveToEnemy)
             {
@@ -245,8 +247,12 @@ public class SmoothPlayerMovement : MonoBehaviour
             }
 
         }
-        else { 
-        isDestinationSet = false;
+        else
+        {
+            if (!isStartDockAnimate)
+            {
+                isDestinationSet = false;
+            }
         }
 
 
