@@ -72,8 +72,8 @@ public class CameraSystem : MonoBehaviour
     }
     private void Update()
     {
-        Debug.Log("FollowPlayer: "+followPlayer);
-        Debug.Log("FollowEnemy: "+followEnemy);
+     //   Debug.Log("FollowPlayer: "+followPlayer);
+     //   Debug.Log("FollowEnemy: "+followEnemy);
 
         if (!followEnemy) //enemy takip ediyorsa deaktif olsun
         {
