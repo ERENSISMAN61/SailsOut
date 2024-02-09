@@ -22,7 +22,7 @@ public class FloatingScreenText : MonoBehaviour
     void Update()
     {
         Vector3 pos = mainCamera.WorldToScreenPoint(lookAt.position + offset);
-        Debug.Log("pos: "+pos);
+      //  Debug.Log("pos: "+pos);
         if (transform.position != pos)
         {
             transform.position = new Vector3(pos.x, pos.y,transform.position.z );
@@ -47,12 +47,12 @@ public class FloatingScreenText : MonoBehaviour
 
             if (kameraGoruyorUzak)
             {
-                Debug.Log("Kamera+++++++++++++++++++++++++++++.");
+           //     Debug.Log("Kamera+++++++++++++++++++++++++++++.");
             gameObject.transform.GetChild(0).gameObject.SetActive(kameraGoruyorUzak);
         }
             else
             {
-                Debug.Log("Kamera-------------------------------");
+             //   Debug.Log("Kamera-------------------------------");
             gameObject.transform.GetChild(0).gameObject.SetActive(kameraGoruyorUzak);
             }
 

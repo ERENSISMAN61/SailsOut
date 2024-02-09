@@ -90,6 +90,7 @@ public class SmoothPlayerMovement : MonoBehaviour
     }
     private void Update()
     {
+
         if (Input.GetMouseButtonDown(0))
         {
 
