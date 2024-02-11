@@ -1,6 +1,7 @@
 ﻿using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class DrawTrajectory : MonoBehaviour
@@ -25,13 +26,19 @@ public class DrawTrajectory : MonoBehaviour
     public Vector3[] positions;
 
     // The cannon transform
-    private Transform cannon;
+    private Transform rightPoint;
+    private Transform leftPoint;
+
+    public CinemachineVirtualCamera rightCamera;
+    public CinemachineVirtualCamera leftCamera;
+
+    public float timeOfFlight = 5f;
 
     // Start is called before the first frame update
     void Start()
     {
         // Get the line renderer component
-        lineRenderer = GetComponent<LineRenderer>();
+        lineRenderer = GetComponent<LineRenderer>();    
 
         // Set the segment count
         lineRenderer.positionCount = segmentCount;
@@ -40,7 +47,8 @@ public class DrawTrajectory : MonoBehaviour
         positions = new Vector3[segmentCount];
 
         // Find the cannon transform
-        cannon = transform.parent;
+        rightPoint = GameObject.FindGameObjectWithTag("RightTrajectory").GetComponent<Transform>().transform;
+        leftPoint = GameObject.FindGameObjectWithTag("LeftTrajectory").GetComponent<Transform>().transform;
 
         // Calculate the positions
         CalculatePositions();
@@ -52,7 +60,12 @@ public class DrawTrajectory : MonoBehaviour
         // Update the positions
         if(Input.GetMouseButton(1))
         {
+            lineRenderer.enabled = true;
             CalculatePositions();
+        }
+        else
+        {
+            lineRenderer.enabled = false;
         }
         
     }
@@ -61,13 +74,26 @@ public class DrawTrajectory : MonoBehaviour
     void CalculatePositions()
     {
         // Get the initial velocity
-        float velocity = speed * transform.localScale.x;
+        float velocity = 0;
 
         // Get the initial position
-        Vector3 position = transform.position;
-
+        Vector3 position = new Vector3();
         // Get the initial direction
-        Vector3 direction = Quaternion.AngleAxis(angle, cannon.right) * cannon.forward;
+        Vector3 direction = new Vector3();
+        if (rightCamera.Priority > leftCamera.Priority)
+        {
+            velocity = speed * rightPoint.localScale.x;
+            position = rightPoint.position;
+            direction = Quaternion.AngleAxis(angle, rightPoint.forward) * rightPoint.forward;
+        }
+        else
+        {
+            velocity = speed * leftPoint.localScale.x;
+            position = leftPoint.position;
+            Vector3 leftVector = -rightPoint.forward;
+            direction = Quaternion.AngleAxis(angle, leftPoint.forward) * leftVector;
+        }
+        
 
         // Loop through the segments
         for (int i = 0; i < segmentCount; i++)
@@ -76,13 +102,13 @@ public class DrawTrajectory : MonoBehaviour
             positions[i] = position;
 
             // Calculate the displacement
-            Vector3 displacement = direction * velocity * Time.fixedDeltaTime + Vector3.up * gravity * Time.fixedDeltaTime * Time.fixedDeltaTime / 2f;
+            Vector3 displacement = direction * velocity * timeOfFlight + Vector3.up * Physics.gravity.y * timeOfFlight * timeOfFlight / 2f;
 
             // Update the position
             position += displacement;
 
             // Update the direction
-            direction += Vector3.up * gravity * Time.fixedDeltaTime;
+            direction += Vector3.up * Physics.gravity.y * timeOfFlight;
         }
 
         // Set the positions of the line renderer

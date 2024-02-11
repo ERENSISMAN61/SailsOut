@@ -22,6 +22,8 @@ TagManager:
   - EnemyRightCannon
   - EnemyLeftCannon
   - MousePosition
+  - RightTrajectory
+  - LeftTrajectory
   layers:
   - Default
   - TransparentFX

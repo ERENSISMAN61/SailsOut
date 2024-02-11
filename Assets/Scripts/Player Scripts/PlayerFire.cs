@@ -20,8 +20,12 @@ public class PlayerFire : MonoBehaviour
 
     private Right_Left_Aim mousePosition;
     private DrawTrajectory drawTrajectory;
-    public CinemachineVirtualCamera rightCamera;
-    public CinemachineVirtualCamera leftCamera;
+    public CinemachineFreeLook rightCamera;
+    public CinemachineFreeLook leftCamera;
+
+
+    private GameObject rightTrajectory;
+    private GameObject leftTrajectory;
 
 
     public bool isShooting = false;
@@ -37,14 +41,17 @@ public class PlayerFire : MonoBehaviour
     public int maxAmmo = 10; // Maksimum mermi sayısı
     private int ammo; // Mevcut mermi sayısı
 
-
+    private DrawProjection drawProjection;
 
     private void Start()
     {
         CurrentTime = Time.time;
-        drawTrajectory = gameObject.GetComponentInChildren<DrawTrajectory>();
+        //drawTrajectory = gameObject.GetComponentInChildren<DrawTrajectory>();
         mousePosition = GameObject.FindGameObjectWithTag("MousePosition").GetComponent<Right_Left_Aim>();
         ammo = maxAmmo; // Mermi sayısını maksimum mermi sayısına eşitle
+        drawProjection = gameObject.GetComponent<DrawProjection>();
+        rightTrajectory = GameObject.FindGameObjectWithTag("RightTrajectory");
+        leftTrajectory = GameObject.FindGameObjectWithTag("LeftTrajectory");
 
     }
 
@@ -52,15 +59,23 @@ public class PlayerFire : MonoBehaviour
     void FireCannonball(Transform firePoint)
     {
 
-
-        GameObject cannonball = Instantiate(cannonballPrefab, firePoint.position, Quaternion.identity);
+        
+        GameObject cannonball = Instantiate(cannonballPrefab, firePoint.position, firePoint.rotation);
+        Rigidbody rb = cannonball.GetComponent<Rigidbody>();
+        
 
         float radianAngle = Mathf.Deg2Rad * launchAngle;
-        Rigidbody rb = cannonball.GetComponent<Rigidbody>();
-        // Calculate firing direction
-        Vector3 launchDirection = (firePoint.forward * 2) + (Vector3.up * Mathf.Tan(radianAngle));
 
-        rb.velocity = launchDirection * initialSpeed;
+
+        //drawProjection.ShowTrajectory(firePoint.position, initialSpeed, launchAngle);
+        Vector3 mouseInput = rightCamera.m_LookAt.position;
+
+        Vector3 launchDirection = firePoint.forward * 0.5f * Mathf.Abs(Physics.gravity.y) * 5 * 5;
+        
+
+
+        //rb.velocity = launchDirection;
+        rb.AddForce(mouseInput * radianAngle * initialSpeed);
         Destroy(cannonball, 5f);
         lastShotTime = Time.time;
 
@@ -77,7 +92,7 @@ public class PlayerFire : MonoBehaviour
     {
         if (Input.GetMouseButton(1))
         {
-
+            
             if (Input.GetMouseButtonDown(0))
             {
                 // Mermi sayısının sıfırdan büyük olduğunu kontrol et
@@ -85,9 +100,8 @@ public class PlayerFire : MonoBehaviour
                 {
                     if (Time.time - lastShotTime > timeBetweenShots)
                     {
-                        if (rightCamera.Priority > 10)
+                        if (rightCamera.Priority > leftCamera.Priority)
                         {
-
                             if (isActiveLevel1)
                             {
                                 FireCannonball(rightFirePoint[0]);
@@ -106,9 +120,8 @@ public class PlayerFire : MonoBehaviour
                             lastShotTime = Time.time;
 
                         }
-                        else if (leftCamera.Priority > 10)
+                        else if (leftCamera.Priority > rightCamera.Priority)
                         {
-
                             if (isActiveLevel1)
                             {
                                 FireCannonball(leftFirePoint[0]);

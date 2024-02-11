@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class Cam_Switch : MonoBehaviour
 {
-    public CinemachineVirtualCamera rightCamera;
-    public CinemachineVirtualCamera leftCamera;
+    public CinemachineFreeLook rightCamera;
+    public CinemachineFreeLook leftCamera;
     public CinemachineFreeLook mainCamera;
 
     private Right_Left_Aim mousePosition;
