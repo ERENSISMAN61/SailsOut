@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CloseMarketCanvas : MonoBehaviour
+public class CloseMarket : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -14,5 +14,9 @@ public class CloseMarketCanvas : MonoBehaviour
     void Update()
     {
         
+    }
+    public void CloseMarketMenu()
+    {
+        Destroy(transform.parent.gameObject);
     }
 }

@@ -9,6 +9,7 @@ public class CanvasOrganizing : MonoBehaviour
     private bool isMarketOpen = false;
     void Start()
     {
+
         market.enabled = false;
     }
 

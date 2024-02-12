@@ -19,6 +19,8 @@ public class SetDestinationIsland : MonoBehaviour
 
     private Vector3 hedefNokta;// Dot için
 
+    [SerializeField] private GameObject marketObjectScript;
+
     void Start()
     {
         transformDock = gameObject.transform;
@@ -129,6 +131,8 @@ public class SetDestinationIsland : MonoBehaviour
                     canStartAnimate = false;
                     canGetClose = false;
 
+                    marketObjectScript.GetComponent<MarketScript>().isMarketOpen = true; //marketi aç
+
                 }
 
 
@@ -192,6 +196,9 @@ public class SetDestinationIsland : MonoBehaviour
                 if (playerObject.GetComponent<SmoothPlayerMovement>().PathLocations != new Vector3[0])  //iskele içindeyken baþka bir yöne gitmeye çalýþýrken  ada tuþuna týklanýrsa orda kalsýn gitmeye çalýþtýðý yer iptal olsun.
                 {
                     playerObject.GetComponent<SmoothPlayerMovement>().PathLocations = new Vector3[0];
+
+
+                    marketObjectScript.GetComponent<MarketScript>().isMarketOpen = true; //marketi aç 
 
                 }
             }
