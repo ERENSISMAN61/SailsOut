@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 441.94293, g: 354.77078, b: 314.19485, a: 1}
+  m_IndirectSpecularColor: {r: 441.92133, g: 354.6387, b: 313.79935, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3827,7 +3827,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 666659797}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0867265, y: 0.000000017669107, z: -0.0000000015381756, w: 0.99623215}
+  m_LocalRotation: {x: 0.086726524, y: -0.000000017669102, z: 0.0000000015381755, w: 0.99623215}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5480,6 +5480,9 @@ MonoBehaviour:
   isActiveLevel3: 1
   rightCamera: {fileID: 1276004541}
   leftCamera: {fileID: 339507124}
+  offset_FirePos0: {x: 5, y: 0, z: 0}
+  offset_FirePos1: {x: 0, y: 0, z: 0}
+  offset_FirePos2: {x: -5, y: 0, z: 0}
   isShooting: 0
   launchAngle: 45
   initialSpeed: 150
@@ -7742,7 +7745,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1228563163}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.034958657, y: 0.000000004298966, z: -1.5037799e-10, w: 0.99938875}
+  m_LocalRotation: {x: 0.034958657, y: -0.000000004298966, z: 1.5037799e-10, w: 0.99938875}
   m_LocalPosition: {x: 0, y: 11, z: 145.5}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
@@ -12184,7 +12187,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1878538332}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.034958646, y: 0.000000002149483, z: -7.518898e-11, w: 0.99938875}
+  m_LocalRotation: {x: 0.034958646, y: -0.000000002149483, z: 7.518898e-11, w: 0.99938875}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

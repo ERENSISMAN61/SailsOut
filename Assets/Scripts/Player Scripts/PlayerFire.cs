@@ -24,6 +24,10 @@ public class PlayerFire : MonoBehaviour
     public CinemachineFreeLook leftCamera;
     private GameObject cam;
 
+    public Vector3 offset_FirePos0;
+    public Vector3 offset_FirePos1;
+    public Vector3 offset_FirePos2;
+
 
     private GameObject rightTrajectory;
     private GameObject leftTrajectory;
@@ -58,15 +62,15 @@ public class PlayerFire : MonoBehaviour
     }
 
 
-    void FireCannonball(Vector3 targetPoint ,Transform firePoint)
+    void FireCannonball(Vector3 targetPoint ,Transform firePoint, Vector3 offset)
     {
 
-        Vector3 firePointRotation = targetPoint - firePoint.position;
+        Vector3 firePointRotation = (targetPoint - firePoint.position) + offset;
 
         // Topun rotasyonunu, hedefe doğru bakacak şekilde ayarla
-        Quaternion fireRotation = Quaternion.LookRotation(firePointRotation);
+        Quaternion fireRotation = Quaternion.FromToRotation(firePoint.forward, firePointRotation);
 
-        GameObject cannonball = Instantiate(cannonballPrefab, firePoint.position, fireRotation);
+        GameObject cannonball = Instantiate(cannonballPrefab, firePoint.position, Quaternion.identity);
         Rigidbody rb = cannonball.GetComponent<Rigidbody>();
         
 
@@ -80,7 +84,8 @@ public class PlayerFire : MonoBehaviour
         
 
 
-        rb.velocity = firePointRotation.normalized * initialSpeed;
+        rb.velocity = (firePointRotation.normalized) * initialSpeed;
+
        
         Destroy(cannonball, 5f);
         lastShotTime = Time.time;
@@ -119,7 +124,7 @@ public class PlayerFire : MonoBehaviour
 
                                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, hedefLayer))
                                 {
-                                    FireCannonball(hit.point + new Vector3(5, 5, 0), rightFirePoint[0]);
+                                    FireCannonball(hit.point, rightFirePoint[0], offset_FirePos0);
                                 }
                             }
 
@@ -127,7 +132,7 @@ public class PlayerFire : MonoBehaviour
                             {
                                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, hedefLayer))
                                 {
-                                    FireCannonball(hit.point + new Vector3(0, 5, 0), rightFirePoint[1]);
+                                    FireCannonball(hit.point, rightFirePoint[1], offset_FirePos1);
                                 }
                             }
 
@@ -135,7 +140,7 @@ public class PlayerFire : MonoBehaviour
                             {
                                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, hedefLayer))
                                 {
-                                    FireCannonball(hit.point + new Vector3(-5, 5, 0), rightFirePoint[2]);
+                                    FireCannonball(hit.point, rightFirePoint[2], offset_FirePos2);
                                 }
                             }
 
@@ -148,7 +153,7 @@ public class PlayerFire : MonoBehaviour
                             {
                                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, hedefLayer))
                                 {
-                                    FireCannonball(hit.point + new Vector3(5, 5, 0), leftFirePoint[0]);
+                                    FireCannonball(hit.point, leftFirePoint[0], offset_FirePos0);
                                 }
                             }
 
@@ -156,7 +161,7 @@ public class PlayerFire : MonoBehaviour
                             {
                                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, hedefLayer))
                                 {
-                                    FireCannonball(hit.point + new Vector3(0, 5, 0), leftFirePoint[1]);
+                                    FireCannonball(hit.point, leftFirePoint[1], offset_FirePos1);
                                 }
                             }
 
@@ -164,7 +169,7 @@ public class PlayerFire : MonoBehaviour
                             {
                                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, hedefLayer))
                                 {
-                                    FireCannonball(hit.point + new Vector3(-5, 5, 0), leftFirePoint[2]);
+                                    FireCannonball(hit.point, leftFirePoint[2], offset_FirePos2);
                                 }
                             }
                             lastShotTime = Time.time;
