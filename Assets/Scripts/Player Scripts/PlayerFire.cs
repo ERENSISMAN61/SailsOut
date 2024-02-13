@@ -22,6 +22,7 @@ public class PlayerFire : MonoBehaviour
     private DrawTrajectory drawTrajectory;
     public CinemachineFreeLook rightCamera;
     public CinemachineFreeLook leftCamera;
+    private GameObject cam;
 
 
     private GameObject rightTrajectory;
@@ -41,7 +42,7 @@ public class PlayerFire : MonoBehaviour
     public int maxAmmo = 10; // Maksimum mermi sayısı
     private int ammo; // Mevcut mermi sayısı
 
-    private DrawProjection drawProjection;
+    public LayerMask hedefLayer;   // Atışın etkileşimde bulunacağı layer
 
     private void Start()
     {
@@ -49,33 +50,38 @@ public class PlayerFire : MonoBehaviour
         //drawTrajectory = gameObject.GetComponentInChildren<DrawTrajectory>();
         mousePosition = GameObject.FindGameObjectWithTag("MousePosition").GetComponent<Right_Left_Aim>();
         ammo = maxAmmo; // Mermi sayısını maksimum mermi sayısına eşitle
-        drawProjection = gameObject.GetComponent<DrawProjection>();
+       
         rightTrajectory = GameObject.FindGameObjectWithTag("RightTrajectory");
         leftTrajectory = GameObject.FindGameObjectWithTag("LeftTrajectory");
+        cam = GameObject.FindGameObjectWithTag("MainCamera");
 
     }
 
 
-    void FireCannonball(Transform firePoint)
+    void FireCannonball(Vector3 targetPoint ,Transform firePoint)
     {
 
-        
-        GameObject cannonball = Instantiate(cannonballPrefab, firePoint.position, firePoint.rotation);
+        Vector3 firePointRotation = targetPoint - firePoint.position;
+
+        // Topun rotasyonunu, hedefe doğru bakacak şekilde ayarla
+        Quaternion fireRotation = Quaternion.LookRotation(firePointRotation);
+
+        GameObject cannonball = Instantiate(cannonballPrefab, firePoint.position, fireRotation);
         Rigidbody rb = cannonball.GetComponent<Rigidbody>();
         
 
-        float radianAngle = Mathf.Deg2Rad * launchAngle;
+        //float radianAngle = Mathf.Deg2Rad * launchAngle;
 
 
-        //drawProjection.ShowTrajectory(firePoint.position, initialSpeed, launchAngle);
-        Vector3 mouseInput = rightCamera.m_LookAt.position;
+        ////drawProjection.ShowTrajectory(firePoint.position, initialSpeed, launchAngle);
+        //Vector3 mouseInput = rightCamera.m_LookAt.position;
 
-        Vector3 launchDirection = firePoint.forward * 0.5f * Mathf.Abs(Physics.gravity.y) * 5 * 5;
+        //Vector3 launchDirection = firePoint.forward * 0.5f * Mathf.Abs(Physics.gravity.y) * 5 * 5;
         
 
 
-        //rb.velocity = launchDirection;
-        rb.AddForce(mouseInput * radianAngle * initialSpeed);
+        rb.velocity = firePointRotation.normalized * initialSpeed;
+       
         Destroy(cannonball, 5f);
         lastShotTime = Time.time;
 
@@ -92,7 +98,8 @@ public class PlayerFire : MonoBehaviour
     {
         if (Input.GetMouseButton(1))
         {
-            
+            Ray ray = cam.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
             if (Input.GetMouseButtonDown(0))
             {
                 // Mermi sayısının sıfırdan büyük olduğunu kontrol et
@@ -100,21 +107,36 @@ public class PlayerFire : MonoBehaviour
                 {
                     if (Time.time - lastShotTime > timeBetweenShots)
                     {
+                       
+                        // Draw the ray in the Scene view
+                        Debug.DrawRay(ray.origin, ray.direction * 100f, Color.green, 2f);
                         if (rightCamera.Priority > leftCamera.Priority)
                         {
+
                             if (isActiveLevel1)
                             {
-                                FireCannonball(rightFirePoint[0]);
+                                
+
+                                if (Physics.Raycast(ray, out hit, Mathf.Infinity, hedefLayer))
+                                {
+                                    FireCannonball(hit.point + new Vector3(5, 5, 0), rightFirePoint[0]);
+                                }
                             }
 
                             if (isActiveLevel2)
                             {
-                                FireCannonball(rightFirePoint[1]);
+                                if (Physics.Raycast(ray, out hit, Mathf.Infinity, hedefLayer))
+                                {
+                                    FireCannonball(hit.point + new Vector3(0, 5, 0), rightFirePoint[1]);
+                                }
                             }
 
                             if (isActiveLevel3)
                             {
-                                FireCannonball(rightFirePoint[2]);
+                                if (Physics.Raycast(ray, out hit, Mathf.Infinity, hedefLayer))
+                                {
+                                    FireCannonball(hit.point + new Vector3(-5, 5, 0), rightFirePoint[2]);
+                                }
                             }
 
                             lastShotTime = Time.time;
@@ -124,17 +146,26 @@ public class PlayerFire : MonoBehaviour
                         {
                             if (isActiveLevel1)
                             {
-                                FireCannonball(leftFirePoint[0]);
+                                if (Physics.Raycast(ray, out hit, Mathf.Infinity, hedefLayer))
+                                {
+                                    FireCannonball(hit.point + new Vector3(5, 5, 0), leftFirePoint[0]);
+                                }
                             }
 
                             if (isActiveLevel2)
                             {
-                                FireCannonball(leftFirePoint[1]);
+                                if (Physics.Raycast(ray, out hit, Mathf.Infinity, hedefLayer))
+                                {
+                                    FireCannonball(hit.point + new Vector3(0, 5, 0), leftFirePoint[1]);
+                                }
                             }
 
                             if (isActiveLevel3)
                             {
-                                FireCannonball(leftFirePoint[2]);
+                                if (Physics.Raycast(ray, out hit, Mathf.Infinity, hedefLayer))
+                                {
+                                    FireCannonball(hit.point + new Vector3(-5, 5, 0), leftFirePoint[2]);
+                                }
                             }
                             lastShotTime = Time.time;
                         }
