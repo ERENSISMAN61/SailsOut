@@ -166,7 +166,7 @@ public class MovingScript : MonoBehaviour
         // ...
 
         yield return new WaitForSeconds(destroyTime);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
 
     }
 

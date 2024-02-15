@@ -89,7 +89,7 @@ public class redEnemySmoothMovement : MonoBehaviour
 
         //  Debug.Log("isTargetEnemy:   "+isTargetEnemy);
 
-        Agent.isStopped = false;
+        
         playerPosition = Player.transform.position;
 
         PathLocations = new Vector3[0];
@@ -100,16 +100,7 @@ public class redEnemySmoothMovement : MonoBehaviour
         Next_Position = transform.position;
         PathIndex = 0;
 
-        if (Vector3.Distance(playerPosition, transform.position) <= 115f)  ///////////
-        {
-            didCatch = true;
-            Agent.isStopped = true;
-            Debug.Log("Player Caught");
-
-            //isTargetEnemy = false; YAPACAN UNUTMA
-            //Destroy(Player);
-            //Destroy(gameObject);
-        }
+        
 
 
 

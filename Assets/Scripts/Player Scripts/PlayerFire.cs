@@ -46,7 +46,7 @@ public class PlayerFire : MonoBehaviour
     public int maxAmmo = 10; // Maksimum mermi sayısı
     private int ammo; // Mevcut mermi sayısı
 
-    public LayerMask hedefLayer;   // Atışın etkileşimde bulunacağı layer
+    public LayerMask targetLayer;   // Atışın etkileşimde bulunacağı layer
 
     private void Start()
     {
@@ -122,7 +122,7 @@ public class PlayerFire : MonoBehaviour
                             {
                                 
 
-                                if (Physics.Raycast(ray, out hit, Mathf.Infinity, hedefLayer))
+                                if (Physics.Raycast(ray, out hit, Mathf.Infinity, targetLayer))
                                 {
                                     FireCannonball(hit.point, rightFirePoint[0], offset_FirePos0);
                                 }
@@ -130,7 +130,7 @@ public class PlayerFire : MonoBehaviour
 
                             if (isActiveLevel2)
                             {
-                                if (Physics.Raycast(ray, out hit, Mathf.Infinity, hedefLayer))
+                                if (Physics.Raycast(ray, out hit, Mathf.Infinity, targetLayer))
                                 {
                                     FireCannonball(hit.point, rightFirePoint[1], offset_FirePos1);
                                 }
@@ -138,7 +138,7 @@ public class PlayerFire : MonoBehaviour
 
                             if (isActiveLevel3)
                             {
-                                if (Physics.Raycast(ray, out hit, Mathf.Infinity, hedefLayer))
+                                if (Physics.Raycast(ray, out hit, Mathf.Infinity, targetLayer))
                                 {
                                     FireCannonball(hit.point, rightFirePoint[2], offset_FirePos2);
                                 }
@@ -151,7 +151,7 @@ public class PlayerFire : MonoBehaviour
                         {
                             if (isActiveLevel1)
                             {
-                                if (Physics.Raycast(ray, out hit, Mathf.Infinity, hedefLayer))
+                                if (Physics.Raycast(ray, out hit, Mathf.Infinity, targetLayer))
                                 {
                                     FireCannonball(hit.point, leftFirePoint[0], offset_FirePos0);
                                 }
@@ -159,7 +159,7 @@ public class PlayerFire : MonoBehaviour
 
                             if (isActiveLevel2)
                             {
-                                if (Physics.Raycast(ray, out hit, Mathf.Infinity, hedefLayer))
+                                if (Physics.Raycast(ray, out hit, Mathf.Infinity, targetLayer))
                                 {
                                     FireCannonball(hit.point, leftFirePoint[1], offset_FirePos1);
                                 }
@@ -167,7 +167,7 @@ public class PlayerFire : MonoBehaviour
 
                             if (isActiveLevel3)
                             {
-                                if (Physics.Raycast(ray, out hit, Mathf.Infinity, hedefLayer))
+                                if (Physics.Raycast(ray, out hit, Mathf.Infinity, targetLayer))
                                 {
                                     FireCannonball(hit.point, leftFirePoint[2], offset_FirePos2);
                                 }
