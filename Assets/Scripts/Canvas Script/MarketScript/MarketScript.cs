@@ -7,7 +7,9 @@ public class MarketScript : MonoBehaviour
     private GameObject marketObject;
     private GameObject spawnMarketPrefab;
 
-    public bool isMarketOpen = false; //þehirler arasý market açtýðýnda hatalar çýkabilir. çýkarsa ada butonuna setMenutrue fnksiyonu ekleyip bir bool deðeri true yaparak iki bool ile çözülebilir
+    public bool canMarketOpen = false; //þehirler arasý market açtýðýnda hatalar çýkabilir. çýkarsa ada butonuna setMenutrue fnksiyonu ekleyip bir bool deðeri true yaparak iki bool ile çözülebilir
+
+    public bool isMarketOpen = false;
     void Start()
     {
         marketObject = Resources.Load<GameObject>("Prefabs/Canvas Prefabs/Market Prefab/MarketCanvas");
@@ -15,10 +17,10 @@ public class MarketScript : MonoBehaviour
     }
     void Update()
     {
-        if (isMarketOpen)
+        if (canMarketOpen)
         {
             spawnMarketPrefab = Instantiate(marketObject, GameObject.Find("Canvas").transform);
-            isMarketOpen = false;
+            canMarketOpen = false;
         }
 
 
@@ -26,7 +28,7 @@ public class MarketScript : MonoBehaviour
 
     //public void SetMenuTrue()
     //{
-    //    isMarketOpen = true;
+    //    canMarketOpen = true;
     //}
 
 

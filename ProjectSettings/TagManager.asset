@@ -24,6 +24,7 @@ TagManager:
   - MousePosition
   - RightTrajectory
   - LeftTrajectory
+  - CloseButton
   layers:
   - Default
   - TransparentFX

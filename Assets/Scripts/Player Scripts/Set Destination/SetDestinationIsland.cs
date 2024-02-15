@@ -131,7 +131,7 @@ public class SetDestinationIsland : MonoBehaviour
                     canStartAnimate = false;
                     canGetClose = false;
 
-                    marketObjectScript.GetComponent<MarketScript>().isMarketOpen = true; //marketi aç
+                    marketObjectScript.GetComponent<MarketScript>().canMarketOpen = true; //marketi aç
 
                 }
 
