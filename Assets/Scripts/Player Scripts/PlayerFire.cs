@@ -124,7 +124,7 @@ public class PlayerFire : MonoBehaviour
 
                                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, targetLayer))
                                 {
-                                    FireCannonball(hit.point, rightFirePoint[0], offset_FirePos0);
+                                    FireCannonball(hit.point, rightFirePoint[0], Vector3.right * 5);
                                 }
                             }
 
@@ -140,7 +140,7 @@ public class PlayerFire : MonoBehaviour
                             {
                                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, targetLayer))
                                 {
-                                    FireCannonball(hit.point, rightFirePoint[2], offset_FirePos2);
+                                    FireCannonball(hit.point, rightFirePoint[2], Vector3.left * 5);
                                 }
                             }
 
@@ -153,7 +153,7 @@ public class PlayerFire : MonoBehaviour
                             {
                                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, targetLayer))
                                 {
-                                    FireCannonball(hit.point, leftFirePoint[0], offset_FirePos0);
+                                    FireCannonball(hit.point, leftFirePoint[0], Vector3.right * 5);
                                 }
                             }
 
@@ -169,7 +169,7 @@ public class PlayerFire : MonoBehaviour
                             {
                                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, targetLayer))
                                 {
-                                    FireCannonball(hit.point, leftFirePoint[2], offset_FirePos2);
+                                    FireCannonball(hit.point, leftFirePoint[2], Vector3.left * 5);
                                 }
                             }
                             lastShotTime = Time.time;

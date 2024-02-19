@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 441.31427, g: 354.9241, b: 315.72415, a: 1}
+  m_IndirectSpecularColor: {r: 441.4593, g: 354.75833, b: 315.1182, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5454,9 +5454,9 @@ MonoBehaviour:
   isActiveLevel3: 1
   rightCamera: {fileID: 1276004541}
   leftCamera: {fileID: 339507124}
-  offset_FirePos0: {x: -5, y: 0, z: 0}
+  offset_FirePos0: {x: 5, y: 0, z: 0}
   offset_FirePos1: {x: 0, y: 0, z: 0}
-  offset_FirePos2: {x: 5, y: 0, z: 0}
+  offset_FirePos2: {x: -5, y: 0, z: 0}
   isShooting: 0
   launchAngle: 45
   initialSpeed: 150
@@ -9548,7 +9548,8 @@ MonoBehaviour:
   - {fileID: 2137924554}
   - {fileID: 472282613}
   - {fileID: 922498030}
-  bulletSpeed: 19
+  bulletSpeed: 20
+  firstFireTime: 3
   timeBetweenBursts: 2
   shotsPerBurst: 3
   launchAngle: 45

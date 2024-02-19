@@ -9,6 +9,7 @@ public class RedEnemyFire : MonoBehaviour
     public Transform[] rightFirePoint; // Array of right fire points for bullets
     public Transform[] leftFirePoint; // Array of left fire points for bullets
     public float bulletSpeed = 10f; // Speed of the enemy bullets
+    public float firstFireTime = 3f; // Time before the first burst of bullets
 
     private int shotsRemaining; // Number of shots remaining in the current burst
     private float timeSinceLastBurst; // Time elapsed since the last burst
@@ -60,8 +61,8 @@ public class RedEnemyFire : MonoBehaviour
 
         if (distanceToMotherShip < distance && healthOfPlayerShip.health > 0)
         {
-            Debug.Log("Player Caught");
-            Debug.Log("Distance to MotherShip: " + distanceToMotherShip);
+            //Debug.Log("Player Caught");
+            //Debug.Log("Distance to MotherShip: " + distanceToMotherShip);
             redEnemySmoothMovement.enabled = false; // Disable smooth movement script
             enemyAgent.isStopped = true; // Stop the NavMeshAgent
 
@@ -69,8 +70,7 @@ public class RedEnemyFire : MonoBehaviour
 
             if (timeSinceLastBurst >= timeBetweenBursts && shotsRemaining > 0)
             {
-                SetActiveCannons(); // Activate cannons based on specified levels
-
+                StartCoroutine(SetActiveCannonsEnumerator());
                 sourceAudioE.PlayOneShot(enemyShotAudio); // Play the enemy shot audio
 
                 shotsRemaining--;
@@ -104,6 +104,11 @@ public class RedEnemyFire : MonoBehaviour
         }
     }
 
+    IEnumerator SetActiveCannonsEnumerator()
+    {
+        yield return new WaitForSeconds(firstFireTime);
+        SetActiveCannons();
+    }
     void SetActiveCannons()
     {
         if (isActiveRightLevel1)
@@ -130,21 +135,26 @@ public class RedEnemyFire : MonoBehaviour
 
         if (distanceToMotherShip < distance)
         {
+            // Calculate the firing angle based on distance
+            float modifiedLaunchAngle = launchAngle * (distanceToMotherShip / distance); // Modify launch angle based on distance
+
             if (distanceCannonsToMotherShipLeft > distanceCannonsToMotherShipRight)
             {
-                FireBullet(leftFirePoint[cannonNumber]); // Fire from the left cannon
+                FireBullet(leftFirePoint[cannonNumber], modifiedLaunchAngle); // Fire from the left cannon
             }
             else
             {
-                FireBullet(rightFirePoint[cannonNumber]); // Fire from the right cannon
+                FireBullet(rightFirePoint[cannonNumber], modifiedLaunchAngle); // Fire from the right cannon
             }
         }
     }
 
-    void FireBullet(Transform firePoint)
+    void FireBullet(Transform firePoint, float modifiedLaunchAngle)
     {
+        float distanceToMotherShip = Vector3.Distance(playerShip.transform.position, transform.position);
         GameObject newBullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
-        float radianAngle = Mathf.Deg2Rad * launchAngle;
+        float radianAngle = Mathf.Deg2Rad * modifiedLaunchAngle; // Use modified launch angle
+        Debug.Log("Adjusted Launch Angle: " + modifiedLaunchAngle);
         Rigidbody rb = newBullet.GetComponent<Rigidbody>();
         Vector3 launchDirection = (firePoint.forward * 2) + (Vector3.up * Mathf.Tan(radianAngle));
         rb.velocity = launchDirection * bulletSpeed;
