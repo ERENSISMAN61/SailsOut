@@ -131,7 +131,10 @@ public class SetDestinationIsland : MonoBehaviour
                     canStartAnimate = false;
                     canGetClose = false;
 
+                    playerObject.GetComponent<SmoothPlayerMovement>().isMarketOpened = true; // market açýkken baþka bir yere gidemesin
+                    GameObject.FindGameObjectWithTag("CameraSystem").GetComponent<CameraSystem>().isCameraStopped = true; // kamera hareket edemesin
                     marketObjectScript.GetComponent<MarketScript>().canMarketOpen = true; //marketi aç
+
 
                 }
 
