@@ -53,42 +53,6 @@ public class InventoryController : MonoBehaviour
 
     }
 
-    public void buyButtonSuplly()
-    {
-        if (coinCount >= 50)
-        {
-            coinCount -= 50;
-            supplyCount += 20;
-        }
-    }
 
-    public void sellButtonSuplly()
-    {
-        if (supplyCount > 20)
-        {
-            coinCount += 50;
-            supplyCount -= 20;
-        }
-
-    }
-
-    public void buyButtonBullet()
-    {
-        if (coinCount >= 50)
-        {
-            coinCount -= 50;
-            bulletCount += 20;
-        }
-    }
-    public void sellButtonBullet()
-    {
-        if (bulletCount > 20)
-        {
-            coinCount += 50;
-            bulletCount -= 20;
-        }
-
-
-    }
 
 }
