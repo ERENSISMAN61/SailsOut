@@ -38,6 +38,9 @@ public class CameraSystem : MonoBehaviour
     private float moveDragPanSpeed = 1000;
 
     private GameObject player;
+
+    public bool isCameraStopped = false;//kameranýn hareket etmemesi gerektiði durumlarda
+
     private void Awake()
     {
         followOffset = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset;
@@ -72,51 +75,66 @@ public class CameraSystem : MonoBehaviour
     }
     private void Update()
     {
-     //   Debug.Log("FollowPlayer: "+followPlayer);
-     //   Debug.Log("FollowEnemy: "+followEnemy);
-
-        if (!followEnemy) //enemy takip ediyorsa deaktif olsun
+        if (isCameraStopped)
         {
-            HandleCameraMovement();
-        }
-        if (useEdgeScrolling &&!followEnemy) //enemy takip ediyorsa deaktif olsun
-        {
-            HandleCameraMovementEdgeScrolling();
-        }
-
-        if (useDragPan)
-        {
-            //   HandleCameraMovementDragPan();
+            OnDisable();
 
         }
+        else
+        {
+            OnEnable();
+
+            //   Debug.Log("FollowPlayer: "+followPlayer);
+            //   Debug.Log("FollowEnemy: "+followEnemy);
+
+            if (!followEnemy) //enemy takip ediyorsa deaktif olsun
+            {
+                HandleCameraMovement();
+            }
+            if (useEdgeScrolling &&!followEnemy) //enemy takip ediyorsa deaktif olsun
+            {
+                HandleCameraMovementEdgeScrolling();
+            }
+
+            if (useDragPan)
+            {
+                //   HandleCameraMovementDragPan();
+
+            }
 
 
-        HandleCameraRotation();
-        HandleCameraRotatingDragPan();
+            HandleCameraRotation();
+            HandleCameraRotatingDragPan();
 
-        HandleCameraZoom_FieldOfView();
-        //HandleCameraZoom_MoveForward();
-        HandleCameraZoom_LowerY();
+            HandleCameraZoom_FieldOfView();
+            //HandleCameraZoom_MoveForward();
+            HandleCameraZoom_LowerY();
+        }
+
+
 
     }
 
     private void FixedUpdate()
     {
-        if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || (inputDirec != new Vector3(0, 0, 0))))
+        if (isCameraStopped)
         {
-            followPlayer = false;
-
-        }
-        if (followPlayer && !followEnemy)
-        {
-            if (player!=null)
+            if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || (inputDirec != new Vector3(0, 0, 0))))
             {
-                transform.position = player.transform.position;
+                followPlayer = false;
+
             }
-        }
-        else if (followEnemy)
-        {
-            transform.position = enemyPos;
+            if (followPlayer && !followEnemy)
+            {
+                if (player!=null)
+                {
+                    transform.position = player.transform.position;
+                }
+            }
+            else if (followEnemy)
+            {
+                transform.position = enemyPos;
+            }
         }
     }
     private void HandleCameraMovement()
@@ -260,26 +278,26 @@ public class CameraSystem : MonoBehaviour
     private void MoveCameraDragPan(InputAction.CallbackContext obj)
     {
         if (!followEnemy) //enemy takip ediyorsa deaktif olsun
-        { 
+        {
 
 
-        if (!Mouse.current.leftButton.isPressed)
-            return;
+            if (!Mouse.current.leftButton.isPressed)
+                return;
 
-        Vector2 inputValue = obj.ReadValue<Vector2>();
+            Vector2 inputValue = obj.ReadValue<Vector2>();
 
-        // transform.position -= new Vector3(inputValue.x*moveDragPanSpeed, 0, inputValue.y*moveDragPanSpeed) * Time.deltaTime;
+            // transform.position -= new Vector3(inputValue.x*moveDragPanSpeed, 0, inputValue.y*moveDragPanSpeed) * Time.deltaTime;
 
-        //Vector3 targetPosition = transform.position - new Vector3(inputValue.x * moveDragPanSpeed, 0, inputValue.y * moveDragPanSpeed) * Time.deltaTime;
-        //float smoothTime = 0.1f;
-        //transform.position = Vector3.Lerp(transform.position, targetPosition, smoothTime);
+            //Vector3 targetPosition = transform.position - new Vector3(inputValue.x * moveDragPanSpeed, 0, inputValue.y * moveDragPanSpeed) * Time.deltaTime;
+            //float smoothTime = 0.1f;
+            //transform.position = Vector3.Lerp(transform.position, targetPosition, smoothTime);
 
-        Vector3 moveDirection = new Vector3(inputValue.x, 0, inputValue.y) * moveDragPanSpeed;
-        moveDirection = transform.TransformDirection(moveDirection);
-        Vector3 targetPosition = transform.position - moveDirection * Time.deltaTime;
+            Vector3 moveDirection = new Vector3(inputValue.x, 0, inputValue.y) * moveDragPanSpeed;
+            moveDirection = transform.TransformDirection(moveDirection);
+            Vector3 targetPosition = transform.position - moveDirection * Time.deltaTime;
 
-        float smoothTime = 0.1f;
-        transform.position = Vector3.Lerp(transform.position, targetPosition, smoothTime);
+            float smoothTime = 0.1f;
+            transform.position = Vector3.Lerp(transform.position, targetPosition, smoothTime);
 
         }
     }

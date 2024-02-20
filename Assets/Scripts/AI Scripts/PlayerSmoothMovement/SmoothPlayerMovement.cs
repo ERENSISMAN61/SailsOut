@@ -75,6 +75,8 @@ public class SmoothPlayerMovement : MonoBehaviour
     public bool isDestinationSet = false;
     public bool isStartDockAnimate = false;
 
+    public bool isMarketOpened = false;
+
     private void Awake()
     {
         Agent = GetComponent<NavMeshAgent>();
@@ -196,66 +198,69 @@ public class SmoothPlayerMovement : MonoBehaviour
 
     private void HandleInput()
     {
-        if (!isDestinationSet && !isStartDockAnimate)
+        if (!isMarketOpened)
         {
-            if (EnemyTransform != null && canMoveToEnemy)
+            if (!isDestinationSet && !isStartDockAnimate)
             {
-                SetAgentDestination(EnemyTransform.position);
-                //   Agent.SetDestination(EnemyTransform.position);
+                if (EnemyTransform != null && canMoveToEnemy)
+                {
+                    SetAgentDestination(EnemyTransform.position);
+                    //   Agent.SetDestination(EnemyTransform.position);
+
+                }
+
+
+                if (Mouse.current.leftButton.wasReleasedThisFrame)
+                {
+                    Ray ray = Camera.ScreenPointToRay(Mouse.current.position.ReadValue());
+
+                    if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, FloorLayer))
+                    {
+                        //if(Vector3.Distance(hit.point, transform.position)>=50)
+                        //{
+                        //  SetDestinationPlus(hit.point);
+                        //}
+                        //if (UsePathSmoothing)
+                        //{
+
+                        //    SetDestinationPlus(hit.point);
+                        //}
+                        //else
+                        //{
+                        //    SetAgentDestination(hit.point);
+                        //}
+
+
+                        if (hit.transform.CompareTag("EnemyShip"))
+                        {
+                            //      PathLocations = null;
+                            //   PathIndex = 0;
+                            // Týklanan objeyi hedef olarak belirle
+                            EnemyTransform = hit.transform;
+                            canMoveToEnemy = true;
+                        }
+                        else
+                        {
+                            EnemyTransform = null;
+                            canMoveToEnemy = false;
+                            Agent.isStopped = true;
+                            SetDestinationPlus(hit.point);
+
+                        }
+
+                    }
+                }
 
             }
-
-
-            if (Mouse.current.leftButton.wasReleasedThisFrame)
+            else
             {
-                Ray ray = Camera.ScreenPointToRay(Mouse.current.position.ReadValue());
-
-                if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, FloorLayer))
+                if (!isStartDockAnimate)
                 {
-                    //if(Vector3.Distance(hit.point, transform.position)>=50)
-                    //{
-                    //  SetDestinationPlus(hit.point);
-                    //}
-                    //if (UsePathSmoothing)
-                    //{
-
-                    //    SetDestinationPlus(hit.point);
-                    //}
-                    //else
-                    //{
-                    //    SetAgentDestination(hit.point);
-                    //}
-
-
-                    if (hit.transform.CompareTag("EnemyShip"))
-                    {
-                        //      PathLocations = null;
-                        //   PathIndex = 0;
-                        // Týklanan objeyi hedef olarak belirle
-                        EnemyTransform = hit.transform;
-                        canMoveToEnemy = true;
-                    }
-                    else
-                    {
-                        EnemyTransform = null;
-                        canMoveToEnemy = false;
-                        Agent.isStopped = true;
-                        SetDestinationPlus(hit.point);
-
-                    }
-
+                    isDestinationSet = false;
                 }
             }
 
         }
-        else
-        {
-            if (!isStartDockAnimate)
-            {
-                isDestinationSet = false;
-            }
-        }
-
 
     }
 

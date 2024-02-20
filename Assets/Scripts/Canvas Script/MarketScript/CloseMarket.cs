@@ -5,6 +5,11 @@ using UnityEngine;
 public class CloseMarket : MonoBehaviour
 {
 
+    public bool didCloseMarket = false;
+    private void Start()
+    {
+        
+    }
     void Update()
     {
      if(Input.GetKeyDown(KeyCode.Escape))
@@ -14,6 +19,10 @@ public class CloseMarket : MonoBehaviour
     }
     public void CloseMarketMenu()
     {
+        didCloseMarket = true;
+
         Destroy(transform.parent.gameObject);
+
+
     }
 }
