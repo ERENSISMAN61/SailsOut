@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 441.18134, g: 354.9805, b: 316.3511, a: 1}
+  m_IndirectSpecularColor: {r: 441.18134, g: 354.9805, b: 316.34915, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5454,10 +5454,9 @@ MonoBehaviour:
   isActiveLevel3: 1
   rightCamera: {fileID: 1276004541}
   leftCamera: {fileID: 339507124}
-  rangeOfCannonFire: 10
   isShooting: 0
-  launchAngle: 45
-  initialSpeed: 150
+  launchAngle: 150
+  initialSpeed: 2000
   timeBetweenShots: 2
   maxAmmo: 100
   targetLayer:
