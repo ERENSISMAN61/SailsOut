@@ -19,7 +19,7 @@ public class SetDestinationIsland : MonoBehaviour
 
     private Vector3 hedefNokta;// Dot için
 
-    [SerializeField] private GameObject marketObjectScript;
+    [SerializeField] private GameObject IslandMenuObjectScript;
 
     void Start()
     {
@@ -131,9 +131,9 @@ public class SetDestinationIsland : MonoBehaviour
                     canStartAnimate = false;
                     canGetClose = false;
 
-                    playerObject.GetComponent<SmoothPlayerMovement>().isMarketOpened = true; // market açýkken baþka bir yere gidemesin
+                    playerObject.GetComponent<SmoothPlayerMovement>().isIslandMenuOpened = true; // menu açýkken baþka bir yere gidemesin
                     GameObject.FindGameObjectWithTag("CameraSystem").GetComponent<CameraSystem>().isCameraStopped = true; // kamera hareket edemesin
-                    marketObjectScript.GetComponent<MarketScript>().canMarketOpen = true; //marketi aç
+                    IslandMenuObjectScript.GetComponent<IslandMenuScript>().canIslandMenuOpen = true; //menüyü aç
 
 
                 }
@@ -201,7 +201,9 @@ public class SetDestinationIsland : MonoBehaviour
                     playerObject.GetComponent<SmoothPlayerMovement>().PathLocations = new Vector3[0];
 
 
-                    marketObjectScript.GetComponent<MarketScript>().isMarketOpen = true; //marketi aç 
+                    playerObject.GetComponent<SmoothPlayerMovement>().isIslandMenuOpened = true; // menu açýkken baþka bir yere gidemesin
+                    GameObject.FindGameObjectWithTag("CameraSystem").GetComponent<CameraSystem>().isCameraStopped = true; // kamera hareket edemesin
+                    IslandMenuObjectScript.GetComponent<IslandMenuScript>().canIslandMenuOpen = true; //menüyü aç
 
                 }
             }

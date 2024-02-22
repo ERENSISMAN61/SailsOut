@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MarketScript : MonoBehaviour
+public class MarketMenuScript : MonoBehaviour
 {
     private GameObject marketObject;
     private GameObject spawnMarketPrefab;
@@ -15,7 +15,7 @@ public class MarketScript : MonoBehaviour
     private bool onceOpened = false;
     void Start()
     {
-        marketObject = Resources.Load<GameObject>("Prefabs/Canvas Prefabs/Market Prefab/MarketCanvas");
+        marketObject = Resources.Load<GameObject>("Prefabs/Canvas Prefabs/Menu Prefab/MarketCanvas");
         playerObject = GameObject.FindGameObjectWithTag("Player");
     }
     void Update()
@@ -28,9 +28,10 @@ public class MarketScript : MonoBehaviour
 
             isMarketOpen = true;
 
-            GameObject.FindGameObjectWithTag("CameraSystem").GetComponent<CameraSystem>().isCameraStopped = true;
-            playerObject.GetComponent<SmoothPlayerMovement>().isMarketOpened = true;   // eðer market instanciate edilmeyen bir sistem yaparsam sadece marketi kapa aç sistemþ yaparsam bunlarýn deðiþmesi
-                                                                                       //gerekir. þu anlýk bu þekilde yaptým.
+            //GameObject.FindGameObjectWithTag("CameraSystem").GetComponent<CameraSystem>().isCameraStopped = true;
+            
+            // playerObject.GetComponent<SmoothPlayerMovement>().isMarketOpened = true;   // eðer market instanciate edilmeyen bir sistem yaparsam sadece marketi kapa aç sistemþ yaparsam bunlarýn deðiþmesi
+            ////        MARKET ÝCÝN SÝLÝNDÝ MENU DE KULLANILDI CUNKU                                                                         //gerekir. þu anlýk bu þekilde yaptým.
 
             onceOpened = true;
 
@@ -49,8 +50,8 @@ public class MarketScript : MonoBehaviour
         {
 
             Debug.Log("Market is closed");
-            GameObject.FindGameObjectWithTag("CameraSystem").GetComponent<CameraSystem>().isCameraStopped = false;
-            playerObject.GetComponent<SmoothPlayerMovement>().isMarketOpened = false;
+       //     GameObject.FindGameObjectWithTag("CameraSystem").GetComponent<CameraSystem>().isCameraStopped = false;
+        //    playerObject.GetComponent<SmoothPlayerMovement>().isMarketOpened = false;                                // MARKET ÝCÝN SÝLÝNDÝ MENU DE KULLANILDI CUNKU
             isMarketOpen = false;
 
             onceOpened = false;
@@ -59,10 +60,10 @@ public class MarketScript : MonoBehaviour
 
     }
 
-    //public void SetMenuTrue()
-    //{
-    //    canMarketOpen = true;
-    //}
+    public void SetMenuTrue()
+    {
+        canMarketOpen = true;
+    }
 
 
 }

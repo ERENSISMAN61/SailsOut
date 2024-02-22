@@ -75,7 +75,7 @@ public class SmoothPlayerMovement : MonoBehaviour
     public bool isDestinationSet = false;
     public bool isStartDockAnimate = false;
 
-    public bool isMarketOpened = false;
+    public bool isIslandMenuOpened = false;
 
     private void Awake()
     {
@@ -198,7 +198,7 @@ public class SmoothPlayerMovement : MonoBehaviour
 
     private void HandleInput()
     {
-        if (!isMarketOpened)
+        if (!isIslandMenuOpened)
         {
             if (!isDestinationSet && !isStartDockAnimate)
             {

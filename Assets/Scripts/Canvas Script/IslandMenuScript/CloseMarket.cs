@@ -21,7 +21,7 @@ public class CloseMarket : MonoBehaviour
     {
         didCloseMarket = true;
 
-        Destroy(transform.parent.gameObject);
+        Destroy(transform.parent.parent.gameObject);
 
 
     }
