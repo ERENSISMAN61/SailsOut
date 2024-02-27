@@ -16,6 +16,8 @@ public class RedEnemyFire : MonoBehaviour
     public float timeBetweenBursts = 2f; // Time between consecutive bursts
     public int shotsPerBurst = 3; // Number of shots in each burst
     public float launchAngle = 45f; // Launch angle of the enemy bullets
+    public float randomAngleValue = 5f; // Random angle value for bullet launch
+
 
     public float distance; // Distance at which the enemy engages the player
     private NavMeshAgent enemyAgent; // Reference to the NavMeshAgent component
@@ -155,7 +157,8 @@ public class RedEnemyFire : MonoBehaviour
     {
         float distanceToMotherShip = Vector3.Distance(playerShip.transform.position, transform.position);
         GameObject newBullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
-        float radianAngle = Mathf.Deg2Rad * modifiedLaunchAngle; // Use modified launch angle
+        float randomAngle = Random.Range(-randomAngleValue, randomAngleValue); // Randomize the launch angle
+        float radianAngle = Mathf.Deg2Rad * (modifiedLaunchAngle + randomAngle); // Use modified launch angle
         Debug.Log("Adjusted Launch Angle: " + modifiedLaunchAngle);
         Rigidbody rb = newBullet.GetComponent<Rigidbody>();
         Vector3 launchDirection = (firePoint.forward * 2) + (Vector3.up * Mathf.Tan(radianAngle));
