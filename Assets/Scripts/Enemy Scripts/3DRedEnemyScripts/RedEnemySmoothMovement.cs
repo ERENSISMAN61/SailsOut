@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
 using System.Linq;
@@ -71,6 +71,10 @@ public class redEnemySmoothMovement : MonoBehaviour
     private Vector3 playerPosition;
 
     public bool didCatch = false;
+
+    [Header("Pursuit Parameters")]
+    [SerializeField] private float pursuitSpeed = 5f;
+    [SerializeField] private float rotationSpeed = 2f;
     private void Awake()
     {
         Agent = GetComponent<NavMeshAgent>();
@@ -100,7 +104,7 @@ public class redEnemySmoothMovement : MonoBehaviour
         Next_Position = transform.position;
         PathIndex = 0;
 
-        
+        Pursue(playerPosition);
 
 
 
@@ -113,6 +117,19 @@ public class redEnemySmoothMovement : MonoBehaviour
             Gizmos.color = UnityEngine.Color.red;
             Gizmos.DrawLine(transform.position, Next_Position); ///////////
         }
+    }
+
+    //Aşağıdaki Pursue fonksiyonu, daha gerçekçi bir rotasyon sağlamak için kullanılmıştır.
+    //Oyuncu gemisini takip ederken azcık sağ sol yaparak ilerliyordu fakat bu fonksiyonla onu ortadan kaldırdık.
+    private void Pursue(Vector3 targetPosition)
+    {
+        Vector3 targetDirection = (targetPosition - transform.position).normalized;
+        float step = rotationSpeed * Time.deltaTime;
+
+        // Rotate towards the player
+        Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, step, 0.0f);
+        transform.rotation = Quaternion.LookRotation(newDirection);
+
     }
 
     public void SetDestinationPlus(Vector3 Position)

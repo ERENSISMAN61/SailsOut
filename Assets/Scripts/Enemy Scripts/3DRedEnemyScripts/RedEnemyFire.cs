@@ -91,6 +91,7 @@ public class RedEnemyFire : MonoBehaviour
 
         Vector3 direction = (targetPosition - transform.position).normalized;
         Quaternion rotation = Quaternion.LookRotation(direction);
+        
 
         if (distanceCannonsToMotherShipRight < distanceCannonsToMotherShipLeft)
         {
@@ -102,6 +103,7 @@ public class RedEnemyFire : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed);
             transform.Rotate(new Vector3(0, -90 * rotationSpeed), Space.Self);
         }
+
     }
 
     IEnumerator SetActiveCannonsEnumerator()
