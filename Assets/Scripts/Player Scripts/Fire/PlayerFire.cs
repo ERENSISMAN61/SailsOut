@@ -18,15 +18,10 @@ public class PlayerFire : MonoBehaviour
     public bool isActiveLevel2 = false;
     public bool isActiveLevel3 = false;
 
-    private Right_Left_Aim mousePosition;
-    private DrawTrajectory drawTrajectory;
     public CinemachineFreeLook rightCamera;
     public CinemachineFreeLook leftCamera;
     private GameObject cam;
 
-
-    private GameObject rightTrajectory;
-    private GameObject leftTrajectory;
 
 
     public bool isShooting = false;
@@ -47,12 +42,9 @@ public class PlayerFire : MonoBehaviour
     private void Start()
     {
         CurrentTime = Time.time;
-        //drawTrajectory = gameObject.GetComponentInChildren<DrawTrajectory>();
-        mousePosition = GameObject.FindGameObjectWithTag("MousePosition").GetComponent<Right_Left_Aim>();
         ammo = maxAmmo; // Mermi sayısını maksimum mermi sayısına eşitle
 
-        rightTrajectory = GameObject.FindGameObjectWithTag("RightTrajectory");
-        leftTrajectory = GameObject.FindGameObjectWithTag("LeftTrajectory");
+        
         cam = GameObject.FindGameObjectWithTag("MainCamera");
 
     }

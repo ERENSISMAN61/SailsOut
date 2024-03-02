@@ -10,6 +10,7 @@ public class RedEnemyFire : MonoBehaviour
     public Transform[] leftFirePoint; // Array of left fire points for bullets
     public float bulletSpeed = 10f; // Speed of the enemy bullets
     public float firstFireTime = 3f; // Time before the first burst of bullets
+    private float isStoppedTime; // Time before the first burst of bullets
 
     private int shotsRemaining; // Number of shots remaining in the current burst
     private float timeSinceLastBurst; // Time elapsed since the last burst
@@ -25,7 +26,7 @@ public class RedEnemyFire : MonoBehaviour
     public bool isActiveRightLevel1 = false; // Flag for activating right fire level 1
     public bool isActiveRightLevel2 = false; // Flag for activating right fire level 2
     public bool isActiveRightLevel3 = false; // Flag for activating right fire level 3
-    public float rotationSpeed = .01f; // Rotation speed of the enemy
+    public float rotationSpeed = .008f; // Rotation speed of the enemy
 
     private redEnemySmoothMovement redEnemySmoothMovement; // Reference to the RedEnemySmoothMovement script
     private PlayerHealthBarControl healthOfPlayerShip;
@@ -43,6 +44,7 @@ public class RedEnemyFire : MonoBehaviour
         redEnemySmoothMovement = GetComponent<redEnemySmoothMovement>(); // Get the RedEnemySmoothMovement script
 
         shotsRemaining = shotsPerBurst; // Initialize the shots remaining in the burst
+        
     }
 
     void Update()
@@ -63,24 +65,28 @@ public class RedEnemyFire : MonoBehaviour
 
         if (distanceToMotherShip < distance && healthOfPlayerShip.health > 0)
         {
+            
             //Debug.Log("Player Caught");
             //Debug.Log("Distance to MotherShip: " + distanceToMotherShip);
             redEnemySmoothMovement.enabled = false; // Disable smooth movement script
             enemyAgent.isStopped = true; // Stop the NavMeshAgent
-
+            
             RotateTowardsTarget2(playerShip.transform.position); // Rotate towards the player ship
-
-            if (timeSinceLastBurst >= timeBetweenBursts && shotsRemaining > 0)
+            
+            if (timeSinceLastBurst >= timeBetweenBursts && shotsRemaining > 0 && isStoppedTime > firstFireTime)
             {
                 StartCoroutine(SetActiveCannonsEnumerator());
                 sourceAudioE.PlayOneShot(enemyShotAudio); // Play the enemy shot audio
 
                 shotsRemaining--;
                 timeSinceLastBurst = 0f; // Reset the time since the last burst
+                
+                
             }
         }
         else
         {
+            isStoppedTime = 0f; // Reset the time since the enemy stopped
             enemyAgent.isStopped = false; // Resume NavMeshAgent movement
             redEnemySmoothMovement.enabled = true; // Enable smooth movement script
         }
@@ -99,11 +105,15 @@ public class RedEnemyFire : MonoBehaviour
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed);
             transform.Rotate(new Vector3(0, 90 * rotationSpeed), Space.Self);
+            isStoppedTime += Time.deltaTime; // Update the time elapsed since the enemy stoppedD
+            Debug.Log("Stopped Time: " + isStoppedTime);
         }
         else
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed);
             transform.Rotate(new Vector3(0, -90 * rotationSpeed), Space.Self);
+            isStoppedTime += Time.deltaTime; // Update the time elapsed since the enemy stopped
+            Debug.Log("Stopped Time: " + isStoppedTime);
         }
 
     }
@@ -162,7 +172,7 @@ public class RedEnemyFire : MonoBehaviour
         Debug.Log("Adjusted Launch Angle: " + modifiedLaunchAngle);
         Rigidbody rb = newBullet.GetComponent<Rigidbody>();
         Vector3 launchDirection = (firePoint.forward * 2) + (Vector3.up * Mathf.Tan(radianAngle));
-        rb.velocity = launchDirection * bulletSpeed;
+        rb.AddForce(launchDirection * bulletSpeed);
         Destroy(newBullet, 5f); // Destroy the bullet after 3 seconds
     }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 441.18134, g: 354.9805, b: 316.34915, a: 1}
+  m_IndirectSpecularColor: {r: 441.623, g: 354.606, b: 314.32767, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3816,7 +3816,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 666659797}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.086726524, y: -0.000000017669102, z: 0.0000000015381755, w: 0.99623215}
+  m_LocalRotation: {x: 0.0867265, y: 0.000000017669107, z: -0.0000000015381756, w: 0.99623215}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4119,6 +4119,8 @@ MonoBehaviour:
   MovementVector: {x: 0, y: 0, z: 0}
   isTargetEnemy: 0
   didCatch: 0
+  pursuitSpeed: 5
+  rotationSpeed: 2
 --- !u!1 &681425483
 GameObject:
   m_ObjectHideFlags: 3
@@ -5499,7 +5501,7 @@ NavMeshObstacle:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 799136121}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Shape: 1
   m_Extents: {x: 0.5, y: 0.5, z: 0.5}
@@ -7716,7 +7718,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1228563163}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.034958657, y: 0.000000004298966, z: -1.5037799e-10, w: 0.99938875}
+  m_LocalRotation: {x: 0.034958657, y: -0.000000004298966, z: 1.5037799e-10, w: 0.99938875}
   m_LocalPosition: {x: 0, y: 11, z: 145.5}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
@@ -9486,6 +9488,8 @@ MonoBehaviour:
   MovementVector: {x: 0, y: 0, z: 0}
   isTargetEnemy: 0
   didCatch: 0
+  pursuitSpeed: 5
+  rotationSpeed: 0.1
 --- !u!195 &1480030622
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -9545,11 +9549,12 @@ MonoBehaviour:
   - {fileID: 2137924554}
   - {fileID: 472282613}
   - {fileID: 922498030}
-  bulletSpeed: 20
+  bulletSpeed: 15000
   firstFireTime: 3
   timeBetweenBursts: 2
   shotsPerBurst: 3
   launchAngle: 45
+  randomAngleValue: 5
   distance: 150
   isActiveRightLevel1: 1
   isActiveRightLevel2: 1
@@ -9738,57 +9743,6 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 809675087}
---- !u!1 &1502946292
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1502946294}
-  - component: {fileID: 1502946293}
-  m_Layer: 0
-  m_Name: Target Group
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1502946293
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1502946292}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5eb80d8e62d9d145bb50fb783c0f731, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_PositionMode: 0
-  m_RotationMode: 1
-  m_UpdateMethod: 2
-  m_Targets:
-  - target: {fileID: 1711035025}
-    weight: 1
-    radius: 1
---- !u!4 &1502946294
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1502946292}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.70710677, z: 0, w: 0.70710677}
-  m_LocalPosition: {x: -12.25, y: 5.145, z: 171.565}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1527545305
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12140,7 +12094,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1878538332}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.034958646, y: 0.000000002149483, z: -7.518898e-11, w: 0.99938875}
+  m_LocalRotation: {x: 0.034958646, y: -0.000000002149483, z: 7.518898e-11, w: 0.99938875}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -14215,4 +14169,3 @@ SceneRoots:
   - {fileID: 1835676965}
   - {fileID: 972837074}
   - {fileID: 911458557}
-  - {fileID: 1502946294}
