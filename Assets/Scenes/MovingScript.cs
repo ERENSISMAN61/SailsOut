@@ -70,7 +70,7 @@ public class MovingScript : MonoBehaviour
         //    SceneManager.LoadScene("Eren Scene"); //silinecek/////////////////////////////////
         //}
 
-        ShipMovement();
+        
 
 
 
@@ -104,7 +104,7 @@ public class MovingScript : MonoBehaviour
     void Update()
     {
 
-
+        ShipMovement();
 
         // Movement and Rotation code remains the same as before
         // ...
