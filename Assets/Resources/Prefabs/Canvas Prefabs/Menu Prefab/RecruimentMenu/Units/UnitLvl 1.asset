@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6c66cab5d6647e42a0d9d86db8ad3da, type: 3}
-  m_Name: Lvl1Unit
+  m_Name: UnitLvl 1
   m_EditorClassIdentifier: 
   Img: {fileID: 21300000, guid: 59cfa0590bd302441ae687abd2bf7636, type: 3}
-  Cost: 1
+  Cost: 100
   Rank: 1

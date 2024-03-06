@@ -30,6 +30,11 @@ public class NavalUnitConfig : MonoBehaviour
         //Debug.Log("Img:"+unitImg.sprite);
     }
 
+    public void SetNavalUnitContainer(NavalUnitContainer _NavalUnitContainer)
+    {
+        this._NavalUnitContainer = _NavalUnitContainer;
+        Config();
+    }
 
 
 }

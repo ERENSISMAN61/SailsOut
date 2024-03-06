@@ -1,20 +1,25 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GridLGRowCountFinder : MonoBehaviour  //Grid Layout Group bileþeninin Constraint Count Column yani kaç sütunlu grid oluþturacaksak ona göre bir menü oluþturmak için
+public class GridLGRowCountFinder : MonoBehaviour  //Unit sayýsýna göre column sayýsýný otomatik belirliyoruz.
 
 
-//-------------!!!!  6 sütunlu yapmak istiyosak buraya 6 prefab koymamýz ve Constrainrt Count'u da 6 yapmamýz gerekiyor.   /þu anlýk 5.  !!!!!!----------
+//-------------!!!!  6 sütunlu yapmak istiyosak root  objesindeki RecruimentUnitScript componentine bir tane daha scriptable obje eklememiz yeterli !!!!!!----------
 
 
 {
-    public GameObject[] prefablar; // Prefablarý buraya sürükleyin (a_prefab, b_prefab, c_prefab, vb.)
+    public GameObject FillablePrefab; // Doldurulabilir prefabý buraya sürükleyin
     public GameObject emptyPrefab; // Boþ prefabý buraya sürükleyin
 
     void Start()
     {
+
+       int unitCount= transform.parent.parent.parent.GetComponent<RecruimentUnitScript>().GetUnitCount();  //Unit sayýsýný almak için
+
         GridLayoutGroup gridLayoutGroup = GetComponent<GridLayoutGroup>();
+        gridLayoutGroup.constraintCount = unitCount; //Constraint Count'u unit sayýsýna eþitlemek için  (Yani Unit Sayýsýna göre column sayýsýný otomatik belirliyoruz)
         int toplamSutun = gridLayoutGroup.constraintCount;
+
 
         // Her sütun için rastgele ürün sayýlarý oluþturun
         int[] urunSayilari = new int[toplamSutun];
@@ -23,7 +28,7 @@ public class GridLGRowCountFinder : MonoBehaviour  //Grid Layout Group bileþenin
             urunSayilari[i] = Random.Range(1, 4); // Sütun baþýna 1 ila 3 arasýnda rastgele ürün sayýsý
         }
 
-        int prefabIndeksi = 0; // a_prefab ile baþlayýn
+        int prefabIndeksi = 0; // 1. unit ile baslamak icin
 
         for (int satir = 0; satir < 3; satir++) // 3 satýr
         {
@@ -34,13 +39,20 @@ public class GridLGRowCountFinder : MonoBehaviour  //Grid Layout Group bileþenin
                 if (urunSayisi > 0)
                 {
                     // Prefabý oluþturun
-                    GameObject yeniNesne = Instantiate(prefablar[prefabIndeksi]);
+                    GameObject yeniNesne = Instantiate(FillablePrefab);  // doldurulabilir prefabý oluþturmak için
+
+                    //Recruiment (Root) objesindeki ürünleri scriptableobject olarak almak için                                                             
+                    yeniNesne.GetComponent<NavalUnitConfig>().SetNavalUnitContainer(transform.parent.parent.parent.GetComponent<RecruimentUnitScript>().GetUnits(prefabIndeksi));
+                      
+
+
+
 
                     // Prefabýn adýný ayarlayýn (isteðe baðlý)
-                    yeniNesne.name = $"{prefablar[prefabIndeksi].name} (Sýra {sutun + 1}, {satir + 1})";
+                    yeniNesne.name = $"{FillablePrefab.name} (Sýra {sutun + 1}, {satir + 1})";
 
                     // Bir sonraki prefabý seçin
-                    prefabIndeksi = (prefabIndeksi + 1) % prefablar.Length;
+                    prefabIndeksi = (prefabIndeksi + 1) % unitCount;
 
                     // Yeni nesneyi Grid Layout Group'un altýna ekleyin
                     yeniNesne.transform.SetParent(transform);
@@ -58,21 +70,13 @@ public class GridLGRowCountFinder : MonoBehaviour  //Grid Layout Group bileþenin
 
                     // Boþ nesneyi Grid Layout Group'un altýna ekleyin
                     bosNesne.transform.SetParent(transform);
+
+                    // Bir sonraki prefabý seçin
+                    prefabIndeksi = (prefabIndeksi + 1) % unitCount;
+
                 }
             }
         }
     }
 }
-
-//void Start()
-//{
-//    // Grid Layout Group bileþenini alýn
-//    GridLayoutGroup gridLayoutGroup = GetComponent<GridLayoutGroup>();
-
-//    // Constraint Count deðerini bulun
-//    int constraintCount = gridLayoutGroup.constraintCount;
-
-//    // Sonucu konsola yazdýrýn
-//    Debug.Log($"Constraint Count: {constraintCount}");
-//}
 

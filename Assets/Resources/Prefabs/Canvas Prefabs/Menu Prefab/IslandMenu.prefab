@@ -5403,7 +5403,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Naval Unit Recruitment
+  m_text: Recruit Naval Units
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d772dd02ff065a54eb0f206d1f87a99b, type: 2}
   m_sharedMaterial: {fileID: 6989214058291553931, guid: d772dd02ff065a54eb0f206d1f87a99b, type: 2}
@@ -5430,7 +5430,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 19.05
+  m_fontSize: 22.05
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
