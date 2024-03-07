@@ -8,8 +8,9 @@ public class GridLGRowCountFinder : MonoBehaviour  //Unit sayýsýna göre column s
 
 
 {
-    public GameObject FillablePrefab; // Doldurulabilir prefabý buraya sürükleyin
-    public GameObject emptyPrefab; // Boþ prefabý buraya sürükleyin
+
+    [SerializeField] private GameObject FillablePrefab; // Doldurulabilir prefabý buraya sürükleyin
+    [SerializeField] private GameObject emptyPrefab; // Boþ prefabý buraya sürükleyin
 
     void Start()
     {
