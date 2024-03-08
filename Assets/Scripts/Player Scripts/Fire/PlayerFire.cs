@@ -1,5 +1,6 @@
 ﻿using Cinemachine;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -22,6 +23,8 @@ public class PlayerFire : MonoBehaviour
     public CinemachineFreeLook leftCamera;
     private GameObject cam;
 
+    public ParticleSystem smokeParticle;
+    
 
 
     public bool isShooting = false;
@@ -38,13 +41,13 @@ public class PlayerFire : MonoBehaviour
     private int ammo; // Mevcut mermi sayısı
 
     public LayerMask targetLayer;   // Atışın etkileşimde bulunacağı layer
+    
 
     private void Start()
     {
         CurrentTime = Time.time;
         ammo = maxAmmo; // Mermi sayısını maksimum mermi sayısına eşitle
 
-        
         cam = GameObject.FindGameObjectWithTag("MainCamera");
 
     }
@@ -57,7 +60,7 @@ public class PlayerFire : MonoBehaviour
 
         //// Topun rotasyonunu, hedefe doğru bakacak şekilde ayarla
         //Quaternion fireRotation = Quaternion.FromToRotation(firePoint.forward, firePointRotation);
-
+        GameObject cannon = firePoint.gameObject;
         GameObject cannonball = Instantiate(cannonballPrefab, firePoint.position, Quaternion.identity);
         Rigidbody rb = cannonball.GetComponent<Rigidbody>();
 
@@ -65,9 +68,10 @@ public class PlayerFire : MonoBehaviour
         Ray ray = cam.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
 
         Debug.Log("Ray: " + ray.direction * 100f);
+        
         rb.AddForce((ray.direction * initialSpeed) + (Vector3.up * launchAngle), ForceMode.Impulse);
-
-
+        smokeParticle.Play();
+        cannon.GetComponentInChildren<ParticleSystem>().Play();
         Destroy(cannonball, 5f);
         lastShotTime = Time.time;
 

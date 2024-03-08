@@ -25,6 +25,7 @@ TagManager:
   - RightTrajectory
   - LeftTrajectory
   - CloseButton
+  - SmokeParticle
   layers:
   - Default
   - TransparentFX

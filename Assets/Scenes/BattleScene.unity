@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 425.79706, g: 331.12125, b: 266.97903, a: 1}
+  m_IndirectSpecularColor: {r: 442.00543, g: 354.90262, b: 314.31644, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3952,7 +3952,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 666659797}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.1364031, y: 0.000000017045567, z: -0.0000000023470046, w: 0.99065346}
+  m_LocalRotation: {x: 0.1364031, y: -0.000000017045556, z: 0.0000000023470033, w: 0.99065346}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5730,10 +5730,11 @@ MonoBehaviour:
   - {fileID: 1970908353}
   - {fileID: 1367021}
   isActiveLevel1: 1
-  isActiveLevel2: 1
-  isActiveLevel3: 1
+  isActiveLevel2: 0
+  isActiveLevel3: 0
   rightCamera: {fileID: 1276004541}
   leftCamera: {fileID: 339507124}
+  smokeParticle: {fileID: 9142032352824712409, guid: 888fe468becd2ba43926cc59caffded3, type: 3}
   isShooting: 0
   launchAngle: 150
   initialSpeed: 2000
@@ -8127,7 +8128,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1228563163}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.08485768, y: 0.00000003534392, z: -0.0000000030100602, w: 0.9963931}
+  m_LocalRotation: {x: 0.08485768, y: -0.00000003534392, z: 0.0000000030100602, w: 0.9963931}
   m_LocalPosition: {x: 0, y: 12, z: 145.5}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
@@ -9017,7 +9018,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1285700681}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.11059805, y: -0.000000017100827, z: 0.0000000019029922, w: 0.99386525}
+  m_LocalRotation: {x: 0.11059805, y: 0.000000017100824, z: -0.000000001902992, w: 0.99386525}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -11455,7 +11456,7 @@ MonoBehaviour:
   cpuSimulation: 1
   cpuFullResolution: 0
   cpuEvaluateRipples: 0
-  customMaterial: {fileID: 0}
+  customMaterial: {fileID: 2100000, guid: 5ec140aca81a8f243bc4dc25ffd59f3f, type: 2}
   startSmoothness: 0.73214555
   endSmoothness: 0.5376775
   smoothnessFadeStart: 100
@@ -12834,7 +12835,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1878538332}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.08485766, y: 0.000000017671956, z: -0.0000000015050295, w: 0.9963931}
+  m_LocalRotation: {x: 0.08485766, y: -0.00000001767196, z: 0.0000000015050299, w: 0.9963931}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
