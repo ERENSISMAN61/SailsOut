@@ -13,13 +13,33 @@ public class DayCycleScript : MonoBehaviour
     [Header("CurrentTime")]
     [SerializeField] private string currentTimeString;
 
+    //[SerializeField] private bool isDay;
+    [SerializeField] private bool isSunEnable;
+    [SerializeField] private bool isMoonEnable;
+
+
     [Header("Sun Settings")]
     [SerializeField] private Light sun;
-    [SerializeField] private float sunPosition;
+    [SerializeField] private float sunPosition = 1f;
+
+    [SerializeField] private float sunIntensity = 1f;
+    [SerializeField] private AnimationCurve sunIntensityCurve;
+
+    //[SerializeField] private AnimationCurve lightTemperature;
+    //shadow settings de var
+
+    [Header("Moon Settings")]
+    [SerializeField] private Light moon;
+
+    [SerializeField] private float moonIntensity = 1f;
+    [SerializeField] private AnimationCurve moonIntensityCurve;
+
+
 
     void Start()
     {
         UpdateTimeText();
+        EnablePlanet();
     }
 
     // Update is called once per frame
@@ -35,8 +55,15 @@ public class DayCycleScript : MonoBehaviour
         UpdateTimeText();
         UpdateLight();
 
-    }
+        EnablePlanet();
 
+    }
+    void OnValidate()
+    {
+        UpdateTimeText();
+        UpdateLight();
+        EnablePlanet();
+    }
     void UpdateTimeText()
     {
         float hours = Mathf.FloorToInt(currentTime);
@@ -47,7 +74,59 @@ public class DayCycleScript : MonoBehaviour
 
     void UpdateLight()
     {
-        sunPosition = currentTime / 24f;
-        sun.transform.localRotation = Quaternion.Euler(new Vector3((sunPosition * 360f) - 90f, 170f, 0f));
+        float sunRotation = currentTime / 24f * 360f;
+        
+        sun.transform.rotation = Quaternion.Euler(sunRotation - 90f, -90f,0f);
+        moon.transform.rotation = Quaternion.Euler(sunRotation + 90f, -90f, 0f);
+
+
+        float sunIntensityMultiplier = sunIntensityCurve.Evaluate(currentTime / 24f);
+        float moonIntensityMultiplier = sunIntensityCurve.Evaluate(currentTime / 24f);
+
+        HDAdditionalLightData sunData = sun.GetComponent<HDAdditionalLightData>();
+        HDAdditionalLightData moonData = moon.GetComponent<HDAdditionalLightData>();
+
+        if (sunData != null)
+        {
+            sunData.intensity = sunIntensity * sunIntensityMultiplier;
+        }
+        if (moonData != null)
+        {
+            moonData.intensity = moonIntensity * moonIntensityMultiplier;
+        }
+
+        //float temperature = lightTemperature.Evaluate(currentTime / 24f);
+        //Light light = sun.GetComponent<Light>();
+
+        //if (light != null)
+        //{
+        //    light.colorTemperature = temperature * 10000f;
+        //}
+
+    }
+
+    void EnablePlanet()
+    {
+        if (currentTime >= 5.7f && currentTime <= 18.3f)
+        {
+            sun.gameObject.SetActive(true);
+            isSunEnable = true;
+        }
+        else
+        {
+            sun.gameObject.SetActive(false);
+            isSunEnable = false;
+        }
+
+        if (currentTime >= 6.3f && currentTime <= 17.7f)
+        {
+            moon.gameObject.SetActive(false);
+            isMoonEnable = false;
+        }
+        else
+        {
+            moon.gameObject.SetActive(true);
+            isMoonEnable = true;
+        }
     }
 }
