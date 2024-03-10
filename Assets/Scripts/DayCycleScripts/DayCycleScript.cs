@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Rendering.HighDefinition;
 
 public class DayCycleScript : MonoBehaviour
@@ -34,12 +35,27 @@ public class DayCycleScript : MonoBehaviour
     [SerializeField] private float moonIntensity = 1f;
     [SerializeField] private AnimationCurve moonIntensityCurve;
 
+    [Header("Stars")]
+    [SerializeField] VolumeProfile volumeProfile;
+                     private PhysicallyBasedSky skySettings;
+    [SerializeField] private float starsIntensity = 1f;
+    [SerializeField] private AnimationCurve starsIntensityCurve;
+
+
+    [Header("Sky Exposure")]
+    [SerializeField] private float exposure = 1f;
+    [SerializeField] private AnimationCurve exposureCurve;
+    private Exposure skyExposure;
+
+
 
 
     void Start()
     {
         UpdateTimeText();
         EnablePlanet();
+        UpdateStarredSky();
+        UpdateExposure();
     }
 
     // Update is called once per frame
@@ -56,13 +72,16 @@ public class DayCycleScript : MonoBehaviour
         UpdateLight();
 
         EnablePlanet();
-
+        UpdateStarredSky();
+        UpdateExposure();
     }
     void OnValidate()
     {
         UpdateTimeText();
         UpdateLight();
         EnablePlanet();
+        UpdateStarredSky();
+        UpdateExposure();
     }
     void UpdateTimeText()
     {
@@ -81,7 +100,7 @@ public class DayCycleScript : MonoBehaviour
 
 
         float sunIntensityMultiplier = sunIntensityCurve.Evaluate(currentTime / 24f);
-        float moonIntensityMultiplier = sunIntensityCurve.Evaluate(currentTime / 24f);
+        float moonIntensityMultiplier = moonIntensityCurve.Evaluate(currentTime / 24f);
 
         HDAdditionalLightData sunData = sun.GetComponent<HDAdditionalLightData>();
         HDAdditionalLightData moonData = moon.GetComponent<HDAdditionalLightData>();
@@ -129,4 +148,22 @@ public class DayCycleScript : MonoBehaviour
             isMoonEnable = true;
         }
     }
+
+    void UpdateStarredSky()
+    {
+        volumeProfile.TryGet<PhysicallyBasedSky>(out skySettings);
+        skySettings.spaceEmissionMultiplier.value = starsIntensityCurve.Evaluate(currentTime / 24f)* starsIntensity;
+
+    }
+
+    void UpdateExposure()
+    {
+        volumeProfile.TryGet<Exposure>(out skyExposure);
+        skyExposure.fixedExposure.value = exposureCurve.Evaluate(currentTime / 24f)* exposure;
+
+    }
+
+
+
+
 }
