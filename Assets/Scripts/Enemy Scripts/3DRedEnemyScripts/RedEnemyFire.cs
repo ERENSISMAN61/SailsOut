@@ -106,14 +106,14 @@ public class RedEnemyFire : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed);
             transform.Rotate(new Vector3(0, 90 * rotationSpeed), Space.Self);
             isStoppedTime += Time.deltaTime; // Update the time elapsed since the enemy stoppedD
-            Debug.Log("Stopped Time: " + isStoppedTime);
+            //Debug.Log("Stopped Time: " + isStoppedTime);
         }
         else
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed);
             transform.Rotate(new Vector3(0, -90 * rotationSpeed), Space.Self);
             isStoppedTime += Time.deltaTime; // Update the time elapsed since the enemy stopped
-            Debug.Log("Stopped Time: " + isStoppedTime);
+            //Debug.Log("Stopped Time: " + isStoppedTime);
         }
 
     }
@@ -169,7 +169,7 @@ public class RedEnemyFire : MonoBehaviour
         GameObject newBullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
         float randomAngle = Random.Range(-randomAngleValue, randomAngleValue); // Randomize the launch angle
         float radianAngle = Mathf.Deg2Rad * (modifiedLaunchAngle + randomAngle); // Use modified launch angle
-        Debug.Log("Adjusted Launch Angle: " + modifiedLaunchAngle);
+        //Debug.Log("Adjusted Launch Angle: " + modifiedLaunchAngle);
         Rigidbody rb = newBullet.GetComponent<Rigidbody>();
         Vector3 launchDirection = (firePoint.forward * 2) + (Vector3.up * Mathf.Tan(radianAngle));
         rb.AddForce(launchDirection * bulletSpeed);

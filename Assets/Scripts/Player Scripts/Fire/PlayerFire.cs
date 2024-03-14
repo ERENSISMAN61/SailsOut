@@ -61,6 +61,7 @@ public class PlayerFire : MonoBehaviour
         //// Topun rotasyonunu, hedefe doğru bakacak şekilde ayarla
         //Quaternion fireRotation = Quaternion.FromToRotation(firePoint.forward, firePointRotation);
         GameObject cannon = firePoint.gameObject;
+        GameObject cannon2 = firePoint.gameObject;
         GameObject cannonball = Instantiate(cannonballPrefab, firePoint.position, Quaternion.identity);
         Rigidbody rb = cannonball.GetComponent<Rigidbody>();
 

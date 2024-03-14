@@ -44,13 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb16898ba8c47434bb79f2df7c117378, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 6462597295041871303}
-  depthBefSub: 1
-  displacementAmt: 1
-  floaters: 8
-  waterDrag: 2
-  waterAngularDrag: 2
+  FloaterPoints: []
+  FloatingPower: 2
+  FloatingLevel: 1.8
   water: {fileID: 0}
+  sphereRadiusApproximation: 0.25
 --- !u!1 &270466138784113535
 GameObject:
   m_ObjectHideFlags: 0
@@ -1091,13 +1089,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb16898ba8c47434bb79f2df7c117378, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 6462597295041871303}
-  depthBefSub: 1
-  displacementAmt: 1
-  floaters: 8
-  waterDrag: 2
-  waterAngularDrag: 2
+  FloaterPoints: []
+  FloatingPower: 2
+  FloatingLevel: 1.8
   water: {fileID: 0}
+  sphereRadiusApproximation: 0.25
 --- !u!1 &2386394142694806641
 GameObject:
   m_ObjectHideFlags: 0
@@ -1391,13 +1387,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb16898ba8c47434bb79f2df7c117378, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 6462597295041871303}
-  depthBefSub: 1
-  displacementAmt: 1
-  floaters: 8
-  waterDrag: 2
-  waterAngularDrag: 2
+  FloaterPoints: []
+  FloatingPower: 2
+  FloatingLevel: 1.8
   water: {fileID: 0}
+  sphereRadiusApproximation: 0.25
 --- !u!1 &3099640770530441850
 GameObject:
   m_ObjectHideFlags: 0
@@ -1442,13 +1436,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb16898ba8c47434bb79f2df7c117378, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 6462597295041871303}
-  depthBefSub: 1
-  displacementAmt: 1
-  floaters: 8
-  waterDrag: 2
-  waterAngularDrag: 2
+  FloaterPoints: []
+  FloatingPower: 2
+  FloatingLevel: 1.8
   water: {fileID: 0}
+  sphereRadiusApproximation: 0.25
 --- !u!1 &3182861678791263111
 GameObject:
   m_ObjectHideFlags: 0
@@ -3285,13 +3277,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb16898ba8c47434bb79f2df7c117378, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 6462597295041871303}
-  depthBefSub: 1
-  displacementAmt: 1
-  floaters: 8
-  waterDrag: 2
-  waterAngularDrag: 2
+  FloaterPoints: []
+  FloatingPower: 2
+  FloatingLevel: 1.8
   water: {fileID: 0}
+  sphereRadiusApproximation: 0.25
 --- !u!1 &6567042082581159780
 GameObject:
   m_ObjectHideFlags: 0
@@ -3336,13 +3326,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb16898ba8c47434bb79f2df7c117378, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 6462597295041871303}
-  depthBefSub: 1
-  displacementAmt: 1
-  floaters: 8
-  waterDrag: 2
-  waterAngularDrag: 2
+  FloaterPoints: []
+  FloatingPower: 2
+  FloatingLevel: 1.8
   water: {fileID: 0}
+  sphereRadiusApproximation: 0.25
 --- !u!1 &6655796217917749063
 GameObject:
   m_ObjectHideFlags: 0
@@ -3767,13 +3755,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb16898ba8c47434bb79f2df7c117378, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 6462597295041871303}
-  depthBefSub: 1
-  displacementAmt: 1
-  floaters: 8
-  waterDrag: 2
-  waterAngularDrag: 2
+  FloaterPoints: []
+  FloatingPower: 2
+  FloatingLevel: 1.8
   water: {fileID: 0}
+  sphereRadiusApproximation: 0.25
 --- !u!1 &7847588083230305235
 GameObject:
   m_ObjectHideFlags: 0
@@ -3984,13 +3970,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb16898ba8c47434bb79f2df7c117378, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 6462597295041871303}
-  depthBefSub: 1
-  displacementAmt: 1
-  floaters: 8
-  waterDrag: 2
-  waterAngularDrag: 2
+  FloaterPoints: []
+  FloatingPower: 2
+  FloatingLevel: 1.8
   water: {fileID: 0}
+  sphereRadiusApproximation: 0.25
 --- !u!1 &8190000109106080133
 GameObject:
   m_ObjectHideFlags: 0
@@ -4127,6 +4111,7 @@ MonoBehaviour:
   rotationSpeed: 0
   isBulletEntered: 0
   deathTime: 0
+  playerHealthBarControl: {fileID: 0}
 --- !u!1 &8320529019078634579
 GameObject:
   m_ObjectHideFlags: 0

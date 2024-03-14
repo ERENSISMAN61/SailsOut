@@ -188,7 +188,7 @@ public class MovingScript : MonoBehaviour
             {
                 //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\   bu oç hatasını bulmak için 2 saatimi verdim piç kod    //////////////////////////////////////////////////////////////////
                 // health -= GameObject.FindGameObjectWithTag("EnemyBullet").GetComponent<BulletController>().enemyBulletDamage;
-                playerHealthBarControl.health -= collision.gameObject.GetComponent<BulletController>().enemyBulletDamage;
+                playerHealthBarControl.health -= collision.gameObject.GetComponent<EnemyBulletController>().enemyBulletDamage;
 
                 playerHealthBarControl.lerpTimer = 0f; // reset the timer
                                                        //playerHealthBarControl.updateHealthBar(playerHealthBarControl.health, playerHealthBarControl.maxHealth);
