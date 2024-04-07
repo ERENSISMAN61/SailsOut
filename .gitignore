@@ -70,3 +70,6 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+Assets/MeshBaker/Examples/Examples_URP.unitypackage.meta
+Assets/MeshBaker/Examples/Examples_HDRP.unitypackage.meta
+Assets/MeshBaker/Examples/CharacterCustomization/blenderFile.unitypackage.meta
