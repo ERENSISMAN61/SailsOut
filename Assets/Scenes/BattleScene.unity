@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2.3243372, g: 3.5476308, b: 14.284441, a: 1}
+  m_IndirectSpecularColor: {r: 2.2385657, g: 3.4098744, b: 13.453951, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2571,6 +2571,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 359894582}
+  - component: {fileID: 359894583}
   - component: {fileID: 359894581}
   m_Layer: 0
   m_Name: DayCycleManager
@@ -2591,13 +2592,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b330104ef77f964586d9d596e75b941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentTime: 0
-  timeSpeed: 0.6
-  currentTimeString: 00:00
+  TimeScript: {fileID: 359894583}
   isSunEnable: 0
   isMoonEnable: 1
   isNightLightEnable: 1
-  currentGraphTime: 0
   sun: {fileID: 795738740}
   sunPosition: 0
   sunIntensity: 105000
@@ -2905,6 +2903,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &359894583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359894580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cdc4841e495030498339143a6b020e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentTime: 11.8
+  currentTimeString: 12
+  timeSpeed: 0
+  currentDay: 1
+  currentSeason: 
+  currentGraphTime: 0
 --- !u!1001 &388141001
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4471,7 +4487,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 666659797}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.1364031, y: 0.000000017045567, z: -0.0000000023470046, w: 0.99065346}
+  m_LocalRotation: {x: 0.1364031, y: -0.000000017045556, z: 0.0000000023470033, w: 0.99065346}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5771,7 +5787,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0
+  m_Intensity: 27883.234
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -5814,7 +5830,7 @@ Light:
   m_LightShadowCasterMode: 2
   m_AreaSize: {x: 0.5, y: 0.5}
   m_BounceIntensity: 1
-  m_ColorTemperature: 7000
+  m_ColorTemperature: 14535
   m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
@@ -5833,7 +5849,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Intensity: 0
+  m_Intensity: 27883.234
   m_EnableSpotReflector: 1
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
@@ -5951,13 +5967,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 795738739}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.5, y: -0.5, z: -0.5, w: 0.5}
+  m_LocalRotation: {x: 0.30347022, y: 0.30347022, z: -0.6386751, w: 0.6386751}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 90, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 50.83, y: 0, z: -90}
 --- !u!1001 &799136120
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6152,7 +6168,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4750712714948689072, guid: 4c57d77ca0315f549814d0789cb4aadf, type: 3}
       propertyPath: moveSpeed
-      value: 100
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4750712714948689072, guid: 4c57d77ca0315f549814d0789cb4aadf, type: 3}
       propertyPath: rotationSpeed
@@ -12197,10 +12213,10 @@ MonoBehaviour:
   endSmoothness: 0.5376775
   smoothnessFadeStart: 100
   smoothnessFadeDistance: 500
-  refractionColor: {r: 0, g: 0.41348296, b: 0.41899896, a: 1}
+  refractionColor: {r: 0, g: 0.09129688, b: 0.41788515, a: 1}
   maxRefractionDistance: 3.5
   absorptionDistance: 5
-  scatteringColor: {r: 0, g: 0.11566402, b: 0.11754921, a: 1}
+  scatteringColor: {r: 0, g: 0.05986374, b: 0.11697067, a: 1}
   ambientScattering: 0.552
   heightScattering: 0.859
   displacementScattering: 0.381
@@ -15869,6 +15885,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3411853767056589896, guid: 4302ec1e05af625459b98b6bc1fa2d47, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8726088089593024277, guid: 4302ec1e05af625459b98b6bc1fa2d47, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.5483456
