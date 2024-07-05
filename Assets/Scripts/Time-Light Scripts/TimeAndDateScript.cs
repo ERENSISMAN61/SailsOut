@@ -12,8 +12,7 @@ public class TimeAndDateScript : MonoBehaviour
     [Range(0f, 24f)]
     [SerializeField] private float currentTime;
     [SerializeField] private string currentTimeString;
-    [SerializeField] private float timeSpeed = 1f;
-    private int timeSpeedMultiplier = 1;
+    [SerializeField] private int timeSpeedMultiplier = 1;
 
     [Header("Day and Season Settings")]
     private int daysInSeason = 16;
@@ -47,7 +46,7 @@ public class TimeAndDateScript : MonoBehaviour
     void TimeCalculate()
     {
         //Debug.Log("CurrTime: "+currentTime+"\n Actual Time: "+ Time.time);
-        currentTime += timeSpeed * timeSpeedMultiplier * Time.deltaTime;
+        currentTime += timeSpeedMultiplier * Time.deltaTime;
 
         if (currentTime >= 24f)
         {
@@ -100,5 +99,10 @@ public class TimeAndDateScript : MonoBehaviour
         return $"{currentDay} {currentSeason} {currentYear}";
     }
 
+    public void SetTimeSpeed(int speedMultiplier)
+    {
+        Time.timeScale = speedMultiplier;
+        //   timeSpeedMultiplier = speedMultiplier;
+    }
 
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TimerForDialog : MonoBehaviour  
+public class TimerForDialog : MonoBehaviour
 {
     public float targetTimeScale = 0.1f;
     public float duration = 2.0f;
@@ -19,13 +19,13 @@ public class TimerForDialog : MonoBehaviour
     private void Update()
     {
 
-        Debug.Log("distance:  "+Vector3.Distance(playerPos, gameObject.transform.position));
+        Debug.Log("distance:  " + Vector3.Distance(playerPos, gameObject.transform.position));
         if (gameObject.GetComponent<SmoothAgentMovement>().isTargetEnemy && gameObject.GetComponent<SmoothAgentMovement>().didCatch)
         {
             playerPos = Player.transform.position;
 
-                speedingUp = false;
-                slowingDown = true;
+            speedingUp = false;
+            slowingDown = true;
 
         }
         else
@@ -37,7 +37,7 @@ public class TimerForDialog : MonoBehaviour
         }
 
 
-        Debug.Log("isTargetEnemy: "+gameObject.GetComponent<SmoothAgentMovement>().isTargetEnemy+"     didcatch: "+gameObject.GetComponent<SmoothAgentMovement>().didCatch+"\nspeedingUp:  " + speedingUp+"     slowingDown:  " + slowingDown);
+        Debug.Log("isTargetEnemy: " + gameObject.GetComponent<SmoothAgentMovement>().isTargetEnemy + "     didcatch: " + gameObject.GetComponent<SmoothAgentMovement>().didCatch + "\nspeedingUp:  " + speedingUp + "     slowingDown:  " + slowingDown);
 
         if (speedingUp)
         {
@@ -53,8 +53,8 @@ public class TimerForDialog : MonoBehaviour
 
     private void SlowDown()
     {
-        Time.timeScale = 0.3f;
-        Time.fixedDeltaTime = Time.timeScale * 0.02f;
+        Time.timeScale = 0f; // Time.timeScale = 0.3f;
+        //  Time.fixedDeltaTime = Time.timeScale * 0.02f;
 
 
 
@@ -74,7 +74,7 @@ public class TimerForDialog : MonoBehaviour
     {
 
         Time.timeScale = 1f;
-        Time.fixedDeltaTime = Time.timeScale * 0.02f;
+        // Time.fixedDeltaTime = Time.timeScale * 0.02f;
 
         //elapsed += Time.unscaledDeltaTime;
         //float progress = elapsed / duration;
