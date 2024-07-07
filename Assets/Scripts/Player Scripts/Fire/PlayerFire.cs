@@ -24,9 +24,6 @@ public class PlayerFire : MonoBehaviour
     private GameObject cam;
 
     public ParticleSystem smokeParticle;
-    
-
-
     public bool isShooting = false;
     private float CurrentTime = 0f;
     public float launchAngle;
@@ -71,9 +68,9 @@ public class PlayerFire : MonoBehaviour
         Debug.Log("Ray: " + ray.direction * 100f);
         
         rb.AddForce((ray.direction * initialSpeed) + (Vector3.up * launchAngle), ForceMode.Impulse);
-        smokeParticle.Play();
-        cannon.GetComponentInChildren<ParticleSystem>().Play();
-        Destroy(cannonball, 5f);
+        //smokeParticle.Play();
+        //cannon.GetComponentInChildren<ParticleSystem>().Play();
+        //Destroy(cannonball, 5f);
         lastShotTime = Time.time;
 
         // Her ateş ettiğinde mermi sayısını bir azalt
@@ -177,5 +174,5 @@ public class PlayerFire : MonoBehaviour
         
     }
 
-
+    
 }

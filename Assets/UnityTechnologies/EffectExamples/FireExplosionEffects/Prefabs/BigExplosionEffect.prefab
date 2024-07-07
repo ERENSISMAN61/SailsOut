@@ -14433,7 +14433,7 @@ GameObject:
   - component: {fileID: 199000010553669322}
   m_Layer: 0
   m_Name: BigExplosionEffect
-  m_TagString: Untagged
+  m_TagString: ExplosionEffect
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14448,7 +14448,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -14.81, y: 13.54, z: 9.64}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4000014165673988}

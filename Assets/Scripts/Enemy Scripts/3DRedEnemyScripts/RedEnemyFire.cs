@@ -4,6 +4,7 @@ using UnityEngine.AI;
 
 public class RedEnemyFire : MonoBehaviour
 {
+    [SerializeField]
     private GameObject playerShip; // Reference to the player ship GameObject
     public GameObject bulletPrefab; // Prefab for the enemy bullet
     public Transform[] rightFirePoint; // Array of right fire points for bullets
@@ -29,6 +30,7 @@ public class RedEnemyFire : MonoBehaviour
     public float rotationSpeed = .008f; // Rotation speed of the enemy
 
     private redEnemySmoothMovement redEnemySmoothMovement; // Reference to the RedEnemySmoothMovement script
+    [SerializeField]    
     private PlayerHealthBarControl healthOfPlayerShip;
 
 
@@ -37,9 +39,9 @@ public class RedEnemyFire : MonoBehaviour
 
     void Start()
     {
-        healthOfPlayerShip = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponentInChildren<PlayerHealthBarControl>();
+        //healthOfPlayerShip = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponentInChildren<PlayerHealthBarControl>();
         enemyAgent = GetComponent<NavMeshAgent>(); // Get the NavMeshAgent component
-        playerShip = GameObject.FindGameObjectWithTag("Player"); // Find and store the player ship GameObject
+        //playerShip = GameObject.FindGameObjectWithTag("Player"); // Find and store the player ship GameObject
         sourceAudioE = GetComponent<AudioSource>(); // Get the AudioSource component
         redEnemySmoothMovement = GetComponent<redEnemySmoothMovement>(); // Get the RedEnemySmoothMovement script
 
@@ -173,6 +175,6 @@ public class RedEnemyFire : MonoBehaviour
         Rigidbody rb = newBullet.GetComponent<Rigidbody>();
         Vector3 launchDirection = (firePoint.forward * 2) + (Vector3.up * Mathf.Tan(radianAngle));
         rb.AddForce(launchDirection * bulletSpeed);
-        Destroy(newBullet, 5f); // Destroy the bullet after 3 seconds
+        //Destroy(newBullet, 5f); // Destroy the bullet after 5 seconds
     }
 }

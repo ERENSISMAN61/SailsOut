@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5041660738338653567}
   - component: {fileID: 5100619402742603582}
   - component: {fileID: 3443825928641440549}
+  - component: {fileID: 3071806541374173622}
   m_Layer: 0
   m_Name: CannonBall
   m_TagString: Bullet
@@ -34,8 +35,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 2949341019293539447}
   - {fileID: 4727740732655985578}
+  - {fileID: 2949341019293539447}
   - {fileID: 8761905829225398416}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -151,7 +152,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyBulletDamage: 10
   playerBulletDamage: 10
-  explosion: {fileID: 4840548467324233492}
+--- !u!114 &3071806541374173622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4907935540377211480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e422196f8cb385f46b56acd32ba8b12c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionEffect: {fileID: 4840548467324233492}
 --- !u!1001 &3535621442136194346
 PrefabInstance:
   m_ObjectHideFlags: 0

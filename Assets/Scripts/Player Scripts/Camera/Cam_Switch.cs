@@ -8,7 +8,6 @@ public class Cam_Switch : MonoBehaviour
     public CinemachineFreeLook rightCamera;
     public CinemachineFreeLook leftCamera;
     public CinemachineFreeLook mainCamera;
-
     private Right_Left_Aim mousePosition;
     private int camIndex = 0;
 
@@ -46,7 +45,7 @@ public class Cam_Switch : MonoBehaviour
     {
         if(Input.GetMouseButton(1))
         {
-            if (mousePosition.isRightAimActive)
+            if (mainCamera.m_XAxis.Value > 0)
             {
                 
                 if(Input.GetMouseButtonDown(1))
@@ -55,7 +54,7 @@ public class Cam_Switch : MonoBehaviour
                     Right_Cam();
                 }
             }
-            else if (mousePosition.isLeftAimActive)
+            else if (mainCamera.m_XAxis.Value < 0)
             {
                 
                 if (Input.GetMouseButtonDown(1))
