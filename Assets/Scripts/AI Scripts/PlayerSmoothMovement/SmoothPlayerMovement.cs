@@ -7,6 +7,7 @@ using System.Drawing;
 using Unity.VisualScripting;
 using UnityEngine.InputSystem.HID;
 using static UnityEngine.UI.GridLayoutGroup;
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class SmoothPlayerMovement : MonoBehaviour
@@ -209,45 +210,47 @@ public class SmoothPlayerMovement : MonoBehaviour
 
                 }
 
-
-                if (Mouse.current.leftButton.wasReleasedThisFrame)
+                if (!EventSystem.current.IsPointerOverGameObject()) // UI OBJELERİNİN ÜZERİNDEYKEN TIKLAMA YAPILAMAZ
                 {
-                    Ray ray = Camera.ScreenPointToRay(Mouse.current.position.ReadValue());
-
-                    if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, FloorLayer))
+                    if (Mouse.current.leftButton.wasReleasedThisFrame)
                     {
-                        //if(Vector3.Distance(hit.point, transform.position)>=50)
-                        //{
-                        //  SetDestinationPlus(hit.point);
-                        //}
-                        //if (UsePathSmoothing)
-                        //{
+                        Ray ray = Camera.ScreenPointToRay(Mouse.current.position.ReadValue());
 
-                        //    SetDestinationPlus(hit.point);
-                        //}
-                        //else
-                        //{
-                        //    SetAgentDestination(hit.point);
-                        //}
-
-
-                        if (hit.transform.CompareTag("EnemyShip"))
+                        if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, FloorLayer))
                         {
-                            //      PathLocations = null;
-                            //   PathIndex = 0;
-                            // T�klanan objeyi hedef olarak belirle
-                            EnemyTransform = hit.transform;
-                            canMoveToEnemy = true;
-                        }
-                        else
-                        {
-                            EnemyTransform = null;
-                            canMoveToEnemy = false;
-                            Agent.isStopped = true;
-                            SetDestinationPlus(hit.point);
+                            //if(Vector3.Distance(hit.point, transform.position)>=50)
+                            //{
+                            //  SetDestinationPlus(hit.point);
+                            //}
+                            //if (UsePathSmoothing)
+                            //{
+
+                            //    SetDestinationPlus(hit.point);
+                            //}
+                            //else
+                            //{
+                            //    SetAgentDestination(hit.point);
+                            //}
+
+
+                            if (hit.transform.CompareTag("EnemyShip"))
+                            {
+                                //      PathLocations = null;
+                                //   PathIndex = 0;
+                                // T�klanan objeyi hedef olarak belirle
+                                EnemyTransform = hit.transform;
+                                canMoveToEnemy = true;
+                            }
+                            else
+                            {
+                                EnemyTransform = null;
+                                canMoveToEnemy = false;
+                                Agent.isStopped = true;
+                                SetDestinationPlus(hit.point);
+
+                            }
 
                         }
-
                     }
                 }
 
