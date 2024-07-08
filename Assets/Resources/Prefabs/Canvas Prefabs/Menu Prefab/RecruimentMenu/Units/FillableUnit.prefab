@@ -356,6 +356,7 @@ GameObject:
   - component: {fileID: 3073278108827415282}
   - component: {fileID: 2019693128663152099}
   - component: {fileID: 4460442287999866431}
+  - component: {fileID: 1960376664784070673}
   m_Layer: 5
   m_Name: FillableUnit
   m_TagString: Untagged
@@ -483,9 +484,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6607004530826239261}
-        m_TargetAssemblyTypeName: NavalUnitConfig, Assembly-CSharp
-        m_MethodName: Config
+      - m_Target: {fileID: 1960376664784070673}
+        m_TargetAssemblyTypeName: BuyUnit, Assembly-CSharp
+        m_MethodName: BuyUnitFunction
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -495,3 +496,15 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1960376664784070673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7397871684799919297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e24436b750c99184b90cf1ea16f6a72d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

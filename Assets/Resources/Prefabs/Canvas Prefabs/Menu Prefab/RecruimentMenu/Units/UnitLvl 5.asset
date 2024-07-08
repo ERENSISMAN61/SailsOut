@@ -15,3 +15,5 @@ MonoBehaviour:
   Img: {fileID: 21300000, guid: 81b559d636a87d34c9682376c65101cf, type: 3}
   Cost: 500
   Rank: 5
+  Health: 300
+  AttackPower: 100

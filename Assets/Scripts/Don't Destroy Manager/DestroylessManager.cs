@@ -14,6 +14,9 @@ public class DestroylessManager : MonoBehaviour
 
     public bool filledHealth = false;
 
+    public int _unitCount;
+    public List<UnitsContainer> _UnitsContainers = new List<UnitsContainer>();
+
     private void Awake()
     {
 
@@ -31,9 +34,9 @@ public class DestroylessManager : MonoBehaviour
             Destroy(this.gameObject);
 
 
-        } 
-        
-        
+        }
+
+
 
     }
 

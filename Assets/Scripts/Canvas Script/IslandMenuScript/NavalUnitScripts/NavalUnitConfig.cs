@@ -25,8 +25,8 @@ public class NavalUnitConfig : MonoBehaviour
         unitCost.text = _NavalUnitContainer.GetCost().ToString();
         unitRank.text = _NavalUnitContainer.GetRank().ToString();
 
-        Debug.Log("Cost:"+unitCost.text);
-        Debug.Log("Rank:"+unitRank.text);
+        Debug.Log("Cost:" + unitCost.text);
+        Debug.Log("Rank:" + unitRank.text);
         //Debug.Log("Img:"+unitImg.sprite);
     }
 
@@ -34,6 +34,11 @@ public class NavalUnitConfig : MonoBehaviour
     {
         this._NavalUnitContainer = _NavalUnitContainer;
         Config();
+    }
+
+    public NavalUnitContainer GetNavalUnitContainer()
+    {
+        return _NavalUnitContainer;
     }
 
 

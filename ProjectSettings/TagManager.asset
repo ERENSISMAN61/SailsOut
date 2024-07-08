@@ -27,6 +27,7 @@ TagManager:
   - CloseButton
   - SmokeParticle
   - ExplosionEffect
+  - UnitsManager
   layers:
   - Default
   - TransparentFX
