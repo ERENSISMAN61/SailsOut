@@ -17,7 +17,7 @@ public class MovingScript : MonoBehaviour
 
     public float rotationSpeed;
 
-
+    private PlayerFire playerFire;
 
 
     // public Text ParsomenText;             /////  ACILACAK
@@ -51,6 +51,8 @@ public class MovingScript : MonoBehaviour
         {
             Debug.LogError("PlayerFire component not found on the player object.");
         }
+
+        playerFire = gameObject.GetComponent<PlayerFire>();
     }
 
 
@@ -70,7 +72,7 @@ public class MovingScript : MonoBehaviour
         //    SceneManager.LoadScene("Eren Scene"); //silinecek/////////////////////////////////
         //}
 
-        
+
 
 
 
@@ -183,46 +185,27 @@ public class MovingScript : MonoBehaviour
 
         if (collision.gameObject.CompareTag("EnemyBullet"))
         {
-            isBulletEntered = true;
-            if (isBulletEntered == true)
+            Vector3 toCollisionPoint = collision.transform.position - gameObject.transform.position;
+            float dotProduct = Vector3.Dot(transform.right, toCollisionPoint);
+            Debug.Log("Dot: " + dotProduct);
+
+            // Çarpma noktasını kullanarak kuvvet uygulayın
+            Vector3 collisionPoint = collision.transform.position;
+
+            if (dotProduct > 0)
             {
-                //\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\   bu oç hatasını bulmak için 2 saatimi verdim piç kod    //////////////////////////////////////////////////////////////////
-                // health -= GameObject.FindGameObjectWithTag("EnemyBullet").GetComponent<BulletController>().enemyBulletDamage;
-                playerHealthBarControl.health -= collision.gameObject.GetComponent<EnemyBulletController>().enemyBulletDamage;
-
-                playerHealthBarControl.lerpTimer = 0f; // reset the timer
-                                                       //playerHealthBarControl.updateHealthBar(playerHealthBarControl.health, playerHealthBarControl.maxHealth);
-
+                rb.AddForceAtPosition(new Vector3(5, 10, 3), gameObject.transform.position, ForceMode.Impulse);
             }
-
+            else
+            {
+                rb.AddForceAtPosition(new Vector3(-5, 10, -3), gameObject.transform.position, ForceMode.Impulse);
+            }
         }
 
     }
 
-    private void OnTriggerStay(Collider collision)
-    {
-        if (collision.gameObject.CompareTag("EnemyBullet"))
-        {
-            isBulletEntered = false;
-            Destroy(collision.gameObject);
-
-        }
-
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Island"))
-        {
-            ParsomenCount++;
-            collision.gameObject.SetActive(false);
-            //    ParsomenText.text = String.Format("Parsomen: {0}/3", ParsomenCount);    /////////////// ACILACAK
-
-
-
-        }
-
-
-    }
+    
+    
 
 
 }

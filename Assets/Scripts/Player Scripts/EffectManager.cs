@@ -6,15 +6,30 @@ public class EffectManager : MonoBehaviour
 {
     public ParticleSystem explosionEffect;
     private Rigidbody rb;
-    public bool isExploded = false;
     private void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
+        if (rb == null)
+        {
+            Debug.LogError("Rigidbody component is missing on " + gameObject.name);
+        }
+
+        if (explosionEffect == null)
+        {
+            Debug.LogError("Explosion Effect is not assigned in the inspector on " + gameObject.name);
+        }
     }
     private void PlayExplosionEffect()
     {
-        explosionEffect.Play();
         
+        if (explosionEffect != null)
+        {
+            explosionEffect.Play();
+        }
+        else
+        {
+            Debug.LogError("Explosion Effect is not assigned in the inspector.");
+        }
     }
 
     IEnumerator WaitEffectAndDestroy()
@@ -26,14 +41,21 @@ public class EffectManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("EnemyShip") /*|| other.gameObject.CompareTag("Ennemy")*/) // sonradan denenecek
+        if (other.gameObject.CompareTag("EnemyShip") /*|| other.gameObject.CompareTag("Ennemy")*/) // sonradan denenecek
         {
-            rb.isKinematic = true;
-            
-            StartCoroutine(WaitEffectAndDestroy());
-            
+
+            if (rb != null)
+            {
+                rb.isKinematic = true;
+                StartCoroutine(WaitEffectAndDestroy());
+            }
+            else
+            {
+                Debug.LogError("Rigidbody is missing on " + gameObject.name);
+            }
+
         }
     }
-   
+
 
 }

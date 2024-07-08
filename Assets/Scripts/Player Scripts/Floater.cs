@@ -32,7 +32,9 @@ public class Floater : MonoBehaviour
         Rb = this.GetComponent<Rigidbody>();
     }
 
-    // Her karede çalışacak fonksiyonu tanımlayalım
+    
+
+    // Her karede çalışacak fonksiyonu tanımlayalıms
     void FixedUpdate()
     {
         // Suyun altında kalan noktaların sayısını sıfırlayalım

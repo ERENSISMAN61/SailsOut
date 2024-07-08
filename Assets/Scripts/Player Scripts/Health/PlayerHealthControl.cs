@@ -17,6 +17,7 @@ public class PlayerHealthControl : MonoBehaviour
         if (other.gameObject.CompareTag("EnemyBullet"))
         {
             playerHealthBarControl.health -= cannonValue;
+            playerHealthBarControl.lerpTimer = 0;
         }
     }
 }
