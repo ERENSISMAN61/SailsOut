@@ -28,14 +28,16 @@ public class EnemyCollision : MonoBehaviour
 
             // Çarpma noktasını kullanarak kuvvet uygulayın
             Vector3 collisionPoint = other.transform.position;
-            float Randomforce = Random.Range(0.5f, 3f);
+            float Randomforce = Random.Range(5f, 10f);
             if (dotProduct > 0)
             {
-                rb.AddForceAtPosition(new Vector3(Randomforce, 1.2f, Randomforce), parentPosition, ForceMode.Impulse);
+                
+                //- olcak
+                rb.AddForceAtPosition(Vector3.left * Randomforce, parentPosition, ForceMode.Impulse);
             }
             else
             {
-                rb.AddForceAtPosition(new Vector3(-Randomforce, 1.3f, -Randomforce), parentPosition, ForceMode.Impulse);
+                rb.AddForceAtPosition(Vector3.right * Randomforce, parentPosition, ForceMode.Impulse);
             }
         }
     }

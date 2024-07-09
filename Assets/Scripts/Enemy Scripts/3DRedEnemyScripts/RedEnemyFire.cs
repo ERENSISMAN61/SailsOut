@@ -18,7 +18,7 @@ public class RedEnemyFire : MonoBehaviour
     public float timeBetweenBursts = 2f; // Time between consecutive bursts
     public int shotsPerBurst = 3; // Number of shots in each burst
     public float launchAngle = 45f; // Launch angle of the enemy bullets
-    public float randomAngleValue = 5f; // Random angle value for bullet launch
+    public float randomAngleValue = 2f; // Random angle value for bullet launch
 
 
     public float distance; // Distance at which the enemy engages the player
@@ -101,19 +101,23 @@ public class RedEnemyFire : MonoBehaviour
 
         Vector3 direction = (targetPosition - transform.position).normalized;
         Quaternion rotation = Quaternion.LookRotation(direction);
-        
+
+        // Dönüş hızını artırmak için rotationSpeed * Time.deltaTime ile çarpın
+        float step = rotationSpeed * Time.deltaTime;
 
         if (distanceCannonsToMotherShipRight < distanceCannonsToMotherShipLeft)
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed);
-            transform.Rotate(new Vector3(0, 90 * rotationSpeed), Space.Self);
+            //transform.Rotate(new Vector3(0, 90 * rotationSpeed), Space.Self);
+            transform.RotateAround(transform.position, transform.up, 90 * rotationSpeed);
             isStoppedTime += Time.deltaTime; // Update the time elapsed since the enemy stoppedD
             //Debug.Log("Stopped Time: " + isStoppedTime);
         }
         else
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed);
-            transform.Rotate(new Vector3(0, -90 * rotationSpeed), Space.Self);
+            //transform.Rotate(new Vector3(0, -90 * rotationSpeed), Space.Self);
+            transform.RotateAround(transform.position, transform.up, -90 * rotationSpeed);
             isStoppedTime += Time.deltaTime; // Update the time elapsed since the enemy stopped
             //Debug.Log("Stopped Time: " + isStoppedTime);
         }
