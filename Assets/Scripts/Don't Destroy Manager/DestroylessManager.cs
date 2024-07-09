@@ -31,7 +31,8 @@ public class DestroylessManager : MonoBehaviour
     public float lerpTimer; // Sağlık barının geçiş süresi
     private float chipSeed = 2f; // Sağlık azalma hızı
 
-
+    public int _unitCount;
+    public List<UnitsContainer> _UnitsContainers = new List<UnitsContainer>();
     private void Awake()
     {
 
