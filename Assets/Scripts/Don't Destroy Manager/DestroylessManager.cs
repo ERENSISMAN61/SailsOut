@@ -112,10 +112,10 @@ public class DestroylessManager : MonoBehaviour
             }
         }
 
-        //foreach (var player in playersToRemove)
-        //{
-        //    playerCrewHealth.Remove(player);
-        //}
+        foreach (var player in playersToRemove)
+        {
+            playerCrewHealth.Remove(player);
+        }
 
         totalEnemyCurrentHealth = 0;
         totalEnemyMaxHealth = 0;
@@ -134,10 +134,10 @@ public class DestroylessManager : MonoBehaviour
             }
         }
 
-        //foreach (var enemy in enemiesToRemove)
-        //{
-        //    enemyCrewHealth.Remove(enemy);
-        //}
+        foreach (var enemy in enemiesToRemove)
+        {
+            enemyCrewHealth.Remove(enemy);
+        }
 
 
     }
