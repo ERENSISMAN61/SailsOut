@@ -61,7 +61,7 @@ public class PlayerHealthBarControl : MonoBehaviour
 
         //health = maxHealth;    ///////  acılmayacak \\\\\\
 
-        updateHealthBar(health, maxHealth);
+        //updateHealthBar(health, maxHealth);
 
 
 
@@ -77,18 +77,18 @@ public class PlayerHealthBarControl : MonoBehaviour
         
     }
 
-    public void updateHealthBar(float currentHealth, float maxHealth)
-    {
-        if(currentHealth>0 && maxHealth >0)  // HATA VERMEMESI ICIN IF EKLENDI
-        {
-            float healthSliderAmount = currentHealth / maxHealth;
-            healthSlider.fillAmount = Mathf.Lerp(healthSlider.fillAmount, healthSliderAmount, 0f); // Sağlık barını güncelle
+    //public void updateHealthBar(float currentHealth, float maxHealth)
+    //{
+    //    if(currentHealth>0 && maxHealth >0)  // HATA VERMEMESI ICIN IF EKLENDI
+    //    {
+    //        float healthSliderAmount = currentHealth / maxHealth;
+    //        healthSlider.fillAmount = Mathf.Lerp(healthSlider.fillAmount, healthSliderAmount, 0f); // Sağlık barını güncelle
 
-            //healthSlider.fillAmount = healthSliderAmount;
-        }
+    //        //healthSlider.fillAmount = healthSliderAmount;
+    //    }
 
 
-    }
+    //}
 
     public void updateHungerBar(float currentHunger, float maxHunger)
     {
@@ -133,7 +133,7 @@ public class PlayerHealthBarControl : MonoBehaviour
     private void Update()
     {
         UpdateHealthUI();
-        updateHealthBar(health, maxHealth); // Sağlık barını güncelle
+        //updateHealthBar(health, maxHealth); // Sağlık barını güncelle
 
         supplyCount_ = inventory.GetComponent<InventoryController>().supplyCount; // Inventory'den supplyCount değerini al
         if (Time.time - lastReducingTime >= hungerTime) // 1 dakika geçti mi?

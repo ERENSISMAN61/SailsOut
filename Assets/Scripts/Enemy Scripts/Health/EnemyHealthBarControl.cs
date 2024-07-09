@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Cinemachine;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
@@ -13,16 +14,17 @@ public class EnemyHealthBarControl : MonoBehaviour
 
     [SerializeField] private Image healthSlider;
     [SerializeField] private Image bacHealthSlider;
-    [SerializeField] private Transform target;
+    [SerializeField]
+    private Transform target;
     [SerializeField] private Vector3 offset;
-    [SerializeField] private GameObject mainCam;
-    public float lerpTimer =0; // Sağlık barının geçiş süresi
+    public float lerpTimer = 0; // Sağlık barının geçiş süresi
     [SerializeField]
     private float chipSeed; // Sağlık azalma hızı
+
+    [SerializeField]
+    private GameObject mainCam;
     private void Start()
     {
-        //   target = gameObject.GetComponentInParent<>
-
         maxHealth = 100f;                                                                  /// TASINACAK
         health = 100f;
         updateHealthBar(health, maxHealth);
@@ -35,7 +37,7 @@ public class EnemyHealthBarControl : MonoBehaviour
         transform.position = target.position + offset;
         UpdateHealthUI();
         updateHealthBar(health, maxHealth);
-        
+
     }
     public void updateHealthBar(float currentHealth, float maxHealth)
     {
@@ -76,8 +78,8 @@ public class EnemyHealthBarControl : MonoBehaviour
         }
     }
 
-    
 
 
-   
+
+
 }
