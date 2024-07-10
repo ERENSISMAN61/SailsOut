@@ -1,37 +1,37 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GridLGRowCountFinder : MonoBehaviour  //Unit sayýsýna göre column sayýsýný otomatik belirliyoruz.
+public class GridLGRowCountFinder : MonoBehaviour  //Unit sayï¿½sï¿½na gï¿½re column sayï¿½sï¿½nï¿½ otomatik belirliyoruz.
 
 
-//-------------!!!!  6 sütunlu yapmak istiyosak root  objesindeki RecruimentUnitScript componentine bir tane daha scriptable obje eklememiz yeterli !!!!!!----------
+//-------------!!!!  6 sï¿½tunlu yapmak istiyosak root  objesindeki RecruimentUnitScript componentine bir tane daha scriptable obje eklememiz yeterli !!!!!!----------
 
 
 {
 
-    [SerializeField] private GameObject FillablePrefab; // Doldurulabilir prefabý buraya sürükleyin
-    [SerializeField] private GameObject emptyPrefab; // Boþ prefabý buraya sürükleyin
+    [SerializeField] private GameObject FillablePrefab; // Doldurulabilir prefabï¿½ buraya sï¿½rï¿½kleyin
+    [SerializeField] private GameObject emptyPrefab; // Boï¿½ prefabï¿½ buraya sï¿½rï¿½kleyin
 
     void Start()
     {
 
-       int unitCount= transform.parent.parent.parent.GetComponent<RecruimentUnitScript>().GetUnitCount();  //Unit sayýsýný almak için
+        int unitCount = transform.parent.parent.parent.GetComponent<RecruimentUnitScript>().GetUnitCount();  //Unit sayï¿½sï¿½nï¿½ almak iï¿½in
 
         GridLayoutGroup gridLayoutGroup = GetComponent<GridLayoutGroup>();
-        gridLayoutGroup.constraintCount = unitCount; //Constraint Count'u unit sayýsýna eþitlemek için  (Yani Unit Sayýsýna göre column sayýsýný otomatik belirliyoruz)
+        gridLayoutGroup.constraintCount = unitCount; //Constraint Count'u unit sayï¿½sï¿½na eï¿½itlemek iï¿½in  (Yani Unit Sayï¿½sï¿½na gï¿½re column sayï¿½sï¿½nï¿½ otomatik belirliyoruz)
         int toplamSutun = gridLayoutGroup.constraintCount;
 
 
-        // Her sütun için rastgele ürün sayýlarý oluþturun
+        // Her sï¿½tun iï¿½in rastgele ï¿½rï¿½n sayï¿½larï¿½ oluï¿½turun
         int[] urunSayilari = new int[toplamSutun];
         for (int i = 0; i < toplamSutun; i++)
         {
-            urunSayilari[i] = Random.Range(1, 4); // Sütun baþýna 1 ila 3 arasýnda rastgele ürün sayýsý
+            urunSayilari[i] = Random.Range(1, 4); // Sï¿½tun baï¿½ï¿½na 1 ila 3 arasï¿½nda rastgele ï¿½rï¿½n sayï¿½sï¿½
         }
 
         int prefabIndeksi = 0; // 1. unit ile baslamak icin
 
-        for (int satir = 0; satir < 3; satir++) // 3 satýr
+        for (int satir = 0; satir < 3; satir++) // 3 satï¿½r
         {
             for (int sutun = 0; sutun < toplamSutun; sutun++)
             {
@@ -39,44 +39,64 @@ public class GridLGRowCountFinder : MonoBehaviour  //Unit sayýsýna göre column s
 
                 if (urunSayisi > 0)
                 {
-                    // Prefabý oluþturun
-                    GameObject yeniNesne = Instantiate(FillablePrefab);  // doldurulabilir prefabý oluþturmak için
+                    // Prefabï¿½ oluï¿½turun
+                    GameObject yeniNesne = Instantiate(FillablePrefab);  // doldurulabilir prefabï¿½ oluï¿½turmak iï¿½in
 
-                    //Recruiment (Root) objesindeki ürünleri scriptableobject olarak almak için                                                             
+                    //Recruiment (Root) objesindeki ï¿½rï¿½nleri scriptableobject olarak almak iï¿½in                                                             
                     yeniNesne.GetComponent<NavalUnitConfig>().SetNavalUnitContainer(transform.parent.parent.parent.GetComponent<RecruimentUnitScript>().GetUnits(prefabIndeksi));
-                      
 
 
 
 
-                    // Prefabýn adýný ayarlayýn (isteðe baðlý)
-                    yeniNesne.name = $"{FillablePrefab.name} (Sýra {sutun + 1}, {satir + 1})";
 
-                    // Bir sonraki prefabý seçin
+                    // Prefabï¿½n adï¿½nï¿½ ayarlayï¿½n (isteï¿½e baï¿½lï¿½)
+                    yeniNesne.name = $"{FillablePrefab.name} (Sira {sutun + 1}, {satir + 1})";
+
+                    // Bir sonraki prefabï¿½ seï¿½in
                     prefabIndeksi = (prefabIndeksi + 1) % unitCount;
 
-                    // Yeni nesneyi Grid Layout Group'un altýna ekleyin
+                    // Yeni nesneyi Grid Layout Group'un altï¿½na ekleyin
                     yeniNesne.transform.SetParent(transform);
 
-                    // Bu sütun için ürün sayýsýný azaltýn
+                    // Bu sï¿½tun iï¿½in ï¿½rï¿½n sayï¿½sï¿½nï¿½ azaltï¿½n
                     urunSayilari[sutun]--;
                 }
                 else
                 {
-                    // Boþ bir prefabý oluþturun
+                    // Boï¿½ bir prefabï¿½ oluï¿½turun
                     GameObject bosNesne = Instantiate(emptyPrefab);
 
-                    // Boþ prefabýn adýný ayarlayýn (isteðe baðlý)
-                    bosNesne.name = $"Boþ (Sýra {sutun + 1}, {satir + 1})";
+                    // Boï¿½ prefabï¿½n adï¿½nï¿½ ayarlayï¿½n (isteï¿½e baï¿½lï¿½)
+                    bosNesne.name = $"Bos (Sira {sutun + 1}, {satir + 1})";
 
-                    // Boþ nesneyi Grid Layout Group'un altýna ekleyin
+                    // Boï¿½ nesneyi Grid Layout Group'un altï¿½na ekleyin
                     bosNesne.transform.SetParent(transform);
 
-                    // Bir sonraki prefabý seçin
+                    // Bir sonraki prefabï¿½ seï¿½in
                     prefabIndeksi = (prefabIndeksi + 1) % unitCount;
 
                 }
             }
+        }
+    }
+
+    // ÃœrÃ¼nÃ¼ silip yerine boÅŸ bir prefab ekleyen metod
+    public void RemoveProduct(int productIndex)
+    {
+        // ÃœrÃ¼nÃ¼n silindiÄŸini varsayalÄ±m ve yerine boÅŸ bir prefab ekleyelim
+        if (transform.childCount > productIndex)
+        {
+            // Silinecek Ã¼rÃ¼nÃ¼n GameObject'ini al
+            GameObject productToRemove = transform.GetChild(productIndex).gameObject;
+
+            // ÃœrÃ¼nÃ¼ sahneden kaldÄ±r
+            Destroy(productToRemove);
+
+            // BoÅŸ bir prefab oluÅŸtur
+            GameObject emptyObject = Instantiate(emptyPrefab);
+            emptyObject.transform.SetParent(transform, false);
+            emptyObject.transform.SetSiblingIndex(productIndex); // BoÅŸ prefabÄ± silinen Ã¼rÃ¼nÃ¼n yerine koy
+            emptyObject.name = $"BoÅŸ (Yer {productIndex + 1})";
         }
     }
 }

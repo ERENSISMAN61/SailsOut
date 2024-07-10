@@ -7,32 +7,37 @@ public class BuyUnit : MonoBehaviour
     private NavalUnitContainer _NavalUnitContainer;
 
     private UnitsManager _UnitsManager;
+
+    private GridLGRowCountFinder _gridLGRowCountFinder;
+
+
     public void BuyUnitFunction()
     {
         _UnitsManager = GameObject.FindGameObjectWithTag("UnitsManager").GetComponent<UnitsManager>();
 
-        /*
-        if (_UnitsManager == null)
-        {
-            Debug.LogError("QEUnitsManager bulunamadı!");
-            return;
-        }*/
-
         _NavalUnitContainer = gameObject.GetComponent<NavalUnitConfig>().GetNavalUnitContainer();
 
-        /* if (_NavalUnitContainer == null)
-         {
-             Debug.LogError("QENavalUnitContainer bulunamadı!");
-             return;
-         }*/
+        _gridLGRowCountFinder = transform.parent.GetComponent<GridLGRowCountFinder>();
 
-        //unit olusturma
-        UnitsContainer newUnit = new UnitsContainer(_NavalUnitContainer.GetRank(), _NavalUnitContainer.GetHealth(), _NavalUnitContainer.GetAttackPower());
-        // unit ekleme
-        _UnitsManager.UnitsContainers.Add(newUnit);
-        // unit sayısını güncelleme
-        _UnitsManager.unitCount = _UnitsManager.UnitsContainers.Count;
+        if (GameObject.FindWithTag("Inventory").GetComponent<InventoryController>().coinCount >= _NavalUnitContainer.GetCost())
+        {
+            GameObject.FindWithTag("Inventory").GetComponent<InventoryController>().coinCount -= _NavalUnitContainer.GetCost(); // coin azaltma
 
-        //  Debug.Log("QEUnit added: Rank " + _NavalUnitContainer.GetRank() + ", Health " + _NavalUnitContainer.GetHealth() + ", Attack Power " + _NavalUnitContainer.GetAttackPower());
+            //unit olusturma
+            UnitsContainer newUnit = new UnitsContainer(_NavalUnitContainer.GetRank(), _NavalUnitContainer.GetHealth(), _NavalUnitContainer.GetAttackPower());
+            // unit ekleme
+            _UnitsManager.UnitsContainers.Add(newUnit);
+            // unit sayısını güncelleme
+            _UnitsManager.unitCount = _UnitsManager.UnitsContainers.Count;
+
+            _gridLGRowCountFinder.RemoveProduct(transform.GetSiblingIndex());// remove product from grid layout group
+
+            //  Debug.Log("QEUnit added: Rank " + _NavalUnitContainer.GetRank() + ", Health " + _NavalUnitContainer.GetHealth() + ", Attack Power " + _NavalUnitContainer.GetAttackPower());
+        }
+        else
+        {
+            return;
+        }
+
     }
 }

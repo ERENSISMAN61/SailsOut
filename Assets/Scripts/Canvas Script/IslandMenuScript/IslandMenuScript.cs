@@ -8,7 +8,7 @@ public class IslandMenuScript : MonoBehaviour
     private GameObject spawnIslandMenuPrefab;
     private GameObject playerObject;
 
-    public bool canIslandMenuOpen = false; //þehirler arasý menu açtýðýnda hatalar çýkabilir. çýkarsa ada butonuna setMenutrue fnksiyonu ekleyip bir bool deðeri true yaparak iki bool ile çözülebilir
+    public bool canIslandMenuOpen = false; //ï¿½ehirler arasï¿½ menu aï¿½tï¿½ï¿½ï¿½nda hatalar ï¿½ï¿½kabilir. ï¿½ï¿½karsa ada butonuna setMenutrue fnksiyonu ekleyip bir bool deï¿½eri true yaparak iki bool ile ï¿½ï¿½zï¿½lebilir
 
     public bool isIslandMenuOpen = false;
 
@@ -25,16 +25,17 @@ public class IslandMenuScript : MonoBehaviour
         {
             spawnIslandMenuPrefab = Instantiate(islandMenuObject, GameObject.Find("Canvas").transform);
 
-
             isIslandMenuOpen = true;
 
             GameObject.FindGameObjectWithTag("CameraSystem").GetComponent<CameraSystem>().isCameraStopped = true;
-            playerObject.GetComponent<SmoothPlayerMovement>().isIslandMenuOpened = true;   // eðer menu instanciate edilmeyen bir sistem yaparsam sadece menu kapa aç sistemþ yaparsam bunlarýn deðiþmesi
-                                                                                       //gerekir. þu anlýk bu þekilde yaptým.
+            playerObject.GetComponent<SmoothPlayerMovement>().isIslandMenuOpened = true;   // eï¿½er menu instanciate edilmeyen bir sistem yaparsam sadece menu kapa aï¿½ sistemï¿½ yaparsam bunlarï¿½n deï¿½iï¿½mesi
+                                                                                           //gerekir. ï¿½u anlï¿½k bu ï¿½ekilde yaptï¿½m.
 
             onceOpened = true;
 
             canIslandMenuOpen = false;
+
+            Time.timeScale = 0; //ZAMANI DURDUR
 
         }
 
@@ -45,7 +46,7 @@ public class IslandMenuScript : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (onceOpened && spawnIslandMenuPrefab == null) //menu bir kere açýlmýþsa ve kapatýlmýþsa
+        if (onceOpened && spawnIslandMenuPrefab == null) //menu bir kere aï¿½ï¿½lmï¿½ï¿½sa ve kapatï¿½lmï¿½ï¿½sa
         {
 
             Debug.Log("Island Menu is closed");
@@ -54,6 +55,8 @@ public class IslandMenuScript : MonoBehaviour
             isIslandMenuOpen = false;
 
             onceOpened = false;
+
+            Time.timeScale = 1; //ZAMANI DEVAM ETTIR
         }
 
 
