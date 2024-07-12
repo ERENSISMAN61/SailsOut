@@ -41,22 +41,22 @@ public class PlayerHealthBarControl : MonoBehaviour
     private void Start()
     {
 
-        DestroylessObject = GameObject.FindGameObjectWithTag("Destroyless");                   /// TASINACAK
-        if (!DestroylessObject.GetComponent<DestroylessManager>().filledHealth)                /// TASINACAK
-        {
+        //DestroylessObject = GameObject.FindGameObjectWithTag("Destroyless");                   /// TASINACAK
+        //if (!DestroylessObject.GetComponent<DestroylessManager>().filledHealth)                /// TASINACAK
+        //{
 
-            DestroylessObject.GetComponent<DestroylessManager>().playerMaxHealthDM = 100f;     /// TASINACAK
-            DestroylessObject.GetComponent<DestroylessManager>().playerCurrentHealthDM = 100f;  /// TASINACAK
+        //    DestroylessObject.GetComponent<DestroylessManager>().playerMaxHealthDM = 100f;     /// TASINACAK
+        //    DestroylessObject.GetComponent<DestroylessManager>().playerCurrentHealthDM = 100f;  /// TASINACAK
 
-            maxHealth = 100f;                                                                  /// TASINACAK
-            health = 100f;                                                                     /// TASINACAK
+        //    maxHealth = 100f;                                                                  /// TASINACAK
+        //    health = 100f;                                                                     /// TASINACAK
 
-            DestroylessObject.GetComponent<DestroylessManager>().filledHealth = true;          /// TASINACAK
-        }
+        //    DestroylessObject.GetComponent<DestroylessManager>().filledHealth = true;          /// TASINACAK
+        //}
 
 
-        maxHealth = DestroylessObject.GetComponent<DestroylessManager>().playerMaxHealthDM;    /// TASINACAK
-        health = DestroylessObject.GetComponent<DestroylessManager>().playerCurrentHealthDM;   /// TASINACAK
+        //maxHealth = DestroylessObject.GetComponent<DestroylessManager>().playerMaxHealthDM;    /// TASINACAK
+        //health = DestroylessObject.GetComponent<DestroylessManager>().playerCurrentHealthDM;   /// TASINACAK
 
 
         //health = maxHealth;    ///////  acılmayacak \\\\\\
@@ -126,8 +126,8 @@ public class PlayerHealthBarControl : MonoBehaviour
 
     private void FixedUpdate()
     {
-        DestroylessObject.GetComponent<DestroylessManager>().playerCurrentHealthDM = health;  /// TASINACAK
-        DestroylessObject.GetComponent<DestroylessManager>().playerMaxHealthDM = maxHealth;   /// TASINACAK
+        //DestroylessObject.GetComponent<DestroylessManager>().playerCurrentHealthDM = health;  /// TASINACAK
+        //DestroylessObject.GetComponent<DestroylessManager>().playerMaxHealthDM = maxHealth;   /// TASINACAK
 
     }
     private void Update()

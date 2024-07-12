@@ -6,7 +6,7 @@ public class EnemyHealthControl : MonoBehaviour
 {
     
     private EnemyHealthBarControl enemyHealthBarControl;
-    private DestroylessManager destroylessManager;
+    private GeneralCrewHealthControl generalCrewHealth;
     private float enemycannonValue = 5f;
     void Start()
     {
@@ -15,9 +15,9 @@ public class EnemyHealthControl : MonoBehaviour
             enemyHealthBarControl = gameObject.GetComponentInChildren<EnemyHealthBarControl>();
         }
 
-        if (destroylessManager == null)
+        if (generalCrewHealth == null)
         {
-            destroylessManager = GameObject.FindGameObjectWithTag("Destroyless").GetComponent<DestroylessManager>();
+            generalCrewHealth = GameObject.FindGameObjectWithTag("GeneralCrewHealth").GetComponent<GeneralCrewHealthControl>();
         }
         
     }
@@ -30,7 +30,7 @@ public class EnemyHealthControl : MonoBehaviour
             enemyHealthBarControl.health -= RandomcannonValue;
             Debug.Log("Enemy Health: " + enemyHealthBarControl.health);
             enemyHealthBarControl.lerpTimer = 0;
-            destroylessManager.lerpTimer = 0;
+            generalCrewHealth.lerpTimer = 0;
             //Destroy(other.gameObject);
 
             

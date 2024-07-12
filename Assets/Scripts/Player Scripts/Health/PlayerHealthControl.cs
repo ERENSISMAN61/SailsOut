@@ -6,14 +6,14 @@ public class PlayerHealthControl : MonoBehaviour
 {
     
     private PlayerHealthBarControl playerHealthBarControl;
-    private DestroylessManager destroylessManager;
+    private GeneralCrewHealthControl generalCrewHealth;
     private CameraShakeControl cameraShakeControl;
     public bool isShotted = false;
     private float shakingTime;
     private void Start()
     {
         playerHealthBarControl = gameObject.GetComponentInChildren<PlayerHealthBarControl>();
-        destroylessManager = GameObject.FindGameObjectWithTag("Destroyless").GetComponent<DestroylessManager>();
+        generalCrewHealth = GameObject.FindGameObjectWithTag("GeneralCrewHealth").GetComponent<GeneralCrewHealthControl>();
         cameraShakeControl = gameObject.GetComponent<CameraShakeControl>();
         shakingTime = cameraShakeControl.ShakeTime;
     }
@@ -26,7 +26,7 @@ public class PlayerHealthControl : MonoBehaviour
             float RandomcannonValue = Random.Range(1f, 2.5f);
             playerHealthBarControl.health -= RandomcannonValue;
             playerHealthBarControl.lerpTimer = 0;
-            destroylessManager.lerpTimer = 0;
+            generalCrewHealth.lerpTimer = 0;
             StartCoroutine(ResetIsShotted());
         }
     }

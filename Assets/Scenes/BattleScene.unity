@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 214.7985, g: 212.8505, b: 241.04984, a: 1}
+  m_IndirectSpecularColor: {r: 214.79752, g: 212.84659, b: 241.04984, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1281,6 +1281,62 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 173924707}
   m_CullTransparentMesh: 1
+--- !u!1 &192367322
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 192367324}
+  - component: {fileID: 192367323}
+  m_Layer: 0
+  m_Name: GeneralCrewHealthControl
+  m_TagString: GeneralCrewHealth
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &192367323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 192367322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c9b54067cdd57d44a36927c6f713c8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  filledHealth: 0
+  playerCrewHealth: []
+  totalPlayerCurrentHealth: 0
+  totalPlayerMaxHealth: 0
+  enemyCrewHealth: []
+  totalEnemyCurrentHealth: 0
+  totalEnemyMaxHealth: 0
+  playerHealthSlider: {fileID: 116519054}
+  playerBackHealthSlider: {fileID: 52495670}
+  enemyHealthSlider: {fileID: 283836303}
+  enemyBackHealthSlider: {fileID: 761792091}
+  lerpTimer: 2
+--- !u!4 &192367324
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 192367322}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.676563, y: 14.688092, z: 80.58184}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &215298150
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11508,7 +11564,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1228563163}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.08485766, y: 0.000000017671955, z: -0.0000000015050294, w: 0.9963931}
+  m_LocalRotation: {x: 0.08485766, y: -0.000000017671962, z: 0.00000000150503, w: 0.9963931}
   m_LocalPosition: {x: -116, y: 12, z: -193}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
@@ -12398,7 +12454,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1285700681}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.11059805, y: -0.000000017100824, z: 0.000000001902992, w: 0.99386525}
+  m_LocalRotation: {x: 0.11059805, y: 0.000000017100827, z: -0.0000000019029922, w: 0.99386525}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -14153,6 +14209,18 @@ PrefabInstance:
     - target: {fileID: 5858187109629150744, guid: 9b92db66f04f90e4481d4967d8390973, type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7744959491977681472, guid: 9b92db66f04f90e4481d4967d8390973, type: 3}
+      propertyPath: health
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7744959491977681472, guid: 9b92db66f04f90e4481d4967d8390973, type: 3}
+      propertyPath: lerpTimer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7744959491977681472, guid: 9b92db66f04f90e4481d4967d8390973, type: 3}
+      propertyPath: maxHealth
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16856,7 +16924,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1878538332}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.08485766, y: 0.000000017671955, z: -0.0000000015050294, w: 0.9963931}
+  m_LocalRotation: {x: 0.08485766, y: -0.000000017671962, z: 0.00000000150503, w: 0.9963931}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -18627,6 +18695,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 283836303}
     - target: {fileID: 8300897754339095861, guid: 7d2e71c22ba0dbb4f98e73ce945086dc, type: 3}
+      propertyPath: playerMaxHealthDM
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8300897754339095861, guid: 7d2e71c22ba0dbb4f98e73ce945086dc, type: 3}
       propertyPath: playerHealthSlider
       value: 
       objectReference: {fileID: 116519054}
@@ -18634,6 +18706,10 @@ PrefabInstance:
       propertyPath: enemyBackHealthSlider
       value: 
       objectReference: {fileID: 761792091}
+    - target: {fileID: 8300897754339095861, guid: 7d2e71c22ba0dbb4f98e73ce945086dc, type: 3}
+      propertyPath: playerCurrentHealthDM
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 8300897754339095861, guid: 7d2e71c22ba0dbb4f98e73ce945086dc, type: 3}
       propertyPath: playerBackHealthSlider
       value: 
@@ -19384,3 +19460,4 @@ SceneRoots:
   - {fileID: 843559219}
   - {fileID: 2113198525}
   - {fileID: 979456472}
+  - {fileID: 192367324}

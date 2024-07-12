@@ -28,6 +28,7 @@ TagManager:
   - SmokeParticle
   - ExplosionEffect
   - UnitsManager
+  - GeneralCrewHealth
   layers:
   - Default
   - TransparentFX
