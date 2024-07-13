@@ -1632,7 +1632,7 @@ MonoBehaviour:
       - guiDebug
       values:
       - t: 1
-        v: 4294967295
+        v: 2
       - t: 255
         v: 12
       - t: 255
@@ -1642,7 +1642,7 @@ MonoBehaviour:
       - t: 11
         v: 5319966120273248298
       - t: 11
-        v: 61
+        v: 62
       - t: 255
         v: 67
       - t: 255
@@ -1833,7 +1833,7 @@ MonoBehaviour:
       fields: []
       values: []
       special: 
-      uniObj: {fileID: 8574412962073106934, guid: 240ea90774073d84cb4ef9b3c461e28c, type: 2}
+      uniObj: {fileID: 8574412962073106934, guid: 59b98ca43f27d8c4a89d4058d2a962e5, type: 2}
     - refId: 63
       type: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       altType: 
@@ -1916,7 +1916,7 @@ MonoBehaviour:
       - t: 2
         v: 1125515264
       - t: 2
-        v: 1127481344
+        v: 1134919680
       special: 
       uniObj: {fileID: 0}
     - refId: 69
@@ -2010,15 +2010,15 @@ MonoBehaviour:
       - t: 255
         v: 73
       - t: 2
-        v: 1077936128
+        v: 1120403456
       - t: 2
-        v: 1092616192
+        v: 1114636288
       - t: 3
         v: 1
       - t: 11
         v: 5458162637256785966
       - t: 11
-        v: 3
+        v: 5
       - t: 255
         v: 74
       - t: 255
