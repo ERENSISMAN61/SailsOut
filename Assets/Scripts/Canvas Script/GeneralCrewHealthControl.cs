@@ -22,7 +22,7 @@ public class GeneralCrewHealthControl : MonoBehaviour
     public Image enemyBackHealthSlider;
 
     public float lerpTimer; // Sağlık barının geçiş süresi
-    private float chipSeed = 2f; // Sağlık azalma hızı
+    private float chipSeed = 0.5f; // Sağlık azalma hızı
     //--------------------------------------------------------------VEYSEL BITIS--------------------------------------------------------------
 
 
@@ -58,6 +58,17 @@ public class GeneralCrewHealthControl : MonoBehaviour
             if (enemy.GetComponentInChildren<EnemyHealthBarControl>() != null)
             {
                 enemyCrewHealth.Add(enemy);
+
+            }
+        }
+
+        foreach (var enemyHealth in enemyCrewHealth)
+        {
+           
+            if(enemyHealth.GetComponentInChildren<EnemyHealthBarControl>().health > 0)
+            {
+                //totalEnemyCurrentHealth += enemyHealth.GetComponentInChildren<EnemyHealthBarControl>().health;
+                totalEnemyMaxHealth += enemyHealth.GetComponentInChildren<EnemyHealthBarControl>().maxHealth;
             }
         }
     }
@@ -94,19 +105,20 @@ public class GeneralCrewHealthControl : MonoBehaviour
         }
 
         totalEnemyCurrentHealth = 0;
-        totalEnemyMaxHealth = 0;
+        //totalEnemyMaxHealth = 0;
 
         List<GameObject> enemiesToRemove = new List<GameObject>();
         foreach (var enemy in enemyCrewHealth)
         {
             if (enemy.GetComponentInChildren<EnemyHealthBarControl>().health <= 0)
             {
+                
                 enemiesToRemove.Add(enemy);
             }
             else
             {
                 totalEnemyCurrentHealth += enemy.GetComponentInChildren<EnemyHealthBarControl>().health;
-                totalEnemyMaxHealth += enemy.GetComponentInChildren<EnemyHealthBarControl>().maxHealth;
+                //totalEnemyMaxHealth += enemy.GetComponentInChildren<EnemyHealthBarControl>().maxHealth;
             }
         }
 
@@ -137,7 +149,6 @@ public class GeneralCrewHealthControl : MonoBehaviour
         //Canı arttırınca kullanılacak
         if (fillF < hFraction)
         {
-
             playerBackHealthSlider.color = Color.green; // 2.Sağlık barının rengini yeşil yap
             playerBackHealthSlider.fillAmount = hFraction; // 2.Sağlık barını güncelle
             lerpTimer += Time.deltaTime; // Zamanı güncelle
@@ -162,16 +173,16 @@ public class GeneralCrewHealthControl : MonoBehaviour
             enemyBackHealthSlider.fillAmount = Mathf.Lerp(fillB, hFraction, percentComplete); // 2.Sağlık barını güncelle
         }
         //Canı arttırınca kullanılacak
-        if (fillF < hFraction)
-        {
+        //if (fillF < hFraction)
+        //{
 
-            enemyBackHealthSlider.color = Color.green; // 2.Sağlık barının rengini yeşil yap
-            enemyBackHealthSlider.fillAmount = hFraction; // 2.Sağlık barını güncelle
-            lerpTimer += Time.deltaTime; // Zamanı güncelle
-            float percentComplete = lerpTimer / chipSeed; // Yüzde tamamlama oranını hesapla
-            percentComplete *= percentComplete; // Yüzde tamamlama oranını hesapla
-            enemyHealthSlider.fillAmount = Mathf.Lerp(fillF, enemyBackHealthSlider.fillAmount, percentComplete); // Sağlık barını güncelle
-        }
+        //    enemyBackHealthSlider.color = Color.green; // 2.Sağlık barının rengini yeşil yap
+        //    enemyBackHealthSlider.fillAmount = hFraction; // 2.Sağlık barını güncelle
+        //    lerpTimer += Time.deltaTime; // Zamanı güncelle
+        //    float percentComplete = lerpTimer / chipSeed; // Yüzde tamamlama oranını hesapla
+        //    percentComplete *= percentComplete; // Yüzde tamamlama oranını hesapla
+        //    enemyHealthSlider.fillAmount = Mathf.Lerp(fillF, enemyBackHealthSlider.fillAmount, percentComplete); // Sağlık barını güncelle
+        //}
 
 
     }

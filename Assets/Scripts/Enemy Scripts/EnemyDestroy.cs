@@ -37,14 +37,14 @@ public class EnemyDestroy : MonoBehaviour
 
     IEnumerator DestroyEnemy()
     {
-        floater.FloatingLevel -= Time.deltaTime*2;
+        floater.FloatingLevel -= Time.fixedDeltaTime*2;
         yield return new WaitForSeconds(waitDestroyTime);
         Destroy(gameObject);
     }
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if (enemyHealthBarControl.health <= 0)
+        if (enemyHealthBarControl.health <= 0.1f)
         {
             
             redEnemyFire.enabled = false;

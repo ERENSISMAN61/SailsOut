@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 214.79752, g: 212.84659, b: 241.04984, a: 1}
+  m_IndirectSpecularColor: {r: 214.79459, g: 212.85172, b: 241.04984, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1321,7 +1321,8 @@ MonoBehaviour:
   playerBackHealthSlider: {fileID: 52495670}
   enemyHealthSlider: {fileID: 283836303}
   enemyBackHealthSlider: {fileID: 761792091}
-  lerpTimer: 2
+  lerpTimer: 1
+  chipSeed: 0.8
 --- !u!4 &192367324
 Transform:
   m_ObjectHideFlags: 0
