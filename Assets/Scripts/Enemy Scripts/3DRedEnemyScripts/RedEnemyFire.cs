@@ -32,7 +32,7 @@ public class RedEnemyFire : MonoBehaviour
     private redEnemySmoothMovement redEnemySmoothMovement; // Reference to the RedEnemySmoothMovement script
     [SerializeField]    
     private PlayerHealthBarControl healthOfPlayerShip;
-
+    private EnemyHealthBarControl enemyHealthBar;
 
     AudioSource sourceAudioE; // Audio source for enemy sounds
     public AudioClip enemyShotAudio; // Audio clip for enemy shots
@@ -44,7 +44,7 @@ public class RedEnemyFire : MonoBehaviour
         //playerShip = GameObject.FindGameObjectWithTag("Player"); // Find and store the player ship GameObject
         sourceAudioE = GetComponent<AudioSource>(); // Get the AudioSource component
         redEnemySmoothMovement = GetComponent<redEnemySmoothMovement>(); // Get the RedEnemySmoothMovement script
-
+        enemyHealthBar = GetComponentInChildren<EnemyHealthBarControl>();
         shotsRemaining = shotsPerBurst; // Initialize the shots remaining in the burst
         
     }
@@ -90,7 +90,11 @@ public class RedEnemyFire : MonoBehaviour
         {
             isStoppedTime = 0f; // Reset the time since the enemy stopped
             enemyAgent.isStopped = false; // Resume NavMeshAgent movement
-            redEnemySmoothMovement.enabled = true; // Enable smooth movement script
+            if(enemyHealthBar.health >= 0)
+            {
+                redEnemySmoothMovement.enabled = true; // Enable smooth movement script
+            }
+            
         }
     }
 
@@ -111,7 +115,7 @@ public class RedEnemyFire : MonoBehaviour
             //transform.Rotate(new Vector3(0, 90 * rotationSpeed), Space.Self);
             transform.RotateAround(transform.position, transform.up, 90 * rotationSpeed);
             isStoppedTime += Time.deltaTime; // Update the time elapsed since the enemy stoppedD
-            //Debug.Log("Stopped Time: " + isStoppedTime);
+            Debug.Log("Stopped Time: " + isStoppedTime);
         }
         else
         {
@@ -119,7 +123,7 @@ public class RedEnemyFire : MonoBehaviour
             //transform.Rotate(new Vector3(0, -90 * rotationSpeed), Space.Self);
             transform.RotateAround(transform.position, transform.up, -90 * rotationSpeed);
             isStoppedTime += Time.deltaTime; // Update the time elapsed since the enemy stopped
-            //Debug.Log("Stopped Time: " + isStoppedTime);
+            Debug.Log("Stopped Time: " + isStoppedTime);
         }
 
     }
@@ -179,6 +183,6 @@ public class RedEnemyFire : MonoBehaviour
         Rigidbody rb = newBullet.GetComponent<Rigidbody>();
         Vector3 launchDirection = (firePoint.forward * 2) + (Vector3.up * Mathf.Tan(radianAngle));
         rb.AddForce(launchDirection * bulletSpeed);
-        //Destroy(newBullet, 5f); // Destroy the bullet after 5 seconds
+        Destroy(newBullet, 5f); // Destroy the bullet after 5 seconds
     }
 }

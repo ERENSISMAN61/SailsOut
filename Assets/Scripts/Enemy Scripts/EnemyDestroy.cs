@@ -37,6 +37,9 @@ public class EnemyDestroy : MonoBehaviour
 
     IEnumerator DestroyEnemy()
     {
+        redEnemyFire.enabled = false;
+        redEnemySmoothMovement.enabled = false;
+        yield return new WaitForSeconds(0.5f);//wait for the enemy to stop moving and shooting
         floater.FloatingLevel -= Time.fixedDeltaTime*2;
         yield return new WaitForSeconds(waitDestroyTime);
         Destroy(gameObject);
@@ -44,11 +47,10 @@ public class EnemyDestroy : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (enemyHealthBarControl.health <= 0.1f)
+        if (enemyHealthBarControl.health <= 0f)
         {
             
-            redEnemyFire.enabled = false;
-            redEnemySmoothMovement.enabled = false;
+            
             StartCoroutine(DestroyEnemy());
 
         }
