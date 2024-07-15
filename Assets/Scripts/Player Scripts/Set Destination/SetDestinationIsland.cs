@@ -9,22 +9,25 @@ public class SetDestinationIsland : MonoBehaviour
 {
     GameObject playerObject;
 
-    private Transform transformDock;
+    public List<Transform> transformDock = new List<Transform>();
+    //[SerializeField] private Transform[] transformDock;
     private Vector3 offset, offsetEnd;
 
     private bool canGetClose = false;
     private bool canStartAnimate = false;
 
-    private float Dot, DotForward; //ilki(Dot) dot sað sol için, ikincisi(DotForward) ileri geri için
+    private float Dot, DotForward; //ilki(Dot) dot saï¿½ sol iï¿½in, ikincisi(DotForward) ileri geri iï¿½in
 
-    private Vector3 hedefNokta;// Dot için
+    private Vector3 hedefNokta;// Dot iï¿½in
 
-    [SerializeField] private GameObject IslandMenuObjectScript;
+    public GameObject IslandMenuObjectScript;
+
+    private int i = 0; // dock number
 
     void Start()
     {
-        transformDock = gameObject.transform;
-
+        // transformDock = gameObject.transform;
+        IslandMenuObjectScript = gameObject.transform.parent.gameObject;
         offset = new Vector3(-60, 0, -60);
     }
     void Update()
@@ -32,8 +35,8 @@ public class SetDestinationIsland : MonoBehaviour
 
         // Debug.Log("Piano y: "+((GameObject.FindWithTag("Player").gameObject.transform.rotation.eulerAngles.y-(transform.rotation.eulerAngles.y-90))));
 
-        // Debug.Log("Merkeze Uzaklýðý: "+ Vector3.Distance(new Vector3(GameObject.FindWithTag("Player").gameObject.transform.position.x, 0, GameObject.FindWithTag("Player").gameObject.transform.position.z), new Vector3(transformDock.position.x, 0, transformDock.position.z)));
-        //Debug.Log("StartPoint Uzaklýðý: "+ Vector3.Distance(new Vector3(GameObject.FindWithTag("Player").gameObject.transform.position.x, 0, GameObject.FindWithTag("Player").gameObject.transform.position.z), new Vector3(transformDock.position.x + offset.x, 0, transformDock.position.z + offset.z)));
+        // Debug.Log("Merkeze Uzaklï¿½ï¿½ï¿½: "+ Vector3.Distance(new Vector3(GameObject.FindWithTag("Player").gameObject.transform.position.x, 0, GameObject.FindWithTag("Player").gameObject.transform.position.z), new Vector3(transformDock.position.x, 0, transformDock.position.z)));
+        //Debug.Log("StartPoint Uzaklï¿½ï¿½ï¿½: "+ Vector3.Distance(new Vector3(GameObject.FindWithTag("Player").gameObject.transform.position.x, 0, GameObject.FindWithTag("Player").gameObject.transform.position.z), new Vector3(transformDock.position.x + offset.x, 0, transformDock.position.z + offset.z)));
 
 
 
@@ -43,7 +46,7 @@ public class SetDestinationIsland : MonoBehaviour
         {
             if (playerObject == null)//object null ise kontrol
             {
-                //   Debug.Log("player object null. Atama yapýlýyor.");
+                //   Debug.Log("player object null. Atama yapï¿½lï¿½yor.");
                 playerObject = GameObject.FindWithTag("Player");
             }
 
@@ -57,13 +60,13 @@ public class SetDestinationIsland : MonoBehaviour
             //  Debug.Log("Az Dock position: " + transformDock.position + offset);
 
             //Debug.Log("Az Distance: " + Vector3.Distance(new Vector3(playerObject.transform.position.x, 0, playerObject.transform.position.z), new Vector3(transformDock.position.x + offset.x, 0, transformDock.position.z + offset.z)));
-            //Y leri katmadan ne kadar yakýn olduðunu ölçtük
+            //Y leri katmadan ne kadar yakï¿½n olduï¿½unu ï¿½lï¿½tï¿½k
 
-            if (Vector3.Distance(new Vector3(playerObject.transform.position.x, 0, playerObject.transform.position.z), new Vector3(transformDock.position.x + offset.x, 0, transformDock.position.z + offset.z)) <= 5) //animasyon baþlangýcýna vardýysa
-            {       //yleri katmadan 5den daha yakýnlarsa  baþlat
+            if (Vector3.Distance(new Vector3(playerObject.transform.position.x, 0, playerObject.transform.position.z), new Vector3(transformDock[i].position.x + offset.x, 0, transformDock[i].position.z + offset.z)) <= 5) //animasyon baï¿½langï¿½cï¿½na vardï¿½ysa
+            {       //yleri katmadan 5den daha yakï¿½nlarsa  baï¿½lat
                 canStartAnimate = true;
 
-                offsetEnd = playerObject.gameObject.transform.position + transformDock.right * -80f;
+                offsetEnd = playerObject.gameObject.transform.position + transformDock[i].right * -80f;
 
             }
 
@@ -76,7 +79,7 @@ public class SetDestinationIsland : MonoBehaviour
                 playerObject.GetComponent<SmoothPlayerMovement>().isStartDockAnimate = true; // Iskele animasyonu basladiginda herhangi bir yere gidemesin
 
                 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                // !!!!!!!YAPILACAK: enemy de yakalayabilir mi deðiþkeni kapanmasý lazým !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                // !!!!!!!YAPILACAK: enemy de yakalayabilir mi deï¿½iï¿½keni kapanmasï¿½ lazï¿½m !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
                 //  Debug.Log("Az Rotation is started");
@@ -86,8 +89,8 @@ public class SetDestinationIsland : MonoBehaviour
                 // ----------------------DONME ANIMASYONU-----------------------------
 
                 // float t = 1f - Mathf.Pow(1f - Time.deltaTime, 1.5f); 
-                playerObject.gameObject.transform.rotation= Quaternion.Lerp(playerObject.gameObject.transform.rotation, Quaternion.Euler(0f, transform.rotation.eulerAngles.y-90, 0f), 1.5f* Time.deltaTime);// 1.5f * Time.deltaTime
-                                                                                                                                                                                                           //döndürme kodu
+                playerObject.gameObject.transform.rotation = Quaternion.Lerp(playerObject.gameObject.transform.rotation, Quaternion.Euler(0f, transformDock[i].rotation.eulerAngles.y - 90, 0f), 1.5f * Time.deltaTime);// 1.5f * Time.deltaTime
+                                                                                                                                                                                                                        //dï¿½ndï¿½rme kodu
 
 
 
@@ -95,35 +98,35 @@ public class SetDestinationIsland : MonoBehaviour
 
                 // playerObject.gameObject.transform.position = Vector3.Lerp(playerObject.gameObject.transform.position, new Vector3(playerObject.transform.position.x + playerObject.transform.forward.x *11f, playerObject.transform.position.y, playerObject.transform.position.z + playerObject.transform.forward.z *11f), 1.5f * Time.deltaTime); // 1.5f * Time.deltaTime
 
-                if (((((playerObject.gameObject.transform.rotation.eulerAngles.y)-(transform.rotation.eulerAngles.y-90)) <= 50f && ((playerObject.gameObject.transform.rotation.eulerAngles.y)-(transform.rotation.eulerAngles.y-90)) >= -50f)
-                        || (((playerObject.gameObject.transform.rotation.eulerAngles.y)-(transform.rotation.eulerAngles.y-90)) >=309f && ((playerObject.gameObject.transform.rotation.eulerAngles.y)-(transform.rotation.eulerAngles.y-90)) <= 411f)))
+                if (((((playerObject.gameObject.transform.rotation.eulerAngles.y) - (transformDock[i].rotation.eulerAngles.y - 90)) <= 50f && ((playerObject.gameObject.transform.rotation.eulerAngles.y) - (transformDock[i].rotation.eulerAngles.y - 90)) >= -50f)
+                        || (((playerObject.gameObject.transform.rotation.eulerAngles.y) - (transformDock[i].rotation.eulerAngles.y - 90)) >= 309f && ((playerObject.gameObject.transform.rotation.eulerAngles.y) - (transformDock[i].rotation.eulerAngles.y - 90)) <= 411f)))
                 {
-                    playerObject.gameObject.transform.position = Vector3.Lerp(playerObject.gameObject.transform.position, offsetEnd, 0.4f * Time.deltaTime); // dönme animasyonu 50 dereceden az kaldýysa daha hýzlý ilerle
+                    playerObject.gameObject.transform.position = Vector3.Lerp(playerObject.gameObject.transform.position, offsetEnd, 0.4f * Time.deltaTime); // dï¿½nme animasyonu 50 dereceden az kaldï¿½ysa daha hï¿½zlï¿½ ilerle
                 }
-                else if (((((playerObject.gameObject.transform.rotation.eulerAngles.y)-(transform.rotation.eulerAngles.y-90)) <= 90f && ((playerObject.gameObject.transform.rotation.eulerAngles.y)-(transform.rotation.eulerAngles.y-90)) >= -90f)
-                        || (((playerObject.gameObject.transform.rotation.eulerAngles.y)-(transform.rotation.eulerAngles.y-90)) >=269f && ((playerObject.gameObject.transform.rotation.eulerAngles.y)-(transform.rotation.eulerAngles.y-90)) <= 441f)))
+                else if (((((playerObject.gameObject.transform.rotation.eulerAngles.y) - (transformDock[i].rotation.eulerAngles.y - 90)) <= 90f && ((playerObject.gameObject.transform.rotation.eulerAngles.y) - (transformDock[i].rotation.eulerAngles.y - 90)) >= -90f)
+                        || (((playerObject.gameObject.transform.rotation.eulerAngles.y) - (transformDock[i].rotation.eulerAngles.y - 90)) >= 269f && ((playerObject.gameObject.transform.rotation.eulerAngles.y) - (transformDock[i].rotation.eulerAngles.y - 90)) <= 441f)))
                 {
-                    playerObject.gameObject.transform.position = Vector3.Lerp(playerObject.gameObject.transform.position, offsetEnd, 0.2f * Time.deltaTime); // dönme animasyonu 90 dereceden az kaldýysa yavaþça ilerle
+                    playerObject.gameObject.transform.position = Vector3.Lerp(playerObject.gameObject.transform.position, offsetEnd, 0.2f * Time.deltaTime); // dï¿½nme animasyonu 90 dereceden az kaldï¿½ysa yavaï¿½ï¿½a ilerle
                 }
 
 
 
 
 
-                //---------------ÝSKELENÝN TAM YANINDA MI DOT ÝLE KONTROL----------------
-                hedefNokta = Vector3.Normalize(GameObject.FindWithTag("Player").gameObject.transform.position - transform.position);
+                //---------------ï¿½SKELENï¿½N TAM YANINDA MI DOT ï¿½LE KONTROL----------------
+                hedefNokta = Vector3.Normalize(GameObject.FindWithTag("Player").gameObject.transform.position - transformDock[i].position);
 
-                DotForward = Vector3.Dot(transform.right, hedefNokta);// ilerideyse -1, gerideyse 1, tam yanýnda 0 döner.
+                DotForward = Vector3.Dot(transformDock[i].right, hedefNokta);// ilerideyse -1, gerideyse 1, tam yanï¿½nda 0 dï¿½ner.
 
 
 
 
 
                 //-------------------ROTASYON TAMAMLANDI MI KONTROL----------------------
-                //Rotation tamamlandýðýnda ilerleme animasyonu da duruyo  çünkü bloðu false yapýp kapatýyoruz.
-                if (((((playerObject.gameObject.transform.rotation.eulerAngles.y)-(transform.rotation.eulerAngles.y-90)) <= 1f && ((playerObject.gameObject.transform.rotation.eulerAngles.y)-(transform.rotation.eulerAngles.y-90)) >= -1f)
-                        || (((playerObject.gameObject.transform.rotation.eulerAngles.y)-(transform.rotation.eulerAngles.y-90)) >=359f && ((playerObject.gameObject.transform.rotation.eulerAngles.y)-(transform.rotation.eulerAngles.y-90)) <= 361f))
-                        && (((Vector3.Distance(playerObject.transform.position, offsetEnd)) <= 5f) || (DotForward <= 0.1f  &&  DotForward >= -0.1f))) //rotasyon tamamlandýysa ve hedefin tam yanýna geldiyse //DotForward <= 0.1f  &&  DotForward >= -0.1f buydu deðiþtik
+                //Rotation tamamlandï¿½ï¿½ï¿½nda ilerleme animasyonu da duruyo  ï¿½ï¿½nkï¿½ bloï¿½u false yapï¿½p kapatï¿½yoruz.
+                if (((((playerObject.gameObject.transform.rotation.eulerAngles.y) - (transformDock[i].rotation.eulerAngles.y - 90)) <= 1f && ((playerObject.gameObject.transform.rotation.eulerAngles.y) - (transformDock[i].rotation.eulerAngles.y - 90)) >= -1f)
+                        || (((playerObject.gameObject.transform.rotation.eulerAngles.y) - (transformDock[i].rotation.eulerAngles.y - 90)) >= 359f && ((playerObject.gameObject.transform.rotation.eulerAngles.y) - (transformDock[i].rotation.eulerAngles.y - 90)) <= 361f))
+                        && (((Vector3.Distance(playerObject.transform.position, offsetEnd)) <= 5f) || (DotForward <= 0.1f && DotForward >= -0.1f))) //rotasyon tamamlandï¿½ysa ve hedefin tam yanï¿½na geldiyse //DotForward <= 0.1f  &&  DotForward >= -0.1f buydu deï¿½iï¿½tik
                 {
                     Debug.Log("Rotation is finished");
                     playerObject.GetComponent<SmoothPlayerMovement>().isStartDockAnimate = false;
@@ -131,9 +134,9 @@ public class SetDestinationIsland : MonoBehaviour
                     canStartAnimate = false;
                     canGetClose = false;
 
-                    playerObject.GetComponent<SmoothPlayerMovement>().isIslandMenuOpened = true; // menu açýkken baþka bir yere gidemesin
+                    playerObject.GetComponent<SmoothPlayerMovement>().isIslandMenuOpened = true; // menu aï¿½ï¿½kken baï¿½ka bir yere gidemesin
                     GameObject.FindGameObjectWithTag("CameraSystem").GetComponent<CameraSystem>().isCameraStopped = true; // kamera hareket edemesin
-                    IslandMenuObjectScript.GetComponent<IslandMenuScript>().canIslandMenuOpen = true; //menüyü aç
+                    IslandMenuObjectScript.GetComponent<IslandMenuScript>().canIslandMenuOpen = true; //menï¿½yï¿½ aï¿½
 
 
                 }
@@ -148,46 +151,59 @@ public class SetDestinationIsland : MonoBehaviour
     public void SetDestToDock()
     {
 
+
         playerObject = GameObject.FindWithTag("Player");
 
+        float dockDistance = 0;
+        int j = 0;
+        foreach (Transform tr in transformDock)
+        {
+            float newdockDistance = Vector3.Distance(new Vector3(playerObject.transform.position.x, 0, playerObject.transform.position.z), new Vector3(tr.position.x, 0, tr.position.z));
+            if (newdockDistance < dockDistance || dockDistance == 0)
+            {
+                dockDistance = newdockDistance;
+                i = j;
+            }
+            j++;
+        }
 
-        if (playerObject.GetComponent<SmoothPlayerMovement>().isStartDockAnimate == false) //iskele animasyonu baþlamýþsa baþka iskeleye gidemesin
+        if (playerObject.GetComponent<SmoothPlayerMovement>().isStartDockAnimate == false) //iskele animasyonu baï¿½lamï¿½ï¿½sa baï¿½ka iskeleye gidemesin
         {
 
-            //Aþaðýda yazacaðým kod ile hedefPozisyon'a göre benimPozisyonum saðda mý solda mý diye kontrol
-            Vector3 dirToTarget = Vector3.Normalize(playerObject.transform.position - transform.position); // playerdan benim pozisyonumu çýkarýp normalize ettim. Normalize etmezsen uzaklýk ne kadar olursa olsun 1 olurmþ
+            //Aï¿½aï¿½ï¿½da yazacaï¿½ï¿½m kod ile hedefPozisyon'a gï¿½re benimPozisyonum saï¿½da mï¿½ solda mï¿½ diye kontrol
+            Vector3 dirToTarget = Vector3.Normalize(playerObject.transform.position - transformDock[i].position); // playerdan benim pozisyonumu ï¿½ï¿½karï¿½p normalize ettim. Normalize etmezsen uzaklï¿½k ne kadar olursa olsun 1 olurmï¿½
 
-            Dot = Vector3.Dot(transform.forward, dirToTarget);//saðýndaysa 1, solundaysa -1, tam karþýsý/arkasý 0 döner.
-                                                              // Debug.Log("Dot right/left: " + Dot);
+            Dot = Vector3.Dot(transformDock[i].forward, dirToTarget);//saï¿½ï¿½ndaysa 1, solundaysa -1, tam karï¿½ï¿½sï¿½/arkasï¿½ 0 dï¿½ner.
+                                                                     // Debug.Log("Dot right/left: " + Dot);
 
 
-            if (Dot>=0) // saðdaysa
+            if (Dot >= 0) // saï¿½daysa
             {
-                // offset = new Vector3(70, 0, -70); //Z koordinatý iskelenin ne kadar gerisinda animasyonun baþlayacaðýný belirler. x koordinatý saðda mý solda mý animasyonun baþlayacaðýný belirler.
+                // offset = new Vector3(70, 0, -70); //Z koordinatï¿½ iskelenin ne kadar gerisinda animasyonun baï¿½layacaï¿½ï¿½nï¿½ belirler. x koordinatï¿½ saï¿½da mï¿½ solda mï¿½ animasyonun baï¿½layacaï¿½ï¿½nï¿½ belirler.
 
-                offset = transformDock.right * 70 + transformDock.forward *50;
+                offset = transformDock[i].right * 70 + transformDock[i].forward * 50;
                 //   offsetEnd = transformDock.right *
             }
-            else if (Dot<0) // soldaysa veya tam karþýsýndaysa
+            else if (Dot < 0) // soldaysa veya tam karï¿½ï¿½sï¿½ndaysa
             {
                 // offset = new Vector3(-40, 0, -70);
-                offset = transformDock.right * 70 + transformDock.forward *-50;
+                offset = transformDock[i].right * 70 + transformDock[i].forward * -50;
             }
 
 
 
-            playerObject.GetComponent<SmoothPlayerMovement>().isDestinationSet  = true;
+            playerObject.GetComponent<SmoothPlayerMovement>().isDestinationSet = true;
 
 
 
-            //iskeleye uzaklýðýmýz
+            //iskeleye uzaklï¿½ï¿½ï¿½mï¿½z
             //  Debug.Log("PPP UZAKLIK: "+Vector3.Distance(new Vector3(playerObject.transform.position.x, 0, playerObject.transform.position.z), new Vector3(transformDock.position.x, 0, transformDock.position.z)));
 
-            if (Vector3.Distance(new Vector3(playerObject.transform.position.x, 0, playerObject.transform.position.z), new Vector3(transformDock.position.x, 0, transformDock.position.z))>95) //PLAYER iskeleye yakýn deðilse iskeleye git
-            {                                                                                                                                                   //eðer iskeledeyse tekrar iskeleye yönelme
+            if (Vector3.Distance(new Vector3(playerObject.transform.position.x, 0, playerObject.transform.position.z), new Vector3(transformDock[i].position.x, 0, transformDock[i].position.z)) > 95) //PLAYER iskeleye yakï¿½n deï¿½ilse iskeleye git
+            {                                                                                                                                                   //eï¿½er iskeledeyse tekrar iskeleye yï¿½nelme
                                                                                                                                                                 //  Debug.Log("PPP DISARDAdeyiz");
 
-                playerObject.GetComponent<SmoothPlayerMovement>().SetDestinationPlus(new Vector3(transformDock.position.x + offset.x, 0, transformDock.position.z + offset.z));
+                playerObject.GetComponent<SmoothPlayerMovement>().SetDestinationPlus(new Vector3(transformDock[i].position.x + offset.x, 0, transformDock[i].position.z + offset.z));
                 // Debug.Log("Destination set to: " + transformDock.position + offset);
 
 
@@ -196,14 +212,14 @@ public class SetDestinationIsland : MonoBehaviour
             }
             else
             {
-                if (playerObject.GetComponent<SmoothPlayerMovement>().PathLocations != new Vector3[0])  //iskele içindeyken baþka bir yöne gitmeye çalýþýrken  ada tuþuna týklanýrsa orda kalsýn gitmeye çalýþtýðý yer iptal olsun.
+                if (playerObject.GetComponent<SmoothPlayerMovement>().PathLocations != new Vector3[0])  //iskele iï¿½indeyken baï¿½ka bir yï¿½ne gitmeye ï¿½alï¿½ï¿½ï¿½rken  ada tuï¿½una tï¿½klanï¿½rsa orda kalsï¿½n gitmeye ï¿½alï¿½ï¿½tï¿½ï¿½ï¿½ yer iptal olsun.
                 {
                     playerObject.GetComponent<SmoothPlayerMovement>().PathLocations = new Vector3[0];
 
 
-                    playerObject.GetComponent<SmoothPlayerMovement>().isIslandMenuOpened = true; // menu açýkken baþka bir yere gidemesin
+                    playerObject.GetComponent<SmoothPlayerMovement>().isIslandMenuOpened = true; // menu aï¿½ï¿½kken baï¿½ka bir yere gidemesin
                     GameObject.FindGameObjectWithTag("CameraSystem").GetComponent<CameraSystem>().isCameraStopped = true; // kamera hareket edemesin
-                    IslandMenuObjectScript.GetComponent<IslandMenuScript>().canIslandMenuOpen = true; //menüyü aç
+                    IslandMenuObjectScript.GetComponent<IslandMenuScript>().canIslandMenuOpen = true; //menï¿½yï¿½ aï¿½
 
                 }
             }
