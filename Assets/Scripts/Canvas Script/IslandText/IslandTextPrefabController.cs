@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using Microsoft.Unity.VisualStudio.Editor;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class IslandTextPrefabController : MonoBehaviour
 {
     [SerializeField] private GameObject islandTextPrefab;
-    // Start is called before the first frame update
+
+    [SerializeField] private Color[] NationColors;
     void Start()
     {
         foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Island"))
@@ -17,7 +20,7 @@ public class IslandTextPrefabController : MonoBehaviour
             // Instantiate nedir? Instantiate fonksiyonu, bir GameObject'in kopyasını oluşturur ve bu kopyayı sahneye ekler.
 
             islandTextP.name = obj.name.Split("-")[0].Trim() + " Text All";
-            islandTextP.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = obj.name.Split("-")[0].Trim(); // Adanın ismini alıp text'e atadık.
+            islandTextP.transform.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = obj.name.Split("-")[0].Trim(); // Adanın ismini alıp text'e atadık.
 
             islandTextP.transform.SetParent(transform); // Parent olarak bu scriptin bağlı olduğu objeyi seçtik. Seçmeseydik, bu obje sahne hiyerarşisinde en üstte olacaktı.
             islandTextP.transform.localPosition = new Vector3(0, 0, 0);
@@ -34,6 +37,14 @@ public class IslandTextPrefabController : MonoBehaviour
                     islandTextP.transform.GetChild(0).gameObject.GetComponent<SetDestinationIsland>().transformDock.Add(dock.transform);  // iskeleleri ekledik
                 }
             }
+
+            // Ülke renklerini textlerdeki 4 cizgiye atadık.
+            islandTextP.transform.GetChild(0).GetChild(0).GetComponent<UnityEngine.UI.Image>().color = NationColors[int.Parse(obj.transform.parent.parent.name.Split("-")[0].Trim()) - 1];
+            islandTextP.transform.GetChild(0).GetChild(1).GetComponent<UnityEngine.UI.Image>().color = NationColors[int.Parse(obj.transform.parent.parent.name.Split("-")[0].Trim()) - 1];
+            islandTextP.transform.GetChild(0).GetChild(3).GetComponent<UnityEngine.UI.Image>().color = NationColors[int.Parse(obj.transform.parent.parent.name.Split("-")[0].Trim()) - 1];
+            islandTextP.transform.GetChild(0).GetChild(4).GetComponent<UnityEngine.UI.Image>().color = NationColors[int.Parse(obj.transform.parent.parent.name.Split("-")[0].Trim()) - 1];
+            // Ülke rengini atadık.
+
         }
 
     }

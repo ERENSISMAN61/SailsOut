@@ -35,7 +35,7 @@ public class CameraSystem : MonoBehaviour
     public Vector3 enemyPos;
     private Vector3 inputDirec;
 
-    private float moveDragPanSpeed = 1000;
+    [SerializeField] private float moveDragPanSpeed = 1000;
 
     private GameObject player;
 
@@ -133,7 +133,32 @@ public class CameraSystem : MonoBehaviour
         }
 
 
+        //KAMERA YUKSEKLIGINE GORE HIZ AYARLAMA
+        Debug.Log("eeee: " + cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y + "\n        Hiz: " + moveDragPanSpeed); //kamera yuksekligi
 
+        if (cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y < 400 && cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y > 0)
+        {
+            moveDragPanSpeed = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y * 1f;
+        }
+        else if (cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y < 700 && cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y > 400)
+        {
+            moveDragPanSpeed = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y * 1.5f;
+        }
+        else if (cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y < followOffsetMaxY - 250 && cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y > 700)
+        {
+            moveDragPanSpeed = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y * 2f;
+        }
+        else if (cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y < followOffsetMaxY && cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y > followOffsetMaxY - 250)
+        // max yükseklikte sağa sola hareket edemesin
+        {
+            moveDragPanSpeed = 0;
+        }
+        else
+        {
+            moveDragPanSpeed = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y * 2f;
+        }
+
+        //500 de 1000 olsun
     }
 
     private void FixedUpdate()
