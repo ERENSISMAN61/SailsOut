@@ -12,7 +12,8 @@ public class TimeAndDateScript : MonoBehaviour
     [Range(0f, 24f)]
     [SerializeField] private float currentTime;
     [SerializeField] private string currentTimeString;
-    [SerializeField] private int timeSpeedMultiplier = 1;
+    [SerializeField] private int timeSpeed = 1; //only showing time speed in inspector
+    private int timeSpeedMultiplier = 1;
 
     [Header("Day and Season Settings")]
     private int daysInSeason = 16;
@@ -103,6 +104,14 @@ public class TimeAndDateScript : MonoBehaviour
     {
         Time.timeScale = speedMultiplier;
         //   timeSpeedMultiplier = speedMultiplier;
+
+        timeSpeed = speedMultiplier; // only showing time speed in inspector  
+    }
+
+    public int GetTimeSpeed()
+    {
+
+        return timeSpeed;
     }
 
 }

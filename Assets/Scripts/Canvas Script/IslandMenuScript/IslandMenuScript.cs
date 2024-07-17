@@ -35,7 +35,7 @@ public class IslandMenuScript : MonoBehaviour
 
             canIslandMenuOpen = false;
 
-            Time.timeScale = 0; //ZAMANI DURDUR
+            GameObject.FindGameObjectWithTag("TimeManager").GetComponent<TimeAndDateScript>().SetTimeSpeed(0); //ZAMANI DURDUR
 
         }
 
