@@ -13,10 +13,11 @@ public class RaidButtonScript : MonoBehaviour
 
         raidInsObj.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform);
 
-        raidInsObj.GetComponent<RectTransform>().anchoredPosition = Vector2.zero; //ekranda ortalamak icin
+        raidInsObj.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 55); //ekranda ortalamak icin
 
         GameObject.FindGameObjectWithTag("CloseButton").transform.GetChild(0).GetComponent<CloseIslandMenu>().DestroyIslandMenu();
 
+        GameObject.FindGameObjectWithTag("Player").GetComponent<SmoothPlayerMovement>().isIslandMenuOpened = false;// gemimiz hareket edemesin raid varken
     }
 
 

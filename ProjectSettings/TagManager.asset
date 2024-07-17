@@ -31,6 +31,7 @@ TagManager:
   - GeneralCrewHealth
   - Island
   - Dock
+  - TimeManager
   layers:
   - Default
   - TransparentFX

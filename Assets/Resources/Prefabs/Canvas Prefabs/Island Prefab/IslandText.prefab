@@ -687,8 +687,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: IslandText
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3184bb53cffece546805d3731394aa04, type: 2}
-  m_sharedMaterial: {fileID: -1506238069944179888, guid: 3184bb53cffece546805d3731394aa04, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ed75e58a28c72ea4c8342d6be0e9f77c, type: 2}
+  m_sharedMaterial: {fileID: -6544073511439398691, guid: ed75e58a28c72ea4c8342d6be0e9f77c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -712,8 +712,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 115.26
-  m_fontSizeBase: 115.26
+  m_fontSize: 90
+  m_fontSizeBase: 90
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

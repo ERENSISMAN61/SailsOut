@@ -28,18 +28,20 @@ public class InventoryController : MonoBehaviour
         DestroylessObject.GetComponent<DestroylessManager>().playerSupplyDM = supplyCount;
         DestroylessObject.GetComponent<DestroylessManager>().playerCoinDM = coinCount;
         DestroylessObject.GetComponent<DestroylessManager>().playerBulletDM = bulletCount;
+
+
     }
     public void ItemDrop()
     {
 
-        int randomCount = Random.Range(1, 4); // kaç item düþeceðini belirler
-        for (int i = 0; i < randomCount; i++) //düþecek item kadar fonksiyonu çalýþtýrýr.
+        int randomCount = Random.Range(1, 4); // kaï¿½ item dï¿½ï¿½eceï¿½ini belirler
+        for (int i = 0; i < randomCount; i++) //dï¿½ï¿½ecek item kadar fonksiyonu ï¿½alï¿½ï¿½tï¿½rï¿½r.
         {
-            int randomNumber = Random.Range(0, 3);  // hangi itemdan  düþeceðini belirler. her "for"  döngüsünde tekrar çalýþýr bu sayede farklý itemlar ayný anda düþme ihtimali vardýr.
+            int randomNumber = Random.Range(0, 3);  // hangi itemdan  dï¿½ï¿½eceï¿½ini belirler. her "for"  dï¿½ngï¿½sï¿½nde tekrar ï¿½alï¿½ï¿½ï¿½r bu sayede farklï¿½ itemlar aynï¿½ anda dï¿½ï¿½me ihtimali vardï¿½r.
 
             if (randomNumber == 0)
             {
-                supplyCount += 60;         // -------------------þu anlýk 60 . deðiþecek tekrardan ---------------------------------------------------------------------------
+                supplyCount += 60;         // -------------------ï¿½u anlï¿½k 60 . deï¿½iï¿½ecek tekrardan ---------------------------------------------------------------------------
             }
             else if (randomNumber == 1)
             {
@@ -53,6 +55,20 @@ public class InventoryController : MonoBehaviour
 
     }
 
+    public void DecreaseBulletCount(int decreaseAmount)
+    {
+        bulletCount -= decreaseAmount;
+    }
+
+    public void IncreaseCoinCount(int increaseAmount)
+    {
+        coinCount += increaseAmount;
+    }
+
+    public void IncreaseSupplyCount(int increaseAmount)
+    {
+        supplyCount += increaseAmount;
+    }
 
 
 }

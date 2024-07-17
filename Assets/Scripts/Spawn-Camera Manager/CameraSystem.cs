@@ -494,4 +494,13 @@ Mathf.Lerp(cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTranspose
 
     }
 
+    public float GetFollowOffsetMaxY()
+    {
+        return followOffsetMaxY;
+    }
+    public float GetFollowOffsetMinY()
+    {
+        return followOffsetMinY;
+    }
+
 }
