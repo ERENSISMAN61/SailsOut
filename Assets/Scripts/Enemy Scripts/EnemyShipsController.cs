@@ -7,8 +7,8 @@ using UnityEngine.UI;
 
 public class EnemyShipsController : MonoBehaviour
 {
-    public float maxHealth =100f;
-    public float health =100f;
+    public float maxHealth = 100f;
+    public float health = 100f;
 
     public float rotationSpeed = 3f;
     public float timeBetweenBursts = 2f;
@@ -16,53 +16,53 @@ public class EnemyShipsController : MonoBehaviour
     public Sprite highDamagedSprite;
     public Sprite destroyedSprite;
 
-    
+
 
     private SpriteRenderer spriteRenderer;
 
     [SerializeField] EnemyHealthBarControl healthBar;
 
-    
+
     private GameObject InventoryObj;
     private bool isAllow = true;
 
     public bool isBulletOut = false;
     public bool isBulletEntered = false;
 
-   
+
 
     private void Awake()
     {
-       // healthBar.GetComponentInChildren<EnemyHealthBarControl>();
+        // healthBar.GetComponentInChildren<EnemyHealthBarControl>();
     }
 
     void Start()
     {
-        
+
         InventoryObj = GameObject.FindGameObjectWithTag("Inventory");
 
-        health = maxHealth;
-        healthBar.updateHealthBar(health, maxHealth);
+        //    health = maxHealth;
+        //        healthBar.updateHealthBar(health, maxHealth);
 
         spriteRenderer = GetComponent<SpriteRenderer>();
-        
-        
 
-        
+
+
+
 
     }
 
     void Update()
     {
-        
-        
+
+
         if (health <= 0 && isAllow)
         {
-            isAllow= false;
+            isAllow = false;
             InventoryObj.GetComponent<InventoryController>().ItemDrop();
 
         }
-        
+
     }
 
 
@@ -73,7 +73,7 @@ public class EnemyShipsController : MonoBehaviour
     //    Quaternion targetRotation = Quaternion.AngleAxis(angle, Vector3.forward);
     //    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     //}
-    
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

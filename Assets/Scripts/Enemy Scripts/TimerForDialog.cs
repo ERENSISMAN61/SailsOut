@@ -41,7 +41,7 @@ public class TimerForDialog : MonoBehaviour
 
         if (speedingUp)
         {
-            SpeedingUp();
+            // SpeedingUp();
         }
         if (slowingDown)
         {
@@ -53,7 +53,8 @@ public class TimerForDialog : MonoBehaviour
 
     private void SlowDown()
     {
-        Time.timeScale = 0f; // Time.timeScale = 0.3f;
+        GameObject.FindGameObjectWithTag("TimeManager").GetComponent<TimeAndDateScript>().SetTimeSpeed(0);
+        // Time.timeScale = 0f; // Time.timeScale = 0.3f;
         //  Time.fixedDeltaTime = Time.timeScale * 0.02f;
 
 

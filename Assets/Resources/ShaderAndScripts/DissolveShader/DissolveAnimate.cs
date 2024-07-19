@@ -89,7 +89,7 @@ public class DissolveAnimate : MonoBehaviour
 
     public void EnterOverlapSphere()
     {
-        
+
         canDissolve = true;
         isEnterField = true;
         isExitField = false;
@@ -106,7 +106,7 @@ public class DissolveAnimate : MonoBehaviour
         isEnterField = false;
         isChanging = true;
         //isChanging = false;
-       elapsedTime = 0f;
+        elapsedTime = 0f;
     }
 
 
@@ -115,10 +115,10 @@ public class DissolveAnimate : MonoBehaviour
         Vector3 directionToEnemy = playerPosition - transform.parent.position;
         Vector3 normalizedDirectionToEnemy = directionToEnemy.normalized;
 
-            // X vektörü için dot product
-            dotProductX = -(Vector3.Dot(transform.parent.right, normalizedDirectionToEnemy));
-            // Z vektörü için dot product
-            dotProductZ = -(Vector3.Dot(transform.parent.forward, normalizedDirectionToEnemy));
+        // X vektï¿½rï¿½ iï¿½in dot product
+        dotProductX = -(Vector3.Dot(transform.parent.right, normalizedDirectionToEnemy));
+        // Z vektï¿½rï¿½ iï¿½in dot product
+        dotProductZ = -(Vector3.Dot(transform.parent.forward, normalizedDirectionToEnemy));
 
 
 
@@ -136,53 +136,53 @@ public class DissolveAnimate : MonoBehaviour
 
         float angle = Mathf.Atan2(dotProductZ, dotProductX) * Mathf.Rad2Deg;
         if (angle < 0) angle += 360;
-        Debug.Log("Angle:     "+angle);
+        Debug.Log("Angle:     " + angle);
 
         if (angle >= 0 && angle < 45)
         {
-             t = angle / 45;
+            t = angle / 45;
             startValue = Mathf.Lerp(-36, -30, t);
             endValue = Mathf.Lerp(-22, -7, t);
         }
         if (angle >= 45 && angle < 90)
         {
-             t = (angle - 45) / 45;
+            t = (angle - 45) / 45;
             startValue = Mathf.Lerp(-30, -12, t);
             endValue = Mathf.Lerp(-7, 18, t);
         }
         else if (angle >= 90 && angle < 135)
         {
-            t =(angle - 90) / 45;
+            t = (angle - 90) / 45;
             startValue = Mathf.Lerp(-12, 10, t);
             endValue = Mathf.Lerp(19, 34, t);
         }
         else if (angle >= 135 && angle < 180)
         {
-            t =(angle - 135) / 45;
+            t = (angle - 135) / 45;
             startValue = Mathf.Lerp(10, 22, t);
             endValue = Mathf.Lerp(35, 36, t);
         }
         else if (angle >= 180 && angle < 225)
         {
-            t =(angle - 180) / 45;
+            t = (angle - 180) / 45;
             startValue = Mathf.Lerp(21, 5, t);
             endValue = Mathf.Lerp(37, 33, t);
         }
         else if (angle >= 225 && angle < 270)
         {
-            t =(angle - 225) / 45;
+            t = (angle - 225) / 45;
             startValue = Mathf.Lerp(5, -20, t);
             endValue = Mathf.Lerp(30, 14, t);
         }
         else if (angle >= 270 && angle < 315)
         {
-            t =(angle - 270) / 45;
+            t = (angle - 270) / 45;
             startValue = Mathf.Lerp(-22, -37, t);
             endValue = Mathf.Lerp(13, -9, t);
         }
         else
         {
-            t =(angle - 315) / 45;
+            t = (angle - 315) / 45;
             startValue = Mathf.Lerp(-35, -36, t);
             endValue = Mathf.Lerp(-10, -22, t);
         }
@@ -236,7 +236,7 @@ public class DissolveAnimate : MonoBehaviour
         {
 
             if (isStartEnter)
-            { 
+            {
                 Mat[0].SetFloat(cutoffHeightPropertyName, startValue);
                 Mat[1].SetFloat(cutoffHeightPropertyName, startValue);
                 Mat[2].SetFloat(cutoffHeightPropertyName, startValue);
@@ -291,7 +291,7 @@ public class DissolveAnimate : MonoBehaviour
             {
 
                 newValue = Mathf.Lerp(currentValue, startValue, elapsedTime / duration);
-                if(newValue == startValue)
+                if (newValue == startValue)
                 {
 
                     gameObject.GetComponent<Renderer>().enabled = false;
@@ -355,7 +355,7 @@ public class DissolveAnimate : MonoBehaviour
 
             if (elapsedTime >= duration)
             {
-                canDissolve= false;
+                canDissolve = false;
                 isChanging = false;
                 isEnterField = false;
                 isExitField = false;
@@ -374,7 +374,7 @@ public class DissolveAnimate : MonoBehaviour
 
             }
         }
-        GetComponent<Renderer>().materials= Mat;
+        GetComponent<Renderer>().materials = Mat;
 
 
 

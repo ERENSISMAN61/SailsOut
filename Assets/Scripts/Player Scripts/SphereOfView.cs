@@ -5,7 +5,7 @@ using UnityEngine;
 public class SphereOfView : MonoBehaviour
 {
     private float radius = 1000f;
-    private float distance = 80f; // görüþ alanýnýn objenin ne kadar önünde olacaðý
+    private float distance = 80f; // gï¿½rï¿½ï¿½ alanï¿½nï¿½n objenin ne kadar ï¿½nï¿½nde olacaï¿½ï¿½
     private LayerMask enemyLayer;
 
     private Material[] Mat;
@@ -13,24 +13,24 @@ public class SphereOfView : MonoBehaviour
 
     private string cutoffHeightPropertyName = "_CutOff_Height";
     private float increaseSpeed = 4f;
-  //  private bool canChange0, canChange1, canChange2, canChange3, canChange4 = false;
+    //  private bool canChange0, canChange1, canChange2, canChange3, canChange4 = false;
 
     private HashSet<Collider> objectsInSphere = new HashSet<Collider>();
     void Start()
     {
-        enemyLayer = LayerMask.GetMask("OutlineFalse","OutlineTrue");
+        enemyLayer = LayerMask.GetMask("OutlineFalse", "OutlineTrue");
 
-    } 
+    }
     void Update()
     {
-        //transform.forward * distance = önünü daha fazla görmesi için
-       
-        Collider[] enemies = Physics.OverlapSphere(transform.position + transform.forward * distance, radius, enemyLayer); // görüþ alanýndaki tüm player nesnelerini bir diziye atayýn
+        //transform.forward * distance = ï¿½nï¿½nï¿½ daha fazla gï¿½rmesi iï¿½in
 
+        Collider[] enemies = Physics.OverlapSphere(transform.position + transform.forward * distance, radius, enemyLayer); // gï¿½rï¿½ï¿½ alanï¿½ndaki tï¿½m player nesnelerini bir diziye atayï¿½n
+        Debug.Log("enemy sayisi:" + objectsInSphere.Count);
         HashSet<Collider> newObjectsInSphere = new HashSet<Collider>();
 
-   //     Debug.Log("enemy sayýsý-1:"+enemies.Length);
-        foreach (Collider enemy in enemies) // dizi içinde döngü baþlat
+        //     Debug.Log("enemy sayï¿½sï¿½-1:"+enemies.Length);
+        foreach (Collider enemy in enemies) // dizi iï¿½inde dï¿½ngï¿½ baï¿½lat
         {
             if (enemy.CompareTag("EnemyParts"))
             {
@@ -50,7 +50,7 @@ public class SphereOfView : MonoBehaviour
                 //AllowForShader(enemy);
 
                 //Debug.Log(enemies);
-                //enemy.GetComponent<Renderer>().enabled = true; // her bir player nesnesinin renderer'ýný kapatýn
+                //enemy.GetComponent<Renderer>().enabled = true; // her bir player nesnesinin renderer'ï¿½nï¿½ kapatï¿½n
                 //CalculateDotProduct(enemy);
             }
         }
@@ -70,10 +70,6 @@ public class SphereOfView : MonoBehaviour
 
         objectsInSphere = newObjectsInSphere;
 
-
-
-
-
     }
     private void OnDrawGizmos()
     {
@@ -81,13 +77,19 @@ public class SphereOfView : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position + transform.forward * distance, radius);
     }
+
+    public HashSet<Collider> GetEnemies()
+    {
+        return objectsInSphere;
+    }
+
     //void CalculateDotProductRelativeToSphere(Collider enemy)
     //{
     //    Vector3 directionFromSphereCenterToEnemy = enemy.transform.position - (transform.position + transform.forward * distance);
     //    Vector3 normalizedDirectionFromSphereCenterToEnemy = directionFromSphereCenterToEnemy.normalized;
     //    float dotProduct = Vector3.Dot(transform.forward, normalizedDirectionFromSphereCenterToEnemy);
     //    Debug.Log(dotProduct);
-    //    // Ýsteðe baðlý: dotProduct deðerini kullanarak istediðiniz iþlemleri burada gerçekleþtirin
+    //    // ï¿½steï¿½e baï¿½lï¿½: dotProduct deï¿½erini kullanarak istediï¿½iniz iï¿½lemleri burada gerï¿½ekleï¿½tirin
     //}
 
     //void AllowForShader(Collider enemy)
@@ -107,7 +109,7 @@ public class SphereOfView : MonoBehaviour
     //{
     //    Mat = enemy.GetComponent<Renderer>().materials;
     //    originalOpacity= 1f;
-    //    float distance = Vector3.Distance(transform.position, enemy.transform.position); // Enemy ve player arasýndaki mesafeyi hesaplayýn
+    //    float distance = Vector3.Distance(transform.position, enemy.transform.position); // Enemy ve player arasï¿½ndaki mesafeyi hesaplayï¿½n
     //  //  Debug.Log(distance);
     //    if (distance < 500)
     //    {
@@ -121,7 +123,7 @@ public class SphereOfView : MonoBehaviour
     //        //Mat[0].color = new Color(1, 1, 1, smoothColor.a);
     //        //Mat[1].color = new Color(1, 1, 1, smoothColor.a);
     //        //Mat[2].color = new Color(1, 1, 1, smoothColor.a);
-    //        //  enemy.GetComponent<Renderer>().enabled = true; // Renderer'ý açýn
+    //        //  enemy.GetComponent<Renderer>().enabled = true; // Renderer'ï¿½ aï¿½ï¿½n
     //    }
     //    else
     //    {
@@ -134,7 +136,7 @@ public class SphereOfView : MonoBehaviour
     //        //Mat[0].color = smoothColor;
     //        //Mat[1].color = smoothColor;
     //        //Mat[2].color = smoothColor;
-    //        //        enemy.GetComponent<Renderer>().enabled = false; // Renderer'ý kapatýn
+    //        //        enemy.GetComponent<Renderer>().enabled = false; // Renderer'ï¿½ kapatï¿½n
     //    }
     //}
 
