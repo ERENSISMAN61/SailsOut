@@ -59,6 +59,9 @@ public class DestroylessManager : MonoBehaviour
         _UnitsContainers.Add(unit5);
         _UnitsContainers.Add(unit6);
         _UnitsContainers.Add(unit7);
+
+        _unitCount = _UnitsContainers.Count;
+
     }
 
 

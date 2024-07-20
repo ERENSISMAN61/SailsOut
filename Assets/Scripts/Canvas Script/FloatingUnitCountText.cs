@@ -5,28 +5,43 @@ using UnityEngine;
 
 public class FloatingUnitCountText : MonoBehaviour
 {
-    [SerializeField] private Transform target; // Güç puanını göstermek istediğiniz 3D obje
-    [SerializeField] private Vector3 offset;   // Text'in 3D obje ile arasındaki mesafe (opsiyonel)
-    private RectTransform uiText;              // UI Text elemanının RectTransform'u
+
+    public Transform target; // Health bar'ın görüneceği hedef transform
+
+    private Camera mainCamera;
+
+    //chil text/bar objesi için otomatik yükseklik ayarı
+    private RectTransform uiElement; // Ayarlanacak UI elemanı
+    [SerializeField] private float minCameraY = 80f; // Minimum kamera Y değeri
+    [SerializeField] private float maxCameraY = 1000f; // Maksimum kamera Y değeri
+    [SerializeField] private float minPosY = -70f; // Minimum UI elemanı Y pozisyonu
+    [SerializeField] private float maxPosY = -20f; // Maksimum UI elemanı Y pozisyonu
 
     void Start()
     {
-        // Text elemanının RectTransform'unu al
-        uiText = transform.GetChild(0).GetComponent<RectTransform>();
+        mainCamera = Camera.main;
+        uiElement = transform.GetChild(0).GetComponent<RectTransform>();
     }
 
     void Update()
     {
-        // Geminin altına sabit bir pozisyon belirleme
-        Vector3 worldPosition = target.TransformPoint(offset);
-        // Bu dünya pozisyonunu ekran pozisyonuna çevirme
-        Vector3 screenPosition = Camera.main.WorldToScreenPoint(worldPosition);
+        if (target != null)
+        {
+            Vector3 screenPosition = mainCamera.WorldToScreenPoint(target.position);
+            transform.position = new Vector3(screenPosition.x, screenPosition.y, 0);
+        }
 
-        // Text elemanını ekran pozisyonuna yerleştirme
-        uiText.position = screenPosition;
+        // Kamera Y konumunu al
+        float cameraY = mainCamera.transform.position.y;
 
-        // Text'in rotasyonunu sabit tutma
-        uiText.rotation = Quaternion.identity;
+        // Kamera Y değeri aralığını ve UI elemanı Y pozisyonu aralığını normalleştir
+        float t = Mathf.InverseLerp(minCameraY, maxCameraY, cameraY);
+        float newPosY = Mathf.Lerp(minPosY, maxPosY, t);
+
+        // UI elemanının Y pozisyonunu ayarla
+        Vector3 newPosition = uiElement.localPosition;
+        newPosition.y = newPosY;
+        uiElement.localPosition = newPosition;
     }
 
     public void SetLookAt(Transform target)

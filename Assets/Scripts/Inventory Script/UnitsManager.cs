@@ -19,6 +19,8 @@ public class UnitsManager : MonoBehaviour
     private void Update()
     {
         DestroylessObject.GetComponent<DestroylessManager>()._UnitsContainers = UnitsContainers;
+
+        unitCount = UnitsContainers.Count;
         DestroylessObject.GetComponent<DestroylessManager>()._unitCount = unitCount;
     }
 
