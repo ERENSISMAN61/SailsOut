@@ -89,7 +89,7 @@ MonoBehaviour:
   minCameraY: 80
   maxCameraY: 1000
   minPosY: -110
-  maxPosY: -10
+  maxPosY: -20
 --- !u!1 &7982587438342609026
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,15 +157,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: 61
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 09ad59f32fae636449294251a68a6c11, type: 2}
+  m_sharedMaterial: {fileID: 5762038327122399692, guid: 09ad59f32fae636449294251a68a6c11, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4280034815
+  m_fontColor: {r: 1, g: 0.14479204, b: 0.11006278, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

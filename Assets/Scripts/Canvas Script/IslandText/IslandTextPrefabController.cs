@@ -49,9 +49,8 @@ public class IslandTextPrefabController : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
+    public Color GetNationColor(int nationColor)
     {
-
+        return NationColors[nationColor];
     }
 }

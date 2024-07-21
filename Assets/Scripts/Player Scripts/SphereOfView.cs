@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SphereOfView : MonoBehaviour
 {
-    private float radius = 1000f;
-    private float distance = 80f; // g�r�� alan�n�n objenin ne kadar �n�nde olaca��
+    [SerializeField] private float radius = 1000f;
+    //private float distance = 80f; // g�r�� alan�n�n objenin ne kadar �n�nde olaca��
     private LayerMask enemyLayer;
 
     private Material[] Mat;
@@ -16,6 +16,8 @@ public class SphereOfView : MonoBehaviour
     //  private bool canChange0, canChange1, canChange2, canChange3, canChange4 = false;
 
     private HashSet<Collider> objectsInSphere = new HashSet<Collider>();
+    private HashSet<Collider> npcsInSphere = new HashSet<Collider>(); // NPC'ler için koleksiyon
+    private HashSet<Collider> enemiesInSphere = new HashSet<Collider>(); // Düşmanlar için koleksiyon
     void Start()
     {
         enemyLayer = LayerMask.GetMask("OutlineFalse", "OutlineTrue");
@@ -23,19 +25,29 @@ public class SphereOfView : MonoBehaviour
     }
     void Update()
     {
-        //transform.forward * distance = �n�n� daha fazla g�rmesi i�in
+        // + transform.forward * distance = �n�n� daha fazla g�rmesi i�in
 
-        Collider[] enemies = Physics.OverlapSphere(transform.position + transform.forward * distance, radius, enemyLayer); // g�r�� alan�ndaki t�m player nesnelerini bir diziye atay�n
-        Debug.Log("enemy sayisi:" + objectsInSphere.Count);
+        Collider[] enemies = Physics.OverlapSphere(transform.position, radius, enemyLayer); // g�r�� alan�ndaki t�m player nesnelerini bir diziye atay�n
+
         HashSet<Collider> newObjectsInSphere = new HashSet<Collider>();
-
+        HashSet<Collider> newNPCsInSphere = new HashSet<Collider>();
+        HashSet<Collider> newEnemiesInSphere = new HashSet<Collider>();
         //     Debug.Log("enemy say�s�-1:"+enemies.Length);
         foreach (Collider enemy in enemies) // dizi i�inde d�ng� ba�lat
         {
-            if (enemy.CompareTag("EnemyParts"))
+            if (enemy.CompareTag("EnemyParts") || enemy.CompareTag("NPCParts"))
             {
 
-                newObjectsInSphere.Add(enemy);
+                newObjectsInSphere.Add(enemy); //ALL
+
+                if (enemy.CompareTag("NPCParts"))
+                {
+                    newNPCsInSphere.Add(enemy);
+                }
+                else if (enemy.CompareTag("EnemyParts"))
+                {
+                    newEnemiesInSphere.Add(enemy);
+                }
 
                 if (!objectsInSphere.Contains(enemy))
                 {
@@ -68,19 +80,27 @@ public class SphereOfView : MonoBehaviour
             }
         }
 
-        objectsInSphere = newObjectsInSphere;
+        objectsInSphere = newObjectsInSphere; //ALL
+
+        npcsInSphere = newNPCsInSphere;
+        enemiesInSphere = newEnemiesInSphere;
 
     }
     private void OnDrawGizmos()
     {
-
+        //+ transform.forward * distance     onunde olması icin
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position + transform.forward * distance, radius);
+        Gizmos.DrawWireSphere(transform.position, radius);
+    }
+
+    public HashSet<Collider> GetNPCs()
+    {
+        return npcsInSphere;
     }
 
     public HashSet<Collider> GetEnemies()
     {
-        return objectsInSphere;
+        return enemiesInSphere;
     }
 
     //void CalculateDotProductRelativeToSphere(Collider enemy)
