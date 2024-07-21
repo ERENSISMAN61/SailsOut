@@ -45,4 +45,9 @@ public class EnemyUnits : MonoBehaviour
     {
         return _EnemyUnitsContainers.Count;
     }
+
+    public List<UnitsContainer> GetEnemyUnits()
+    {
+        return _EnemyUnitsContainers;
+    }
 }
