@@ -20,7 +20,7 @@ public class EnemyTarget : MonoBehaviour
         playerLayer = LayerMask.GetMask("OutlineFalse", "OutlineTrue");
     }
     void Update()
-    {// görüþ alanýndaki tüm player nesnelerini bir diziye ata
+    {// gï¿½rï¿½ï¿½ alanï¿½ndaki tï¿½m player nesnelerini bir diziye ata
         Collider[] enemies = Physics.OverlapSphere(transform.position + transform.forward * distance, radius, playerLayer);
 
         //transform.forward * distance = onunu daha fazla gormesi icin// gorus alaninda player varsa
@@ -31,16 +31,31 @@ public class EnemyTarget : MonoBehaviour
 
         foreach (Collider enemy in enemies)
         {
-            if (enemy.CompareTag("PlayerParts"))
+
+            if (enemy.CompareTag("PlayerParts") && enemy != transform.GetComponentInChildren<Collider>())//... ve kendini gormesin. dogru calisiyo olmasi lazim
             {
                 if (!targetCoolDown)
                 {
                     newObjectsInSphere.Add(enemy);
 
-                    if (!objectsInSphere.Contains(enemy))
+                    string thisShipCountryNum = transform.parent.tag;//ulke numarasini al bu geminin
+                    string otherShipCountryNum = enemy.transform.parent.parent.tag; // karsilasdigi geminin ulke numarasini al
+                                                                                    //DiplomacyManager'dan iki geminin Ã¼lkelerinin savasta olup olmadiginin kontrolu
+                    bool areEnemies = GameObject.FindGameObjectWithTag("DiplomacyManager").GetComponent<DiplomacyManager>().AreAtWar(thisShipCountryNum, otherShipCountryNum); // bu iki ulke arasinda savas var mi
+                                                                                                                                                                               // Debug.Log("areEnemies ," + thisShipCountryNum + "," + otherShipCountryNum + " " + areEnemies + "\n");
+
+
+                    if (!objectsInSphere.Contains(enemy) && areEnemies)//daha onceki frame'de bu obje yoksa ve (savas halindeyse)
                     {
                         Debug.Log("Truee");
-                        gameObject.GetComponent<SmoothAgentMovement>().isTargetEnemy = true;
+                        if (GetComponent<SmoothAgentMovement>() != null)
+                        {
+                            gameObject.GetComponent<SmoothAgentMovement>().isTargetEnemy = true;
+                        }
+                        else if (GetComponent<SmoothNPCMovement>() != null)
+                        {
+                            gameObject.GetComponent<SmoothNPCMovement>().isTargetEnemy = true;
+                        }
                     }
 
                 }
@@ -54,6 +69,7 @@ public class EnemyTarget : MonoBehaviour
             {
 
                 Debug.Log("Falsee");
+
                 gameObject.GetComponent<SmoothAgentMovement>().isTargetEnemy = false;
 
             }

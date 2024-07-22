@@ -11,6 +11,8 @@ public class TimerForDialog : MonoBehaviour
     private bool speedingUp = false;
     private GameObject Player;
     private Vector3 playerPos;
+
+
     private void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
@@ -20,24 +22,50 @@ public class TimerForDialog : MonoBehaviour
     {
 
         Debug.Log("distance:  " + Vector3.Distance(playerPos, gameObject.transform.position));
-        if (gameObject.GetComponent<SmoothAgentMovement>().isTargetEnemy && gameObject.GetComponent<SmoothAgentMovement>().didCatch)
+
+
+        if (GetComponent<SmoothAgentMovement>() != null)
         {
-            playerPos = Player.transform.position;
+            if (gameObject.GetComponent<SmoothAgentMovement>().isTargetEnemy && gameObject.GetComponent<SmoothAgentMovement>().didCatch)
+            {
+                playerPos = Player.transform.position;
 
-            speedingUp = false;
-            slowingDown = true;
+                speedingUp = false;
+                slowingDown = true;
 
+            }
+            else
+            {
+
+                slowingDown = false;
+                speedingUp = true;
+
+            }
+            Debug.Log("isTargetEnemy: " + gameObject.GetComponent<SmoothAgentMovement>().isTargetEnemy + "     didcatch: " + gameObject.GetComponent<SmoothAgentMovement>().didCatch + "\nspeedingUp:  " + speedingUp + "     slowingDown:  " + slowingDown);
         }
-        else
+        else if (GetComponent<SmoothNPCMovement>() != null)
         {
+            if (gameObject.GetComponent<SmoothNPCMovement>().isTargetEnemy && gameObject.GetComponent<SmoothNPCMovement>().didCatch)
+            {
+                playerPos = Player.transform.position;
 
-            slowingDown = false;
-            speedingUp = true;
+                speedingUp = false;
+                slowingDown = true;
 
+            }
+            else
+            {
+
+                slowingDown = false;
+                speedingUp = true;
+
+            }
+            Debug.Log("isTargetEnemy: " + gameObject.GetComponent<SmoothNPCMovement>().isTargetEnemy + "     didcatch: " + gameObject.GetComponent<SmoothNPCMovement>().didCatch + "\nspeedingUp:  " + speedingUp + "     slowingDown:  " + slowingDown);
         }
 
 
-        Debug.Log("isTargetEnemy: " + gameObject.GetComponent<SmoothAgentMovement>().isTargetEnemy + "     didcatch: " + gameObject.GetComponent<SmoothAgentMovement>().didCatch + "\nspeedingUp:  " + speedingUp + "     slowingDown:  " + slowingDown);
+
+
 
         if (speedingUp)
         {
