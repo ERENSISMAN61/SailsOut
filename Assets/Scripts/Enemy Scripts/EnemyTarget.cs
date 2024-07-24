@@ -70,8 +70,14 @@ public class EnemyTarget : MonoBehaviour
 
                 Debug.Log("Falsee");
 
-                gameObject.GetComponent<SmoothAgentMovement>().isTargetEnemy = false;
-
+                if (GetComponent<SmoothAgentMovement>() != null)
+                {
+                    gameObject.GetComponent<SmoothAgentMovement>().isTargetEnemy = false;
+                }
+                else if (GetComponent<SmoothNPCMovement>() != null)
+                {
+                    gameObject.GetComponent<SmoothNPCMovement>().isTargetEnemy = false;
+                }
             }
         }
 
