@@ -29,6 +29,7 @@ public class EnemyHealthBarControl : MonoBehaviour
         health = 100f;
         updateHealthBar(health, maxHealth);
         //mainCam = Camera.main;
+        mainCam = GameObject.FindGameObjectWithTag("MainCamera");
     }
     private void Update()
     {
