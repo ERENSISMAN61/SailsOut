@@ -18,7 +18,7 @@ public class DiplomacyManager : MonoBehaviour
         AddCountry("7");//Saharazia
         AddCountry("8");//Skylovia
 
-        SetWar("3", "5", true);
+        SetWar("6", "2", true);
     }
 
     void Update()
