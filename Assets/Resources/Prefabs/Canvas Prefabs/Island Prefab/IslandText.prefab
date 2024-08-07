@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lookAt: {fileID: 0}
-  offset: {x: 0, y: 150, z: 0}
+  offset: {x: 500, y: 300, z: 500}
 --- !u!114 &3074716564649164240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,6 +66,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canIslandMenuOpen: 0
   isIslandMenuOpen: 0
+  minFontSize: 40
+  maxFontSize: 100
 --- !u!1 &777476949240967031
 GameObject:
   m_ObjectHideFlags: 0

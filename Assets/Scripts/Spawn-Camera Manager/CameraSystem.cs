@@ -148,7 +148,7 @@ public class CameraSystem : MonoBehaviour
         {
             moveDragPanSpeed = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y * 2f;
         }
-        else if (cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y < followOffsetMaxY && cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y > followOffsetMaxY - 250)
+        else if (cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y < followOffsetMaxY && cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y > followOffsetMaxY - 350)
         // max yükseklikte sağa sola hareket edemesin
         {
             moveDragPanSpeed = 0;

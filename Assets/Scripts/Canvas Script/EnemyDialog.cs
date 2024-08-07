@@ -28,6 +28,8 @@ public class EnemyDialog : MonoBehaviour
         CameraSystemScript = GameObject.FindGameObjectWithTag("CameraSystem").GetComponent<CameraSystem>();
         player = GameObject.FindGameObjectWithTag("Player");
 
+        //  SceneManager.sceneLoaded += OnSceneLoaded;
+
 
     }
 
@@ -47,6 +49,14 @@ public class EnemyDialog : MonoBehaviour
 
         if (!TekKullan)
         {
+            GameObject.FindGameObjectWithTag("TimeManager").GetComponent<TimeAndDateScript>().SetTimeSpeed(1); // calismiyor cunku load scene hemen pesinden geliyor
+
+            Time.timeScale = 1;
+
+            // SceneManager.sceneLoaded olayına abone olun
+            SceneManager.sceneLoaded += OnSceneLoaded;
+
+
             SceneManager.LoadScene("BattleScene");
             TekKullan = true;
             smoothAgentMovement.didCatch = false;
@@ -54,11 +64,20 @@ public class EnemyDialog : MonoBehaviour
             // ENEMY UNITleri Savas sahnesine gondermek icin.
             GameObject.FindGameObjectWithTag("Destroyless").GetComponent<EnemyDestroylessManager>()._EnemyToFightUnitsContainers
             = GetComponent<EnemyUnits>().GetEnemyUnits();
+
+
         }
 
 
     }
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Sahne yüklendiğinde timeScale'ı ayarlayın
+        Time.timeScale = 1;
 
+        // Eğer artık gerek yoksa olaydan çıkın
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
 
     public void PayButton()
     {
@@ -74,6 +93,8 @@ public class EnemyDialog : MonoBehaviour
                                                            ///// bu dortlu kesinlikle olmali eski hale getirilebilmesi icin.  \\\\\
             smoothAgentMovement.didCatch = false;          //
             smoothAgentMovement.isTargetEnemy = false;     //
+
+            GameObject.FindGameObjectWithTag("TimeManager").GetComponent<TimeAndDateScript>().SetTimeSpeed(1);
 
             StartCoroutine("WaitCatch");
         }
@@ -103,7 +124,7 @@ public class EnemyDialog : MonoBehaviour
         CameraSystemScript.followPlayer = false;
         if (!didSteal)
         {
-
+            GameObject.FindGameObjectWithTag("TimeManager").GetComponent<TimeAndDateScript>().SetTimeSpeed(1);
 
             InventoryObject.GetComponent<InventoryController>().bulletCount = 0;
             int randomNumberSupply = Random.Range(5, 11);
