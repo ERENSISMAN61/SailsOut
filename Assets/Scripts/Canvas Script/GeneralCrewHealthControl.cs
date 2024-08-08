@@ -28,10 +28,8 @@ public class GeneralCrewHealthControl : MonoBehaviour
 
     private void Start()
     {
-
         InitializePlayerCrewHealth();
         InitializeEnemyCrewHealth();
-
     }
 
 
@@ -50,27 +48,33 @@ public class GeneralCrewHealthControl : MonoBehaviour
 
     private void InitializeEnemyCrewHealth()
     {
-
+        
         GameObject[] enemys = GameObject.FindGameObjectsWithTag("EnemyShip");
         enemyCrewHealth.Clear();
+        Debug.Log("Found " + enemys.Length + " enemies with tag 'EnemyShip'");
+
         foreach (GameObject enemy in enemys)
         {
             if (enemy.GetComponentInChildren<EnemyHealthBarControl>() != null)
             {
                 enemyCrewHealth.Add(enemy);
-
+                Debug.Log("Added enemy: " + enemy.name);
+            }
+            else
+            {
+                Debug.Log("Enemy " + enemy.name + " does not have EnemyHealthBarControl component");
             }
         }
 
         foreach (var enemyHealth in enemyCrewHealth)
         {
-           
-            if(enemyHealth.GetComponentInChildren<EnemyHealthBarControl>().health > 0)
+            if (enemyHealth.GetComponentInChildren<EnemyHealthBarControl>().health > 0)
             {
-                //totalEnemyCurrentHealth += enemyHealth.GetComponentInChildren<EnemyHealthBarControl>().health;
                 totalEnemyMaxHealth += enemyHealth.GetComponentInChildren<EnemyHealthBarControl>().maxHealth;
             }
         }
+
+        Debug.Log("Total enemies in list: " + enemyCrewHealth.Count);
     }
 
     private void Update()

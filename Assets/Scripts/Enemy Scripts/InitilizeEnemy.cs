@@ -20,9 +20,5 @@ public class InitilizeEnemy : MonoBehaviour
         //GameObject enemyPrefab = Instantiate(enemyPrefab, initlizePoint.position, Quaternion.identity);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   
 }

@@ -30,6 +30,8 @@ public class Floater : MonoBehaviour
     {
         // Geminin fiziksel davranışını alalım
         Rb = this.GetComponent<Rigidbody>();
+
+        water = UnityEngine.Object.FindAnyObjectByType<WaterSurface>();
     }
 
     
@@ -37,6 +39,9 @@ public class Floater : MonoBehaviour
     // Her karede çalışacak fonksiyonu tanımlayalıms
     void FixedUpdate()
     {
+        if (water == null) return;  // WaterSurface referansı yoksa işlem yapma
+
+
         // Suyun altında kalan noktaların sayısını sıfırlayalım
         FloatersUnderWater = 0;
 

@@ -46,6 +46,7 @@ public class RedEnemyFire : MonoBehaviour
         redEnemySmoothMovement = GetComponent<redEnemySmoothMovement>(); // Get the RedEnemySmoothMovement script
         enemyHealthBar = GetComponentInChildren<EnemyHealthBarControl>();
         shotsRemaining = shotsPerBurst; // Initialize the shots remaining in the burst
+        healthOfPlayerShip = UnityEngine.Object.FindAnyObjectByType<PlayerHealthBarControl>();
         
     }
 
