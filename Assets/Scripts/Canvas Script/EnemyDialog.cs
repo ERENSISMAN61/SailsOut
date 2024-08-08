@@ -17,6 +17,11 @@ public class EnemyDialog : MonoBehaviour
     private bool TekKullan = false;
     GameObject player;
 
+    private float coinCount;// dialog acildiginda kac liramiz oldugu
+
+    [SerializeField] private int payCount = 30; //kac lira odeyecegi
+
+
     void Start()
     {
 
@@ -29,6 +34,8 @@ public class EnemyDialog : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
 
         //  SceneManager.sceneLoaded += OnSceneLoaded;
+
+
 
 
     }
@@ -81,10 +88,14 @@ public class EnemyDialog : MonoBehaviour
 
     public void PayButton()
     {
+
         if (!didPay)
         {
+            if (InventoryObject.GetComponent<InventoryController>().coinCount == coinCount)
+            {
+                InventoryObject.GetComponent<InventoryController>().coinCount -= payCount;
+            }
 
-            InventoryObject.GetComponent<InventoryController>().coinCount -= 30;
 
             didPay = true;
 
