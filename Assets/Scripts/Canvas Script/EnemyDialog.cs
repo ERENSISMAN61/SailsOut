@@ -35,7 +35,7 @@ public class EnemyDialog : MonoBehaviour
 
         //  SceneManager.sceneLoaded += OnSceneLoaded;
 
-
+        coinCount = InventoryObject.GetComponent<InventoryController>().coinCount;
 
 
     }
