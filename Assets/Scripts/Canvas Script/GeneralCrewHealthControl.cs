@@ -82,6 +82,8 @@ public class GeneralCrewHealthControl : MonoBehaviour
         CalculateHealth();
         UpdatePlayerCrewHealthUI();
         UpdateEnemyCrewHealthUI();
+
+
     }
 
     private void CalculateHealth()

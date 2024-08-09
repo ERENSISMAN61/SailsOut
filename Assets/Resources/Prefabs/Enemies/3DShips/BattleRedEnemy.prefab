@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2696650511866953911}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7789101337528828027}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9161742090421698714}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Bouyancy Point 1 (2)
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
@@ -105,9 +105,9 @@ GameObject:
   - component: {fileID: 6798021782546600741}
   - component: {fileID: 7498691906850792185}
   - component: {fileID: 6783582641128036194}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_MastFront
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -211,9 +211,9 @@ GameObject:
   - component: {fileID: 3028647686377998799}
   - component: {fileID: 2773374658391749513}
   - component: {fileID: 6577558402788279507}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_StairsSmall
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -314,7 +314,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2686083397718521896}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -348,9 +348,9 @@ GameObject:
   - component: {fileID: 905255590781472650}
   - component: {fileID: 4525083142737389248}
   - component: {fileID: 4111043204363800503}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_CannonRightUp
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -454,9 +454,9 @@ GameObject:
   - component: {fileID: 1949767389086757738}
   - component: {fileID: 747814617454177272}
   - component: {fileID: 6623066712851224417}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_FloorBackTop
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -560,9 +560,9 @@ GameObject:
   - component: {fileID: 1702114982252733396}
   - component: {fileID: 6224059242483597006}
   - component: {fileID: 9173101505180843721}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_FloorBackBottom
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -666,9 +666,9 @@ GameObject:
   - component: {fileID: 807912918168328755}
   - component: {fileID: 3158557900163410366}
   - component: {fileID: 5797661477162821786}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_Support
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -772,9 +772,9 @@ GameObject:
   - component: {fileID: 8321125635766105106}
   - component: {fileID: 8821374982085184138}
   - component: {fileID: 6517985651365423762}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_SailMid2
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -878,9 +878,9 @@ GameObject:
   - component: {fileID: 2500122857477582805}
   - component: {fileID: 2662378844326478484}
   - component: {fileID: 5393874268033043736}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_FencingBack
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -984,9 +984,9 @@ GameObject:
   - component: {fileID: 431037285010131740}
   - component: {fileID: 4645339164531974093}
   - component: {fileID: 8382952437122018798}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_Loopholes
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1090,9 +1090,9 @@ GameObject:
   - component: {fileID: 6330840747370155854}
   - component: {fileID: 8828002036029588478}
   - component: {fileID: 3745259333140502475}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_Flag1
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1195,9 +1195,9 @@ GameObject:
   - component: {fileID: 291565930391683683}
   - component: {fileID: 3152628194460441392}
   - component: {fileID: 7867307976573879408}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_FencingMid
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1301,9 +1301,9 @@ GameObject:
   - component: {fileID: 9173925589147709719}
   - component: {fileID: 6787747203074592556}
   - component: {fileID: 4422990557542108040}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_FencingFront
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1407,9 +1407,9 @@ GameObject:
   - component: {fileID: 2686217294939939584}
   - component: {fileID: 6068425856017590551}
   - component: {fileID: 1910293363480081922}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_StairsBot
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1510,7 +1510,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7524459165858183936}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: RotationPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1544,9 +1544,9 @@ GameObject:
   - component: {fileID: 2670397581526677948}
   - component: {fileID: 904910615391210532}
   - component: {fileID: 6579600849418128016}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_Windows
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1650,9 +1650,9 @@ GameObject:
   - component: {fileID: 1632725978883686451}
   - component: {fileID: 6171115809108230089}
   - component: {fileID: 3969515448885573645}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_CannonLeftUp
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1756,9 +1756,9 @@ GameObject:
   - component: {fileID: 6745833886220721189}
   - component: {fileID: 4263301043721130262}
   - component: {fileID: 3755440678304524404}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_WireMid
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1862,9 +1862,9 @@ GameObject:
   - component: {fileID: 1696416940583063715}
   - component: {fileID: 8962163095360704533}
   - component: {fileID: 5101639176580482111}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_WheelStand
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1968,9 +1968,9 @@ GameObject:
   - component: {fileID: 3174555800991273393}
   - component: {fileID: 5692375396759547437}
   - component: {fileID: 5952568188808128193}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_LoopholeCap1_right
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2071,7 +2071,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2650231993615554470}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Bouyancy Point 1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
@@ -2102,7 +2102,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 342850286062719517}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Bouyancy Point 1
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
@@ -2133,15 +2133,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8594415000659547864}
-  - component: {fileID: 1637780248817824174}
-  - component: {fileID: 7139340899420871500}
-  - component: {fileID: 2494156422141370737}
   - component: {fileID: 6984094005713745748}
-  - component: {fileID: 8856155114822889827}
-  - component: {fileID: 3299563240639782835}
-  - component: {fileID: 5628710491268058923}
   - component: {fileID: 6110502455855842345}
-  m_Layer: 9
+  - component: {fileID: 1841943897078008808}
+  - component: {fileID: 5464404884793649406}
+  - component: {fileID: 7336391239981471855}
+  m_Layer: 0
   m_Name: BattleRedEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2220,52 +2217,6 @@ Transform:
   - {fileID: 7524459165858183936}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1637780248817824174
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4163215554202019856}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ed2518c184b4cb4eb772d9735bf5733, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  health: 100
-  rotationSpeed: 3
-  timeBetweenBursts: 2
-  healthBar: {fileID: 7669412317075886977}
-  isBulletOut: 0
-  isBulletEntered: 0
---- !u!114 &7139340899420871500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4163215554202019856}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 134dfa401e0f10440a164781acdfabec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  didPay: 0
-  didSteal: 0
---- !u!114 &2494156422141370737
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4163215554202019856}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4197254d48bf4241b471fd71193b16a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  woodCrackClip: {fileID: 8300000, guid: 3a75e8f61338ed146bd5c3c734f18c30, type: 3}
 --- !u!54 &6984094005713745748
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2274,7 +2225,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4163215554202019856}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 20
   m_Drag: 1.5
   m_AngularDrag: 1.5
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -2290,147 +2241,9 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &8856155114822889827
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4163215554202019856}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d0c401f115401646ae94870bea137ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3299563240639782835
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4163215554202019856}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fc2ca6c9042cee438fb4b8fa79a843a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 4907935540377211480, guid: 3f202391c64092c4faada81615a76657, type: 3}
-  rightFirePoint:
-  - {fileID: 2686083397718521896}
-  - {fileID: 7799258483465960483}
-  - {fileID: 2696650511866953911}
-  leftFirePoint:
-  - {fileID: 3634986664606988745}
-  - {fileID: 8589722529634036170}
-  - {fileID: 7789101337528828027}
-  bulletSpeed: 14
-  timeBetweenBursts: 2
-  shotsPerBurst: 3
-  distanceBetweenofShips: 158
-  launchAngle: 45
-  enemyShotAudio: {fileID: 8300000, guid: 4b6e24fd20631f644b19bc59aaaeaa2c, type: 3}
-  isActiveRightLevel1: 1
-  isActiveRightLevel2: 0
-  isActiveRightLevel3: 0
---- !u!82 &5628710491268058923
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4163215554202019856}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!114 &6110502455855842345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2450,9 +2263,45 @@ MonoBehaviour:
   - {fileID: 9161742090421698714}
   - {fileID: 2650231993615554470}
   - {fileID: 342850286062719517}
-  FloatingPower: 5.26
+  FloatingPower: 5
   FloatingLevel: 1
   water: {fileID: 0}
+--- !u!114 &1841943897078008808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4163215554202019856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ec207ba645dcda4789a051e93529501, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5464404884793649406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4163215554202019856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16e074e81a2c64b4ba062c33904a71f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7336391239981471855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4163215554202019856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6687331117a1ab04e8263dc8723c6cfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4180233806345025975
 GameObject:
   m_ObjectHideFlags: 0
@@ -2465,9 +2314,9 @@ GameObject:
   - component: {fileID: 7780650672428514265}
   - component: {fileID: 3562988716601659647}
   - component: {fileID: 1108488569509235197}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_WireBack
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2571,9 +2420,9 @@ GameObject:
   - component: {fileID: 2816788013369837445}
   - component: {fileID: 8980941835469318929}
   - component: {fileID: 3886635788945236860}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_MastBack
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2677,9 +2526,9 @@ GameObject:
   - component: {fileID: 3573683451322969439}
   - component: {fileID: 5120296116428272038}
   - component: {fileID: 1143422869845713787}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_FloorFront
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2783,9 +2632,9 @@ GameObject:
   - component: {fileID: 5456366831517172059}
   - component: {fileID: 2900872187447598994}
   - component: {fileID: 283185782833679879}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_WireFront
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2889,9 +2738,9 @@ GameObject:
   - component: {fileID: 1942416198866013880}
   - component: {fileID: 6307841279208008249}
   - component: {fileID: 2791146972063024451}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_CannonRightDown
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2995,9 +2844,9 @@ GameObject:
   - component: {fileID: 1693386774308669489}
   - component: {fileID: 8469776803993954300}
   - component: {fileID: 8611506814502349779}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_CannonRightMiddle
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3101,9 +2950,9 @@ GameObject:
   - component: {fileID: 3375136526656411856}
   - component: {fileID: 4534993532873250768}
   - component: {fileID: 2338437510184262592}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_CannonLeftDown
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3207,9 +3056,9 @@ GameObject:
   - component: {fileID: 7216237222194278486}
   - component: {fileID: 240195797358282751}
   - component: {fileID: 6319109008949797705}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_Ropes
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3313,9 +3162,9 @@ GameObject:
   - component: {fileID: 2606618712542183867}
   - component: {fileID: 6028300420658239229}
   - component: {fileID: 6075186922464595514}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_SailBack
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3407,6 +3256,81 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 6399163158690269750, guid: 4fe7ec1d555ab494d836addf3c4b2c0f, type: 3}
+--- !u!1 &4689566794911148298
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6612056182350659374}
+  - component: {fileID: 3107126937689651756}
+  - component: {fileID: 2266977623287604780}
+  m_Layer: 0
+  m_Name: BackHealthBar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6612056182350659374
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4689566794911148298}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -3.9321785}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8736442437309483434}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -52, y: -38}
+  m_SizeDelta: {x: 800, y: 110}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &3107126937689651756
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4689566794911148298}
+  m_CullTransparentMesh: 0
+--- !u!114 &2266977623287604780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4689566794911148298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.8235294}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 897bee1482b82804d89307c8f4356ccc, type: 3}
+  m_Type: 3
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 0
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &4913413961948004188
 GameObject:
   m_ObjectHideFlags: 0
@@ -3419,9 +3343,9 @@ GameObject:
   - component: {fileID: 3698446109344541709}
   - component: {fileID: 2479893745294974209}
   - component: {fileID: 5066795462018829091}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_LoopholeCap3_left
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3525,9 +3449,9 @@ GameObject:
   - component: {fileID: 8540523729479174373}
   - component: {fileID: 1957606404040633579}
   - component: {fileID: 6077397709530188491}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_Prow
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3631,9 +3555,9 @@ GameObject:
   - component: {fileID: 8618812591116278167}
   - component: {fileID: 5762666580803239176}
   - component: {fileID: 4405491467827838964}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_Flag2
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3736,9 +3660,9 @@ GameObject:
   - component: {fileID: 7800558821010141248}
   - component: {fileID: 6514164260104213775}
   - component: {fileID: 7574364195994122760}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_Body
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3823,7 +3747,7 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
@@ -3842,9 +3766,9 @@ GameObject:
   - component: {fileID: 2340668331137581469}
   - component: {fileID: 2193014550408317343}
   - component: {fileID: 3248321076375231577}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_CannonLeftMiddle
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3945,7 +3869,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7799258483465960483}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3976,7 +3900,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8405038637722439795}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Bouyancy Point 1 (5)
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
@@ -4010,9 +3934,9 @@ GameObject:
   - component: {fileID: 3373557969161029178}
   - component: {fileID: 417424295724662777}
   - component: {fileID: 6337735691208805402}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_StairsTop
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4116,9 +4040,9 @@ GameObject:
   - component: {fileID: 665305693764374584}
   - component: {fileID: 8548493983731789931}
   - component: {fileID: 6064694840470559358}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_Door2
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4221,9 +4145,9 @@ GameObject:
   - component: {fileID: 6453418625756770697}
   - component: {fileID: 3845954128939421677}
   - component: {fileID: 7925912150104836180}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_MainFlag
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4326,9 +4250,9 @@ GameObject:
   - component: {fileID: 8609567544034284623}
   - component: {fileID: 6642941940034815114}
   - component: {fileID: 731799364159255939}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_LoopholeCap3_right
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4429,7 +4353,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3634986664606988745}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4463,9 +4387,9 @@ GameObject:
   - component: {fileID: 7009972428154578126}
   - component: {fileID: 5264714031722351386}
   - component: {fileID: 747418197591507125}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_Anchor
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4565,7 +4489,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8589722529634036170}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4599,9 +4523,9 @@ GameObject:
   - component: {fileID: 8813224549450250385}
   - component: {fileID: 2996433369504666055}
   - component: {fileID: 1934833272835728422}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_LoopholeCap2_right
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4705,9 +4629,9 @@ GameObject:
   - component: {fileID: 6477588961838581233}
   - component: {fileID: 2090716761570528576}
   - component: {fileID: 4210790064451759921}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_Bracing
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4811,9 +4735,9 @@ GameObject:
   - component: {fileID: 5305463294507366975}
   - component: {fileID: 6358518365770634338}
   - component: {fileID: 483988870992926331}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_Wall
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4914,7 +4838,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8294515574726393184}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Bouyancy Point 1 (3)
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
@@ -4948,9 +4872,9 @@ GameObject:
   - component: {fileID: 2250578043867004940}
   - component: {fileID: 2618796229717199997}
   - component: {fileID: 131361980324883920}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_SailFront
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5054,9 +4978,9 @@ GameObject:
   - component: {fileID: 4428523371634734414}
   - component: {fileID: 360039062789417926}
   - component: {fileID: 3280207166107161650}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_Wheel
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5159,9 +5083,9 @@ GameObject:
   - component: {fileID: 2136603125386086596}
   - component: {fileID: 457510680528499846}
   - component: {fileID: 1278461513173454243}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_LoopholeCap1_left
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5265,9 +5189,9 @@ GameObject:
   - component: {fileID: 1336698185663875925}
   - component: {fileID: 3105841343198431761}
   - component: {fileID: 8347015703121337986}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_MastMid
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5371,9 +5295,9 @@ GameObject:
   - component: {fileID: 1741500745138605989}
   - component: {fileID: 4265445911115597633}
   - component: {fileID: 3762417678819853941}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_FloorMid
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5464,6 +5388,81 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10.17037, y: 0.5709201, z: 15.84494}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &8307661034522210670
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6712628543851639255}
+  - component: {fileID: 6912229926349316460}
+  - component: {fileID: 5203274969819864540}
+  m_Layer: 0
+  m_Name: Frame
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6712628543851639255
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8307661034522210670}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 8736442437309483434}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -202, y: -40}
+  m_SizeDelta: {x: 1125, y: 300}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &6912229926349316460
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8307661034522210670}
+  m_CullTransparentMesh: 1
+--- !u!114 &5203274969819864540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8307661034522210670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: f002bc3f1fc2ee046a59e1fb99ea926d, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &8405635410176455891
 GameObject:
   m_ObjectHideFlags: 0
@@ -5476,9 +5475,9 @@ GameObject:
   - component: {fileID: 7702275622017498877}
   - component: {fileID: 634118651088454107}
   - component: {fileID: 6544834157255561548}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_SailMid1
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5582,9 +5581,9 @@ GameObject:
   - component: {fileID: 6917583895122571062}
   - component: {fileID: 9221001117103380923}
   - component: {fileID: 6594343052920472456}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_Rudder
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5687,9 +5686,9 @@ GameObject:
   - component: {fileID: 8816190730493572540}
   - component: {fileID: 243438247054698353}
   - component: {fileID: 8155569001099438471}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_LoopholeCap2_left
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5790,7 +5789,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3657005053418262789}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Bouyancy Point 1 (4)
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
@@ -5824,9 +5823,9 @@ GameObject:
   - component: {fileID: 8178697041588851114}
   - component: {fileID: 2776569885952094277}
   - component: {fileID: 5134167566964858672}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: StylShip_Door1
-  m_TagString: Untagged
+  m_TagString: EnemyShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5917,6 +5916,166 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.7657881, y: 3.3887968, z: 0.16156551}
   m_Center: {x: 0.8056214, y: 0, z: 0.000000018626451}
+--- !u!1001 &2453586263351442304
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8736442437309483434}
+    m_Modifications:
+    - target: {fileID: 21478683359204006, guid: 5d923fe8804244041ac1a62194284134, type: 3}
+      propertyPath: m_Name
+      value: Text (TMP)
+      objectReference: {fileID: 0}
+    - target: {fileID: 21478683359204006, guid: 5d923fe8804244041ac1a62194284134, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276584514583159730, guid: 5d923fe8804244041ac1a62194284134, type: 3}
+      propertyPath: m_text
+      value: 'lvl
+
+        1'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276584514583159730, guid: 5d923fe8804244041ac1a62194284134, type: 3}
+      propertyPath: m_fontSize
+      value: 71.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276584514583159730, guid: 5d923fe8804244041ac1a62194284134, type: 3}
+      propertyPath: m_margin.y
+      value: 0.88251686
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276584514583159730, guid: 5d923fe8804244041ac1a62194284134, type: 3}
+      propertyPath: m_margin.z
+      value: 0.41510153
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276584514583159730, guid: 5d923fe8804244041ac1a62194284134, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 09ad59f32fae636449294251a68a6c11, type: 2}
+    - target: {fileID: 3276584514583159730, guid: 5d923fe8804244041ac1a62194284134, type: 3}
+      propertyPath: m_lineSpacing
+      value: -5.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276584514583159730, guid: 5d923fe8804244041ac1a62194284134, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 71.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3276584514583159730, guid: 5d923fe8804244041ac1a62194284134, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 5762038327122399692, guid: 09ad59f32fae636449294251a68a6c11, type: 2}
+    - target: {fileID: 3276584514583159730, guid: 5d923fe8804244041ac1a62194284134, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 6655587922223366712, guid: 5d923fe8804244041ac1a62194284134, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6655587922223366712, guid: 5d923fe8804244041ac1a62194284134, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6655587922223366712, guid: 5d923fe8804244041ac1a62194284134, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6655587922223366712, guid: 5d923fe8804244041ac1a62194284134, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6655587922223366712, guid: 5d923fe8804244041ac1a62194284134, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6655587922223366712, guid: 5d923fe8804244041ac1a62194284134, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6655587922223366712, guid: 5d923fe8804244041ac1a62194284134, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 6655587922223366712, guid: 5d923fe8804244041ac1a62194284134, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6655587922223366712, guid: 5d923fe8804244041ac1a62194284134, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6655587922223366712, guid: 5d923fe8804244041ac1a62194284134, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6655587922223366712, guid: 5d923fe8804244041ac1a62194284134, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6655587922223366712, guid: 5d923fe8804244041ac1a62194284134, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6655587922223366712, guid: 5d923fe8804244041ac1a62194284134, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6655587922223366712, guid: 5d923fe8804244041ac1a62194284134, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6655587922223366712, guid: 5d923fe8804244041ac1a62194284134, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6655587922223366712, guid: 5d923fe8804244041ac1a62194284134, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6655587922223366712, guid: 5d923fe8804244041ac1a62194284134, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6655587922223366712, guid: 5d923fe8804244041ac1a62194284134, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6655587922223366712, guid: 5d923fe8804244041ac1a62194284134, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -540
+      objectReference: {fileID: 0}
+    - target: {fileID: 6655587922223366712, guid: 5d923fe8804244041ac1a62194284134, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6655587922223366712, guid: 5d923fe8804244041ac1a62194284134, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6655587922223366712, guid: 5d923fe8804244041ac1a62194284134, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6655587922223366712, guid: 5d923fe8804244041ac1a62194284134, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6655587922223366712, guid: 5d923fe8804244041ac1a62194284134, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5d923fe8804244041ac1a62194284134, type: 3}
+--- !u!224 &9102203962053245368 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6655587922223366712, guid: 5d923fe8804244041ac1a62194284134, type: 3}
+  m_PrefabInstance: {fileID: 2453586263351442304}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3227788247034448757
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5928,6 +6087,10 @@ PrefabInstance:
     - target: {fileID: 318342223709231430, guid: 21724cafb2c9fb04c9f224cae54a4c8c, type: 3}
       propertyPath: m_Layer
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 637096675034904633, guid: 21724cafb2c9fb04c9f224cae54a4c8c, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 975733724109458503, guid: 21724cafb2c9fb04c9f224cae54a4c8c, type: 3}
       propertyPath: m_Layer
@@ -5947,7 +6110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1542196128353499864, guid: 21724cafb2c9fb04c9f224cae54a4c8c, type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4833782312076115899, guid: 21724cafb2c9fb04c9f224cae54a4c8c, type: 3}
       propertyPath: m_Layer
@@ -5995,11 +6158,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7638047264784752890, guid: 21724cafb2c9fb04c9f224cae54a4c8c, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 204.1924
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7638047264784752890, guid: 21724cafb2c9fb04c9f224cae54a4c8c, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 21.4663
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7638047264784752890, guid: 21724cafb2c9fb04c9f224cae54a4c8c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7638047264784752890, guid: 21724cafb2c9fb04c9f224cae54a4c8c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7638047264784752890, guid: 21724cafb2c9fb04c9f224cae54a4c8c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 7638047264784752890, guid: 21724cafb2c9fb04c9f224cae54a4c8c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6049,24 +6224,185 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
+    - target: {fileID: 7638047264784752890, guid: 21724cafb2c9fb04c9f224cae54a4c8c, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 5090283162483497204, guid: 21724cafb2c9fb04c9f224cae54a4c8c, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 5018442769451056815, guid: 21724cafb2c9fb04c9f224cae54a4c8c, type: 3}
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7638047264784752890, guid: 21724cafb2c9fb04c9f224cae54a4c8c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8736442437309483434}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1542196128353499864, guid: 21724cafb2c9fb04c9f224cae54a4c8c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6984309028753382389}
   m_SourcePrefab: {fileID: 100100000, guid: 21724cafb2c9fb04c9f224cae54a4c8c, type: 3}
---- !u!224 &4986790783060863887 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 7638047264784752890, guid: 21724cafb2c9fb04c9f224cae54a4c8c, type: 3}
+--- !u!1 &4156140183711216045 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1542196128353499864, guid: 21724cafb2c9fb04c9f224cae54a4c8c, type: 3}
   m_PrefabInstance: {fileID: 3227788247034448757}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7669412317075886977 stripped
+--- !u!114 &6984309028753382389
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5090283162483497204, guid: 21724cafb2c9fb04c9f224cae54a4c8c, type: 3}
-  m_PrefabInstance: {fileID: 3227788247034448757}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 4156140183711216045}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ef66395de4459443b7e5917570cb913, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 100
+  maxHealth: 100
+  healthSlider: {fileID: 8736442436176622078}
+  bacHealthSlider: {fileID: 2266977623287604780}
+  target: {fileID: 0}
+  offset: {x: 0, y: 33, z: 0}
+  lerpTimer: 0
+  chipSeed: 2
+  mainCam: {fileID: 0}
+--- !u!224 &4986790783060863887 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7638047264784752890, guid: 21724cafb2c9fb04c9f224cae54a4c8c, type: 3}
+  m_PrefabInstance: {fileID: 3227788247034448757}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8259937367789168024
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4986790783060863887}
+    m_Modifications:
+    - target: {fileID: 837429141614013490, guid: fabf0779309130d49bbe8c0abeb86242, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 837429141614013490, guid: fabf0779309130d49bbe8c0abeb86242, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 837429141614013490, guid: fabf0779309130d49bbe8c0abeb86242, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 837429141614013490, guid: fabf0779309130d49bbe8c0abeb86242, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 837429141614013490, guid: fabf0779309130d49bbe8c0abeb86242, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 837429141614013490, guid: fabf0779309130d49bbe8c0abeb86242, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 837429141614013490, guid: fabf0779309130d49bbe8c0abeb86242, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 837429141614013490, guid: fabf0779309130d49bbe8c0abeb86242, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 837429141614013490, guid: fabf0779309130d49bbe8c0abeb86242, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 837429141614013490, guid: fabf0779309130d49bbe8c0abeb86242, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 837429141614013490, guid: fabf0779309130d49bbe8c0abeb86242, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 837429141614013490, guid: fabf0779309130d49bbe8c0abeb86242, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 837429141614013490, guid: fabf0779309130d49bbe8c0abeb86242, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 837429141614013491, guid: fabf0779309130d49bbe8c0abeb86242, type: 3}
+      propertyPath: m_Name
+      value: HealthBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 837429141614013491, guid: fabf0779309130d49bbe8c0abeb86242, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 837429142135099225, guid: fabf0779309130d49bbe8c0abeb86242, type: 3}
+      propertyPath: m_Color.a
+      value: 0.47058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 837429142135099225, guid: fabf0779309130d49bbe8c0abeb86242, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 837429142135099225, guid: fabf0779309130d49bbe8c0abeb86242, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 837429142135099225, guid: fabf0779309130d49bbe8c0abeb86242, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 837429142135099227, guid: fabf0779309130d49bbe8c0abeb86242, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 837429142629176422, guid: fabf0779309130d49bbe8c0abeb86242, type: 3}
+      propertyPath: m_Color.b
+      value: 0.17854264
+      objectReference: {fileID: 0}
+    - target: {fileID: 837429142629176422, guid: fabf0779309130d49bbe8c0abeb86242, type: 3}
+      propertyPath: m_Color.g
+      value: 0.6509434
+      objectReference: {fileID: 0}
+    - target: {fileID: 837429142629176422, guid: fabf0779309130d49bbe8c0abeb86242, type: 3}
+      propertyPath: m_Color.r
+      value: 0.15045391
+      objectReference: {fileID: 0}
+    - target: {fileID: 837429142629176424, guid: fabf0779309130d49bbe8c0abeb86242, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 837429141614013490, guid: fabf0779309130d49bbe8c0abeb86242, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 6612056182350659374}
+    - targetCorrespondingSourceObject: {fileID: 837429141614013490, guid: fabf0779309130d49bbe8c0abeb86242, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6712628543851639255}
+    - targetCorrespondingSourceObject: {fileID: 837429141614013490, guid: fabf0779309130d49bbe8c0abeb86242, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9102203962053245368}
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fabf0779309130d49bbe8c0abeb86242, type: 3}
+--- !u!114 &8736442436176622078 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 837429142629176422, guid: fabf0779309130d49bbe8c0abeb86242, type: 3}
+  m_PrefabInstance: {fileID: 8259937367789168024}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &8736442437309483434 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 837429141614013490, guid: fabf0779309130d49bbe8c0abeb86242, type: 3}
+  m_PrefabInstance: {fileID: 8259937367789168024}
+  m_PrefabAsset: {fileID: 0}
