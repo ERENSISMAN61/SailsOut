@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GeneralCrewHealthControl : MonoBehaviour
@@ -23,6 +25,9 @@ public class GeneralCrewHealthControl : MonoBehaviour
 
     public float lerpTimer; // Sağlık barının geçiş süresi
     private float chipSeed = 0.5f; // Sağlık azalma hızı
+
+    [SerializeField] private string sceneName = "ErenScene"; // Varsayılan sahne adı, Inspector üzerinden değiştirilebilir.
+    [SerializeField] private TextMeshProUGUI resultText; // UI'da sonucu göstermek için Text bileşeni
     //--------------------------------------------------------------VEYSEL BITIS--------------------------------------------------------------
 
 
@@ -77,12 +82,48 @@ public class GeneralCrewHealthControl : MonoBehaviour
         Debug.Log("Total enemies in list: " + enemyCrewHealth.Count);
     }
 
-    private void Update()
+    void DisplayResult(string message)
+    {
+        if (resultText != null)
+        {
+            resultText.text = message; // UI'da sonucu göster
+        }
+        else
+        {
+            Debug.LogWarning("Result Text component is not assigned!");
+        }
+
+        Invoke("LoadScene", 2f); // 2 saniye sonra sahneyi yükle
+    }
+
+    void LoadScene()
+    {
+        SceneManager.LoadScene(sceneName); // Sahne yükleme
+    }
+
+    private void CheckBattleOutcome()
+    {
+        if (totalPlayerCurrentHealth > 0 && totalEnemyCurrentHealth <= 0)
+        {
+            DisplayResult("Blue Team Won!");
+            // Oyuncu kazandı işlemleri
+            Invoke("LoadScene", 2f); // 2 saniye sonra sahneyi yükle
+        }
+        else if (totalEnemyCurrentHealth > 0 && totalPlayerCurrentHealth <= 0)
+        {
+            DisplayResult("Red Team Won!");
+            // Düşman kazandı işlemleri
+            Invoke("LoadScene", 2f); // 2 saniye sonra sahneyi yükle
+        }
+        
+    }
+
+    private void LateUpdate()
     {
         CalculateHealth();
         UpdatePlayerCrewHealthUI();
         UpdateEnemyCrewHealthUI();
-
+        CheckBattleOutcome();
 
     }
 

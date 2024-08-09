@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 225.26785, g: 226.116, b: 268.96805, a: 1}
+  m_IndirectSpecularColor: {r: 225.2518, g: 226.08401, b: 268.88455, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1286,6 +1286,8 @@ MonoBehaviour:
   enemyHealthSlider: {fileID: 283836303}
   enemyBackHealthSlider: {fileID: 761792091}
   lerpTimer: 1
+  sceneName: ErenScene
+  resultText: {fileID: 1358234096}
 --- !u!4 &192367324
 Transform:
   m_ObjectHideFlags: 0
@@ -4229,7 +4231,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 666659797}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.1364031, y: -0.000000017045556, z: 0.0000000023470033, w: 0.99065346}
+  m_LocalRotation: {x: 0.1364031, y: 0.000000017045567, z: -0.0000000023470046, w: 0.99065346}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10587,52 +10589,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1289650199}
   m_Mesh: {fileID: -4517412117399791055, guid: 4fe7ec1d555ab494d836addf3c4b2c0f, type: 3}
---- !u!1 &1321625042
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1321625043}
-  - component: {fileID: 1321625044}
-  m_Layer: 0
-  m_Name: SceneManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1321625043
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1321625042}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1321625044
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1321625042}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a49eb77b9c6a8354f8afabcdaa544aad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneName: ErenScene
-  resultText: {fileID: 1358234096}
 --- !u!1001 &1325145715
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16951,4 +16907,3 @@ SceneRoots:
   - {fileID: 557939527}
   - {fileID: 768910635}
   - {fileID: 267672839}
-  - {fileID: 1321625043}

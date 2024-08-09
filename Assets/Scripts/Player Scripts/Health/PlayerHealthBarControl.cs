@@ -40,7 +40,6 @@ public class PlayerHealthBarControl : MonoBehaviour
 
     private void Start()
     {
-
         //DestroylessObject = GameObject.FindGameObjectWithTag("Destroyless");                   /// TASINACAK
         //if (!DestroylessObject.GetComponent<DestroylessManager>().filledHealth)                /// TASINACAK
         //{
