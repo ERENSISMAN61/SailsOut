@@ -8,7 +8,7 @@ public class InitilizeEnemy : MonoBehaviour
     private EnemyDestroylessManager destroylessManager;
     public GameObject enemyPrefab;
     public Transform initlizePoint;
-    void Start()
+    void Awake()
     {
         destroylessManager = GameObject.FindGameObjectWithTag("Destroyless").GetComponent<EnemyDestroylessManager>();
         

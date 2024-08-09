@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI; // UI işlemleri için gerekli
@@ -7,7 +8,7 @@ using UnityEngine.UI; // UI işlemleri için gerekli
 public class SceneLoading : MonoBehaviour
 {
     [SerializeField] private string sceneName = "ErenScene"; // Varsayılan sahne adı, Inspector üzerinden değiştirilebilir.
-    [SerializeField] private Text resultText; // UI'da sonucu göstermek için Text bileşeni
+    [SerializeField] private TextMeshProUGUI resultText; // UI'da sonucu göstermek için Text bileşeni
 
     private GeneralCrewHealthControl generalHealth;
 
