@@ -26,13 +26,21 @@ public class GeneralCrewHealthControl : MonoBehaviour
     public float lerpTimer; // Sağlık barının geçiş süresi
     private float chipSeed = 0.5f; // Sağlık azalma hızı
 
-    [SerializeField] private string sceneName = "ErenScene"; // Varsayılan sahne adı, Inspector üzerinden değiştirilebilir.
+    
     [SerializeField] private TextMeshProUGUI resultText; // UI'da sonucu göstermek için Text bileşeni
+    [HideInInspector]
+    public bool isBlueWon = false;
+    [HideInInspector]
+    public bool isRedWon = false;
+
+    [SerializeField]
+    public GameObject victoryPanel;
     //--------------------------------------------------------------VEYSEL BITIS--------------------------------------------------------------
 
 
     private void Start()
     {
+        victoryPanel.SetActive(false);
         InitializePlayerCrewHealth();
         InitializeEnemyCrewHealth();
     }
@@ -84,8 +92,10 @@ public class GeneralCrewHealthControl : MonoBehaviour
 
     void DisplayResult(string message)
     {
+        victoryPanel?.SetActive(true);
         if (resultText != null)
         {
+            
             resultText.text = message; // UI'da sonucu göster
         }
         else
@@ -93,13 +103,9 @@ public class GeneralCrewHealthControl : MonoBehaviour
             Debug.LogWarning("Result Text component is not assigned!");
         }
 
-        Invoke("LoadScene", 2f); // 2 saniye sonra sahneyi yükle
     }
 
-    void LoadScene()
-    {
-        SceneManager.LoadScene(sceneName); // Sahne yükleme
-    }
+    
 
     private void CheckBattleOutcome()
     {
@@ -107,13 +113,15 @@ public class GeneralCrewHealthControl : MonoBehaviour
         {
             DisplayResult("Blue Team Won!");
             // Oyuncu kazandı işlemleri
-            Invoke("LoadScene", 2f); // 2 saniye sonra sahneyi yükle
+            isBlueWon = true;
+
+            
         }
         else if (totalEnemyCurrentHealth > 0 && totalPlayerCurrentHealth <= 0)
         {
             DisplayResult("Red Team Won!");
             // Düşman kazandı işlemleri
-            Invoke("LoadScene", 2f); // 2 saniye sonra sahneyi yükle
+            isRedWon = true;
         }
         
     }

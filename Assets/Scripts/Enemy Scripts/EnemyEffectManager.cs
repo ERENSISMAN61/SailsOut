@@ -45,7 +45,7 @@ public class EnemyEffectManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("PlayerCollider"))
         {
             rb.isKinematic = true;
             StartCoroutine(WaitEffectAndDestroy());

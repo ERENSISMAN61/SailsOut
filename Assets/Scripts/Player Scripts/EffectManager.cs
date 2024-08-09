@@ -41,7 +41,7 @@ public class EffectManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("EnemyShip") /*|| other.gameObject.CompareTag("Ennemy")*/) // sonradan denenecek
+        if (other.gameObject.CompareTag("EnemyCollider") /*|| other.gameObject.CompareTag("Ennemy")*/) // sonradan denenecek
         {
 
             if (rb != null)
