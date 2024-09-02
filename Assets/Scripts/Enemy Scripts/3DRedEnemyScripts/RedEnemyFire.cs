@@ -114,7 +114,7 @@ public class RedEnemyFire : MonoBehaviour
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed);
             //transform.Rotate(new Vector3(0, 90 * rotationSpeed), Space.Self);
-            transform.RotateAround(transform.position, transform.up, 90 * rotationSpeed);
+            transform.RotateAround(transform.position, transform.up, 82 * rotationSpeed);
             isStoppedTime += Time.deltaTime; // Update the time elapsed since the enemy stoppedD
             Debug.Log("Stopped Time: " + isStoppedTime);
         }
@@ -122,7 +122,7 @@ public class RedEnemyFire : MonoBehaviour
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotationSpeed);
             //transform.Rotate(new Vector3(0, -90 * rotationSpeed), Space.Self);
-            transform.RotateAround(transform.position, transform.up, -90 * rotationSpeed);
+            transform.RotateAround(transform.position, transform.up, -82 * rotationSpeed);
             isStoppedTime += Time.deltaTime; // Update the time elapsed since the enemy stopped
             Debug.Log("Stopped Time: " + isStoppedTime);
         }

@@ -34,7 +34,9 @@ public class EffectManager : MonoBehaviour
 
     IEnumerator WaitEffectAndDestroy()
     {
+        this.gameObject.GetComponent<MeshRenderer>().enabled = false;
         PlayExplosionEffect();
+        
         yield return new WaitForSeconds(1.2f);
         Destroy(gameObject);
     }

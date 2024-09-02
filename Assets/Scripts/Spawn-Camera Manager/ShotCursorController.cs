@@ -14,11 +14,14 @@ public class ShotCursorController : MonoBehaviour
         rectTransform = gameObject.GetComponent<RectTransform>();
         playerFire = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerFire>();
         this.gameObject.GetComponent<Image>().enabled = false;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+       
+
         if (Input.GetMouseButtonDown(1) && !Input.GetMouseButtonUp(1))  // Sağ tıklama kontrolü
         {
             this.gameObject.GetComponent<Image>().enabled = true;
@@ -30,7 +33,7 @@ public class ShotCursorController : MonoBehaviour
         if(Input.GetMouseButtonUp(1))  // Sağ tıklama bırakıldığında
         {
             this.gameObject.GetComponent<Image>().enabled = false;
-            Cursor.visible = true;
+            //Cursor.visible = false;
         }
 
         if (Cursor.visible == false)

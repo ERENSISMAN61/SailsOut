@@ -66,8 +66,9 @@ public class PlayerFire : MonoBehaviour
         Ray ray = cam.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
 
         Debug.Log("Ray: " + ray.direction * 100f);
-        
+       
         rb.AddForce((ray.direction * initialSpeed) + (Vector3.up * launchAngle), ForceMode.Impulse);
+        firePoint.gameObject.GetComponentInChildren<ParticleSystem>().Play();
         //smokeParticle.Play();
         //cannon.GetComponentInChildren<ParticleSystem>().Play();
         //Destroy(cannonball, 5f);

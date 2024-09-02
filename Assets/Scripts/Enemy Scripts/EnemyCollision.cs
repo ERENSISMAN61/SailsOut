@@ -34,11 +34,38 @@ public class EnemyCollision : MonoBehaviour
                 
                 //- olcak
                 rb.AddForceAtPosition(Vector3.left * Randomforce, parentPosition, ForceMode.Impulse);
+                StartCoroutine(SwingObject(10, 1f)); // Sağa yumuşak sallanma
             }
             else
             {
                 rb.AddForceAtPosition(Vector3.right * Randomforce, parentPosition, ForceMode.Impulse);
+                StartCoroutine(SwingObject(-10, 1f)); // Sağa yumuşak sallanma
             }
+        }
+    }
+
+    private IEnumerator SwingObject(float angle, float duration)
+    {
+        float elapsedTime = 0;
+        float initialRotation = transform.eulerAngles.z;
+        float targetRotation = initialRotation + angle;
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            float zRotation = Mathf.Lerp(initialRotation, targetRotation, elapsedTime / duration);
+            transform.rotation = Quaternion.Euler(new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, zRotation));
+            yield return null;
+        }
+
+        // Geriye yumuşak sallanma
+        elapsedTime = 0;
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            float zRotation = Mathf.Lerp(targetRotation, initialRotation, elapsedTime / duration);
+            transform.rotation = Quaternion.Euler(new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, zRotation));
+            yield return null;
         }
     }
 }
