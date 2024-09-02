@@ -385,6 +385,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 7336391239981471855, guid: 231fd6ac48bf61c4cbc41b39158ffea5, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7400327599097616118, guid: 231fd6ac48bf61c4cbc41b39158ffea5, type: 3}
       propertyPath: m_TagString
       value: EnemyCollider
