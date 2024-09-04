@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 216.99136, g: 215.10355, b: 244.91812, a: 1}
+  m_IndirectSpecularColor: {r: 216.99039, g: 215.10355, b: 244.91519, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4917,7 +4917,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 666659797}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.1364031, y: -0.000000017045558, z: 0.0000000023470035, w: 0.99065346}
+  m_LocalRotation: {x: 0.1364031, y: 0.000000017045565, z: -0.0000000023470044, w: 0.99065346}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7821,7 +7821,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 676b96018a48cf243918016b52656fd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerLevel: 0
+  playerLevel: 1
   playerDamage: 0
   damageMultiple: 5
   levelText: {fileID: 1534443326}

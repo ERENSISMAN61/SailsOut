@@ -121,7 +121,7 @@ MonoBehaviour:
     m_Value: {r: 0.9, g: 0.9, b: 0.9, a: 1}
   aerosolMaximumAltitude:
     m_OverrideState: 1
-    m_Value: 8289.296
+    m_Value: 8328.94
   aerosolAnisotropy:
     m_OverrideState: 1
     m_Value: 0
@@ -133,7 +133,7 @@ MonoBehaviour:
     m_Value: {r: 1, g: 1, b: 1, a: 1}
   groundColorTexture:
     m_OverrideState: 1
-    m_Value: {fileID: 8900000, guid: 42d1fe9ab52f0644d8a59b05cfd58965, type: 3}
+    m_Value: {fileID: 8900000, guid: 34a763168147f4182a21b9fd004d67de, type: 3}
   groundEmissionTexture:
     m_OverrideState: 1
     m_Value: {fileID: 0}
@@ -145,7 +145,7 @@ MonoBehaviour:
     m_Value: {x: 0, y: 0, z: 0}
   spaceEmissionTexture:
     m_OverrideState: 1
-    m_Value: {fileID: 8900000, guid: 18ec2d52be8f4524a97c25a2ed27838e, type: 3}
+    m_Value: {fileID: 8900000, guid: 34a763168147f4182a21b9fd004d67de, type: 3}
   spaceEmissionMultiplier:
     m_OverrideState: 1
     m_Value: 5451
