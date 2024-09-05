@@ -8,55 +8,59 @@ public class showInfoAnim : MonoBehaviour
     private Animator animator;
     public GameObject showCountryInfoPanel;
     public GameObject saydamPanel;
+    private Animator countryInfoAnimator;
     private int isClicked = 0;
-    
-
     void Start()
     {
-        showCountryInfoPanel.SetActive(false);
-        // Animator componentini al
+        // Animator componentlerini al
         animator = GetComponent<Animator>();
+        countryInfoAnimator = showCountryInfoPanel.GetComponent<Animator>();
+        // Başlangıçta tüm animasyonları durdur
+        ResetAnimationStates();
+    }
 
-        // Başlangıçta animasyonu durdur
+    public void ResetAnimationStates()
+    {
         animator.SetBool("isClicked", false);
         animator.SetBool("isClicked2", false);
+        countryInfoAnimator.SetBool("isOpen", false);
+        countryInfoAnimator.SetBool("isOpen2", false);
     }
 
     // Bu method butona bağlanacak
     public void ToggleAnimation()
     {
-        
-        // Animasyonun durumunu tersine çevir
+        ResetAnimationStates();
+        StartCoroutine(ActivateAnimations());
+    }
+
+    public IEnumerator ActivateAnimations()
+    {
+        // İlk animasyonu başlat
         animator.SetBool("isClicked", true);
         animator.SetBool("isClicked2", false);
-        Invoke("showInfoActive", 2.5f);
-
-
+        yield return new WaitForSeconds(2f); // 2 saniye bekleyin
+        // İkinci animasyonu aktif et
+        countryInfoAnimator.SetBool("isOpen", true);
+        countryInfoAnimator.SetBool("isOpen2", false);
     }
 
     public void ToggleAnimationOut()
     {
-        // Mevcut durumu al
-        bool isCurrentlyPlaying = animator.GetBool("isClicked2");
-        showInfoPasive();
-        // Animasyonun durumunu tersine çevir
+        ResetAnimationStates();
+        StartCoroutine(DeactivateAnimations());
+    }
+
+    public IEnumerator DeactivateAnimations()
+    {
+        countryInfoAnimator.SetBool("isOpen2", true);
+        countryInfoAnimator.SetBool("isOpen", false);
+        yield return new WaitForSeconds(2f); // 2 saniye bekleyin
+        // İkinci animasyonu başlat
         animator.SetBool("isClicked", false);
         animator.SetBool("isClicked2", true);
-       
     }
 
-    void OnButtonClick()
-    {
-        Debug.Log("Button tıklandı!");
-    }
 
-    private void showInfoActive()
-    {
-        showCountryInfoPanel.SetActive(true);
-    }
 
-    private void showInfoPasive()
-    {
-        showCountryInfoPanel.SetActive(false);
-    }
 }

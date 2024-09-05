@@ -46,7 +46,7 @@ public class ShowInfoButton : MonoBehaviour
     private void LogButtonClickedFalse()
     {
         Debug.Log("Button tıklandı!");
-        isClickedShowInfo = true;
+        isClickedShowInfo = false;
     }
 
     private void PerformAnotherAction()
