@@ -14,6 +14,6 @@ public class PlayerUnitCountText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playerUnitCountText.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = unitsManager.unitCount.ToString();
+        playerUnitCountText.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = (unitsManager.unitCount + 1).ToString();
     }
 }
