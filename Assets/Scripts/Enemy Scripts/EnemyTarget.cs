@@ -38,12 +38,23 @@ public class EnemyTarget : MonoBehaviour
                 {
                     newObjectsInSphere.Add(enemy);
 
-                    string thisShipCountryNum = transform.parent.tag;//ulke numarasini al bu geminin
-                    string otherShipCountryNum = enemy.transform.parent.parent.tag; // karsilasdigi geminin ulke numarasini al
-                                                                                    //DiplomacyManager'dan iki geminin ülkelerinin savasta olup olmadiginin kontrolu
-                    bool areEnemies = GameObject.FindGameObjectWithTag("DiplomacyManager").GetComponent<DiplomacyManager>().AreAtWar(thisShipCountryNum, otherShipCountryNum); // bu iki ulke arasinda savas var mi
-                                                                                                                                                                               // Debug.Log("areEnemies ," + thisShipCountryNum + "," + otherShipCountryNum + " " + areEnemies + "\n");
+                    //NPC TARGET
 
+                    //string thisShipCountryNum = transform.parent.tag;//ulke numarasini al bu geminin
+                    //string otherShipCountryNum = enemy.transform.parent.parent.tag; // karsilasdigi geminin ulke numarasini al
+
+                    //DiplomacyManager'dan iki geminin ülkelerinin savasta olup olmadiginin kontrolu
+
+                    //bool areEnemies = GameObject.FindGameObjectWithTag("DiplomacyManager").GetComponent<DiplomacyManager>().AreAtWar(thisShipCountryNum, otherShipCountryNum); // bu iki ulke arasinda savas var mi
+                    // Debug.Log("areEnemies ," + thisShipCountryNum + "," + otherShipCountryNum + " " + areEnemies + "\n");
+
+                    //ENEMY TARGET
+
+                    int thisShipUnitCount = GetComponent<EnemyUnits>().GetEnemyUnitCount();
+                    int otherShipUnitCount = GameObject.FindGameObjectWithTag("UnitsManager").GetComponent<UnitsManager>().unitCount;
+
+                    bool areEnemies = thisShipUnitCount > otherShipUnitCount;
+                    Debug.Log("DÜŞMAN GÜÇLÜ MÜ:" + areEnemies);
 
                     if (!objectsInSphere.Contains(enemy) && areEnemies)//daha onceki frame'de bu obje yoksa ve (savas halindeyse)
                     {

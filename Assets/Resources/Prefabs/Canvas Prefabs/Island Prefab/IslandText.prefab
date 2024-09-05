@@ -66,7 +66,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canIslandMenuOpen: 0
   isIslandMenuOpen: 0
-  minFontSize: 40
+  minFontSize: 30
   maxFontSize: 100
 --- !u!1 &777476949240967031
 GameObject:

@@ -21,9 +21,15 @@ public class FloatingUnitCountText : MonoBehaviour
     {
         mainCamera = Camera.main;
         uiElement = transform.GetChild(0).GetComponent<RectTransform>();
+
+        TargetText();
     }
 
     void Update()
+    {
+        TargetText();
+    }
+    private void TargetText()
     {
         if (target != null)
         {

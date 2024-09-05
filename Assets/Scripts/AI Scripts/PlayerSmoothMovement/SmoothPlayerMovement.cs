@@ -106,14 +106,15 @@ public class SmoothPlayerMovement : MonoBehaviour
 
         }
 
-        if (firstMousePosition.x - lastMousePosition.x <= 30f && firstMousePosition.x - lastMousePosition.x >= -30f
-            && firstMousePosition.y - lastMousePosition.y <= 30f && firstMousePosition.y - lastMousePosition.y >= -30f)
+        if ((firstMousePosition.x - lastMousePosition.x <= 30f && firstMousePosition.x - lastMousePosition.x >= -30f
+            && firstMousePosition.y - lastMousePosition.y <= 30f && firstMousePosition.y - lastMousePosition.y >= -30f) || !Input.GetMouseButtonUp(0))
         {
             HandleInput();
+            MoveAgent();
         }
 
 
-        MoveAgent();
+
     }
     private void OnDrawGizmos()
     {

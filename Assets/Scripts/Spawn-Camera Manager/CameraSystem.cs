@@ -466,7 +466,7 @@ Mathf.Lerp(cinemachineVirtualCamera.GetCinemachineComponent<CinemachineTranspose
     {
         float zoomAmount = 30f;
 
-        if (Input.mouseScrollDelta.y > 0)
+        if (Input.mouseScrollDelta.y > 0 || Input.GetKey(KeyCode.Z))   // Z SILINECEK
         {
             followOffset.y -= zoomAmount;
         }

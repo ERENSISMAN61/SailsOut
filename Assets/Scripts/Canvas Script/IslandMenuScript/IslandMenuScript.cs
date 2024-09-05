@@ -15,11 +15,11 @@ public class IslandMenuScript : MonoBehaviour
 
     private bool onceOpened = false;
 
-    [SerializeField] private float minFontSize = 40;//Island Text Font Size
+    [SerializeField] private float minFontSize = 30;//Island Text Font Size
     [SerializeField] private float maxFontSize = 100; //Island Text Font Size
 
     private float minYPosition = 0;//Island Text Font Size icin Camera Y pozisyonu
-    private float maxYPosition = 2500;//Island Text Font Size icin Camera Y pozisyonu
+    private float maxYPosition = 1500;//Island Text Font Size icin Camera Y pozisyonu
     void Start()
     {
         islandMenuObject = Resources.Load<GameObject>("Prefabs/Canvas Prefabs/Menu Prefab/IslandMenu");
