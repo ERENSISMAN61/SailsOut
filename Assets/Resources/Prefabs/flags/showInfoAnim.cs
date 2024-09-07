@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class showInfoAnim : MonoBehaviour
 {
@@ -9,9 +10,15 @@ public class showInfoAnim : MonoBehaviour
     public GameObject showCountryInfoPanel;
     public GameObject saydamPanel;
     private Animator countryInfoAnimator;
-    private int isClicked = 0;
+
+    private ShowInfoButton showInfoButton;
+    private CountryManager countryManager;
+
+    [System.Obsolete]
     void Start()
     {
+        countryManager = UnityEngine.Object.FindObjectOfType<CountryManager>();
+        showInfoButton = gameObject.GetComponentInChildren<ShowInfoButton>();
         // Animator componentlerini al
         animator = GetComponent<Animator>();
         countryInfoAnimator = showCountryInfoPanel.GetComponent<Animator>();
@@ -61,6 +68,14 @@ public class showInfoAnim : MonoBehaviour
         animator.SetBool("isClicked2", true);
     }
 
+
+    public void ChangeScene()
+    {
+        Debug.Log("Kaydedilen country id: " + countryManager.LoadCountry());
+        SceneManager.LoadScene("ErenScene");
+
+
+    }
 
 
 }

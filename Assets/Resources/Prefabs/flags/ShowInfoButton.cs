@@ -9,16 +9,25 @@ public class ShowInfoButton : MonoBehaviour
 {
     public Button myButton;
     public TextMeshProUGUI countryName;
+    public TextMeshProUGUI countryInfo;
     // Action event tanımlama
     public event Action onButtonClicked;
     public bool isClickedShowInfo;
 
     [SerializeField]
     private string CountryName;
+    [SerializeField]
     private string CountryInfo;
 
+    
+    public int countryID;
+    [Obsolete]
+    private CountryManager countryManager;
+
+    [Obsolete]
     void Start()
     {
+        countryManager = UnityEngine.Object.FindObjectOfType<CountryManager>();
         // Button'un onClick event'ine bir lambda fonksiyon ekleyin
         myButton.onClick.AddListener(() => onButtonClicked?.Invoke());
     }
@@ -49,9 +58,16 @@ public class ShowInfoButton : MonoBehaviour
         isClickedShowInfo = false;
     }
 
+    [Obsolete]
     private void PerformAnotherAction()
     {
         Debug.Log("Başka bir işlem yapılıyor...");
         countryName.text = CountryName;
+        countryInfo.text = CountryInfo;
+        Debug.Log("Country ID: " + countryID);
+        countryManager.SaveCountry(countryID);
+
     }
+
+    
 }
