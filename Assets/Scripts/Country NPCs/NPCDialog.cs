@@ -8,8 +8,8 @@ public class NPCDialog : MonoBehaviour
 {
     GameObject InventoryObject;
     CameraSystem CameraSystemScript;
-    EnemyDialogOrganize enemyDialogOrganize;
-    SmoothNPCMovement smoothNPCMovement;
+    NPCDialogOrganize enemyDialogOrganize;
+    SmoothNPCMovement smoothAgentMovement;
 
 
     public bool didPay = false;
@@ -17,16 +17,25 @@ public class NPCDialog : MonoBehaviour
     private bool TekKullan = false;
     GameObject player;
 
+    private float coinCount;// dialog acildiginda kac liramiz oldugu
+
+    [SerializeField] private int payCount = 30; //kac lira odeyecegi
+
+
     void Start()
     {
 
 
         InventoryObject = GameObject.FindGameObjectWithTag("Inventory");
 
-        enemyDialogOrganize = gameObject.GetComponent<EnemyDialogOrganize>();
-        smoothNPCMovement = gameObject.GetComponent<SmoothNPCMovement>();
+        enemyDialogOrganize = gameObject.GetComponent<NPCDialogOrganize>();
+        smoothAgentMovement = gameObject.GetComponent<SmoothNPCMovement>();
         CameraSystemScript = GameObject.FindGameObjectWithTag("CameraSystem").GetComponent<CameraSystem>();
         player = GameObject.FindGameObjectWithTag("Player");
+
+        //  SceneManager.sceneLoaded += OnSceneLoaded;
+
+        coinCount = InventoryObject.GetComponent<InventoryController>().coinCount;
 
 
     }
@@ -35,7 +44,7 @@ public class NPCDialog : MonoBehaviour
     {
         CameraSystemScript.enemyPos = gameObject.transform.position;
 
-        Debug.Log("smoothNPCMovement.didCatch:  " + smoothNPCMovement.didCatch + "\nTime.timeScale: " + Time.timeScale);
+        Debug.Log("smoothAgentMovement.didCatch:  " + smoothAgentMovement.didCatch + "\nTime.timeScale: " + Time.timeScale);
     }
 
     public void AttackButton()
@@ -47,33 +56,59 @@ public class NPCDialog : MonoBehaviour
 
         if (!TekKullan)
         {
+            GameObject.FindGameObjectWithTag("TimeManager").GetComponent<TimeAndDateScript>().SetTimeSpeed(1); // calismiyor cunku load scene hemen pesinden geliyor
+
+            Time.timeScale = 1;
+
+            // SceneManager.sceneLoaded olayına abone olun
+            SceneManager.sceneLoaded += OnSceneLoaded;
+
+
             SceneManager.LoadScene("BattleScene");
             TekKullan = true;
-            smoothNPCMovement.didCatch = false;
+            smoothAgentMovement.didCatch = false;
 
             // ENEMY UNITleri Savas sahnesine gondermek icin.
             GameObject.FindGameObjectWithTag("Destroyless").GetComponent<EnemyDestroylessManager>()._EnemyToFightUnitsContainers
-            = GetComponent<EnemyUnits>().GetEnemyUnits();
+            = GetComponent<NPCUnits>().GetNPCUnits();
+
+
         }
 
 
     }
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Sahne yüklendiğinde timeScale'ı ayarlayın
+        Time.timeScale = 1;
 
+        // Eğer artık gerek yoksa olaydan çıkın
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
 
     public void PayButton()
     {
+
         if (!didPay)
         {
+            if (InventoryObject.GetComponent<InventoryController>().coinCount == coinCount)
+            {
+                InventoryObject.GetComponent<InventoryController>().coinCount -= payCount;
+            }
 
-            InventoryObject.GetComponent<InventoryController>().coinCount -= 30;
 
             didPay = true;
+
+            GameObject.FindGameObjectWithTag("TimeManager").GetComponent<TimeAndDateScript>().SetTimeSpeed(1);
+
 
             Destroy(enemyDialogOrganize.spawnEnemyDialog); //
             enemyDialogOrganize.isDialogSpawned = false;   //
                                                            ///// bu dortlu kesinlikle olmali eski hale getirilebilmesi icin.  \\\\\
-            smoothNPCMovement.didCatch = false;          //
-            smoothNPCMovement.isTargetEnemy = false;     //
+            smoothAgentMovement.didCatch = false;          //
+            smoothAgentMovement.isTargetEnemy = false;     //
+
+            GameObject.FindGameObjectWithTag("TimeManager").GetComponent<TimeAndDateScript>().SetTimeSpeed(1);
 
             StartCoroutine("WaitCatch");
         }
@@ -83,13 +118,13 @@ public class NPCDialog : MonoBehaviour
     {
 
 
-        //  NPC.isStopped = false;
+        //  agent.isStopped = false;
 
         didPay = false;
 
-        gameObject.GetComponent<EnemyTarget>().targetCoolDown = true;  // enemy 20 saniye boyunca playeri gormezden gelir.  //
+        gameObject.GetComponent<NPCTarget>().targetCoolDown = true;  // enemy 20 saniye boyunca playeri gormezden gelir.  //
         yield return new WaitForSeconds(20f);                                                                               // ��� cooldown i�in.
-        gameObject.GetComponent<EnemyTarget>().targetCoolDown = false;                                                      //   
+        gameObject.GetComponent<NPCTarget>().targetCoolDown = false;                                                      //   
 
         //   canCatch = true;
 
@@ -103,7 +138,7 @@ public class NPCDialog : MonoBehaviour
         CameraSystemScript.followPlayer = false;
         if (!didSteal)
         {
-
+            GameObject.FindGameObjectWithTag("TimeManager").GetComponent<TimeAndDateScript>().SetTimeSpeed(1);
 
             InventoryObject.GetComponent<InventoryController>().bulletCount = 0;
             int randomNumberSupply = Random.Range(5, 11);
@@ -117,8 +152,8 @@ public class NPCDialog : MonoBehaviour
             Destroy(enemyDialogOrganize.spawnEnemyDialog); //
             enemyDialogOrganize.isDialogSpawned = false;   //
                                                            ///// bu dortlu kesinlikle olmali eski hale getirilebilmesi icin.  \\\\\
-            smoothNPCMovement.didCatch = false;          //
-            smoothNPCMovement.isTargetEnemy = false;     //
+            smoothAgentMovement.didCatch = false;          //
+            smoothAgentMovement.isTargetEnemy = false;     //
 
 
 
@@ -141,9 +176,9 @@ public class NPCDialog : MonoBehaviour
         player.SetActive(true);
 
 
-        gameObject.GetComponent<EnemyTarget>().targetCoolDown = true;  // enemy 20 saniye boyunca playeri gormezden gelir.  //
+        gameObject.GetComponent<NPCTarget>().targetCoolDown = true;  // enemy 20 saniye boyunca playeri gormezden gelir.  //
         yield return new WaitForSeconds(20f);                                                                               // ��� cooldown i�in.
-        gameObject.GetComponent<EnemyTarget>().targetCoolDown = false;                                                      //            
+        gameObject.GetComponent<NPCTarget>().targetCoolDown = false;                                                      //            
 
         // GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraManager>().spawnPosition = gameObject.transform.position;
         //    GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraManager>().spawnRotation = gameObject.transform.rotation;

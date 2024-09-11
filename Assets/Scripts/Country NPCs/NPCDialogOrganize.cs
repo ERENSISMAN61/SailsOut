@@ -1,0 +1,66 @@
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+
+public class NPCDialogOrganize : MonoBehaviour
+{
+
+
+    private TextMeshProUGUI conversationText;
+
+    private GameObject enemyDialog;
+    public GameObject spawnEnemyDialog;
+
+    GameObject AttackButtonObject;
+    GameObject PayButtonObject;
+    GameObject SurrenderButtonObject;
+
+    public bool isDialogSpawned = false;
+
+    private void Start()
+    {
+        isDialogSpawned = false;
+        //      enemyDialog = (GameObject)Resources.Load("Resources/Prefabs/Canvas Prefabs/EnemyDialog");
+        enemyDialog = Resources.Load<GameObject>("Prefabs/Canvas Prefabs/EnemyDialog");
+        Debug.Log("eren" + enemyDialog);
+    }
+    private void Update()
+    {
+        if (GetComponent<SmoothAgentMovement>() != null)
+        {
+            if (gameObject.GetComponent<SmoothAgentMovement>().didCatch)
+            {
+                DialogOrganize();
+            }
+        }
+        else if (GetComponent<SmoothNPCMovement>() != null)
+        {
+            if (gameObject.GetComponent<SmoothNPCMovement>().didCatch)
+            {
+                DialogOrganize();
+            }
+        }
+
+    }
+
+    public void DialogOrganize()
+    {
+        if (!isDialogSpawned)
+        {
+            spawnEnemyDialog = Instantiate(enemyDialog, new Vector3(+960, +540, 0), Quaternion.identity, GameObject.Find("Canvas").transform);  // enemy dialogu Spawnla
+            isDialogSpawned = true;
+        }                                                                                                              /////\\\\\
+        AttackButtonObject = GameObject.Find("AttackButton");
+        PayButtonObject = GameObject.Find("PayButton");
+        SurrenderButtonObject = GameObject.Find("SurrenderButton");
+
+        AttackButtonObject.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => gameObject.GetComponent<NPCDialog>().AttackButton());
+        PayButtonObject.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => gameObject.GetComponent<NPCDialog>().PayButton());
+        SurrenderButtonObject.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => gameObject.GetComponent<NPCDialog>().SurrenderButton());
+        /////\\\\\
+
+        conversationText = GameObject.FindGameObjectWithTag("EnemyText").GetComponent<TextMeshProUGUI>();
+        conversationText.text = "I've got you cornered. Surrender or we will attack.";
+    }
+}

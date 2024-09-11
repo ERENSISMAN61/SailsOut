@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -15,7 +16,7 @@ public class PlayerTarget : MonoBehaviour
 
     public bool targetCoolDown = false;
 
-    private GameObject playerDialog, spawnPlayerDialog;
+    private GameObject playerPiratesDialog, playerCountryNPCDialog, spawnPlayerDialog;
     private bool TekKullan = false;
     private Collider EnemyCollider;
 
@@ -24,10 +25,13 @@ public class PlayerTarget : MonoBehaviour
     private Vector3 mouseDownPosition;
     private bool isDragging;
 
+    private bool atWar = false;
+
     void Start()
     {
         playerLayer = LayerMask.GetMask("OutlineFalse", "OutlineTrue");
-        playerDialog = Resources.Load<GameObject>("Prefabs/Canvas Prefabs/PlayerDialog");
+        playerPiratesDialog = Resources.Load<GameObject>("Prefabs/Canvas Prefabs/PlayerPiratesDialog");
+        playerCountryNPCDialog = Resources.Load<GameObject>("Prefabs/Canvas Prefabs/PlayerCountryNPCDialog");
     }
 
     void Update()
@@ -96,7 +100,7 @@ public class PlayerTarget : MonoBehaviour
 
         foreach (Collider enemy in enemies)
         {
-            if (enemy.CompareTag("EnemyParts") && enemy != transform.GetComponentInChildren<Collider>()) // Kendini görmesin
+            if ((enemy.CompareTag("EnemyParts") || enemy.CompareTag("NPCParts")) && enemy != transform.GetComponentInChildren<Collider>()) // Kendini görmesin
             {
                 if (!targetCoolDown)
                 {
@@ -112,7 +116,17 @@ public class PlayerTarget : MonoBehaviour
                                 if (spawnPlayerDialog == null)
                                 {
                                     EnemyCollider = enemy;
-                                    SpawnDialog();
+
+                                    if (enemy.CompareTag("EnemyParts"))
+                                    {
+                                        SpawnDialogPirates();
+                                    }
+                                    else if (enemy.CompareTag("NPCParts"))
+                                    {
+                                        atWar = GameObject.FindGameObjectWithTag("DiplomacyManager").GetComponent<DiplomacyManager>().AreAtWar(transform.parent.tag, enemy.transform.parent.parent.tag);
+                                        SpawnDialogCountryNPC();
+                                    }
+
                                 }
                             }
                         }
@@ -122,23 +136,66 @@ public class PlayerTarget : MonoBehaviour
         }
     }
 
-    private void SpawnDialog()
+    private void SpawnDialogPirates()
     {
-        spawnPlayerDialog = Instantiate(playerDialog, new Vector3(+960, +540, 0), Quaternion.identity, GameObject.Find("Canvas").transform);
+        spawnPlayerDialog = Instantiate(playerPiratesDialog, new Vector3(+960, +540, 0), Quaternion.identity, GameObject.Find("Canvas").transform);
 
         GameObject.FindGameObjectWithTag("TimeManager").GetComponent<TimeAndDateScript>().SetTimeSpeed(0);
 
         GameObject AttackButtonObject = GameObject.Find("AttackButton");
 
         AttackButtonObject.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => AttackButton());
+
     }
 
-    public void AttackButton()
+    private void SpawnDialogCountryNPC()
+    {
+
+        spawnPlayerDialog = Instantiate(playerCountryNPCDialog, new Vector3(+960, +540, 0), Quaternion.identity, GameObject.Find("Canvas").transform);
+
+        GameObject AttackButtonObject = GameObject.Find("AttackButtonBg");
+        GameObject NothingButtonObject = GameObject.Find("NothingButtonBg");
+
+        AttackButtonObject.transform.GetChild(0).GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => AttackButton());
+        NothingButtonObject.transform.GetChild(0).GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() => NothingButton());
+
+        if (atWar)
+        {
+            spawnPlayerDialog.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = "I'll fight with you for my country";
+
+            NothingButtonObject.SetActive(false);
+
+
+
+        }
+        else
+        {
+            spawnPlayerDialog.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = "What do you want?";
+
+            AttackButtonObject.SetActive(false);
+
+        }
+        GameObject.FindGameObjectWithTag("TimeManager").GetComponent<TimeAndDateScript>().SetTimeSpeed(0);
+
+
+    }
+
+    private void AttackButton()
     {
         if (!TekKullan)
         {
-            GameObject.FindGameObjectWithTag("Destroyless").GetComponent<EnemyDestroylessManager>()._EnemyToFightUnitsContainers
-                = EnemyCollider.transform.parent.GetComponent<EnemyUnits>().GetEnemyUnits();
+            if (EnemyCollider.transform.parent.GetComponent<EnemyUnits>() != null)
+            {
+
+
+                GameObject.FindGameObjectWithTag("Destroyless").GetComponent<EnemyDestroylessManager>()._EnemyToFightUnitsContainers
+                    = EnemyCollider.transform.parent.GetComponent<EnemyUnits>().GetEnemyUnits();
+            }
+            else if (EnemyCollider.transform.parent.GetComponent<NPCUnits>() != null)
+            {
+                GameObject.FindGameObjectWithTag("Destroyless").GetComponent<EnemyDestroylessManager>()._EnemyToFightUnitsContainers
+                    = EnemyCollider.transform.parent.GetComponent<NPCUnits>().GetNPCUnits();
+            }
 
             GameObject.FindGameObjectWithTag("TimeManager").GetComponent<TimeAndDateScript>().SetTimeSpeed(1);
             Time.timeScale = 1;
@@ -149,6 +206,12 @@ public class PlayerTarget : MonoBehaviour
         }
     }
 
+    private void NothingButton()
+    {
+        GameObject.FindGameObjectWithTag("TimeManager").GetComponent<TimeAndDateScript>().SetTimeSpeed(1);
+        Time.timeScale = 1;
+        Destroy(spawnPlayerDialog);
+    }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Time.timeScale = 1;

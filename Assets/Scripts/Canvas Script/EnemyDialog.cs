@@ -99,6 +99,9 @@ public class EnemyDialog : MonoBehaviour
 
             didPay = true;
 
+            GameObject.FindGameObjectWithTag("TimeManager").GetComponent<TimeAndDateScript>().SetTimeSpeed(1);
+
+
             Destroy(enemyDialogOrganize.spawnEnemyDialog); //
             enemyDialogOrganize.isDialogSpawned = false;   //
                                                            ///// bu dortlu kesinlikle olmali eski hale getirilebilmesi icin.  \\\\\

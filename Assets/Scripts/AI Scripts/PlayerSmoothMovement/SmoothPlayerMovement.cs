@@ -234,7 +234,7 @@ public class SmoothPlayerMovement : MonoBehaviour
                             //}
 
 
-                            if (hit.transform.CompareTag("EnemyShip"))
+                            if (hit.transform.CompareTag("EnemyShip") || hit.transform.CompareTag("NPCShip"))
                             {
                                 //      PathLocations = null;
                                 //   PathIndex = 0;
