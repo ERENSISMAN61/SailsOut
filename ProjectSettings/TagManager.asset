@@ -48,6 +48,7 @@ TagManager:
   - EnemyDialog
   - PlayerCollider
   - EnemyCollider
+  - Lantern
   layers:
   - Default
   - TransparentFX

@@ -93,6 +93,7 @@ public class PlayerTarget : MonoBehaviour
 
     private void TargetCalculate()
     {
+        string shipCountryNum = GameObject.FindGameObjectWithTag("DiplomacyManager").transform.GetChild(0).GetComponent<GetYourCountry>().GetCountryNum().ToString();
         // Görüş alanındaki tüm player nesnelerini bir diziye ata
         Collider[] enemies = Physics.OverlapSphere(transform.position + transform.forward * distance, radius, playerLayer);
 
@@ -123,7 +124,7 @@ public class PlayerTarget : MonoBehaviour
                                     }
                                     else if (enemy.CompareTag("NPCParts"))
                                     {
-                                        atWar = GameObject.FindGameObjectWithTag("DiplomacyManager").GetComponent<DiplomacyManager>().AreAtWar(transform.parent.tag, enemy.transform.parent.parent.tag);
+                                        atWar = GameObject.FindGameObjectWithTag("DiplomacyManager").GetComponent<DiplomacyManager>().AreAtWar(shipCountryNum, enemy.transform.parent.parent.tag);
                                         SpawnDialogCountryNPC();
                                     }
 

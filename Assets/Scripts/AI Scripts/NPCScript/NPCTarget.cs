@@ -41,7 +41,7 @@ public class NPCTarget : MonoBehaviour
                     //NPC TARGET
 
                     string thisShipCountryNum = transform.parent.tag;//ulke numarasini al bu geminin
-                    string otherShipCountryNum = enemy.transform.parent.parent.tag; // karsilasdigi geminin ulke numarasini al
+                    string otherShipCountryNum = GameObject.FindGameObjectWithTag("DiplomacyManager").transform.GetChild(0).GetComponent<GetYourCountry>().GetCountryNum().ToString(); // karsilasdigi geminin ulke numarasini al
 
                     //DiplomacyManager'dan iki geminin ülkelerinin savasta olup olmadiginin kontrolu
 
