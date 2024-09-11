@@ -28,13 +28,26 @@ public class CountryManager : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        if (_instance == null)
+        {
+            // Assign the instance and prevent it from being destroyed
+            _instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (_instance != this)
+        {
+            // If another instance already exists, destroy this one
+            Destroy(gameObject);
+        }
+    }
 
     // Method to save the selected country ID
     public void SaveCountry(int countryId)
     {
         PlayerPrefs.SetInt(CountryKey, countryId);
         PlayerPrefs.Save();
-
     }
 
     // Method to load the selected country ID
@@ -42,6 +55,4 @@ public class CountryManager : MonoBehaviour
     {
         return PlayerPrefs.GetInt(CountryKey); // Default to 1 (Norvheim) if not set
     }
-
-    
 }
