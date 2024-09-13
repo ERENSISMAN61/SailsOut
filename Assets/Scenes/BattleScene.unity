@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1.8273838, g: 2.757397, b: 9.6596, a: 1}
+  m_IndirectSpecularColor: {r: 2.489824, g: 3.53516, b: 9.610144, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1383,6 +1383,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 173924707}
   m_CullTransparentMesh: 1
+--- !u!1 &186236149
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 186236151}
+  - component: {fileID: 186236150}
+  m_Layer: 0
+  m_Name: setTime
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &186236150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 186236149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6282061d46cedc64fb7bf8bec4d59a07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &186236151
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 186236149}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1571.8943, y: 609.1074, z: -310.35382}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &192367322
 GameObject:
   m_ObjectHideFlags: 0
@@ -4982,7 +5026,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 666659797}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.1364031, y: -0.000000017045558, z: 0.0000000023470035, w: 0.99065346}
+  m_LocalRotation: {x: 0.1364031, y: 0.000000017045565, z: -0.0000000023470044, w: 0.99065346}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7861,8 +7905,8 @@ MonoBehaviour:
   - {fileID: 1970908353}
   - {fileID: 1367021}
   isActiveLevel1: 1
-  isActiveLevel2: 0
-  isActiveLevel3: 0
+  isActiveLevel2: 1
+  isActiveLevel3: 1
   rightCamera: {fileID: 1276004541}
   leftCamera: {fileID: 339507124}
   smokeParticle: {fileID: 9142032352824712409, guid: 888fe468becd2ba43926cc59caffded3, type: 3}
@@ -19185,3 +19229,4 @@ SceneRoots:
   - {fileID: 1052915297}
   - {fileID: 539289941}
   - {fileID: 804166637}
+  - {fileID: 186236151}

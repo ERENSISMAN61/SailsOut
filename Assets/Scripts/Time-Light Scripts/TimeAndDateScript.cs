@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class TimeAndDateScript : MonoBehaviour
 {
@@ -29,6 +30,12 @@ public class TimeAndDateScript : MonoBehaviour
     [SerializeField] private float currentGraphTime;
     void Start()
     {
+        if (SceneManager.GetActiveScene().name == "BattleScene")
+        {
+            currentTime = GameObject.FindGameObjectWithTag("Destroyless").GetComponent<DestroylessManager>().sceneCurrentTime;
+
+        }
+
         currentSeason = seasons[0];
         UpdateTimeText();
 
@@ -55,7 +62,17 @@ public class TimeAndDateScript : MonoBehaviour
     void TimeCalculate()
     {
         //Debug.Log("CurrTime: "+currentTime+"\n Actual Time: "+ Time.time);
-        currentTime += timeSpeedMultiplier * Time.deltaTime;
+
+        if (SceneManager.GetActiveScene().name == "BattleScene")
+        {
+            currentTime += timeSpeedMultiplier * Time.deltaTime * 0.1f;
+
+        }
+        else
+        {
+            currentTime += timeSpeedMultiplier * Time.deltaTime;
+        }
+
 
         if (currentTime >= 24f)
         {
@@ -102,6 +119,7 @@ public class TimeAndDateScript : MonoBehaviour
     {
         return currentTime;
     }
+
 
     public string GetCurrentDateInfo()
     {

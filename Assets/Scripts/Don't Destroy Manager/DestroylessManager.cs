@@ -13,13 +13,26 @@ public class DestroylessManager : MonoBehaviour
     public float playerBulletDM;
     public float playerSupplyDM;
 
+    [HideInInspector]
+    private TimeAndDateScript timeDate;
+
+
+    public float sceneCurrentTime;
+
 
 
 
     public int _unitCount;
     public List<UnitsContainer> _UnitsContainers = new List<UnitsContainer>();
+
+    [System.Obsolete]
     private void Awake()
     {
+        timeDate = UnityEngine.Object.FindObjectOfType<TimeAndDateScript>();
+
+
+
+
 
         if (Instance == null)
         {
@@ -62,6 +75,11 @@ public class DestroylessManager : MonoBehaviour
 
         _unitCount = _UnitsContainers.Count;
 
+    }
+
+    void Update()
+    {
+        sceneCurrentTime = timeDate.GetCurrentTime();
     }
 
 
