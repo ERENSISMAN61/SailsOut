@@ -33,7 +33,7 @@ public class ShotCursorController : MonoBehaviour
         if(Input.GetMouseButtonUp(1))  // Sağ tıklama bırakıldığında
         {
             this.gameObject.GetComponent<Image>().enabled = false;
-            //Cursor.visible = false;
+            Cursor.visible = true;
         }
 
         if (Cursor.visible == false)

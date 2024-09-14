@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2.489824, g: 3.53516, b: 9.610144, a: 1}
+  m_IndirectSpecularColor: {r: 2.564989, g: 3.6316314, b: 9.720496, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -142,7 +142,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &15780045
 RectTransform:
   m_ObjectHideFlags: 0
@@ -791,15 +791,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 837429142629176422, guid: fabf0779309130d49bbe8c0abeb86242, type: 3}
       propertyPath: m_Color.b
-      value: 0.17854264
+      value: 0.6226415
       objectReference: {fileID: 0}
     - target: {fileID: 837429142629176422, guid: fabf0779309130d49bbe8c0abeb86242, type: 3}
       propertyPath: m_Color.g
-      value: 0.6509434
+      value: 0.43667436
       objectReference: {fileID: 0}
     - target: {fileID: 837429142629176422, guid: fabf0779309130d49bbe8c0abeb86242, type: 3}
       propertyPath: m_Color.r
-      value: 0.15045391
+      value: 0.115521505
       objectReference: {fileID: 0}
     - target: {fileID: 837429142629176424, guid: fabf0779309130d49bbe8c0abeb86242, type: 3}
       propertyPath: m_Layer
@@ -1325,7 +1325,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &173924708
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2087,15 +2087,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 837429142629176422, guid: fabf0779309130d49bbe8c0abeb86242, type: 3}
       propertyPath: m_Color.b
-      value: 0.17854264
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 837429142629176422, guid: fabf0779309130d49bbe8c0abeb86242, type: 3}
       propertyPath: m_Color.g
-      value: 0.6509434
+      value: 0.094828054
       objectReference: {fileID: 0}
     - target: {fileID: 837429142629176422, guid: fabf0779309130d49bbe8c0abeb86242, type: 3}
       propertyPath: m_Color.r
-      value: 0.15045391
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 837429142629176424, guid: fabf0779309130d49bbe8c0abeb86242, type: 3}
       propertyPath: m_Layer
@@ -5026,7 +5026,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 666659797}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.1364031, y: 0.000000017045565, z: -0.0000000023470044, w: 0.99065346}
+  m_LocalRotation: {x: 0.1364031, y: -0.000000017045558, z: 0.0000000023470035, w: 0.99065346}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7914,7 +7914,7 @@ MonoBehaviour:
   launchAngle: 150
   initialSpeed: 2000
   timeBetweenShots: 2
-  maxAmmo: 100
+  maxAmmo: 999999
   targetLayer:
     serializedVersion: 2
     m_Bits: 2003

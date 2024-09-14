@@ -58,6 +58,9 @@ public class VictoryInfo : MonoBehaviour
             coinText.text = destroylessManager.playerCoinDM + " + " + RandomValue.ToString();
             supplyText.text = destroylessManager.playerSupplyDM + " + " + RandomValue2.ToString();
             cannonBallText.text = destroylessManager.playerBulletDM + " + " + RandomValue3.ToString();
+            destroylessManager.playerCoinDM += RandomValue;
+            destroylessManager.playerSupplyDM += RandomValue2;
+            destroylessManager.playerBulletDM += RandomValue3;
         }
         else if (_isRedWon == true)
         {

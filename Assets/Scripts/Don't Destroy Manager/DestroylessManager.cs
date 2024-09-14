@@ -57,21 +57,21 @@ public class DestroylessManager : MonoBehaviour
 
     void Start()
     {
-        UnitsContainer unit1 = new UnitsContainer(1, 100, 20);
-        UnitsContainer unit2 = new UnitsContainer(2, 150, 40);
-        UnitsContainer unit3 = new UnitsContainer(3, 200, 60);
-        UnitsContainer unit4 = new UnitsContainer(4, 250, 80);
-        UnitsContainer unit5 = new UnitsContainer(4, 250, 80);
-        UnitsContainer unit6 = new UnitsContainer(5, 300, 100);
-        UnitsContainer unit7 = new UnitsContainer(5, 300, 100);
+        //  UnitsContainer unit1 = new UnitsContainer(1, 100, 20);
+        //  UnitsContainer unit2 = new UnitsContainer(2, 150, 40);
+        //  UnitsContainer unit3 = new UnitsContainer(3, 200, 60);
+        //   UnitsContainer unit4 = new UnitsContainer(4, 250, 80);
+        //   UnitsContainer unit5 = new UnitsContainer(4, 250, 80);
+        //       UnitsContainer unit6 = new UnitsContainer(5, 300, 100);
+        //   UnitsContainer unit7 = new UnitsContainer(5, 300, 100);
 
-        _UnitsContainers.Add(unit1);
-        _UnitsContainers.Add(unit2);
-        _UnitsContainers.Add(unit3);
-        _UnitsContainers.Add(unit4);
-        _UnitsContainers.Add(unit5);
-        _UnitsContainers.Add(unit6);
-        _UnitsContainers.Add(unit7);
+        //      _UnitsContainers.Add(unit1);
+        //      _UnitsContainers.Add(unit2);
+        //      _UnitsContainers.Add(unit3);
+        //    _UnitsContainers.Add(unit4);
+        //   _UnitsContainers.Add(unit5);
+        //   _UnitsContainers.Add(unit6);
+        //  _UnitsContainers.Add(unit7);
 
         _unitCount = _UnitsContainers.Count;
 

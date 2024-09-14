@@ -14,11 +14,11 @@ public class EnemyUnits : MonoBehaviour
 
     void Start()
     {
-        int RandomUnitCount = Random.Range(1, 7);
+        int RandomUnitCount = Random.Range(1, 6);
 
         for (int i = 0; i < RandomUnitCount; i++)
         {
-            int RandomUnit = Random.Range(1, 6);  //1-5 arasinda rastgele bir sayi sec
+            int RandomUnit = Random.Range(1, 5);  //1-5 arasinda rastgele bir sayi sec
             switch (RandomUnit)
             {
                 case 1:
