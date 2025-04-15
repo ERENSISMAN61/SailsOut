@@ -26,6 +26,7 @@ public class PlayerTarget : MonoBehaviour
     private bool isDragging;
 
     private bool atWar = false;
+    private bool isStronger = false;
 
     void Start()
     {
@@ -124,8 +125,9 @@ public class PlayerTarget : MonoBehaviour
                                     }
                                     else if (enemy.CompareTag("NPCParts"))
                                     {
-                                        atWar = GameObject.FindGameObjectWithTag("DiplomacyManager").GetComponent<DiplomacyManager>().AreAtWar(shipCountryNum, enemy.transform.parent.parent.tag);
-                                        SpawnDialogCountryNPC();
+                                        //      isStronger = enemy.transform.parent.GetComponent<NPCUnits>().GetNPCUnitCount() >= GameObject.FindGameObjectWithTag("UnitsManager").GetComponent<UnitsManager>().unitCount;
+                                        //     atWar = GameObject.FindGameObjectWithTag("DiplomacyManager").GetComponent<DiplomacyManager>().AreAtWar(shipCountryNum, enemy.transform.parent.parent.tag);
+                                        //  SpawnDialogCountryNPC();
                                     }
 
                                 }

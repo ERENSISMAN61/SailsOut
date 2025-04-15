@@ -24,6 +24,7 @@ public class UnitsManager : MonoBehaviour
         DestroylessObject.GetComponent<DestroylessManager>()._unitCount = unitCount;
     }
 
+
     //Listede none olarak görünse de hemen altında infoları görünüyor componentte.
 
     /*                           Unitleri alttaki şekilde çekebilirsin. Unit içindekiler -> "Rank, Health, AttackPower"
